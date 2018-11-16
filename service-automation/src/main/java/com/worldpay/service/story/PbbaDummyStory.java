@@ -1,4 +1,4 @@
-package com.worldpay.service.stories;
+package com.worldpay.service.story;
 
 import java.util.List;
 

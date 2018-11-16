@@ -11,16 +11,28 @@ import static org.apache.commons.lang.StringUtils.isNotBlank;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.fail;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
+import org.apache.commons.collections4.map.ListOrderedMap;
+import org.apache.commons.configuration.CompositeConfiguration;
+import org.apache.commons.lang.StringUtils;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.worldpay.service.entities.SharedData;
 import com.worldpay.service.util.EnvironmentUtil;
+import com.worldpay.service.util.MapSerializer;
+
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
@@ -29,8 +41,8 @@ import io.restassured.specification.RequestSpecification;
 
 public class RestSubmissionSteps {
 
-    private static final String HEADER_NAME = "headerName";
-    private static final String HEADER_VALUE = "headerValue";
+//    private static final String HEADER_NAME = "headerName";
+//    private static final String HEADER_VALUE = "headerValue";
     private static final String API_VALUE = "api";
     // private static final String LOG_URL = "URL: {}";
     // private static final String REQUEST_URL = "Request: {}";
@@ -50,6 +62,13 @@ public class RestSubmissionSteps {
     private static final String PROPERTIES_PATH = EnvironmentUtil.getEnvironment().getPropertiesPath();
     private static final String HTTP_CONNECTION_TIMEOUT = "http.connection.timeout";
     private static final String HTTP_SOCKET_TIMEOUT = "http.socket.timeout";
+    
+    public static final String ACTION = "action";
+    public static final String REQUEST = "request";
+    public static final String TAG = "tag";
+    public static final String UPDATE_ACTION = "updateAction";
+    public static final String QUERY_ID = "queryId";
+    private static final String SLASH = "/";
 
     private RequestSpecification requestSpecification;
     private String jSonRequest;
@@ -66,10 +85,18 @@ public class RestSubmissionSteps {
         jSonRequest = "{ \"merchant\": { \"id\": \"000000\", \"registrationInfo\": { \"address\": { \"addressLine1\": \"string\", \"countryCode\": \"GBR\", \"postCode\": \"string\" }, \"categoryCode\": \"1\", \"commonName\": \"string\", \"creditAccount\": { \"accountNumber\": \"string\", \"rollNumber\": \"string\", \"sortCode\": \"814940\" }, \"groupId\": \"string\", \"keyId\": \"string\", \"logoUrl\": \"string\", \"name\": \"string\" } } }";
         setRequestSpecificationForServer();
     }
+    
+    @When("create JSON request")
+    public void createJsonRequest() {
+        jSonRequest = createJsonFromTestData(share.getTestData());
+        share.getTestData().setProperty("json.request", jSonRequest);
+        System.out.println("JSON request:\n" + jSonRequest);
+        setRequestSpecificationForServer();
+    }
 
     @When("I $requestMethod the JSon request")
     public void whenPostJsonRequest(@Named("requestMethod") String requestMethod) {
-        sendHttpRequest(requestMethod, buildUrl(SERVER_PROTOCOL, SERVER_HOST, SERVER_PORT, "/payByBankApp/v1.0/merchant/registration"));
+        sendHttpRequest(requestMethod, buildUrl(SERVER_PROTOCOL, SERVER_HOST, SERVER_PORT, generatePath(requestMethod)));
     }
 
     @When("I $requestMethod the JSon request with custom parameters")
@@ -77,16 +104,41 @@ public class RestSubmissionSteps {
         sendHttpRequest(requestMethod, buildUrl(SERVER_PROTOCOL, SERVER_HOST, SERVER_PORT, share.getTestData().getString(API_VALUE)));
     }
 
-    @Then("I can see the reponse")
+    @Then("I can see the response")
     public void checkResponse() {
-        System.out.println(" response: " + share.getResponse().asString());
-        share.getResponse().then().assertThat().body("merchantId", equalTo(share.getTestData().getString("merchantId")));
+        share.getResponse().then().assertThat().body("merchantId", equalTo("000000"));
     }
+    
+    @Then("I can validate the response")
+    public void validateResponse() {
+      share.getResponse().then().assertThat().body("merchantId", equalTo(share.getTestData().getString("merchantId")));
+  }
 
     private String buildUrl(String protocol, String host, String port, String api) {
 
         return readProp(PROPERTIES_PATH, protocol) + "://" + readProp(PROPERTIES_PATH, host) + ":" + readProp(PROPERTIES_PATH, port) + api;
 
+    }
+    
+    /**
+     * Builds the path of the api that will be called based on the operation: if no operation is provided, POST will be used by default, the
+     * other possible operation is PUT. Adds the api, version and createAction to POST and also the queryId and updateAction to PUT. If
+     * createAction has the value "empty" it will not be appended (used for Refund). Also adds "/" as a separator between parameters
+     * 
+     * @param operation
+     * @return stringBuilder - the url after the protocol, host and port (e.g. /merchantHosted/v1.0/capture/201801092037030000000/cancel)
+     */
+    private String generatePath(String operation) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(SLASH).append(share.getTestData().getString(API_VALUE)).append(SLASH).append(EnvironmentUtil.getServiceVersion()).append(SLASH);
+        if (!StringUtils.EMPTY.equals(share.getTestData().getString(ACTION))) {
+            stringBuilder.append(share.getTestData().getString(ACTION)).append(SLASH);
+        }
+        if (PUT.equals(operation)) {
+            stringBuilder.append(share.getTestData().getString(QUERY_ID)).append(SLASH).append(share.getTestData().getString(UPDATE_ACTION));
+        }
+        return stringBuilder.toString();
     }
 
     /**
@@ -190,6 +242,40 @@ public class RestSubmissionSteps {
                         .setParam(HTTP_CONNECTION_TIMEOUT, Integer.parseInt(readProp(EnvironmentUtil.GENERAL_PROPERTIES_PATH, HTTP_CONNECTION_TIMEOUT)))
                         .setParam(HTTP_SOCKET_TIMEOUT, Integer.parseInt(readProp(EnvironmentUtil.GENERAL_PROPERTIES_PATH, HTTP_SOCKET_TIMEOUT))));
 
+    }
+    
+    /**
+     * Builds the JSON request from the testData
+     * 
+     * @param testData
+     * @return
+     */
+    private String createJsonFromTestData(CompositeConfiguration testData) {
+        final Map<String, String> testDataMap = testDataToMap(testData);
+        final Type mapType = new TypeToken<Map<String, String>>() {
+        }.getType();
+
+        final String jsonTestData = new GsonBuilder().registerTypeAdapter(mapType, new MapSerializer()).create().toJson(testDataMap, mapType);
+
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        JsonParser jp = new JsonParser();
+        JsonElement je = jp.parse(jsonTestData);
+        return gson.toJson(je);
+    }
+    
+    /**
+     * Converts a CompositeConfiguration object to a Map, so that it can be transformed afterwards in a JSON request
+     * 
+     * @param testData
+     * @return
+     */
+    private Map<String, String> testDataToMap(CompositeConfiguration testData) {
+        final ListOrderedMap<String, String> testDataMap = new ListOrderedMap<String, String>();
+        for (final Iterator<String> it = testData.getKeys(); it.hasNext();) {
+            final String key = it.next();
+            testDataMap.put(testDataMap.size(), key, testData.getString(key));
+        }
+        return testDataMap;
     }
 
 }
