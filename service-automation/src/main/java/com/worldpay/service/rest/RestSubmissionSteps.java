@@ -23,6 +23,8 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -40,12 +42,14 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class RestSubmissionSteps {
-
-//    private static final String HEADER_NAME = "headerName";
-//    private static final String HEADER_VALUE = "headerValue";
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(RestSubmissionSteps.class);
+    private static final String HEADER_NAME = "headerName";
+    private static final String HEADER_VALUE = "headerValue";
     private static final String API_VALUE = "api";
     // private static final String LOG_URL = "URL: {}";
-    // private static final String REQUEST_URL = "Request: {}";
+    private static final String REQUEST_URL = "Request: \n{}";
+    private static final String RESPONSE = "Response: \n{}";
     private static final String SERVER_PROTOCOL = "server.protocol";
     private static final String SERVER_HOST = "server.host";
     private static final String SERVER_PORT = "server.port";
@@ -80,8 +84,6 @@ public class RestSubmissionSteps {
 
     @Given("JSon request")
     public void givenJsonRequest() {
-
-        // share.getTestData().setProperty(REQUEST, jSonRequest);
         jSonRequest = "{ \"merchant\": { \"id\": \"000000\", \"registrationInfo\": { \"address\": { \"addressLine1\": \"string\", \"countryCode\": \"GBR\", \"postCode\": \"string\" }, \"categoryCode\": \"1\", \"commonName\": \"string\", \"creditAccount\": { \"accountNumber\": \"string\", \"rollNumber\": \"string\", \"sortCode\": \"814940\" }, \"groupId\": \"string\", \"keyId\": \"string\", \"logoUrl\": \"string\", \"name\": \"string\" } } }";
         setRequestSpecificationForServer();
     }
@@ -90,7 +92,7 @@ public class RestSubmissionSteps {
     public void createJsonRequest() {
         jSonRequest = createJsonFromTestData(share.getTestData());
         share.getTestData().setProperty("json.request", jSonRequest);
-        System.out.println("JSON request:\n" + jSonRequest);
+        LOGGER.info(REQUEST_URL,jSonRequest);
         setRequestSpecificationForServer();
     }
 
@@ -156,6 +158,7 @@ public class RestSubmissionSteps {
         try {
             share.setResponse(chooseMethodAndSendRequest(requestMethod, url));
             String response = share.getResponse().getBody().prettyPrint();
+            LOGGER.info(RESPONSE,response);
         } catch (Exception e) {
             fail(String.format("Failed to connect to %s %n %s", url, e));
         }

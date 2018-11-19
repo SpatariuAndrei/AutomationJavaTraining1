@@ -31,9 +31,11 @@ import org.jbehave.core.steps.InstanceStepsFactory;
 import org.jbehave.core.steps.ParameterControls;
 import org.jbehave.core.steps.ParameterConverters;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.worldpay.service.entities.SharedData;
+import com.worldpay.service.rest.RestSubmissionSteps;
 import com.worldpay.service.util.CustomisableFreemarkerProcessor;
 
 import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
@@ -42,10 +44,9 @@ import io.restassured.internal.RestAssuredResponseImpl;
 @RunWith(JUnitReportingRunner.class)
 public class BaseJBehaveStory extends JUnitStory {
 
+    protected static final Logger LOGGER = LoggerFactory.getLogger(RestSubmissionSteps.class);
     protected Object[] steps;
     private final CrossReference xref = new CrossReference();
-
-    private org.slf4j.Logger logger = LoggerFactory.getLogger(BaseJBehaveStory.class);
     protected SharedData share = new SharedData();
 
     protected static final String STORY_TIMEOUT = "storyTimeout";
