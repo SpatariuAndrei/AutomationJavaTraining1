@@ -1,5 +1,24 @@
+Scenario: Send PBBA the merchant registration information and receive the response from PBBA using table file
+
+Given table file location table for merchant registration: data/tables/MerchantRegistration.table
+Given test data for Merchant Registration:
+| key          											| value		|
+| merchant.id											| 111111	|
+| merchant.registrationInfo.address.countryCode			| ROU		|
+When create JSON request
+Given test data for API:
+| key          	| value            		|
+| api          	| payByBankApp   		|
+| action		| merchant/registration |
+When I post the JSon request
+Given test data for the response:
+| key          											| value		|
+| merchantId											| 111111	|
+Then I can validate the response
+
 Scenario: Send PBBA the merchant registration information and receive the response from PBBA
 
+Given test data cleared
 Given test data for Merchant Registration:
 | key          											| value		|
 | merchant.id											| 000000	|

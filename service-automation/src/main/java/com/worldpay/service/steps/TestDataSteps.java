@@ -13,6 +13,8 @@ import com.worldpay.service.entities.SharedData;
 public class TestDataSteps {
 
     private SharedData share;
+    public static final String TABLE_FILE_KEY = "tableFile";
+    public static final boolean REPLACE_NAMED_PARAMETERS = true;
 
     public TestDataSteps(SharedData share) {
         this.share = share;
@@ -47,6 +49,29 @@ public class TestDataSteps {
     @Then("test data cleared")
     public void givenTestDataCleared() {
         share.getTestData().clear();
+    }
+
+    /**
+     * Used if the table file is given by its location and from an Examples table.<br>
+     * Multiple table files can also be given.<br>
+     * <br>
+     * Eg.<br>
+     * <br>
+     * 
+     * And table file location table for someDescription:<br>
+     * | tableFile |<br>
+     * | path/to/first/table/file/tableFile1.table |<br>
+     * | path/to/second/table/file/&lt;tableFile&gt; |<br>
+     * ...<br>
+     * Examples:<br>
+     * | &lt;tableFile&gt; |<br>
+     * | tableFile2.table |<br>
+     * ...
+     */
+    @Given("table file location table for $description: $propertiesTableLocationTable")
+    @When("table file location table for $description: $propertiesTableLocationTable")
+    public void givenTestDataLocationTable(@Named("propertiesTableLocationTable") ExamplesTable propertiesTableLocationTable) {
+        setTestData(propertiesTableLocationTable);
     }
 
     /**
