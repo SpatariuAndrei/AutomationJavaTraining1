@@ -2,6 +2,8 @@ package com.worldpay.service.base;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.jbehave.core.Embeddable;
@@ -44,6 +46,7 @@ public class BaseJBehaveStory extends JUnitStory {
 
     protected static final String STORY_TIMEOUT = "storyTimeout";
     protected static final int NUMBER_OF_THREADS = 1;
+    protected static final String META_FILTER_SYSTEM_PROPERTY = "meta.filter";
 
     public BaseJBehaveStory(Object... steps) {
         addSteps(steps);
@@ -57,7 +60,7 @@ public class BaseJBehaveStory extends JUnitStory {
         embedderControls.useThreads(1).useStoryTimeouts(FileUtil.readProp(EnvironmentUtil.GENERAL_PROPERTIES_PATH, STORY_TIMEOUT)).useThreads(NUMBER_OF_THREADS)
                 .doIgnoreFailureInStories(true).ignoreFailureInView();
         JUnitReportingRunner.recommendedControls(configuredEmbedder);
-        configuredEmbedder.useMetaFilters(Arrays.asList("-skip"));
+        configuredEmbedder.useMetaFilters(getMetaFilters());
     }
 
     public Object[] getSteps() {
@@ -101,5 +104,25 @@ public class BaseJBehaveStory extends JUnitStory {
 
     private ParameterControls parameterControls() {
         return new ParameterControls().useDelimiterNamedParameters(true);
+    }
+    
+    /**
+     * Override to specify only a subset of stories/scenarios to run based on jbehave meta info.
+     * 
+     * @see http://jbehave.org/reference/stable/meta-info.html
+     * @see http://jbehave.org/reference/stable/meta-filtering.html#highlighter_883587
+     */
+    protected List<String> getMetaFilters() {
+        String metaFilterProperty = System.getProperty(META_FILTER_SYSTEM_PROPERTY);
+        List<String> properties = new LinkedList<String>();
+
+        if (metaFilterProperty != null) {
+            String[] metaFilterProperties = metaFilterProperty.split(",");
+            properties = new LinkedList<String>(Arrays.asList(metaFilterProperties));
+        }
+
+        properties.add("-skip");
+
+        return properties;
     }
 }

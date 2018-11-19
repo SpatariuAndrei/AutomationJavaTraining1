@@ -1,4 +1,12 @@
+Narrative: PBBA merchant registration
+
+Meta:
+@PbbaTestDataStory
+
 Scenario: Send PBBA the merchant registration information and receive the response from PBBA using table file
+
+Meta:
+@PbbaTestDataStory010
 
 Given table file location table for merchant registration: data/tables/MerchantRegistration.table
 Given test data for Merchant Registration:
@@ -17,6 +25,9 @@ Given test data for the response:
 Then I can validate the response
 
 Scenario: Send PBBA the merchant registration information and receive the response from PBBA
+
+Meta:
+@PbbaTestDataStory020
 
 Given test data cleared
 Given test data for Merchant Registration:
