@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.jbehave.core.Embeddable;
@@ -13,13 +14,17 @@ import org.jbehave.core.embedder.Embedder;
 import org.jbehave.core.embedder.EmbedderControls;
 import org.jbehave.core.i18n.LocalizedKeywords;
 import org.jbehave.core.io.CasePreservingResolver;
+import org.jbehave.core.io.CodeLocations;
 import org.jbehave.core.io.LoadFromClasspath;
 import org.jbehave.core.io.StoryLoader;
 import org.jbehave.core.io.StoryPathResolver;
 import org.jbehave.core.junit.JUnitStory;
 import org.jbehave.core.model.ExamplesTableFactory;
 import org.jbehave.core.reporters.CrossReference;
+import org.jbehave.core.reporters.FilePrintStreamFactory;
 import org.jbehave.core.reporters.Format;
+import org.jbehave.core.reporters.HtmlTemplateOutput;
+import org.jbehave.core.reporters.StoryReporter;
 import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
@@ -29,8 +34,7 @@ import org.junit.runner.RunWith;
 import org.slf4j.LoggerFactory;
 
 import com.worldpay.service.entities.SharedData;
-import com.worldpay.service.util.EnvironmentUtil;
-import com.worldpay.service.util.FileUtil;
+import com.worldpay.service.util.CustomisableFreemarkerProcessor;
 
 import de.codecentric.jbehave.junit.monitoring.JUnitReportingRunner;
 import io.restassured.internal.RestAssuredResponseImpl;
@@ -51,13 +55,21 @@ public class BaseJBehaveStory extends JUnitStory {
     public BaseJBehaveStory(Object... steps) {
         addSteps(steps);
     }
+    
+    private static final Format CUSTOM_HTML_TEMPLATE = new Format("HTML") {
+        @Override
+        public StoryReporter createStoryReporter(FilePrintStreamFactory factory, StoryReporterBuilder storyReporterBuilder) {
+            factory.useConfiguration(storyReporterBuilder.fileConfiguration("html"));
+            return new HtmlTemplateOutput(factory.getOutputFile(), storyReporterBuilder.keywords(), new CustomisableFreemarkerProcessor(), "reports/ftl/custom-html-output.ftl");
+        }
+    };
 
     public void addSteps(Object... steps) {
         this.steps = steps;
         Embedder configuredEmbedder = configuredEmbedder();
         EmbedderControls embedderControls = configuredEmbedder.embedderControls();
 
-        embedderControls.useThreads(1).useStoryTimeouts(FileUtil.readProp(EnvironmentUtil.GENERAL_PROPERTIES_PATH, STORY_TIMEOUT)).useThreads(NUMBER_OF_THREADS)
+        embedderControls.useThreads(1).useStoryTimeoutInSecs(10000).useThreads(NUMBER_OF_THREADS)
                 .doIgnoreFailureInStories(true).ignoreFailureInView();
         JUnitReportingRunner.recommendedControls(configuredEmbedder);
         configuredEmbedder.useMetaFilters(getMetaFilters());
@@ -77,6 +89,11 @@ public class BaseJBehaveStory extends JUnitStory {
 
         Class<? extends Embeddable> embeddableClass = this.getClass();
         ParameterConverters parameterConverters = new ParameterConverters();
+        Properties viewResources = new Properties();
+        viewResources.put("decorateNonHtml", "true");
+        viewResources.put("reports", "reports/ftl/custom-reports.ftl");
+        viewResources.put("decorated", "reports/ftl/custom-report-decorated.ftl");
+        viewResources.put("encoding", "ISO-8859-1");
 
         ExamplesTableFactory examplesTableFactory = new ExamplesTableFactory(new LocalizedKeywords(), new LoadFromClasspath(embeddableClass),
                 parameterConverters);
@@ -87,13 +104,30 @@ public class BaseJBehaveStory extends JUnitStory {
         share.setTestData(new CompositeConfiguration());
         share.getTestData().setDelimiterParsingDisabled(true);
 
-        return new MostUsefulConfiguration().useStoryLoader(new LoadFromClasspath(this.getClass())).useStoryPathResolver(storyPathResolver())
-                .useStoryLoader(storyLoader())
-                .useStoryReporterBuilder(new StoryReporterBuilder().withDefaultFormats().withFormats(Format.TXT, Format.CONSOLE, Format.HTML_TEMPLATE,
-                        Format.HTML, Format.XML, Format.XML_TEMPLATE))
-                .useStoryPathResolver(storyPathResolver()).useStoryLoader(storyLoader()).useParameterControls(parameterControls());
+        return new MostUsefulConfiguration().useStoryLoader(new LoadFromClasspath(this.getClass()))
+                .useStoryReporterBuilder(new StoryReporterBuilder()
+                .withCodeLocation(CodeLocations.codeLocationFromPath("reports"))
+                .withPathResolver(new FilePrintStreamFactory.ResolveToSimpleName())
+                .withViewResources(viewResources).withFormats(Format.TXT, Format.CONSOLE, CUSTOM_HTML_TEMPLATE))
+                .useStoryPathResolver(storyPathResolver()).useStoryLoader(storyLoader())
+                .useStoryReporterBuilder(storyReporterBuilder()).useParameterControls(parameterControls());
     }
 
+    private StoryReporterBuilder storyReporterBuilder() {
+        
+        Properties viewResources = new Properties();
+        viewResources.put("decorateNonHtml", "true");
+        viewResources.put("reports", "reports/ftl/custom-reports.ftl");
+        viewResources.put("decorated", "reports/ftl/custom-report-decorated.ftl");
+        viewResources.put("encoding", "ISO-8859-1");
+        
+        return new StoryReporterBuilder()
+                .withCodeLocation(CodeLocations.codeLocationFromClass(this.getClass()))
+                .withDefaultFormats().withPathResolver(new FilePrintStreamFactory.ResolveToSimpleName())
+                .withViewResources(viewResources).withFormats(Format.TXT, Format.CONSOLE, Format.HTML, Format.XML)
+                .withFailureTrace(true).withFailureTraceCompression(true).withCrossReference(xref);
+    }
+    
     private StoryPathResolver storyPathResolver() {
         return new CasePreservingResolver();
     }
