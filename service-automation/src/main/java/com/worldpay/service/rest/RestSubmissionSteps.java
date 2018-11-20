@@ -1,13 +1,6 @@
 package com.worldpay.service.rest;
 
-//import static com.worldpay.singleclick.constants.TestDataConstants.CREATE_ACTION;
-//import static com.worldpay.singleclick.constants.TestDataConstants.QUERY_ID;
-//import static com.worldpay.singleclick.constants.TestDataConstants.REQUEST;
-//import static com.worldpay.singleclick.constants.TestDataConstants.TAG;
-//import static com.worldpay.singleclick.constants.TestDataConstants.UPDATE_ACTION;
-import static com.worldpay.service.util.FileUtil.readProp;
 import static io.restassured.RestAssured.given;
-import static org.apache.commons.lang.StringUtils.isNotBlank;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.fail;
 
@@ -19,11 +12,13 @@ import java.util.Map;
 import org.apache.commons.collections4.map.ListOrderedMap;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.lang.StringUtils;
+import org.jbehave.core.annotations.BeforeScenario;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.slf4j.Logger;
+import org.junit.Before;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
@@ -32,7 +27,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.worldpay.service.entities.SharedData;
-import com.worldpay.service.util.EnvironmentUtil;
+import com.worldpay.service.environment.Environment;
 import com.worldpay.service.util.MapSerializer;
 
 import io.restassured.RestAssured;
@@ -42,37 +37,38 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class RestSubmissionSteps {
-    
-    private static final Logger LOGGER = LoggerFactory.getLogger(RestSubmissionSteps.class);
-    private static final String HEADER_NAME = "headerName";
-    private static final String HEADER_VALUE = "headerValue";
-    private static final String API_VALUE = "api";
-    // private static final String LOG_URL = "URL: {}";
-    private static final String REQUEST_URL = "Request: \n{}";
-    private static final String RESPONSE = "Response: \n{}";
-    private static final String SERVER_PROTOCOL = "server.protocol";
-    private static final String SERVER_HOST = "server.host";
-    private static final String SERVER_PORT = "server.port";
-    private static final String SERVICE_CERTIFICATE = "service.certificate";
-    private static final String SERVICE_CERT_PASS = "service.cert.pass";
 
-    // private static final String SLASH = "/";
+    private static final Logger LOGGER = LoggerFactory.getLogger(RestSubmissionSteps.class);
+    // private static final String HEADER_NAME = "headerName";
+    // private static final String HEADER_VALUE = "headerValue";
+    private static final String API_VALUE = "api";
+    // private static final String SERVICE_CERTIFICATE = "service.certificate";
+    // private static final String SERVICE_CERT_PASS = "service.cert.pass";
+    private static final String REQUEST = "Request: \n{}";
+    private static final String RESPONSE = "Response: \n{}";
+
     private static final String DELETE = "delete";
     private static final String GET = "get";
     private static final String HEAD = "head";
     private static final String OPTIONS = "options";
     private static final String PUT = "put";
     private static final String POST = "post";
-    private static final String PROPERTIES_PATH = EnvironmentUtil.getEnvironment().getPropertiesPath();
-    private static final String HTTP_CONNECTION_TIMEOUT = "http.connection.timeout";
-    private static final String HTTP_SOCKET_TIMEOUT = "http.socket.timeout";
-    
+    private static final String HTTP_CONNECTION_TIMEOUT_PARAM = "http.connection.timeout";
+    private static final String HTTP_SOCKET_TIMEOUT_PARAM = "http.socket.timeout";
+
+    // public static final String REQUEST = "request";
+    // public static final String TAG = "tag";
     public static final String ACTION = "action";
-    public static final String REQUEST = "request";
-    public static final String TAG = "tag";
     public static final String UPDATE_ACTION = "updateAction";
     public static final String QUERY_ID = "queryId";
     private static final String SLASH = "/";
+
+    private String protocol;
+    private String host;
+    private String port;
+    private String version;
+    private String httpConnectionTimeout;
+    private String httpSocketTimeout;
 
     private RequestSpecification requestSpecification;
     private String jSonRequest;
@@ -82,46 +78,57 @@ public class RestSubmissionSteps {
         this.share = share;
     }
 
+    @Before
+    @BeforeScenario
+    public void setUp() {
+        protocol = Environment.ENVIRONMENT.get().getServerProtocol();
+        host = Environment.ENVIRONMENT.get().getServerHost();
+        port = Environment.ENVIRONMENT.get().getServerPort();
+        version = Environment.ENVIRONMENT.get().getServerVersion();
+        httpConnectionTimeout = Environment.ENVIRONMENT.get().getHttpConnectionTimeout();
+        httpSocketTimeout = Environment.ENVIRONMENT.get().getHttpSocketTimeout();
+    }
+
     @Given("JSon request")
     public void givenJsonRequest() {
         jSonRequest = "{ \"merchant\": { \"id\": \"000000\", \"registrationInfo\": { \"address\": { \"addressLine1\": \"string\", \"countryCode\": \"GBR\", \"postCode\": \"string\" }, \"categoryCode\": \"1\", \"commonName\": \"string\", \"creditAccount\": { \"accountNumber\": \"string\", \"rollNumber\": \"string\", \"sortCode\": \"814940\" }, \"groupId\": \"string\", \"keyId\": \"string\", \"logoUrl\": \"string\", \"name\": \"string\" } } }";
         setRequestSpecificationForServer();
     }
-    
+
     @When("create JSON request")
     public void createJsonRequest() {
         jSonRequest = createJsonFromTestData(share.getTestData());
         share.getTestData().setProperty("json.request", jSonRequest);
-        LOGGER.info(REQUEST_URL,jSonRequest);
+        LOGGER.info(REQUEST, jSonRequest);
         setRequestSpecificationForServer();
     }
 
     @When("I $requestMethod the JSon request")
     public void whenPostJsonRequest(@Named("requestMethod") String requestMethod) {
-        sendHttpRequest(requestMethod, buildUrl(SERVER_PROTOCOL, SERVER_HOST, SERVER_PORT, generatePath(requestMethod)));
+        sendHttpRequest(requestMethod, buildUrl(protocol, host, port, generatePath(requestMethod)));
     }
 
     @When("I $requestMethod the JSon request with custom parameters")
     public void whenSubmitJsonRequest(@Named("requestMethod") String requestMethod) {
-        sendHttpRequest(requestMethod, buildUrl(SERVER_PROTOCOL, SERVER_HOST, SERVER_PORT, share.getTestData().getString(API_VALUE)));
+        sendHttpRequest(requestMethod, buildUrl(protocol, host, port, share.getTestData().getString(API_VALUE)));
     }
 
     @Then("I can see the response")
     public void checkResponse() {
         share.getResponse().then().assertThat().body("merchantId", equalTo("000000"));
     }
-    
+
     @Then("I can validate the response")
     public void validateResponse() {
-      share.getResponse().then().assertThat().body("merchantId", equalTo(share.getTestData().getString("merchantId")));
-  }
+        share.getResponse().then().assertThat().body("merchantId", equalTo(share.getTestData().getString("merchantId")));
+    }
 
     private String buildUrl(String protocol, String host, String port, String api) {
 
-        return readProp(PROPERTIES_PATH, protocol) + "://" + readProp(PROPERTIES_PATH, host) + ":" + readProp(PROPERTIES_PATH, port) + api;
+        return protocol + "://" + host + ":" + port + api;
 
     }
-    
+
     /**
      * Builds the path of the api that will be called based on the operation: if no operation is provided, POST will be used by default, the
      * other possible operation is PUT. Adds the api, version and createAction to POST and also the queryId and updateAction to PUT. If
@@ -133,7 +140,7 @@ public class RestSubmissionSteps {
     private String generatePath(String operation) {
 
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(SLASH).append(share.getTestData().getString(API_VALUE)).append(SLASH).append(EnvironmentUtil.getServiceVersion()).append(SLASH);
+        stringBuilder.append(SLASH).append(share.getTestData().getString(API_VALUE)).append(SLASH).append(version).append(SLASH);
         if (!StringUtils.EMPTY.equals(share.getTestData().getString(ACTION))) {
             stringBuilder.append(share.getTestData().getString(ACTION)).append(SLASH);
         }
@@ -158,7 +165,7 @@ public class RestSubmissionSteps {
         try {
             share.setResponse(chooseMethodAndSendRequest(requestMethod, url));
             String response = share.getResponse().getBody().prettyPrint();
-            LOGGER.info(RESPONSE,response);
+            LOGGER.info(RESPONSE, response);
         } catch (Exception e) {
             fail(String.format("Failed to connect to %s %n %s", url, e));
         }
@@ -204,11 +211,11 @@ public class RestSubmissionSteps {
         Map<String, String> headersMap = parseHeaderInfo();
 
         requestSpecification = given().config(configHttpClient());
-        String serviceCertificate = readProp(PROPERTIES_PATH, SERVICE_CERTIFICATE);
-        String serviceCertPassword = readProp(PROPERTIES_PATH, SERVICE_CERT_PASS);
-        if (isNotBlank(serviceCertificate) && serviceCertPassword != null) {
-            requestSpecification = requestSpecification.trustStore(serviceCertificate, serviceCertPassword);
-        }
+        // String serviceCertificate = readProp(PROPERTIES_PATH, SERVICE_CERTIFICATE);
+        // String serviceCertPassword = readProp(PROPERTIES_PATH, SERVICE_CERT_PASS);
+        // if (isNotBlank(serviceCertificate) && serviceCertPassword != null) {
+        // requestSpecification = requestSpecification.trustStore(serviceCertificate, serviceCertPassword);
+        // }
         requestSpecification.headers(headersMap).body(jSonRequest);
     }
 
@@ -241,12 +248,11 @@ public class RestSubmissionSteps {
     private RestAssuredConfig configHttpClient() {
 
         return RestAssured.config()
-                .httpClient(HttpClientConfig.httpClientConfig()
-                        .setParam(HTTP_CONNECTION_TIMEOUT, Integer.parseInt(readProp(EnvironmentUtil.GENERAL_PROPERTIES_PATH, HTTP_CONNECTION_TIMEOUT)))
-                        .setParam(HTTP_SOCKET_TIMEOUT, Integer.parseInt(readProp(EnvironmentUtil.GENERAL_PROPERTIES_PATH, HTTP_SOCKET_TIMEOUT))));
+                .httpClient(HttpClientConfig.httpClientConfig().setParam(HTTP_CONNECTION_TIMEOUT_PARAM, Integer.parseInt(httpConnectionTimeout))
+                        .setParam(HTTP_SOCKET_TIMEOUT_PARAM, Integer.parseInt(httpSocketTimeout)));
 
     }
-    
+
     /**
      * Builds the JSON request from the testData
      * 
@@ -265,7 +271,7 @@ public class RestSubmissionSteps {
         JsonElement je = jp.parse(jsonTestData);
         return gson.toJson(je);
     }
-    
+
     /**
      * Converts a CompositeConfiguration object to a Map, so that it can be transformed afterwards in a JSON request
      * 
