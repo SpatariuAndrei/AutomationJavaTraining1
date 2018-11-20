@@ -13,12 +13,10 @@ import org.apache.commons.collections4.map.ListOrderedMap;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.lang.StringUtils;
 import org.jbehave.core.annotations.BeforeScenario;
-import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import org.slf4j.Logger;
 import org.junit.Before;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
@@ -39,12 +37,9 @@ import io.restassured.specification.RequestSpecification;
 public class RestSubmissionSteps {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RestSubmissionSteps.class);
-    // private static final String HEADER_NAME = "headerName";
-    // private static final String HEADER_VALUE = "headerValue";
-    private static final String API_VALUE = "api";
-    // private static final String SERVICE_CERTIFICATE = "service.certificate";
-    // private static final String SERVICE_CERT_PASS = "service.cert.pass";
-    private static final String REQUEST = "Request: \n{}";
+    private static final String HEADER_NAME = "headerName";
+    private static final String HEADER_VALUE = "headerValue";
+        private static final String REQUEST = "Request: \n{}";
     private static final String RESPONSE = "Response: \n{}";
 
     private static final String DELETE = "delete";
@@ -56,8 +51,7 @@ public class RestSubmissionSteps {
     private static final String HTTP_CONNECTION_TIMEOUT_PARAM = "http.connection.timeout";
     private static final String HTTP_SOCKET_TIMEOUT_PARAM = "http.socket.timeout";
 
-    // public static final String REQUEST = "request";
-    // public static final String TAG = "tag";
+    private static final String API_VALUE = "api";
     public static final String ACTION = "action";
     public static final String UPDATE_ACTION = "updateAction";
     public static final String QUERY_ID = "queryId";
@@ -89,33 +83,26 @@ public class RestSubmissionSteps {
         httpSocketTimeout = Environment.ENVIRONMENT.get().getHttpSocketTimeout();
     }
 
-    @Given("JSon request")
-    public void givenJsonRequest() {
-        jSonRequest = "{ \"merchant\": { \"id\": \"000000\", \"registrationInfo\": { \"address\": { \"addressLine1\": \"string\", \"countryCode\": \"GBR\", \"postCode\": \"string\" }, \"categoryCode\": \"1\", \"commonName\": \"string\", \"creditAccount\": { \"accountNumber\": \"string\", \"rollNumber\": \"string\", \"sortCode\": \"814940\" }, \"groupId\": \"string\", \"keyId\": \"string\", \"logoUrl\": \"string\", \"name\": \"string\" } } }";
-        setRequestSpecificationForServer();
-    }
-
-    @When("create JSON request")
+    @When("I create JSON request")
     public void createJsonRequest() {
         jSonRequest = createJsonFromTestData(share.getTestData());
         share.getTestData().setProperty("json.request", jSonRequest);
         LOGGER.info(REQUEST, jSonRequest);
+    }
+
+    @When("I set request specification for server")
+    public void requestSpecificationServer() {
         setRequestSpecificationForServer();
     }
 
     @When("I $requestMethod the JSon request")
-    public void whenPostJsonRequest(@Named("requestMethod") String requestMethod) {
+    public void sendRequest(String requestMethod) {
         sendHttpRequest(requestMethod, buildUrl(protocol, host, port, generatePath(requestMethod)));
     }
 
     @When("I $requestMethod the JSon request with custom parameters")
-    public void whenSubmitJsonRequest(@Named("requestMethod") String requestMethod) {
+    public void sendRequestWithParameters(String requestMethod) {
         sendHttpRequest(requestMethod, buildUrl(protocol, host, port, share.getTestData().getString(API_VALUE)));
-    }
-
-    @Then("I can see the response")
-    public void checkResponse() {
-        share.getResponse().then().assertThat().body("merchantId", equalTo("000000"));
     }
 
     @Then("I can validate the response")
@@ -124,9 +111,7 @@ public class RestSubmissionSteps {
     }
 
     private String buildUrl(String protocol, String host, String port, String api) {
-
         return protocol + "://" + host + ":" + port + api;
-
     }
 
     /**
@@ -211,11 +196,11 @@ public class RestSubmissionSteps {
         Map<String, String> headersMap = parseHeaderInfo();
 
         requestSpecification = given().config(configHttpClient());
-        // String serviceCertificate = readProp(PROPERTIES_PATH, SERVICE_CERTIFICATE);
-        // String serviceCertPassword = readProp(PROPERTIES_PATH, SERVICE_CERT_PASS);
-        // if (isNotBlank(serviceCertificate) && serviceCertPassword != null) {
-        // requestSpecification = requestSpecification.trustStore(serviceCertificate, serviceCertPassword);
-        // }
+        String serviceCertificate = Environment.ENVIRONMENT.get().getSimulatorCertificate();
+        String serviceCertPassword = Environment.ENVIRONMENT.get().getSimulatorCertPass();
+        if (StringUtils.isNotBlank(serviceCertificate) && serviceCertPassword != null) {
+            requestSpecification = requestSpecification.trustStore(serviceCertificate, serviceCertPassword);
+        }
         requestSpecification.headers(headersMap).body(jSonRequest);
     }
 
@@ -227,10 +212,8 @@ public class RestSubmissionSteps {
     private Map<String, String> parseHeaderInfo() {
 
         Map<String, String> headersMap = new HashMap<>();
-        // String[] headerNames = share.getTestData().getString(HEADER_NAME).split(";");
-        // String[] headerValues = share.getTestData().getString(HEADER_VALUE).split(";");
-        String[] headerNames = "Content-Type;X-WP-Diagnostic-CorrelationId".split(";");
-        String[] headerValues = "application/json;Db4JU93EYMIgHG1P".split(";");
+        String[] headerNames = share.getTestData().getString(HEADER_NAME).split(";");
+        String[] headerValues = share.getTestData().getString(HEADER_VALUE).split(";");
 
         for (int i = 0; i < headerNames.length; i++) {
             headersMap.put(headerNames[i], headerValues[i]);

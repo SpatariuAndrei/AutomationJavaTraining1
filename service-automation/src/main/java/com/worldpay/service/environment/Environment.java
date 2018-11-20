@@ -54,6 +54,8 @@ public enum Environment {
         env.setServerVersion(env.envData.getString("server.version"));
         env.setHttpConnectionTimeout(env.envData.getString("http.connection.timeout"));
         env.setHttpSocketTimeout(env.envData.getString("http.socket.timeout"));
+        env.setSimulatorCertificate(env.envData.getString("simulator.certificate"));
+        env.setSimulatorCertPass(env.envData.getString("simulator.cert.pass"));
     }
 
     public class EnvironmentBean implements java.io.Serializable {
@@ -68,6 +70,8 @@ public enum Environment {
         private String serverVersion;
         private String httpConnectionTimeout;
         private String httpSocketTimeout;
+        private String simulatorCertificate;
+        private String simulatorCertPass;
         
         public String getServerProtocol() {
             return serverProtocol;
@@ -115,6 +119,22 @@ public enum Environment {
 
         public void setHttpSocketTimeout(String httpSocketTimeout) {
             this.httpSocketTimeout = httpSocketTimeout;
+        }
+
+        public String getSimulatorCertificate() {
+            return simulatorCertificate;
+        }
+
+        public void setSimulatorCertificate(String simulatorCertificate) {
+            this.simulatorCertificate = simulatorCertificate;
+        }
+
+        public String getSimulatorCertPass() {
+            return simulatorCertPass;
+        }
+
+        public void setSimulatorCertPass(String simulatorCertPass) {
+            this.simulatorCertPass = simulatorCertPass;
         }
         
     }

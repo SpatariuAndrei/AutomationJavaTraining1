@@ -13,7 +13,12 @@ Given test data for Merchant Registration:
 | key          											| value		|
 | merchant.id											| 111111	|
 | merchant.registrationInfo.address.countryCode			| ROU		|
-When create JSON request
+When I create JSON request
+Given test data for headers:
+| key         | value												|
+| headerName  | Content-Type;X-WP-Diagnostic-CorrelationId			|
+| headerValue | application/json;Db4JU93EYMIgHG1P					|
+When I set request specification for server
 Given test data for API:
 | key          	| value            		|
 | api          	| payByBankApp   		|
@@ -45,13 +50,17 @@ Given test data for Merchant Registration:
 | merchant.registrationInfo.keyId						| string	|
 | merchant.registrationInfo.logoUrl						| string	|
 | merchant.registrationInfo.name						| string	|
-When create JSON request
+When I create JSON request
+Given test data for headers:
+| key         | value												|
+| headerName  | Content-Type;X-WP-Diagnostic-CorrelationId			|
+| headerValue | application/json;Db4JU93EYMIgHG1P					|
+When I set request specification for server
 Given test data for API:
 | key          	| value            		|
 | api          	| payByBankApp   		|
 | action		| merchant/registration |
 When I post the JSon request
-Then I can see the response
 Given test data for the response:
 | key          											| value		|
 | merchantId											| 000000	|
