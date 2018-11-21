@@ -11,6 +11,13 @@ import com.google.gson.JsonSerializer;
 
 public class MapSerializer implements JsonSerializer<Map<String, String>> {
 
+    /* 
+     * Custom JSONSerializer using Gson for Map<String, String>
+     * 
+     * (non-Javadoc)
+     * @see com.google.gson.JsonSerializer#serialize(java.lang.Object, java.lang.reflect.Type, com.google.gson.JsonSerializationContext)
+     */
+    @Override
     public JsonElement serialize(final Map<String, String> map, final Type typeOfSrc, final JsonSerializationContext context) {
         final JsonObject resultJson = new JsonObject();
 
@@ -25,6 +32,15 @@ public class MapSerializer implements JsonSerializer<Map<String, String>> {
         return resultJson;
     }
     
+    /**
+     * Method to create JSON from the properties key
+     * 
+     * @param resultJson
+     * @param key
+     * @param value
+     * @return
+     * @throws IOException
+     */
     public static JsonObject createFromKey(final JsonObject resultJson, final String key, final String value) throws IOException {
         if (!key.contains(".")) {
             resultJson.addProperty(key, value);
@@ -43,12 +59,27 @@ public class MapSerializer implements JsonSerializer<Map<String, String>> {
         return resultJson;
     }
 
+    /**
+     * Method to find out the first key
+     * 
+     * e.g. For person.name.firstname it will return person 
+     * 
+     * @param fullKey
+     * @return
+     */
     private static String firstKey(final String fullKey) {
         final String[] splittedKey = fullKey.split("\\.");
 
         return (splittedKey.length != 0) ? splittedKey[0] : fullKey;
     }
     
+    /**
+     * Method to get the JsonObject for the current key
+     * 
+     * @param parent
+     * @param key
+     * @return the JsonObject corresponding to the specified member (key)
+     */
     private static JsonObject getJsonIfExists(final JsonObject parent, final String key) {
         if (parent == null) {
             System.out.println("Parent json parameter is null!");
