@@ -1,14 +1,18 @@
 package com.worldpay.service.rest;
 
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.fail;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
+import com.worldpay.service.entities.SharedData;
+import com.worldpay.service.environment.Environment;
+import com.worldpay.service.util.MapSerializer;
+import io.restassured.RestAssured;
+import io.restassured.config.HttpClientConfig;
+import io.restassured.config.RestAssuredConfig;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.apache.commons.collections4.map.ListOrderedMap;
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.lang.StringUtils;
@@ -19,20 +23,15 @@ import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
-import com.worldpay.service.entities.SharedData;
-import com.worldpay.service.environment.Environment;
-import com.worldpay.service.util.MapSerializer;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
-import io.restassured.RestAssured;
-import io.restassured.config.HttpClientConfig;
-import io.restassured.config.RestAssuredConfig;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
+import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.fail;
 
 public class RestSubmissionSteps {
 
@@ -72,17 +71,6 @@ public class RestSubmissionSteps {
         this.share = share;
     }
 
-    @Before
-    @BeforeScenario
-    public void setUp() {
-        protocol = Environment.ENVIRONMENT.get().getServerProtocol();
-        host = Environment.ENVIRONMENT.get().getServerHost();
-        port = Environment.ENVIRONMENT.get().getServerPort();
-        version = Environment.ENVIRONMENT.get().getServerVersion();
-        httpConnectionTimeout = Environment.ENVIRONMENT.get().getHttpConnectionTimeout();
-        httpSocketTimeout = Environment.ENVIRONMENT.get().getHttpSocketTimeout();
-    }
-
     @When("I create JSON request")
     public void createJsonRequest() {
         jSonRequest = createJsonFromTestData(share.getTestData());
@@ -97,12 +85,12 @@ public class RestSubmissionSteps {
 
     @When("I $requestMethod the JSon request")
     public void sendRequest(String requestMethod) {
-        sendHttpRequest(requestMethod, buildUrl(protocol, host, port, generatePath(requestMethod)));
+        sendHttpRequest(requestMethod, buildUrl(generatePath(requestMethod)));
     }
 
     @When("I $requestMethod the JSon request with custom parameters")
     public void sendRequestWithParameters(String requestMethod) {
-        sendHttpRequest(requestMethod, buildUrl(protocol, host, port, share.getTestData().getString(API_VALUE)));
+        sendHttpRequest(requestMethod, buildUrl(share.getTestData().getString(API_VALUE)));
     }
 
     @Then("I can validate the response")
@@ -110,8 +98,22 @@ public class RestSubmissionSteps {
         share.getResponse().then().assertThat().body("merchantId", equalTo(share.getTestData().getString("merchantId")));
     }
 
-    private String buildUrl(String protocol, String host, String port, String api) {
-        return protocol + "://" + host + ":" + port + api;
+    @Then("I can validate the response against the json schema")
+    public void validateResponseAgainstSchema() {
+        share.getResponse().then().assertThat().body(matchesJsonSchemaInClasspath(share.getTestData().getString("json.schema")));
+    }
+
+    private String buildUrl(String api) {
+        protocol = share.getTestData().getString("server.protocol", Environment.ENVIRONMENT.get().getServerProtocol());
+        host = share.getTestData().getString("server.host", Environment.ENVIRONMENT.get().getServerHost());
+        port =  share.getTestData().getString("server.port",Environment.ENVIRONMENT.get().getServerPort());
+        version =  share.getTestData().getString("server.version", Environment.ENVIRONMENT.get().getServerVersion());
+        httpConnectionTimeout =  share.getTestData().getString("http.connection.timeout",Environment.ENVIRONMENT.get().getHttpConnectionTimeout());
+        httpSocketTimeout = share.getTestData().getString("http.socket.timeout",Environment.ENVIRONMENT.get().getHttpSocketTimeout());
+        if (!port.isEmpty())
+            return protocol + "://" + host + ":" + port + api;
+        else
+            return protocol + "://" + host + api;
     }
 
     /**
@@ -172,7 +174,7 @@ public class RestSubmissionSteps {
             response = requestSpecification.when().delete(url);
             break;
         case GET:
-            response = requestSpecification.when().get(url);
+            response = (requestSpecification == null) ? given().get(url) : requestSpecification.when().get(url);
             break;
         case HEAD:
             response = requestSpecification.when().head(url);
