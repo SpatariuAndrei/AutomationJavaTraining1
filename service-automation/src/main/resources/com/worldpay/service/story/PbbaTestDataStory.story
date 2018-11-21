@@ -11,7 +11,7 @@ Meta:
 Given table file location table for merchant registration: data/tables/MerchantRegistration.table
 Given test data for Merchant Registration:
 | key          											| value		|
-| merchant.id											| 111111	|
+| merchant.id											| 000000	|
 | merchant.registrationInfo.address.countryCode			| ROU		|
 When I create JSON request
 Given test data for headers:
@@ -26,8 +26,10 @@ Given test data for API:
 When I post the JSon request
 Given test data for the response:
 | key          											| value		|
-| merchantId											| 111111	|
+| merchantId											| 000000	|
+| responseCode         									| 201		|
 Then I can validate the response
+Then I check the response code
 
 Scenario: Send PBBA the merchant registration information and receive the response from PBBA
 
@@ -64,4 +66,6 @@ When I post the JSon request
 Given test data for the response:
 | key          											| value		|
 | merchantId											| 000000	|
+| responseCode         									| 201		|
 Then I can validate the response
+Then I check the response code
