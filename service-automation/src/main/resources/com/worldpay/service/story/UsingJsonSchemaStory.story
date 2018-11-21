@@ -9,9 +9,10 @@ Meta:
 @UsingJsonSchemaStory010
 Given test data for API:
 | key           	| value            	                   |
-| api           	| <api>  	                       |
+| api           	| <api>  	                           |
 | server.protocol   |  https                               |
 | server.host       | jsonplaceholder.typicode.com         |
+| server.port       |                                      |
 | json.schema       |        <schema>                      |
 When I get the JSon request with custom parameters
 Then I can validate the response against the json schema
