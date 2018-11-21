@@ -1,14 +1,14 @@
-Narrative: PBBA merchant registration
+Narrative: Service example using test data in story file or reading the data from table file
 
 Meta:
-@PbbaTestDataStory
+@ServiceExampleStory
 
-Scenario: Send PBBA the merchant registration information and receive the response from PBBA using table file
+Scenario: Send a request and validate the response - using table file
 
 Meta:
-@PbbaTestDataStory010
+@ServiceExampleStory010
 
-Given table file location table for merchant registration: data/tables/MerchantRegistration.table
+Given table file location table for merchant registration: data/tables/RequestExample.table
 Given test data for Merchant Registration:
 | key          											| value		|
 | merchant.id											| 000000	|
@@ -31,10 +31,10 @@ Given test data for the response:
 Then I can validate the response
 Then I check the response code
 
-Scenario: Send PBBA the merchant registration information and receive the response from PBBA
+Scenario: Send a request and validate the response - using all the test data from story file
 
 Meta:
-@PbbaTestDataStory020
+@ServiceExampleStory020
 
 Given test data cleared
 Given test data for Merchant Registration:

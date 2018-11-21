@@ -8,7 +8,7 @@ import com.worldpay.service.rest.RestSubmissionSteps;
 import com.worldpay.service.steps.TestDataSteps;
 import com.worldpay.service.steps.ValidationSteps;
 
-public class PbbaTestDataStory extends BaseJBehaveStory {
+public class ServiceExampleStory extends BaseJBehaveStory {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
