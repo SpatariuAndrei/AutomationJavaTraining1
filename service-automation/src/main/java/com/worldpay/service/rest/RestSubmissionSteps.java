@@ -39,7 +39,7 @@ public class RestSubmissionSteps {
     private static final Logger LOGGER = LoggerFactory.getLogger(RestSubmissionSteps.class);
     private static final String HEADER_NAME = "headerName";
     private static final String HEADER_VALUE = "headerValue";
-        private static final String REQUEST = "Request: \n{}";
+    private static final String REQUEST = "Request: \n{}";
     private static final String RESPONSE = "Response: \n{}";
 
     private static final String DELETE = "delete";
@@ -196,8 +196,8 @@ public class RestSubmissionSteps {
         Map<String, String> headersMap = parseHeaderInfo();
 
         requestSpecification = given().config(configHttpClient());
-        String serviceCertificate = Environment.ENVIRONMENT.get().getSimulatorCertificate();
-        String serviceCertPassword = Environment.ENVIRONMENT.get().getSimulatorCertPass();
+        String serviceCertificate = Environment.ENVIRONMENT.get().getServerCertificate();
+        String serviceCertPassword = Environment.ENVIRONMENT.get().getServerCertPass();
         if (StringUtils.isNotBlank(serviceCertificate) && serviceCertPassword != null) {
             requestSpecification = requestSpecification.trustStore(serviceCertificate, serviceCertPassword);
         }

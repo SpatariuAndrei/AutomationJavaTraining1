@@ -54,8 +54,8 @@ public enum Environment {
         env.setServerVersion(env.envData.getString("server.version"));
         env.setHttpConnectionTimeout(env.envData.getString("http.connection.timeout"));
         env.setHttpSocketTimeout(env.envData.getString("http.socket.timeout"));
-        env.setSimulatorCertificate(env.envData.getString("simulator.certificate"));
-        env.setSimulatorCertPass(env.envData.getString("simulator.cert.pass"));
+        env.setServerCertificate(env.envData.getString("server.certificate"));
+        env.setServerCertPass(env.envData.getString("server.cert.pass"));
     }
 
     public class EnvironmentBean implements java.io.Serializable {
@@ -68,10 +68,10 @@ public enum Environment {
         private String serverHost;
         private String serverPort;
         private String serverVersion;
+        private String serverCertificate;
+        private String serverCertPass;
         private String httpConnectionTimeout;
         private String httpSocketTimeout;
-        private String simulatorCertificate;
-        private String simulatorCertPass;
         
         public String getServerProtocol() {
             return serverProtocol;
@@ -104,6 +104,22 @@ public enum Environment {
         public void setServerVersion(String serverVersion) {
             this.serverVersion = serverVersion;
         }
+        
+        public String getServerCertificate() {
+            return serverCertificate;
+        }
+
+        public void setServerCertificate(String simulatorCertificate) {
+            this.serverCertificate = simulatorCertificate;
+        }
+
+        public String getServerCertPass() {
+            return serverCertPass;
+        }
+
+        public void setServerCertPass(String simulatorCertPass) {
+            this.serverCertPass = simulatorCertPass;
+        }
 
         public String getHttpConnectionTimeout() {
             return httpConnectionTimeout;
@@ -119,22 +135,6 @@ public enum Environment {
 
         public void setHttpSocketTimeout(String httpSocketTimeout) {
             this.httpSocketTimeout = httpSocketTimeout;
-        }
-
-        public String getSimulatorCertificate() {
-            return simulatorCertificate;
-        }
-
-        public void setSimulatorCertificate(String simulatorCertificate) {
-            this.simulatorCertificate = simulatorCertificate;
-        }
-
-        public String getSimulatorCertPass() {
-            return simulatorCertPass;
-        }
-
-        public void setSimulatorCertPass(String simulatorCertPass) {
-            this.simulatorCertPass = simulatorCertPass;
         }
         
     }
