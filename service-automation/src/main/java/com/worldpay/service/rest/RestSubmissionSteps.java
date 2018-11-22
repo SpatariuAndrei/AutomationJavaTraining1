@@ -71,6 +71,13 @@ public class RestSubmissionSteps {
         this.share = share;
     }
 
+    @Before
+    @BeforeScenario
+    public void setUp() {
+        httpConnectionTimeout = Environment.ENVIRONMENT.get().getHttpConnectionTimeout();
+        httpSocketTimeout = Environment.ENVIRONMENT.get().getHttpSocketTimeout();
+    }
+
     @When("I create JSON request")
     public void createJsonRequest() {
         jSonRequest = createJsonFromTestData(share.getTestData());
@@ -108,8 +115,6 @@ public class RestSubmissionSteps {
         host = share.getTestData().getString("server.host", Environment.ENVIRONMENT.get().getServerHost());
         port =  share.getTestData().getString("server.port",Environment.ENVIRONMENT.get().getServerPort());
         version =  share.getTestData().getString("server.version", Environment.ENVIRONMENT.get().getServerVersion());
-        httpConnectionTimeout =  share.getTestData().getString("http.connection.timeout",Environment.ENVIRONMENT.get().getHttpConnectionTimeout());
-        httpSocketTimeout = share.getTestData().getString("http.socket.timeout",Environment.ENVIRONMENT.get().getHttpSocketTimeout());
         if (!port.isEmpty())
             return protocol + "://" + host + ":" + port + api;
         else
