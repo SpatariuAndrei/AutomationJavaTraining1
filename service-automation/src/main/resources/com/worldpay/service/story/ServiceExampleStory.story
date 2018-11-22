@@ -21,8 +21,8 @@ Given test data for headers:
 When I set request specification for server
 Given test data for API:
 | key          	| value            		|
-| api          	| payByBankApp   		|
-| action		| merchant/registration |
+| api          	| payByBankApp/merchant	|
+| action		| registration 			|
 When I post the JSon request
 Given test data for the response:
 | key          											| value		|
@@ -60,8 +60,35 @@ Given test data for headers:
 When I set request specification for server
 Given test data for API:
 | key          	| value            		|
-| api          	| payByBankApp   		|
-| action		| merchant/registration |
+| api          	| payByBankApp/merchant	|
+| action		| registration 			|
+When I post the JSon request
+Given test data for the response:
+| key          											| value		|
+| merchantId											| 000000	|
+| responseCode         									| 201		|
+Then I can validate the response
+Then I check the response code
+
+Scenario: Send a request and validate the response - using json file
+
+Meta:
+@ServiceExampleStory030
+
+Given test data cleared
+Given test data for Merchant Registration:
+| key         		| value          		  				|
+| json.request.path	| data/json/request.json 				|
+Given I read JSON request from file
+Given test data for headers:
+| key         | value												|
+| headerName  | Content-Type;X-WP-Diagnostic-CorrelationId			|
+| headerValue | application/json;Db4JU93EYMIgHG1P					|
+When I set request specification for server
+Given test data for API:
+| key          	| value            		|
+| api          	| payByBankApp/merchant	|
+| action		| registration 			|
 When I post the JSon request
 Given test data for the response:
 | key          											| value		|

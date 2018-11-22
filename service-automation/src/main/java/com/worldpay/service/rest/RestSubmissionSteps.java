@@ -1,5 +1,29 @@
 package com.worldpay.service.rest;
 
+import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.fail;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import org.apache.commons.collections4.map.ListOrderedMap;
+import org.apache.commons.configuration.CompositeConfiguration;
+import org.apache.commons.lang.StringUtils;
+import org.jbehave.core.annotations.BeforeScenario;
+import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
+import org.json.simple.parser.ParseException;
+import org.junit.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
@@ -7,31 +31,14 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.worldpay.service.entities.SharedData;
 import com.worldpay.service.environment.Environment;
+import com.worldpay.service.util.FileUtil;
 import com.worldpay.service.util.MapSerializer;
+
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.apache.commons.collections4.map.ListOrderedMap;
-import org.apache.commons.configuration.CompositeConfiguration;
-import org.apache.commons.lang.StringUtils;
-import org.jbehave.core.annotations.BeforeScenario;
-import org.jbehave.core.annotations.Then;
-import org.jbehave.core.annotations.When;
-import org.junit.Before;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-import static org.hamcrest.Matchers.equalTo;
-import static org.junit.Assert.fail;
 
 public class RestSubmissionSteps {
 
@@ -66,11 +73,11 @@ public class RestSubmissionSteps {
     private RequestSpecification requestSpecification;
     private String jSonRequest;
     private SharedData share;
-
+    
     public RestSubmissionSteps(SharedData share) {
         this.share = share;
     }
-
+    
     @Before
     @BeforeScenario
     public void setUp() {
@@ -85,6 +92,14 @@ public class RestSubmissionSteps {
         LOGGER.info(REQUEST, jSonRequest);
     }
 
+    @Given("I read JSON request from file")
+    public void readJsonRequest() throws FileNotFoundException, IOException, ParseException {
+        String filePath = FileUtil.buildResourcesPath(share.getTestData().getString("json.request.path"));
+        jSonRequest = FileUtil.readJsonFromFile(filePath);
+        LOGGER.info("jsonRequest:" + jSonRequest);
+        share.getTestData().setProperty("json.request", jSonRequest);
+    }
+    
     @When("I set request specification for server")
     public void requestSpecificationServer() {
         setRequestSpecificationForServer();
@@ -114,7 +129,6 @@ public class RestSubmissionSteps {
         protocol = share.getTestData().getString("server.protocol", Environment.ENVIRONMENT.get().getServerProtocol());
         host = share.getTestData().getString("server.host", Environment.ENVIRONMENT.get().getServerHost());
         port =  share.getTestData().getString("server.port",Environment.ENVIRONMENT.get().getServerPort());
-        version =  share.getTestData().getString("server.version", Environment.ENVIRONMENT.get().getServerVersion());
         if (!port.isEmpty())
             return protocol + "://" + host + ":" + port + api;
         else
@@ -130,7 +144,7 @@ public class RestSubmissionSteps {
      * @return stringBuilder - the url after the protocol, host and port (e.g. /merchantHosted/v1.0/capture/201801092037030000000/cancel)
      */
     private String generatePath(String operation) {
-
+        version =  share.getTestData().getString("server.version", Environment.ENVIRONMENT.get().getServerVersion());
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(SLASH).append(share.getTestData().getString(API_VALUE)).append(SLASH).append(version).append(SLASH);
         if (!StringUtils.EMPTY.equals(share.getTestData().getString(ACTION))) {
@@ -276,5 +290,5 @@ public class RestSubmissionSteps {
         }
         return testDataMap;
     }
-
+    
 }
