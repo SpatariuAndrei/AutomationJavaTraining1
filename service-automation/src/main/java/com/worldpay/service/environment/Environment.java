@@ -58,10 +58,8 @@ public enum Environment {
         env.setServerCertPass(env.envData.getString("server.cert.pass"));
     }
 
-    public class EnvironmentBean implements java.io.Serializable {
+    public class EnvironmentBean {
         
-        private static final long serialVersionUID = 1L;
-
         private CompositeConfiguration envData = new CompositeConfiguration();
 
         private String serverProtocol;

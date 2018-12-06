@@ -1,11 +1,20 @@
 package com.worldpay.service.rest;
 
+import static com.worldpay.service.constants.HttpConstants.Config.HTTP_CONNECTION_TIMEOUT_PARAM;
+import static com.worldpay.service.constants.HttpConstants.Config.HTTP_SOCKET_TIMEOUT_PARAM;
+import static com.worldpay.service.constants.HttpConstants.Headers.HEADER_NAME;
+import static com.worldpay.service.constants.HttpConstants.Headers.HEADER_VALUE;
+import static com.worldpay.service.constants.HttpConstants.RequestMethods.DELETE;
+import static com.worldpay.service.constants.HttpConstants.RequestMethods.GET;
+import static com.worldpay.service.constants.HttpConstants.RequestMethods.HEAD;
+import static com.worldpay.service.constants.HttpConstants.RequestMethods.OPTIONS;
+import static com.worldpay.service.constants.HttpConstants.RequestMethods.POST;
+import static com.worldpay.service.constants.HttpConstants.RequestMethods.PUT;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.fail;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -41,31 +50,15 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class RestSubmissionSteps {
-
+   
     private static final Logger LOGGER = LoggerFactory.getLogger(RestSubmissionSteps.class);
-    private static final String HEADER_NAME = "headerName";
-    private static final String HEADER_VALUE = "headerValue";
     private static final String REQUEST = "Request: \n{}";
     private static final String RESPONSE = "Response: \n{}";
-
-    private static final String DELETE = "delete";
-    private static final String GET = "get";
-    private static final String HEAD = "head";
-    private static final String OPTIONS = "options";
-    private static final String PUT = "put";
-    private static final String POST = "post";
-    private static final String HTTP_CONNECTION_TIMEOUT_PARAM = "http.connection.timeout";
-    private static final String HTTP_SOCKET_TIMEOUT_PARAM = "http.socket.timeout";
-
     private static final String API_VALUE = "api";
     public static final String ACTION = "action";
     public static final String UPDATE_ACTION = "updateAction";
     public static final String QUERY_ID = "queryId";
     private static final String SLASH = "/";
-
-    private String protocol;
-    private String host;
-    private String port;
     private String version;
     private String httpConnectionTimeout;
     private String httpSocketTimeout;
@@ -93,10 +86,10 @@ public class RestSubmissionSteps {
     }
 
     @Given("I read JSON request from file")
-    public void readJsonRequest() throws FileNotFoundException, IOException, ParseException {
+    public void readJsonRequest() throws IOException, ParseException {
         String filePath = FileUtil.buildResourcesPath(share.getTestData().getString("json.request.path"));
         jSonRequest = FileUtil.readJsonFromFile(filePath);
-        LOGGER.info("jsonRequest:" + jSonRequest);
+        LOGGER.info(REQUEST, jSonRequest);
         share.getTestData().setProperty("json.request", jSonRequest);
     }
     
@@ -126,9 +119,10 @@ public class RestSubmissionSteps {
     }
 
     private String buildUrl(String api) {
-        protocol = share.getTestData().getString("server.protocol", Environment.ENVIRONMENT.get().getServerProtocol());
-        host = share.getTestData().getString("server.host", Environment.ENVIRONMENT.get().getServerHost());
-        port =  share.getTestData().getString("server.port",Environment.ENVIRONMENT.get().getServerPort());
+        String protocol = share.getTestData().getString("server.protocol", Environment.ENVIRONMENT.get().getServerProtocol());
+        String host = share.getTestData().getString("server.host", Environment.ENVIRONMENT.get().getServerHost());
+        String port =  share.getTestData().getString("server.port",Environment.ENVIRONMENT.get().getServerPort());
+        version =  share.getTestData().getString("server.version", Environment.ENVIRONMENT.get().getServerVersion());
         if (!port.isEmpty())
             return protocol + "://" + host + ":" + port + api;
         else
@@ -283,12 +277,12 @@ public class RestSubmissionSteps {
      * @return
      */
     private Map<String, String> testDataToMap(CompositeConfiguration testData) {
-        final ListOrderedMap<String, String> testDataMap = new ListOrderedMap<String, String>();
+        final ListOrderedMap<String, String> testDataMap = new ListOrderedMap<>();
         for (final Iterator<String> it = testData.getKeys(); it.hasNext();) {
             final String key = it.next();
             testDataMap.put(testDataMap.size(), key, testData.getString(key));
         }
         return testDataMap;
     }
-    
+
 }
