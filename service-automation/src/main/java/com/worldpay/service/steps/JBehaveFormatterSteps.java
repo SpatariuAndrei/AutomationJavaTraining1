@@ -17,7 +17,7 @@ public class JBehaveFormatterSteps {
     static {
         defaultBasePaths = new HashMap<>();
         defaultBasePaths.put(JBehaveFileType.STORY, PATH_TO_RESOURCES);
-        defaultBasePaths.put(JBehaveFileType.TABLE, "");
+        defaultBasePaths.put(JBehaveFileType.TABLE, PATH_TO_RESOURCES);
     }
 
     /**
