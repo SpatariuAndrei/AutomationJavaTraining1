@@ -48,6 +48,7 @@ import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import pl.jalokim.propertiestojson.util.PropertiesToJsonConverter;
 
 public class RestSubmissionSteps {
    
@@ -259,15 +260,8 @@ public class RestSubmissionSteps {
      */
     private String createJsonFromTestData(CompositeConfiguration testData) {
         final Map<String, String> testDataMap = testDataToMap(testData);
-        final Type mapType = new TypeToken<Map<String, String>>() {
-        }.getType();
-
-        final String jsonTestData = new GsonBuilder().registerTypeAdapter(mapType, new MapSerializer()).create().toJson(testDataMap, mapType);
-
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        JsonParser jp = new JsonParser();
-        JsonElement je = jp.parse(jsonTestData);
-        return gson.toJson(je);
+        final String jsonTestData = new PropertiesToJsonConverter().convertToJson(testDataMap);
+        return jsonTestData;
     }
 
     /**
