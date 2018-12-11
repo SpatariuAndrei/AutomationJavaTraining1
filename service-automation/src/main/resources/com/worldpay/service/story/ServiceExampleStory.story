@@ -13,6 +13,7 @@ Given test data for Merchant Registration:
 | key                                           | value  |
 | merchant.id                                   | 000000 |
 | merchant.registrationInfo.address.countryCode | ROU    |
+
 When I create JSON request
 Given test data for headers:
 | key         | value                                      |
@@ -20,9 +21,9 @@ Given test data for headers:
 | headerValue | application/json;Db4JU93EYMIgHG1P          |
 When I set request specification for server
 Given test data for API:
-| key    | value                 |
-| api    | payByBankApp/merchant |
-| action | registration          |
+| key    				| value                   |
+| server.path.part1     | payByBankApp/merchant   |
+| server.path.part2     | registration            |
 When I post the JSon request
 Given test data for the response:
 | key          | value  |
@@ -61,8 +62,8 @@ Given test data for headers:
 When I set request specification for server
 Given test data for API:
 | key    | value                 |
-| api    | payByBankApp/merchant |
-| action | registration          |
+| server.path.part1    | payByBankApp/merchant |
+| server.path.part2    | registration          |
 When I post the JSon request
 Given test data for the response:
 | key          | value  |
@@ -88,9 +89,9 @@ Given test data for headers:
 | headerValue | application/json;Db4JU93EYMIgHG1P          |
 When I set request specification for server
 Given test data for API:
-| key    | value                 |
-| api    | payByBankApp/merchant |
-| action | registration          |
+| key    				| value                 |
+| server.path.part1     | payByBankApp/merchant |
+| server.path.part2     | registration          |
 When I post the JSon request
 Given test data for the response:
 | key          | value  |

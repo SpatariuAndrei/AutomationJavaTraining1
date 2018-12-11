@@ -1,0 +1,45 @@
+package com.worldpay.service.constants;
+
+public class TestDataConstants {
+    
+    private static final String ERROR_MESSAGE = "Static class";
+    
+    private TestDataConstants() {
+        throw new IllegalAccessError(ERROR_MESSAGE);
+    }
+    
+    public static class ServerDetails {
+                
+        public static final String CUSTOM_SERVER_VERSION = "custom.server.version";
+        public static final String CUSTOM_SERVER_HOST = "custom.server.host";
+        public static final String CUSTOM_SERVER_PORT = "custom.server.port";
+        public static final String CUSTOM_SERVER_PROTOCOL = "custom.server.protocol";
+        
+        public static final String SERVER_VERSION = "server.version";
+        public static final String SERVER_HOST = "server.host";
+        public static final String SERVER_PORT = "server.port";
+        public static final String SERVER_PROTOCOL = "server.protocol";
+        
+        public static final String SERVER_CUSTOM_PATH = "server.custom.path";
+        public static final String SERVER_PATH_PART_1 = "server.path.part1";
+        public static final String SERVER_PATH_PART_2 = "server.path.part2";
+        public static final String SLASH = "/";
+        
+        private ServerDetails() {
+            throw new IllegalAccessError(ERROR_MESSAGE);
+        }
+    }
+    
+    public static class Json {
+        
+        public static final String JSON_SCHEMA = "json.schema";
+        public static final String JSON_REQUEST = "json.request";
+        public static final String JSON_REQUEST_PATH = "json.request.path";
+        
+        private Json() {
+            throw new IllegalAccessError(ERROR_MESSAGE);
+        }
+        
+    }
+    
+}

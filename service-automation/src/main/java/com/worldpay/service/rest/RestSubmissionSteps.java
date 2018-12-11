@@ -10,13 +10,25 @@ import static com.worldpay.service.constants.HttpConstants.RequestMethods.HEAD;
 import static com.worldpay.service.constants.HttpConstants.RequestMethods.OPTIONS;
 import static com.worldpay.service.constants.HttpConstants.RequestMethods.POST;
 import static com.worldpay.service.constants.HttpConstants.RequestMethods.PUT;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_HOST;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_PORT;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_PROTOCOL;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_VERSION;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_CUSTOM_PATH;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_HOST;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_PATH_PART_1;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_PATH_PART_2;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_PORT;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_PROTOCOL;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_VERSION;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SLASH;
+import static com.worldpay.service.constants.TestDataConstants.Json.*;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -33,15 +45,9 @@ import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 import com.worldpay.service.entities.SharedData;
 import com.worldpay.service.environment.Environment;
 import com.worldpay.service.util.FileUtil;
-import com.worldpay.service.util.MapSerializer;
 
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
@@ -51,27 +57,20 @@ import io.restassured.specification.RequestSpecification;
 import pl.jalokim.propertiestojson.util.PropertiesToJsonConverter;
 
 public class RestSubmissionSteps {
-   
+
     private static final Logger LOGGER = LoggerFactory.getLogger(RestSubmissionSteps.class);
     private static final String REQUEST = "Request: \n{}";
     private static final String RESPONSE = "Response: \n{}";
-    private static final String API_VALUE = "api";
-    public static final String ACTION = "action";
-    public static final String UPDATE_ACTION = "updateAction";
-    public static final String QUERY_ID = "queryId";
-    private static final String SLASH = "/";
-    private String version;
     private String httpConnectionTimeout;
     private String httpSocketTimeout;
-
     private RequestSpecification requestSpecification;
     private String jSonRequest;
     private SharedData share;
-    
+
     public RestSubmissionSteps(SharedData share) {
         this.share = share;
     }
-    
+
     @Before
     @BeforeScenario
     public void setUp() {
@@ -82,18 +81,18 @@ public class RestSubmissionSteps {
     @When("I create JSON request")
     public void createJsonRequest() {
         jSonRequest = createJsonFromTestData(share.getTestData());
-        share.getTestData().setProperty("json.request", jSonRequest);
+        share.getTestData().setProperty(JSON_REQUEST, jSonRequest);
         LOGGER.info(REQUEST, jSonRequest);
     }
 
     @Given("I read JSON request from file")
     public void readJsonRequest() throws IOException, ParseException {
-        String filePath = FileUtil.buildResourcesPath(share.getTestData().getString("json.request.path"));
+        String filePath = FileUtil.buildResourcesPath(share.getTestData().getString(JSON_REQUEST_PATH));
         jSonRequest = FileUtil.readJsonFromFile(filePath);
         LOGGER.info(REQUEST, jSonRequest);
-        share.getTestData().setProperty("json.request", jSonRequest);
+        share.getTestData().setProperty(JSON_REQUEST, jSonRequest);
     }
-    
+
     @When("I set request specification for server")
     public void requestSpecificationServer() {
         setRequestSpecificationForServer();
@@ -101,12 +100,12 @@ public class RestSubmissionSteps {
 
     @When("I $requestMethod the JSon request")
     public void sendRequest(String requestMethod) {
-        sendHttpRequest(requestMethod, buildUrl(generatePath(requestMethod)));
+        sendHttpRequest(requestMethod, buildUrl(generatePath()));
     }
 
     @When("I $requestMethod the JSon request with custom parameters")
     public void sendRequestWithParameters(String requestMethod) {
-        sendHttpRequest(requestMethod, buildUrl(share.getTestData().getString(API_VALUE)));
+        sendHttpRequest(requestMethod, buildUrl(share.getTestData().getString(SERVER_CUSTOM_PATH)));
     }
 
     @Then("I can validate the response")
@@ -116,38 +115,30 @@ public class RestSubmissionSteps {
 
     @Then("I can validate the response against the json schema")
     public void validateResponseAgainstSchema() {
-        share.getResponse().then().assertThat().body(matchesJsonSchemaInClasspath(share.getTestData().getString("json.schema")));
+        share.getResponse().then().assertThat().body(matchesJsonSchemaInClasspath(share.getTestData().getString(JSON_SCHEMA)));
     }
 
     private String buildUrl(String api) {
-        String protocol = share.getTestData().getString("server.protocol", Environment.ENVIRONMENT.get().getServerProtocol());
-        String host = share.getTestData().getString("server.host", Environment.ENVIRONMENT.get().getServerHost());
-        String port =  share.getTestData().getString("server.port",Environment.ENVIRONMENT.get().getServerPort());
-        version =  share.getTestData().getString("server.version", Environment.ENVIRONMENT.get().getServerVersion());
+
+        String protocol = getProtocol();
+        String host = getHost();
+        String port = getPort();
         if (!port.isEmpty())
             return protocol + "://" + host + ":" + port + api;
         else
             return protocol + "://" + host + api;
+        
     }
 
     /**
-     * Builds the path of the api that will be called based on the operation: if no operation is provided, POST will be used by default, the
-     * other possible operation is PUT. Adds the api, version and createAction to POST and also the queryId and updateAction to PUT. If
-     * createAction has the value "empty" it will not be appended (used for Refund). Also adds "/" as a separator between parameters
+     * Generates the path needed by each API to contain the version set in the property files
      * 
-     * @param operation
      * @return stringBuilder - the url after the protocol, host and port (e.g. /merchantHosted/v1.0/capture/201801092037030000000/cancel)
      */
-    private String generatePath(String operation) {
-        version =  share.getTestData().getString("server.version", Environment.ENVIRONMENT.get().getServerVersion());
+    private String generatePath() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(SLASH).append(share.getTestData().getString(API_VALUE)).append(SLASH).append(version).append(SLASH);
-        if (!StringUtils.EMPTY.equals(share.getTestData().getString(ACTION))) {
-            stringBuilder.append(share.getTestData().getString(ACTION)).append(SLASH);
-        }
-        if (PUT.equals(operation)) {
-            stringBuilder.append(share.getTestData().getString(QUERY_ID)).append(SLASH).append(share.getTestData().getString(UPDATE_ACTION));
-        }
+        stringBuilder.append(SLASH).append(share.getTestData().getString(SERVER_PATH_PART_1)).append(SLASH).append(getServiceVersion()).append(SLASH)
+                .append(share.getTestData().getString(SERVER_PATH_PART_2));
         return stringBuilder.toString();
     }
 
@@ -260,8 +251,7 @@ public class RestSubmissionSteps {
      */
     private String createJsonFromTestData(CompositeConfiguration testData) {
         final Map<String, String> testDataMap = testDataToMap(testData);
-        final String jsonTestData = new PropertiesToJsonConverter().convertToJson(testDataMap);
-        return jsonTestData;
+        return new PropertiesToJsonConverter().convertToJson(testDataMap);
     }
 
     /**
@@ -277,6 +267,58 @@ public class RestSubmissionSteps {
             testDataMap.put(testDataMap.size(), key, testData.getString(key));
         }
         return testDataMap;
+    }
+
+    /**
+     * @return the service version as String 
+     * the service version is specified by default 
+     * in property file but can be overwritten
+     * with a custom value 
+     * from story file(or table file)
+     */
+    private String getServiceVersion() {
+        String customServerVersion = share.getTestData().getString(CUSTOM_SERVER_VERSION);
+        return (customServerVersion != null ? share.getTestData().getString(SERVER_VERSION, customServerVersion)
+                : share.getTestData().getString(SERVER_VERSION, Environment.ENVIRONMENT.get().getServerVersion()));
+    }
+
+    /**
+     * @return port as String 
+     * the port is specified by default 
+     * in property file but can be overwritten
+     * with a custom value 
+     * from story file(or table file)
+     */
+    private String getPort() {
+        String customServerPort = share.getTestData().getString(CUSTOM_SERVER_PORT);
+        return (customServerPort != null ? share.getTestData().getString(SERVER_PORT, customServerPort)
+                : share.getTestData().getString(SERVER_PORT, Environment.ENVIRONMENT.get().getServerPort()));
+    }
+
+    /**
+     * @return host name as String 
+     * the host name is specified by default 
+     * in property file but can be overwritten
+     * with a custom value 
+     * from story file(or table file)
+     */
+    private String getHost() {
+        String customServerPort = share.getTestData().getString(CUSTOM_SERVER_HOST);
+        return (customServerPort != null ? share.getTestData().getString(SERVER_HOST, customServerPort)
+                : share.getTestData().getString(SERVER_HOST, Environment.ENVIRONMENT.get().getServerHost()));
+    }
+
+    /**
+     * @return protocol as String 
+     * the protocol is specified by default 
+     * in property file but can be overwritten
+     * with a custom value 
+     * from story file(or table file)
+     */
+    private String getProtocol() {
+        String customServerProtocol = share.getTestData().getString(CUSTOM_SERVER_PROTOCOL);
+        return (customServerProtocol != null ? share.getTestData().getString(SERVER_PROTOCOL, customServerProtocol)
+                : share.getTestData().getString(SERVER_PROTOCOL, Environment.ENVIRONMENT.get().getServerProtocol()));
     }
 
 }
