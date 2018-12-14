@@ -17,15 +17,14 @@ import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUS
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_PORT;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_PROTOCOL;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_VERSION;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_BASEPATH;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_BASEPATH;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_CUSTOM_PATH;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_HOST;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_SUBJECT;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_ENDPOINT;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_HOST;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_PORT;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_PROTOCOL;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_SUBJECT;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_VERSION;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_BASEPATH;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SLASH;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
@@ -109,8 +108,9 @@ public class RestSubmissionSteps {
 
     @When("I $requestMethod the JSon request")
     public void sendRequest(String requestMethod) {
-        System.out.println("url:" + buildUrl(generatePath()));
-        sendHttpRequest(requestMethod, buildUrl(generatePath()));
+        String url = buildUrl(generatePath());
+        LOGGER.info("Service URL:" + url);
+        sendHttpRequest(requestMethod, url);
     }
 
     @When("I $requestMethod the JSon request with custom parameters")
