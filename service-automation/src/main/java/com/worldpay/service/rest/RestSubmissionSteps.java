@@ -17,13 +17,15 @@ import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUS
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_PORT;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_PROTOCOL;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_VERSION;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_BASEPATH;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_CUSTOM_PATH;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_HOST;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_PATH_PART_1;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_PATH_PART_2;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_SUBJECT;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_ENDPOINT;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_PORT;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_PROTOCOL;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_VERSION;
+import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_BASEPATH;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SLASH;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
@@ -47,6 +49,7 @@ import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.worldpay.service.constants.TestDataConstants;
 import com.worldpay.service.entities.SharedData;
 import com.worldpay.service.environment.Environment;
 import com.worldpay.service.util.FileUtil;
@@ -106,6 +109,7 @@ public class RestSubmissionSteps {
 
     @When("I $requestMethod the JSon request")
     public void sendRequest(String requestMethod) {
+        System.out.println("url:" + buildUrl(generatePath()));
         sendHttpRequest(requestMethod, buildUrl(generatePath()));
     }
 
@@ -128,12 +132,12 @@ public class RestSubmissionSteps {
 
         String protocol = getProtocol();
         String host = getHost();
-        String path;
         String port = getPort();
+        String basePath = getBasePath();
         if (!port.isEmpty())
-            return protocol + "://" + host + ":" + port + api;
+            return protocol + "://" + host + ":" + port + basePath + api;
         else
-            return protocol + "://" + host + api;
+            return protocol + "://" + host + basePath + api;
 
     }
 
@@ -144,8 +148,8 @@ public class RestSubmissionSteps {
      */
     private String generatePath() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(SLASH).append(share.getTestData().getString(SERVER_PATH_PART_1)).append(SLASH).append(getServiceVersion()).append(SLASH)
-                .append(share.getTestData().getString(SERVER_PATH_PART_2));
+        stringBuilder.append(share.getTestData().getString(SERVER_SUBJECT)).append(SLASH).append(getServiceVersion())
+                .append(share.getTestData().getString(SERVER_ENDPOINT));
         return stringBuilder.toString();
     }
 
@@ -315,6 +319,16 @@ public class RestSubmissionSteps {
         String customServerProtocol = share.getTestData().getString(CUSTOM_SERVER_PROTOCOL);
         return (customServerProtocol != null ? share.getTestData().getString(SERVER_PROTOCOL, customServerProtocol)
                 : share.getTestData().getString(SERVER_PROTOCOL, Environment.ENVIRONMENT.get().getServerProtocol()));
+    }
+
+    /**
+     * @return basePath as String the basePath is specified by default in property file but can be overwritten with a custom value from
+     *         story file(or table file)
+     */
+    private String getBasePath() {
+        String customServerBasePath = share.getTestData().getString(TestDataConstants.ServerDetails.CUSTOM_SERVER_BASEPATH);
+        return (customServerBasePath != null ? share.getTestData().getString(SERVER_BASEPATH, customServerBasePath)
+                : share.getTestData().getString(SERVER_BASEPATH, Environment.ENVIRONMENT.get().getServerBasePath()));
     }
 
 }

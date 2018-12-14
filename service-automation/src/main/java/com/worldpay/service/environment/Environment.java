@@ -52,6 +52,7 @@ public enum Environment {
         env.setServerHost(env.envData.getString("server.host"));
         env.setServerPort(env.envData.getString("server.port"));
         env.setServerVersion(env.envData.getString("server.version"));
+        env.setServerBasePath(env.envData.getString("server.basePath"));
         env.setHttpConnectionTimeout(env.envData.getString("http.connection.timeout"));
         env.setHttpSocketTimeout(env.envData.getString("http.socket.timeout"));
         env.setServerCertificate(env.envData.getString("server.certificate"));
@@ -66,6 +67,7 @@ public enum Environment {
         private String serverHost;
         private String serverPort;
         private String serverVersion;
+        private String serverBasePath;
         private String serverCertificate;
         private String serverCertPass;
         private String httpConnectionTimeout;
@@ -133,6 +135,14 @@ public enum Environment {
 
         public void setHttpSocketTimeout(String httpSocketTimeout) {
             this.httpSocketTimeout = httpSocketTimeout;
+        }
+
+        public String getServerBasePath() {
+            return serverBasePath;
+        }
+
+        public void setServerBasePath(String serverBasePath) {
+            this.serverBasePath = serverBasePath;
         }
         
     }

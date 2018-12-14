@@ -14,15 +14,17 @@ public class TestDataConstants {
         public static final String CUSTOM_SERVER_HOST = "custom.server.host";
         public static final String CUSTOM_SERVER_PORT = "custom.server.port";
         public static final String CUSTOM_SERVER_PROTOCOL = "custom.server.protocol";
+        public static final String CUSTOM_SERVER_BASEPATH = "custom.server.basePath";
         
         public static final String SERVER_VERSION = "server.version";
         public static final String SERVER_HOST = "server.host";
         public static final String SERVER_PORT = "server.port";
         public static final String SERVER_PROTOCOL = "server.protocol";
+        public static final String SERVER_BASEPATH = "server.basePath";
         
         public static final String SERVER_CUSTOM_PATH = "server.custom.path";
-        public static final String SERVER_PATH_PART_1 = "server.path.part1";
-        public static final String SERVER_PATH_PART_2 = "server.path.part2";
+        public static final String SERVER_SUBJECT = "server.subject";
+        public static final String SERVER_ENDPOINT = "server.endpoint";
         public static final String SLASH = "/";
         
         private ServerDetails() {

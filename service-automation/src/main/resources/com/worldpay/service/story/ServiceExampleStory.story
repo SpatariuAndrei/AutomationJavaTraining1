@@ -21,9 +21,9 @@ Given test data for headers:
 | headerValue | application/json;Db4JU93EYMIgHG1P          |
 When I set request specification for server
 Given test data for API:
-| key    				| value                   |
-| server.path.part1     | payByBankApp/merchant   |
-| server.path.part2     | registration            |
+| key    				| value                 |
+| server.subject	    | /merchant   			|
+| server.endpoint	    | /registration			|
 When I post the JSon request
 Given test data for the response:
 | key          | value  |
@@ -61,9 +61,9 @@ Given test data for headers:
 | headerValue | application/json;Db4JU93EYMIgHG1P          |
 When I set request specification for server
 Given test data for API:
-| key    | value                 |
-| server.path.part1    | payByBankApp/merchant |
-| server.path.part2    | registration          |
+| key    				| value                 |
+| server.subject	    | /merchant   			|
+| server.endpoint	    | /registration			|
 When I post the JSon request
 Given test data for the response:
 | key          | value  |
@@ -90,8 +90,8 @@ Given test data for headers:
 When I set request specification for server
 Given test data for API:
 | key    				| value                 |
-| server.path.part1     | payByBankApp/merchant |
-| server.path.part2     | registration          |
+| server.subject	    | /merchant   			|
+| server.endpoint	    | /registration			|
 When I post the JSon request
 Given test data for the response:
 | key          | value  |
