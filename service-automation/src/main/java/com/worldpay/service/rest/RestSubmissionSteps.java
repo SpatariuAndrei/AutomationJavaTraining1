@@ -10,6 +10,9 @@ import static com.worldpay.service.constants.HttpConstants.RequestMethods.HEAD;
 import static com.worldpay.service.constants.HttpConstants.RequestMethods.OPTIONS;
 import static com.worldpay.service.constants.HttpConstants.RequestMethods.POST;
 import static com.worldpay.service.constants.HttpConstants.RequestMethods.PUT;
+import static com.worldpay.service.constants.TestDataConstants.Json.JSON_REQUEST;
+import static com.worldpay.service.constants.TestDataConstants.Json.JSON_REQUEST_PATH;
+import static com.worldpay.service.constants.TestDataConstants.Json.JSON_SCHEMA;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_HOST;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_PORT;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_PROTOCOL;
@@ -22,7 +25,6 @@ import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SER
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_PROTOCOL;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_VERSION;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SLASH;
-import static com.worldpay.service.constants.TestDataConstants.Json.*;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
@@ -48,12 +50,16 @@ import org.slf4j.LoggerFactory;
 import com.worldpay.service.entities.SharedData;
 import com.worldpay.service.environment.Environment;
 import com.worldpay.service.util.FileUtil;
+import com.worldpay.service.util.OwnCustomTypeResolver;
 
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import pl.jalokim.propertiestojson.resolvers.primitives.BooleanJsonTypeResolver;
+import pl.jalokim.propertiestojson.resolvers.primitives.NumberJsonTypeResolver;
+import pl.jalokim.propertiestojson.resolvers.primitives.StringJsonTypeResolver;
 import pl.jalokim.propertiestojson.util.PropertiesToJsonConverter;
 
 public class RestSubmissionSteps {
@@ -122,12 +128,13 @@ public class RestSubmissionSteps {
 
         String protocol = getProtocol();
         String host = getHost();
+        String path;
         String port = getPort();
         if (!port.isEmpty())
             return protocol + "://" + host + ":" + port + api;
         else
             return protocol + "://" + host + api;
-        
+
     }
 
     /**
@@ -251,7 +258,8 @@ public class RestSubmissionSteps {
      */
     private String createJsonFromTestData(CompositeConfiguration testData) {
         final Map<String, String> testDataMap = testDataToMap(testData);
-        return new PropertiesToJsonConverter().convertToJson(testDataMap);
+        return new PropertiesToJsonConverter(new OwnCustomTypeResolver(), new NumberJsonTypeResolver(), new BooleanJsonTypeResolver(),
+                new StringJsonTypeResolver()).convertToJson(testDataMap);
     }
 
     /**
@@ -270,11 +278,8 @@ public class RestSubmissionSteps {
     }
 
     /**
-     * @return the service version as String 
-     * the service version is specified by default 
-     * in property file but can be overwritten
-     * with a custom value 
-     * from story file(or table file)
+     * @return the service version as String the service version is specified by default in property file but can be overwritten with a
+     *         custom value from story file(or table file)
      */
     private String getServiceVersion() {
         String customServerVersion = share.getTestData().getString(CUSTOM_SERVER_VERSION);
@@ -283,11 +288,8 @@ public class RestSubmissionSteps {
     }
 
     /**
-     * @return port as String 
-     * the port is specified by default 
-     * in property file but can be overwritten
-     * with a custom value 
-     * from story file(or table file)
+     * @return port as String the port is specified by default in property file but can be overwritten with a custom value from story
+     *         file(or table file)
      */
     private String getPort() {
         String customServerPort = share.getTestData().getString(CUSTOM_SERVER_PORT);
@@ -296,11 +298,8 @@ public class RestSubmissionSteps {
     }
 
     /**
-     * @return host name as String 
-     * the host name is specified by default 
-     * in property file but can be overwritten
-     * with a custom value 
-     * from story file(or table file)
+     * @return host name as String the host name is specified by default in property file but can be overwritten with a custom value from
+     *         story file(or table file)
      */
     private String getHost() {
         String customServerPort = share.getTestData().getString(CUSTOM_SERVER_HOST);
@@ -309,11 +308,8 @@ public class RestSubmissionSteps {
     }
 
     /**
-     * @return protocol as String 
-     * the protocol is specified by default 
-     * in property file but can be overwritten
-     * with a custom value 
-     * from story file(or table file)
+     * @return protocol as String the protocol is specified by default in property file but can be overwritten with a custom value from
+     *         story file(or table file)
      */
     private String getProtocol() {
         String customServerProtocol = share.getTestData().getString(CUSTOM_SERVER_PROTOCOL);
