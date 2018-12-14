@@ -10,9 +10,9 @@ Meta:
 
 Given table file location table for merchant registration: data/tables/RequestExample.table
 Given test data for Merchant Registration:
-| key                                           | value  |
-| merchant.id                                   | 000000 |
-| merchant.registrationInfo.address.countryCode | ROU    |
+| key                                           | value  	|
+| merchant.id                                   | "000000" 	|
+| merchant.registrationInfo.address.countryCode | ROU    	|
 
 When I create JSON request
 Given test data for headers:
@@ -40,20 +40,20 @@ Meta:
 
 Given test data cleared
 Given test data for Merchant Registration:
-| key                                                   | value  |
-| merchant.id                                           | 000000 |
-| merchant.registrationInfo.address.addressLine1        | string |
-| merchant.registrationInfo.address.countryCode         | GBR    |
-| merchant.registrationInfo.address.postCode            | string |
-| merchant.registrationInfo.categoryCode                | 1      |
-| merchant.registrationInfo.commonName                  | string |
-| merchant.registrationInfo.creditAccount.accountNumber | string |
-| merchant.registrationInfo.creditAccount.rollNumber    | string |
-| merchant.registrationInfo.creditAccount.sortCode      | 814789 |
-| merchant.registrationInfo.groupId                     | string |
-| merchant.registrationInfo.keyId                       | string |
-| merchant.registrationInfo.logoUrl                     | string |
-| merchant.registrationInfo.name                        | string |
+| key                                                   | value  	|
+| merchant.id                                           | "000000" 	|
+| merchant.registrationInfo.address.addressLine1        | string 	|
+| merchant.registrationInfo.address.countryCode         | GBR    	|
+| merchant.registrationInfo.address.postCode            | string 	|
+| merchant.registrationInfo.categoryCode                | 1      	|
+| merchant.registrationInfo.commonName                  | string 	|
+| merchant.registrationInfo.creditAccount.accountNumber | string 	|
+| merchant.registrationInfo.creditAccount.rollNumber    | string 	|
+| merchant.registrationInfo.creditAccount.sortCode      | 814789 	|
+| merchant.registrationInfo.groupId                     | string 	|
+| merchant.registrationInfo.keyId                       | string 	|
+| merchant.registrationInfo.logoUrl                     | string 	|
+| merchant.registrationInfo.name                        | string 	|
 When I create JSON request
 Given test data for headers:
 | key         | value                                      |
@@ -99,5 +99,3 @@ Given test data for the response:
 | responseCode | 201    |
 Then I can validate the response
 Then I check the response code
-
-
