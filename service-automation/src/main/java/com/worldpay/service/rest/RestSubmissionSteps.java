@@ -212,8 +212,7 @@ public class RestSubmissionSteps {
 
     private void setRequestSpecificationForServer() {
         Map<String, String> headersMap = parseHeaderInfo();
-
-        requestSpecification = given().config(configHttpClient());
+        requestSpecification = given().config(configHttpClient()).relaxedHTTPSValidation();
         String serviceCertificate = Environment.ENVIRONMENT.get().getServerCertificate();
         String serviceCertPassword = Environment.ENVIRONMENT.get().getServerCertPass();
         if (StringUtils.isNotBlank(serviceCertificate) && serviceCertPassword != null) {
