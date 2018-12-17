@@ -134,7 +134,7 @@ public class RestSubmissionSteps {
         String host = getHost();
         String port = getPort();
         String basePath = getBasePath();
-        if (!port.isEmpty())
+        if (StringUtils.isNotEmpty(port))
             return protocol + "://" + host + ":" + port + basePath + api;
         else
             return protocol + "://" + host + basePath + api;
