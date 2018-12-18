@@ -11,7 +11,7 @@ Meta:
 Given table file location table for merchant registration: data/tables/RequestExample.table
 Given test data for Merchant Registration:
 | key                                           | value  	|
-| merchant.id                                   | "000000" 	|
+| merchant.registrationInfo.address.postCode    | "000000" 	|
 | merchant.registrationInfo.address.countryCode | ROU    	|
 
 When I create JSON request
@@ -44,7 +44,7 @@ Given test data for Merchant Registration:
 | merchant.id                                           | "000000" 	|
 | merchant.registrationInfo.address.addressLine1        | string 	|
 | merchant.registrationInfo.address.countryCode         | GBR    	|
-| merchant.registrationInfo.address.postCode            | string 	|
+| merchant.registrationInfo.address.postCode            | "000000" 	|
 | merchant.registrationInfo.categoryCode                | 1      	|
 | merchant.registrationInfo.commonName                  | string 	|
 | merchant.registrationInfo.creditAccount.accountNumber | string 	|

@@ -5,7 +5,7 @@
       "address": {
         "addressLine1": "string",
         "countryCode": "GBR",
-        "postCode": "string"
+        "postCode": "000000"
       },
       "categoryCode": "1",
       "commonName": "string",
