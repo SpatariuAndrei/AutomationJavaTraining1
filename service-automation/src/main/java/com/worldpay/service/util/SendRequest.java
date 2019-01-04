@@ -1,5 +1,9 @@
 package com.worldpay.service.util;
 
+import static com.worldpay.service.constants.HttpConstants.Config.HTTP_CONNECTION_TIMEOUT_PARAM;
+import static com.worldpay.service.constants.HttpConstants.Config.HTTP_SOCKET_TIMEOUT_PARAM;
+import static com.worldpay.service.constants.HttpConstants.Headers.HEADER_NAME;
+import static com.worldpay.service.constants.HttpConstants.Headers.HEADER_VALUE;
 import static com.worldpay.service.constants.HttpConstants.RequestMethods.DELETE;
 import static com.worldpay.service.constants.HttpConstants.RequestMethods.GET;
 import static com.worldpay.service.constants.HttpConstants.RequestMethods.HEAD;
@@ -9,8 +13,17 @@ import static com.worldpay.service.constants.HttpConstants.RequestMethods.PUT;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.fail;
 
-import com.worldpay.service.entities.SharedData;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
+
+import com.worldpay.service.entities.SharedData;
+import com.worldpay.service.environment.Environment;
+
+import io.restassured.RestAssured;
+import io.restassured.config.HttpClientConfig;
+import io.restassured.config.RestAssuredConfig;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -39,13 +52,25 @@ public class SendRequest {
 
         try {
             share.setResponse(chooseMethodAndSendRequest(requestMethod, url));
-            String response = share.getResponse().getBody().prettyPrint();
-            //LOGGER.info(RESPONSE, response);
+            share.getResponse().getBody().prettyPrint();
         } catch (Exception e) {
             fail(String.format("Failed to connect to %s %n %s", url, e));
         }
     }
-
+     
+    public RequestSpecification setRequestSpecificationForServer(String jSonRequest) {
+        
+        Map<String, String> headersMap = parseHeaderInfo();
+        requestSpecification = given().config(configHttpClient()).relaxedHTTPSValidation();
+        String serviceCertificate = Environment.ENVIRONMENT.get().getServerCertificate();
+        String serviceCertPassword = Environment.ENVIRONMENT.get().getServerCertPass();
+        if (StringUtils.isNotBlank(serviceCertificate) && serviceCertPassword != null) {
+            requestSpecification = requestSpecification.trustStore(serviceCertificate, serviceCertPassword);
+        }
+        requestSpecification.headers(headersMap).body(jSonRequest);
+        return requestSpecification;
+    }
+   
     /**
      * Sends a request with a specific requestMethod to a given url
      * 
@@ -82,5 +107,36 @@ public class SendRequest {
         return response;
     }
     
+    /**
+     * Gets header info from test data and sets it into a map to have a flexible way of setting one or more headers on a requestSpecificaton
+     * 
+     * @return headersMap - header info specified as a as map
+     */
+    private Map<String, String> parseHeaderInfo() {
+
+        Map<String, String> headersMap = new HashMap<>();
+        String[] headerNames = share.getTestData().getString(HEADER_NAME).split(";");
+        String[] headerValues = share.getTestData().getString(HEADER_VALUE).split(";");
+
+        for (int i = 0; i < headerNames.length; i++) {
+            headersMap.put(headerNames[i], headerValues[i]);
+        }
+        return headersMap;
+
+    }
+
+    /**
+     * Sets configurations params for http client used to make service calls
+     * 
+     * @return a configuration of http client containing with values set for "http.connection.timeout" and "http.socket.timeout"
+     * 
+     */
+    private RestAssuredConfig configHttpClient() {
+
+        return RestAssured.config()
+                .httpClient(HttpClientConfig.httpClientConfig().setParam(HTTP_CONNECTION_TIMEOUT_PARAM, Integer.parseInt(Environment.ENVIRONMENT.get().getHttpConnectionTimeout()))
+                        .setParam(HTTP_SOCKET_TIMEOUT_PARAM, Integer.parseInt(Environment.ENVIRONMENT.get().getHttpSocketTimeout())));
+
+    }
 
 }
