@@ -1,5 +1,6 @@
 package com.worldpay.service.util;
 
+import com.worldpay.service.constants.TestDataConstants;
 import com.worldpay.service.entities.SharedData;
 import org.apache.commons.lang3.time.DateUtils;
 import pl.jalokim.propertiestojson.object.AbstractJsonType;
@@ -32,26 +33,30 @@ public class OwnCustomTypeResolver extends PrimitiveJsonTypeResolver<Object> {
 
     private Object processProperty(String propertyValue) {
         String newPropertyValue = propertyValue;
-        if (newPropertyValue.contains(Constants.Placeholder.CURRENT_DATE))
-            newPropertyValue = newPropertyValue.replace(Constants.Placeholder.CURRENT_DATE, getCurrentDate());
+        if (newPropertyValue.contains(TestDataConstants.Placeholder.CURRENT_DATE))
+            newPropertyValue = newPropertyValue.replace(TestDataConstants.Placeholder.CURRENT_DATE, getCurrentDate());
 
         if ((newPropertyValue.substring(0, 1).contains(QUOTES)
                 && (newPropertyValue.substring(newPropertyValue.length() - 1, newPropertyValue.length())).contains(QUOTES))) {
             newPropertyValue = newPropertyValue.substring(1, propertyValue.length() - 1);
         }
-        return null;
+
+        if (newPropertyValue == propertyValue)
+            return null;
+        else
+            return newPropertyValue;
     }
 
     private String getCurrentDate()
     {
-        DateFormat dateFormat = new SimpleDateFormat(share.getTestData().getString(Constants.Property.DATE_FORMAT,"yyyy/MM/dd"));
+        DateFormat dateFormat = new SimpleDateFormat(share.getTestData().getString(TestDataConstants.Property.DATE_FORMAT,"yyyy/MM/dd"));
         Date date = new Date();
         return dateFormat.format(date);
     }
 
     private String getCurrentDatePlusDays(int days)
     {
-        DateFormat dateFormat = new SimpleDateFormat(share.getTestData().getString(Constants.Property.DATE_FORMAT,"yyyy/MM/dd"));
+        DateFormat dateFormat = new SimpleDateFormat(share.getTestData().getString(TestDataConstants.Property.DATE_FORMAT,"yyyy/MM/dd"));
         Date date = new Date();
         date = DateUtils.addDays(date, days);
         return dateFormat.format(date);
@@ -59,7 +64,7 @@ public class OwnCustomTypeResolver extends PrimitiveJsonTypeResolver<Object> {
 
     private String getCurrentDatePlusMonths(int months)
     {
-        DateFormat dateFormat = new SimpleDateFormat(share.getTestData().getString(Constants.Property.DATE_FORMAT,"yyyy/MM/dd"));
+        DateFormat dateFormat = new SimpleDateFormat(share.getTestData().getString(TestDataConstants.Property.DATE_FORMAT,"yyyy/MM/dd"));
         Date date = new Date();
         date = DateUtils.addMonths(date, months);
         return dateFormat.format(date);
@@ -67,7 +72,7 @@ public class OwnCustomTypeResolver extends PrimitiveJsonTypeResolver<Object> {
 
     private String getCurrentDatePlusYears(int years)
     {
-        DateFormat dateFormat = new SimpleDateFormat(share.getTestData().getString(Constants.Property.DATE_FORMAT,"yyyy/MM/dd"));
+        DateFormat dateFormat = new SimpleDateFormat(share.getTestData().getString(TestDataConstants.Property.DATE_FORMAT,"yyyy/MM/dd"));
         Date date = new Date();
         date = DateUtils.addYears(date, years);
         return dateFormat.format(date);
