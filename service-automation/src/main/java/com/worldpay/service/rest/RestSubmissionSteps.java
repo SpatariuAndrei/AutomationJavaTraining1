@@ -256,7 +256,7 @@ public class RestSubmissionSteps {
      */
     private String createJsonFromTestData(CompositeConfiguration testData) {
         final Map<String, String> testDataMap = testDataToMap(testData);
-        return new PropertiesToJsonConverter(new OwnCustomTypeResolver(), new NumberJsonTypeResolver(), new BooleanJsonTypeResolver(),
+        return new PropertiesToJsonConverter(new OwnCustomTypeResolver(share), new NumberJsonTypeResolver(), new BooleanJsonTypeResolver(),
                 new StringJsonTypeResolver()).convertToJson(testDataMap);
     }
 
