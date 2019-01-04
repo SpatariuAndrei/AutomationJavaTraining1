@@ -13,19 +13,7 @@ import static com.worldpay.service.constants.HttpConstants.RequestMethods.PUT;
 import static com.worldpay.service.constants.TestDataConstants.Json.JSON_REQUEST;
 import static com.worldpay.service.constants.TestDataConstants.Json.JSON_REQUEST_PATH;
 import static com.worldpay.service.constants.TestDataConstants.Json.JSON_SCHEMA;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_HOST;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_PORT;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_PROTOCOL;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.CUSTOM_SERVER_VERSION;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_BASEPATH;
 import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_CUSTOM_PATH;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_ENDPOINT;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_HOST;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_PORT;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_PROTOCOL;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_SUBJECT;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SERVER_VERSION;
-import static com.worldpay.service.constants.TestDataConstants.ServerDetails.SLASH;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
@@ -48,11 +36,12 @@ import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.worldpay.service.constants.TestDataConstants;
 import com.worldpay.service.entities.SharedData;
 import com.worldpay.service.environment.Environment;
+import com.worldpay.service.util.EndpointGenerator;
 import com.worldpay.service.util.FileUtil;
 import com.worldpay.service.util.OwnCustomTypeResolver;
+import com.worldpay.service.util.SendRequest;
 
 import io.restassured.RestAssured;
 import io.restassured.config.HttpClientConfig;
@@ -74,6 +63,8 @@ public class RestSubmissionSteps {
     private RequestSpecification requestSpecification;
     private String jSonRequest;
     private SharedData share;
+    private EndpointGenerator endpointGenerator;
+    private SendRequest sendRequest;
 
     public RestSubmissionSteps(SharedData share) {
         this.share = share;
@@ -84,6 +75,7 @@ public class RestSubmissionSteps {
     public void setUp() {
         httpConnectionTimeout = Environment.ENVIRONMENT.get().getHttpConnectionTimeout();
         httpSocketTimeout = Environment.ENVIRONMENT.get().getHttpSocketTimeout();
+        endpointGenerator = new EndpointGenerator(share);
     }
 
     @When("I create JSON request")
@@ -108,14 +100,19 @@ public class RestSubmissionSteps {
 
     @When("I $requestMethod the JSon request")
     public void sendRequest(String requestMethod) {
-        String url = buildUrl(generatePath());
+        String url = endpointGenerator.generateEndpoint(endpointGenerator.generatePath());
         LOGGER.info("Service URL:" + url);
         sendHttpRequest(requestMethod, url);
     }
 
     @When("I $requestMethod the JSon request with custom parameters")
     public void sendRequestWithParameters(String requestMethod) {
-        sendHttpRequest(requestMethod, buildUrl(share.getTestData().getString(SERVER_CUSTOM_PATH)));
+        sendRequest.sendHttpRequest(requestMethod, endpointGenerator.generateEndpoint(share.getTestData().getString(SERVER_CUSTOM_PATH)));
+    }
+
+    @Then("I can validate the response")
+    public void validateResponse() {
+        share.getResponse().then().assertThat().body("merchantId", equalTo(share.getTestData().getString("merchantId")));
     }
 
     @Then("I can validate the response against the json schema")
@@ -123,30 +120,7 @@ public class RestSubmissionSteps {
         share.getResponse().then().assertThat().body(matchesJsonSchemaInClasspath(share.getTestData().getString(JSON_SCHEMA)));
     }
 
-    private String buildUrl(String api) {
 
-        String protocol = getProtocol();
-        String host = getHost();
-        String port = getPort();
-        String basePath = getBasePath();
-        if (StringUtils.isNotEmpty(port))
-            return protocol + "://" + host + ":" + port + basePath + api;
-        else
-            return protocol + "://" + host + basePath + api;
-
-    }
-
-    /**
-     * Generates the path needed by each API to contain the version set in the property files
-     * 
-     * @return stringBuilder - the url after the protocol, host and port (e.g. /merchantHosted/v1.0/capture/201801092037030000000/cancel)
-     */
-    private String generatePath() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(share.getTestData().getString(SERVER_SUBJECT)).append(SLASH).append(getServiceVersion())
-                .append(share.getTestData().getString(SERVER_ENDPOINT));
-        return stringBuilder.toString();
-    }
 
     /**
      * Sends a request with a specific requestMethod to a given url and sets the response on an object, in case of exception calls fail()
@@ -273,56 +247,6 @@ public class RestSubmissionSteps {
             testDataMap.put(testDataMap.size(), key, testData.getString(key));
         }
         return testDataMap;
-    }
-
-    /**
-     * @return the service version as String the service version is specified by default in property file but can be overwritten with a
-     *         custom value from story file(or table file)
-     */
-    private String getServiceVersion() {
-        String customServerVersion = share.getTestData().getString(CUSTOM_SERVER_VERSION);
-        return (customServerVersion != null ? share.getTestData().getString(SERVER_VERSION, customServerVersion)
-                : share.getTestData().getString(SERVER_VERSION, Environment.ENVIRONMENT.get().getServerVersion()));
-    }
-
-    /**
-     * @return port as String the port is specified by default in property file but can be overwritten with a custom value from story
-     *         file(or table file)
-     */
-    private String getPort() {
-        String customServerPort = share.getTestData().getString(CUSTOM_SERVER_PORT);
-        return (customServerPort != null ? share.getTestData().getString(SERVER_PORT, customServerPort)
-                : share.getTestData().getString(SERVER_PORT, Environment.ENVIRONMENT.get().getServerPort()));
-    }
-
-    /**
-     * @return host name as String the host name is specified by default in property file but can be overwritten with a custom value from
-     *         story file(or table file)
-     */
-    private String getHost() {
-        String customServerPort = share.getTestData().getString(CUSTOM_SERVER_HOST);
-        return (customServerPort != null ? share.getTestData().getString(SERVER_HOST, customServerPort)
-                : share.getTestData().getString(SERVER_HOST, Environment.ENVIRONMENT.get().getServerHost()));
-    }
-
-    /**
-     * @return protocol as String the protocol is specified by default in property file but can be overwritten with a custom value from
-     *         story file(or table file)
-     */
-    private String getProtocol() {
-        String customServerProtocol = share.getTestData().getString(CUSTOM_SERVER_PROTOCOL);
-        return (customServerProtocol != null ? share.getTestData().getString(SERVER_PROTOCOL, customServerProtocol)
-                : share.getTestData().getString(SERVER_PROTOCOL, Environment.ENVIRONMENT.get().getServerProtocol()));
-    }
-
-    /**
-     * @return basePath as String the basePath is specified by default in property file but can be overwritten with a custom value from
-     *         story file(or table file)
-     */
-    private String getBasePath() {
-        String customServerBasePath = share.getTestData().getString(TestDataConstants.ServerDetails.CUSTOM_SERVER_BASEPATH);
-        return (customServerBasePath != null ? share.getTestData().getString(SERVER_BASEPATH, customServerBasePath)
-                : share.getTestData().getString(SERVER_BASEPATH, Environment.ENVIRONMENT.get().getServerBasePath()));
     }
 
 }

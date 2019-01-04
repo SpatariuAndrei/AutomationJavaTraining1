@@ -1,9 +1,7 @@
 package com.worldpay.service.steps;
 
-import static com.worldpay.service.constants.Constants.CONTENT_TYPE;
-import static com.worldpay.service.constants.Constants.RESPONSE_CODE;
-import static com.worldpay.service.constants.Constants.RESPONSE_CODE_BODY;
-import static com.worldpay.service.constants.Constants.RESPONSE_MESSAGE_BODY;
+import static com.worldpay.service.constants.HttpConstants.Request.CONTENT_TYPE;
+import static com.worldpay.service.constants.HttpConstants.Response.CODE;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
@@ -14,8 +12,6 @@ import java.util.List;
 
 import org.jbehave.core.annotations.Then;
 
-import com.worldpay.service.constants.Constants;
-import com.worldpay.service.constants.JsonResponseConstants.Response;
 import com.worldpay.service.entities.SharedData;
 import com.worldpay.service.util.CustomAssert;
 
@@ -32,7 +28,7 @@ public class ValidationSteps {
     @Then("I check the response code")
     public void thenCheckResponse() {
         int actualResponseCode = share.getResponse().getStatusCode();
-        int expectedResponseCode = share.getTestData().getInt(RESPONSE_CODE);
+        int expectedResponseCode = share.getTestData().getInt(CODE);
         assertThat(CustomAssert.buildFailureReason(share), actualResponseCode, equalTo(expectedResponseCode));
     }
 
@@ -58,26 +54,7 @@ public class ValidationSteps {
 
     @Then("I check that the $field field is not present in the response body")
     public void thenCheckFieldNonExistence(String field) {
-        share.getResponse().then().assertThat().body(Response.BODY, not(hasKey(field)));
-    }
-
-    @Then("I check the response body for fail response")
-    public void thenCheckFailResponseBody() {
-        share.getResponse().then().assertThat().body(Response.RESPONSE_CODE, equalTo(share.getTestData().getString(RESPONSE_CODE_BODY))).and()
-                .body(Response.RESPONSE_MESSAGE, equalTo(share.getTestData().getString(RESPONSE_MESSAGE_BODY)));
-    }
-
-    @Then("I check the body for failed RVL validation")
-    public void thenCheckFailedRvlValidation() {
-        String expectedErrorMessage = share.getTestData().getString(Constants.ERROR).replace("pipe", "|");
-        share.getResponse().then().assertThat().body(Response.RESPONSE_CODE, equalTo(share.getTestData().getString(Constants.ERROR_CODE))).and()
-                .body(Response.RESPONSE_MESSAGE, equalTo(expectedErrorMessage));
-    }
-
-    @Then("I check the response body for missing fields")
-    public void thenCheckMissingFields() {
-        share.getResponse().then().assertThat().body(share.getTestData().getString(Constants.TAG),
-                not(hasKey(share.getTestData().getString(Constants.SUB_TAG))));
+        share.getResponse().then().assertThat().body("$", not(hasKey(field)));
     }
 
     @Then("I check that the number of parameters from response is $number")

@@ -7,27 +7,27 @@ public class HttpConstants {
     private HttpConstants() {
         throw new IllegalAccessError(ERROR_MESSAGE);
     }
-    
+
     public static class Config {
-        
+
         public static final String HTTP_CONNECTION_TIMEOUT_PARAM = "http.connection.timeout";
         public static final String HTTP_SOCKET_TIMEOUT_PARAM = "http.socket.timeout";
 
         private Config() {
             throw new IllegalAccessError(ERROR_MESSAGE);
-        }    
-               
+        }
+
     }
-    
+
     public static class Headers {
-        
+
         public static final String HEADER_NAME = "headerName";
         public static final String HEADER_VALUE = "headerValue";
-        
+
         private Headers() {
             throw new IllegalAccessError(ERROR_MESSAGE);
-        }    
-          
+        }
+
     }
 
     public static class RequestMethods {
@@ -43,5 +43,24 @@ public class HttpConstants {
             throw new IllegalAccessError(ERROR_MESSAGE);
         }
 
-    }   
+    }
+
+    public static class Request {
+        
+        public static final String CONTENT_TYPE = "contentType";
+        
+        private Request() {
+            throw new IllegalAccessError(ERROR_MESSAGE);
+        }
+
+    }
+
+    public static class Response {
+        
+        public static final String CODE = "code";
+        
+        private Response() {
+            throw new IllegalAccessError(ERROR_MESSAGE);
+        }
+    }
 }

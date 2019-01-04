@@ -30,6 +30,8 @@
 		<surefire.junit47.version>2.20</surefire.junit47.version>
 		<assertj.version>3.10.0</assertj.version>
 		<properties.to.json.version>4.0</properties.to.json.version>
+		<awaitility.version>3.0.0</awaitility.version>
+		<awaitility.proxy.version>3.0.0</awaitility.proxy.version>
 
 		<!-- plugin versions -->
 		<maven.compiler.plugin.version>3.6.1</maven.compiler.plugin.version>
@@ -37,6 +39,16 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.awaitility</groupId>
+			<artifactId>awaitility</artifactId>
+			<version>${awaitility.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.awaitility</groupId>
+			<artifactId>awaitility-proxy</artifactId>
+			<version>${awaitility.proxy.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>pl.jalokim.propertiestojson</groupId>
 			<artifactId>java-properties-to-json</artifactId>
