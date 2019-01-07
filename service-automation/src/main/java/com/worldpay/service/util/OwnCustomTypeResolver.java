@@ -11,6 +11,8 @@ import pl.jalokim.propertiestojson.resolvers.primitives.PrimitiveJsonTypeResolve
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class OwnCustomTypeResolver extends PrimitiveJsonTypeResolver<Object> {
 
@@ -20,6 +22,7 @@ public class OwnCustomTypeResolver extends PrimitiveJsonTypeResolver<Object> {
 
     private static final String QUOTES = "\"";
     private SharedData share;
+    private TestDataUtil testDataUtil;
 
     @Override
     protected Object returnConcreteValueWhenCanBeResolved(PrimitiveJsonTypesResolver primitiveJsonTypesResolver, String propertyValue) {
@@ -31,51 +34,46 @@ public class OwnCustomTypeResolver extends PrimitiveJsonTypeResolver<Object> {
         return new StringJsonType(propertyValue.toString());
     }
 
+    /**
+     * Replace all the placeholders with their actual value, if there is none, the null value is returned and the other resolvers are used.
+     * @param propertyValue
+     */
     private Object processProperty(String propertyValue) {
         String newPropertyValue = propertyValue;
         if (newPropertyValue.contains(TestDataConstants.Placeholder.CURRENT_DATE))
-            newPropertyValue = newPropertyValue.replace(TestDataConstants.Placeholder.CURRENT_DATE, getCurrentDate());
+            newPropertyValue = newPropertyValue.replace(TestDataConstants.Placeholder.CURRENT_DATE, testDataUtil.getCurrentDate());
 
         if ((newPropertyValue.substring(0, 1).contains(QUOTES)
-                && (newPropertyValue.substring(newPropertyValue.length() - 1, newPropertyValue.length())).contains(QUOTES))) {
+                && (newPropertyValue.substring(newPropertyValue.length() - 1)).contains(QUOTES))) {
             newPropertyValue = newPropertyValue.substring(1, propertyValue.length() - 1);
         }
-
+        if (newPropertyValue.matches(TestDataConstants.Placeholder.CURRENT_DATE_PLUS_DAYS))
+        {
+            Pattern pattern = Pattern.compile(TestDataConstants.Placeholder.CURRENT_DATE_PLUS_DAYS);
+            Matcher matcher = pattern.matcher(newPropertyValue);
+            Integer number = Integer.valueOf(matcher.group(1));
+            newPropertyValue = matcher.replaceAll(testDataUtil.getCurrentDatePlusDays(number));
+        }
+        if (newPropertyValue.matches(TestDataConstants.Placeholder.CURRENT_DATE_PLUS_MONTHS))
+        {
+            Pattern pattern = Pattern.compile(TestDataConstants.Placeholder.CURRENT_DATE_PLUS_MONTHS);
+            Matcher matcher = pattern.matcher(newPropertyValue);
+            Integer number = Integer.valueOf(matcher.group(1));
+            newPropertyValue = matcher.replaceAll(testDataUtil.getCurrentDatePlusMonths(number));
+        }
+        if (newPropertyValue.matches(TestDataConstants.Placeholder.CURRENT_DATE_PLUS_YEARS))
+        {
+            Pattern pattern = Pattern.compile(TestDataConstants.Placeholder.CURRENT_DATE_PLUS_YEARS);
+            Matcher matcher = pattern.matcher(newPropertyValue);
+            Integer number = Integer.valueOf(matcher.group(1));
+            newPropertyValue = matcher.replaceAll( testDataUtil.getCurrentDatePlusYears(number));
+        }
         if (newPropertyValue == propertyValue)
             return null;
         else
             return newPropertyValue;
     }
 
-    private String getCurrentDate()
-    {
-        DateFormat dateFormat = new SimpleDateFormat(share.getTestData().getString(TestDataConstants.Property.DATE_FORMAT,"yyyy/MM/dd"));
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
 
-    private String getCurrentDatePlusDays(int days)
-    {
-        DateFormat dateFormat = new SimpleDateFormat(share.getTestData().getString(TestDataConstants.Property.DATE_FORMAT,"yyyy/MM/dd"));
-        Date date = new Date();
-        date = DateUtils.addDays(date, days);
-        return dateFormat.format(date);
-    }
-
-    private String getCurrentDatePlusMonths(int months)
-    {
-        DateFormat dateFormat = new SimpleDateFormat(share.getTestData().getString(TestDataConstants.Property.DATE_FORMAT,"yyyy/MM/dd"));
-        Date date = new Date();
-        date = DateUtils.addMonths(date, months);
-        return dateFormat.format(date);
-    }
-
-    private String getCurrentDatePlusYears(int years)
-    {
-        DateFormat dateFormat = new SimpleDateFormat(share.getTestData().getString(TestDataConstants.Property.DATE_FORMAT,"yyyy/MM/dd"));
-        Date date = new Date();
-        date = DateUtils.addYears(date, years);
-        return dateFormat.format(date);
-    }
 
 }

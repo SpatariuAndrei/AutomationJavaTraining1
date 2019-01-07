@@ -46,6 +46,9 @@ public class TestDataConstants {
 
     public static class Placeholder {
         public static final String CURRENT_DATE = "#CURRENT_DATE#";
+        public static final String CURRENT_DATE_PLUS_DAYS = "#CURRENT_DATE\\+(\\d+)DAYS#";
+        public static final String CURRENT_DATE_PLUS_MONTHS = "#CURRENT_DATE\\+(\\d+)MONTHS#";
+        public static final String CURRENT_DATE_PLUS_YEARS = "#CURRENT_DATE\\+(\\d+)YEARS#";
     }
 
     public static class Property {
