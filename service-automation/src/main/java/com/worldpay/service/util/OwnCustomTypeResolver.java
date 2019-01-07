@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class OwnCustomTypeResolver extends PrimitiveJsonTypeResolver<String> {
+public class OwnCustomTypeResolver extends PrimitiveJsonTypeResolver<AbstractJsonType> {
 
     public OwnCustomTypeResolver(SharedData share) {
         this.share = share;
@@ -25,13 +25,13 @@ public class OwnCustomTypeResolver extends PrimitiveJsonTypeResolver<String> {
     private TestDataUtil testDataUtil;
 
     @Override
-    protected String returnConcreteValueWhenCanBeResolved(PrimitiveJsonTypesResolver primitiveJsonTypesResolver, String propertyValue) {
+    protected AbstractJsonType returnConcreteValueWhenCanBeResolved(PrimitiveJsonTypesResolver primitiveJsonTypesResolver, String propertyValue) {
         return processProperty(propertyValue);
     }
 
     @Override
-    public AbstractJsonType returnConcreteJsonType(PrimitiveJsonTypesResolver primitiveJsonTypesResolver, String propertyValue){
-        return new StringJsonType(propertyValue);
+    public AbstractJsonType returnConcreteJsonType(PrimitiveJsonTypesResolver primitiveJsonTypesResolver, AbstractJsonType propertyValue){
+        return propertyValue;
     }
 
 
@@ -39,8 +39,12 @@ public class OwnCustomTypeResolver extends PrimitiveJsonTypeResolver<String> {
      * Replace all the placeholders with their actual value, if there is none, the null value is returned and the other resolvers are used.
      * @param propertyValue
      */
-    private String processProperty(String propertyValue) {
+    private AbstractJsonType processProperty(String propertyValue) {
         String newPropertyValue = propertyValue;
+        if (newPropertyValue.contains(TestDataConstants.Placeholder.AUTO_CAPTURE))
+            if (share.getTestData().containsKey(TestDataConstants.Property.AUTO_CAPTURE))
+                return new BooleanJsonType(share.getTestData().getBoolean(TestDataConstants.Property.AUTO_CAPTURE));
+
         if (newPropertyValue.contains(TestDataConstants.Placeholder.CURRENT_DATE))
             newPropertyValue = newPropertyValue.replace(TestDataConstants.Placeholder.CURRENT_DATE, testDataUtil.getCurrentDate());
 
@@ -73,9 +77,8 @@ public class OwnCustomTypeResolver extends PrimitiveJsonTypeResolver<String> {
         if (newPropertyValue == propertyValue)
             return null;
         else
-            return newPropertyValue;
+            return new StringJsonType(newPropertyValue);
     }
-
 
 
 }

@@ -45,6 +45,7 @@ public class TestDataConstants {
     }
 
     public static class Placeholder {
+        public static final String AUTO_CAPTURE = "#AUTO_CAPTURE#";
         public static final String CURRENT_DATE = "#CURRENT_DATE#";
         public static final String CURRENT_DATE_PLUS_DAYS = "#CURRENT_DATE\\+(\\d+)DAYS#";
         public static final String CURRENT_DATE_PLUS_MONTHS = "#CURRENT_DATE\\+(\\d+)MONTHS#";
@@ -53,6 +54,7 @@ public class TestDataConstants {
 
     public static class Property {
         public static final String DATE_FORMAT = "date.format";
+        public static final String AUTO_CAPTURE = "autocapture";
 
     }
     

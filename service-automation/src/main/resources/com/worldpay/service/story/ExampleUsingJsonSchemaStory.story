@@ -38,6 +38,7 @@ Given test data for API:
 | server.host        | jsonplaceholder.typicode.com |
 | server.port        |                              |
 | json.schema        | <schema>                     |
+| autocapture        |  false                       |
 When I create JSON request
 Given test data for headers:
 | key         | value            |

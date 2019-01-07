@@ -39,4 +39,4 @@
 | order_lines[1].product_identifiers.global_trade_item_number              | 735858293167                                       |
 | order_lines[1].product_identifiers.manufacturer_part_number              | #CURRENT_DATE+12DAYS#                              |
 | order_lines[1].product_identifiers.brand                                 | #CURRENT_DATE#                                     |
-| auto_capture                                                             | true                                               |
+| auto_capture                                                             | #AUTO_CAPTURE#                                     |
