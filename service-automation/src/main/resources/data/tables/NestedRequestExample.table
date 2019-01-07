@@ -37,6 +37,6 @@
 | order_lines[1].image_url                                                 | https://www.exampleobjects.com/logo.png            |
 | order_lines[1].product_identifiers.category_path                         | Electronics Store > Computers & Tablets > Desktops |
 | order_lines[1].product_identifiers.global_trade_item_number              | 735858293167                                       |
-| order_lines[1].product_identifiers.manufacturer_part_number              | BOXNUC5CPYH                                        |
-| order_lines[1].product_identifiers.brand                                 | Intel                                              |
+| order_lines[1].product_identifiers.manufacturer_part_number              | #CURRENT_DATE+12DAYS#                              |
+| order_lines[1].product_identifiers.brand                                 | #CURRENT_DATE#                                     |
 | auto_capture                                                             | true                                               |
