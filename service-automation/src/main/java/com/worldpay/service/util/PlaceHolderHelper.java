@@ -9,14 +9,14 @@ import pl.jalokim.propertiestojson.object.StringJsonType;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PlaceholderHelper {
+public class PlaceHolderHelper {
     private SharedData share;
-    private TestDataUtil testDataUtil;
+    private DateFormatUtil dateFormatUtil;
     private static final String QUOTES = "\"";
 
-    public PlaceholderHelper(SharedData share) {
+    public PlaceHolderHelper(SharedData share) {
         this.share = share;
-        testDataUtil = new TestDataUtil(share);
+        dateFormatUtil = new DateFormatUtil(share);
     }
 
     /**
@@ -28,12 +28,11 @@ public class PlaceholderHelper {
 
         String newPropertyValue = propertyValue;
 
-        if (newPropertyValue.contains(TestDataConstants.Placeholder.AUTO_CAPTURE))
-            if (share.getTestData().containsKey(TestDataConstants.Property.AUTO_CAPTURE))
-                return new BooleanJsonType(share.getTestData().getBoolean(TestDataConstants.Property.AUTO_CAPTURE));
+        if (newPropertyValue.contains(TestDataConstants.Placeholder.AUTO_CAPTURE) && share.getTestData().containsKey(TestDataConstants.Property.AUTO_CAPTURE))
+            return new BooleanJsonType(share.getTestData().getBoolean(TestDataConstants.Property.AUTO_CAPTURE));
 
         if (newPropertyValue.contains(TestDataConstants.Placeholder.CURRENT_DATE))
-            newPropertyValue = newPropertyValue.replace(TestDataConstants.Placeholder.CURRENT_DATE, testDataUtil.getCurrentDate());
+            newPropertyValue = newPropertyValue.replace(TestDataConstants.Placeholder.CURRENT_DATE, dateFormatUtil.getCurrentDate());
 
         if ((newPropertyValue.substring(0, 1).contains(QUOTES)
                 && (newPropertyValue.substring(newPropertyValue.length() - 1)).contains(QUOTES))) {
@@ -63,11 +62,11 @@ public class PlaceholderHelper {
         matcher.find();
         Integer number = Integer.valueOf(matcher.group(1));
         if (regexPattern == TestDataConstants.Placeholder.CURRENT_DATE_PLUS_DAYS)
-            return matcher.replaceAll(testDataUtil.getCurrentDatePlusDays(number));
+            return matcher.replaceAll(dateFormatUtil.getCurrentDatePlusDays(number));
         if (regexPattern == TestDataConstants.Placeholder.CURRENT_DATE_PLUS_MONTHS)
-            return matcher.replaceAll(testDataUtil.getCurrentDatePlusMonths(number));
+            return matcher.replaceAll(dateFormatUtil.getCurrentDatePlusMonths(number));
         if (regexPattern == TestDataConstants.Placeholder.CURRENT_DATE_PLUS_YEARS)
-            return matcher.replaceAll(testDataUtil.getCurrentDatePlusYears(number));
+            return matcher.replaceAll(dateFormatUtil.getCurrentDatePlusYears(number));
         else return null;
     }
 }
