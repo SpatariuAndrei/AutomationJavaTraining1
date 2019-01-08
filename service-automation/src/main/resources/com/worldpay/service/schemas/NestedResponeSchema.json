@@ -2,37 +2,6 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
-    "server": {
-      "type": "object",
-      "properties": {
-        "protocol": {
-          "type": "string"
-        },
-        "port": {
-          "type": "string"
-        },
-        "custom": {
-          "type": "object",
-          "properties": {
-            "path": {
-              "type": "string"
-            }
-          },
-          "required": [
-            "path"
-          ]
-        },
-        "host": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "protocol",
-        "port",
-        "custom",
-        "host"
-      ]
-    },
     "order_tax_amount": {
       "type": "integer"
     },
@@ -260,17 +229,6 @@
         }
       ]
     },
-    "json": {
-      "type": "object",
-      "properties": {
-        "schema": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "schema"
-      ]
-    },
     "body": {
       "type": "string"
     },
@@ -285,11 +243,9 @@
     }
   },
   "required": [
-    "server",
     "order_tax_amount",
     "parlor",
     "order_lines",
-    "json",
     "body",
     "userId",
     "auto_capture",

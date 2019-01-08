@@ -57,7 +57,7 @@ public class TestDataSteps {
      * <br>
      * Eg.<br>
      * <br>
-     * 
+     * <p>
      * And table file location table for someDescription:<br>
      * | tableFile |<br>
      * | path/to/first/table/file/tableFile1.table |<br>
@@ -78,11 +78,18 @@ public class TestDataSteps {
      * Loads the properties from the given table.
      */
     private void setTestData(ExamplesTable propertiesTable) {
-        for (Parameters row : propertiesTable.getRowsAsParameters(true)) {
-            String key = row.valueAs("key", String.class);
-            String value = row.valueAs("value", String.class);
-            share.getTestData().setProperty(key, value);
-        }
+        if (propertiesTable.getHeaders().contains("request")) {
+            for (Parameters row : propertiesTable.getRowsAsParameters(true)) {
+                String key = row.valueAs("request", String.class);
+                String value = row.valueAs("value", String.class);
+                share.getRequestData().setProperty(key, value);
+            }
+        } else
+            for (Parameters row : propertiesTable.getRowsAsParameters(true)) {
+                String key = row.valueAs("key", String.class);
+                String value = row.valueAs("value", String.class);
+                share.getTestData().setProperty(key, value);
+            }
     }
 
 }

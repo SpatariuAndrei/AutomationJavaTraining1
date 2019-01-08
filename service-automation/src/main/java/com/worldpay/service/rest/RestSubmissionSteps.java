@@ -52,7 +52,7 @@ public class RestSubmissionSteps {
 
     @When("I create JSON request")
     public void createJsonRequest() {
-        jSonRequest = testDataUtil.createJsonFromTestData(share.getTestData());
+        jSonRequest = testDataUtil.createJsonFromTestData(share.getRequestData());
         share.getTestData().setProperty(JSON_REQUEST, jSonRequest);
         LOGGER.info(REQUEST, jSonRequest);
     }

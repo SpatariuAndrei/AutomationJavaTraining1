@@ -103,6 +103,7 @@ public class BaseJBehaveStory extends JUnitStory {
 
         share.setResponse(new RestAssuredResponseImpl());
         share.setTestData(new CompositeConfiguration());
+        share.setRequestData(new CompositeConfiguration());
         share.getTestData().setDelimiterParsingDisabled(true);
 
         return new MostUsefulConfiguration().useStoryLoader(new LoadFromClasspath(this.getClass()))
