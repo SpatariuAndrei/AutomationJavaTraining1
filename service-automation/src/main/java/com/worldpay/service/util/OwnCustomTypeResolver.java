@@ -1,84 +1,28 @@
 package com.worldpay.service.util;
 
-import com.worldpay.service.constants.TestDataConstants;
 import com.worldpay.service.entities.SharedData;
-import org.apache.commons.lang3.time.DateUtils;
-import pl.jalokim.propertiestojson.object.*;
+import pl.jalokim.propertiestojson.object.AbstractJsonType;
 import pl.jalokim.propertiestojson.resolvers.PrimitiveJsonTypesResolver;
 import pl.jalokim.propertiestojson.resolvers.primitives.PrimitiveJsonTypeResolver;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class OwnCustomTypeResolver extends PrimitiveJsonTypeResolver<AbstractJsonType> {
 
     public OwnCustomTypeResolver(SharedData share) {
         this.share = share;
-        testDataUtil = new TestDataUtil(share);
+        placeholderHelper = new PlaceholderHelper(share);
     }
 
-    private static final String QUOTES = "\"";
+
     private SharedData share;
-    private TestDataUtil testDataUtil;
+    private PlaceholderHelper placeholderHelper;
 
     @Override
     protected AbstractJsonType returnConcreteValueWhenCanBeResolved(PrimitiveJsonTypesResolver primitiveJsonTypesResolver, String propertyValue) {
-        return processProperty(propertyValue);
+        return placeholderHelper.processPlaceholder(propertyValue);
     }
 
     @Override
-    public AbstractJsonType returnConcreteJsonType(PrimitiveJsonTypesResolver primitiveJsonTypesResolver, AbstractJsonType propertyValue){
+    public AbstractJsonType returnConcreteJsonType(PrimitiveJsonTypesResolver primitiveJsonTypesResolver, AbstractJsonType propertyValue) {
         return propertyValue;
     }
-
-
-    /**
-     * Replace all the placeholders with their actual value, if there is none, the null value is returned and the other resolvers are used.
-     * @param propertyValue
-     */
-    private AbstractJsonType processProperty(String propertyValue) {
-        String newPropertyValue = propertyValue;
-        if (newPropertyValue.contains(TestDataConstants.Placeholder.AUTO_CAPTURE))
-            if (share.getTestData().containsKey(TestDataConstants.Property.AUTO_CAPTURE))
-                return new BooleanJsonType(share.getTestData().getBoolean(TestDataConstants.Property.AUTO_CAPTURE));
-
-        if (newPropertyValue.contains(TestDataConstants.Placeholder.CURRENT_DATE))
-            newPropertyValue = newPropertyValue.replace(TestDataConstants.Placeholder.CURRENT_DATE, testDataUtil.getCurrentDate());
-
-        if ((newPropertyValue.substring(0, 1).contains(QUOTES)
-                && (newPropertyValue.substring(newPropertyValue.length() - 1)).contains(QUOTES))) {
-            newPropertyValue = newPropertyValue.substring(1, propertyValue.length() - 1);
-        }
-        if (newPropertyValue.matches(TestDataConstants.Placeholder.CURRENT_DATE_PLUS_DAYS))
-        {
-            Pattern pattern = Pattern.compile(TestDataConstants.Placeholder.CURRENT_DATE_PLUS_DAYS);
-            Matcher matcher = pattern.matcher(newPropertyValue);
-            matcher.find();
-            Integer number = Integer.valueOf(matcher.group(1));
-            newPropertyValue = matcher.replaceAll(testDataUtil.getCurrentDatePlusDays(number));
-        }
-        if (newPropertyValue.matches(TestDataConstants.Placeholder.CURRENT_DATE_PLUS_MONTHS))
-        {
-            Pattern pattern = Pattern.compile(TestDataConstants.Placeholder.CURRENT_DATE_PLUS_MONTHS);
-            Matcher matcher = pattern.matcher(newPropertyValue);
-            Integer number = Integer.valueOf(matcher.group(1));
-            newPropertyValue = matcher.replaceAll(testDataUtil.getCurrentDatePlusMonths(number));
-        }
-        if (newPropertyValue.matches(TestDataConstants.Placeholder.CURRENT_DATE_PLUS_YEARS))
-        {
-            Pattern pattern = Pattern.compile(TestDataConstants.Placeholder.CURRENT_DATE_PLUS_YEARS);
-            Matcher matcher = pattern.matcher(newPropertyValue);
-            Integer number = Integer.valueOf(matcher.group(1));
-            newPropertyValue = matcher.replaceAll( testDataUtil.getCurrentDatePlusYears(number));
-        }
-        if (newPropertyValue == propertyValue)
-            return null;
-        else
-            return new StringJsonType(newPropertyValue);
-    }
-
-
 }
