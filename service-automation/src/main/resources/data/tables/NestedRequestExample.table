@@ -1,4 +1,4 @@
-| request                                                                  | value                                              |
+| jsonPath                                                                 | value                                              |
 | body                                                                     | bar                                                |
 | userId                                                                   | 1                                                  |
 | parlor                                                                   | natodor                                            |

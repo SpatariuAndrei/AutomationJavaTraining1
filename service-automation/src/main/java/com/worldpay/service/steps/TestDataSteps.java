@@ -80,7 +80,7 @@ public class TestDataSteps {
     private void setTestData(ExamplesTable propertiesTable) {
         if (propertiesTable.getHeaders().contains("request")) {
             for (Parameters row : propertiesTable.getRowsAsParameters(true)) {
-                String key = row.valueAs("request", String.class);
+                String key = row.valueAs("jsonPath", String.class);
                 String value = row.valueAs("value", String.class);
                 share.getRequestData().setProperty(key, value);
             }

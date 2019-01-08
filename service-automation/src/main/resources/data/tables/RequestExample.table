@@ -1,4 +1,4 @@
-| request                                               | value     |
+| jsonPath                                              | value     |
 | merchant.id                                           | 000000    |
 | merchant.registrationInfo.address.addressLine1        | address1  |
 | merchant.registrationInfo.address.countryCode         | GBR       |

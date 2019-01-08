@@ -10,7 +10,7 @@ Meta:
 
 Given table file location table for merchant registration: data/tables/RequestExample.table
 Given test data for Merchant Registration:
-| request                                       | value  	|
+| jsonPath                                      | value  	|
 | merchant.registrationInfo.address.postCode    | "000000" 	|
 | merchant.registrationInfo.address.countryCode | ROU    	|
 
@@ -40,7 +40,7 @@ Meta:
 
 Given test data cleared
 Given test data for Merchant Registration:
-| request                                               | value  	|
+| jsonPath                                              | value  	|
 | merchant.id                                           | "000000" 	|
 | merchant.registrationInfo.address.addressLine1        | string 	|
 | merchant.registrationInfo.address.countryCode         | GBR    	|
