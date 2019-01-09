@@ -78,7 +78,7 @@ public class TestDataSteps {
      * Loads the properties from the given table.
      */
     private void setTestData(ExamplesTable propertiesTable) {
-        if (propertiesTable.getHeaders().contains("request")) {
+        if (propertiesTable.getHeaders().contains("jsonPath")) {
             for (Parameters row : propertiesTable.getRowsAsParameters(true)) {
                 String key = row.valueAs("jsonPath", String.class);
                 String value = row.valueAs("value", String.class);
