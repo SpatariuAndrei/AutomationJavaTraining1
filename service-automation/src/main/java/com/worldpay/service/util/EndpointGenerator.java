@@ -30,10 +30,11 @@ public class EndpointGenerator {
         String protocol = getProtocol();
         String host = getHost();
         String port = getPort();
+        String basePath = getBasePath();
         if (!port.isEmpty())
-            return protocol + "://" + host + ":" + port + path;
+            return protocol + "://" + host + ":" + port + basePath + path;
         else
-            return protocol + "://" + host + path;
+            return protocol + "://" + host + basePath + path;
 
     }
     

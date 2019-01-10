@@ -26,10 +26,10 @@ Given test data for API:
 | server.endpoint	    | /registration			|
 When I post the JSon request
 Given test data for the response:
-| key          | value  |
-| merchantId   | 000000 |
-| responseCode | 201    |
-Then I can validate the response
+| key          | value  	|
+| merchantId   | 000000 	|
+| responseCode | 201    	|
+Then I check the merchantId field in the response body
 Then I check the response code
 
 
@@ -66,10 +66,10 @@ Given test data for API:
 | server.endpoint	    | /registration			|
 When I post the JSon request
 Given test data for the response:
-| key          | value  |
-| merchantId   | 000000 |
-| responseCode | 201    |
-Then I can validate the response
+| key          | value  	|
+| merchantId   | 000000 	|
+| responseCode | 201    	|
+Then I check the merchantId field in the response body
 Then I check the response code
 
 
@@ -94,10 +94,8 @@ Given test data for API:
 | server.endpoint	    | /registration			|
 When I post the JSon request
 Given test data for the response:
-| key          | value  |
-| merchantId   | 000000 |
-| responseCode | 201    |
-Then I can validate the response
+| key          | value  	|
+| merchantId   | 000000 	|
+| responseCode | 201    	|
+Then I check the merchantId field in the response body
 Then I check the response code
-
-

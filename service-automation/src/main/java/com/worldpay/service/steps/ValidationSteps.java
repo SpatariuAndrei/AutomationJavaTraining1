@@ -1,7 +1,7 @@
 package com.worldpay.service.steps;
 
 import static com.worldpay.service.constants.HttpConstants.Request.CONTENT_TYPE;
-import static com.worldpay.service.constants.HttpConstants.Response.CODE;
+import static com.worldpay.service.constants.HttpConstants.Response.RESPONSE_CODE;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
@@ -28,7 +28,7 @@ public class ValidationSteps {
     @Then("I check the response code")
     public void thenCheckResponse() {
         int actualResponseCode = share.getResponse().getStatusCode();
-        int expectedResponseCode = share.getTestData().getInt(CODE);
+        int expectedResponseCode = share.getTestData().getInt(RESPONSE_CODE);
         assertThat(CustomAssert.buildFailureReason(share), actualResponseCode, equalTo(expectedResponseCode));
     }
 

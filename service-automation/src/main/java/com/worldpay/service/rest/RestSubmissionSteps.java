@@ -82,11 +82,6 @@ public class RestSubmissionSteps {
         sendRequest.sendHttpRequest(requestMethod, endpointGenerator.generateEndpoint(share.getTestData().getString(SERVER_CUSTOM_PATH)));
     }
 
-    @Then("I can validate the response")
-    public void validateResponse() {
-        share.getResponse().then().assertThat().body("merchantId", equalTo(share.getTestData().getString("merchantId")));
-    }
-
     @Then("I can validate the response against the json schema")
     public void validateResponseAgainstSchema() {
         share.getResponse().then().assertThat().body(matchesJsonSchemaInClasspath(share.getTestData().getString(JSON_SCHEMA)));

@@ -57,7 +57,7 @@ public class HttpConstants {
 
     public static class Response {
         
-        public static final String CODE = "code";
+        public static final String RESPONSE_CODE = "responseCode";
         
         private Response() {
             throw new IllegalAccessError(ERROR_MESSAGE);

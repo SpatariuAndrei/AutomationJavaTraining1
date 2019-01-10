@@ -1,5 +1,5 @@
 | jsonPath                                              | value     |
-| merchant.id                                           | 000000    |
+| merchant.id                                           | "000000"  |
 | merchant.registrationInfo.address.addressLine1        | address1  |
 | merchant.registrationInfo.address.countryCode         | GBR       |
 | merchant.registrationInfo.address.postCode            | postCode1 |
