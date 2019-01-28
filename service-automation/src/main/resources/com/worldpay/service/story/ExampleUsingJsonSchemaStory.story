@@ -8,12 +8,13 @@ Scenario: Send a GET request and validate the response against a json schema
 Meta:
 @UsingJsonSchemaStory010
 Given test data for API:
-| key                | value                        |
-| server.custom.path | <customPath>                 |
-| server.protocol    | https                        |
-| server.host        | jsonplaceholder.typicode.com |
-| server.port        |                              |
-| json.schema        | <schema>                     |
+| key                    | value                        |
+| server.custom.path     | <customPath>                 |
+| server.protocol        | https                        |
+| server.host            | jsonplaceholder.typicode.com |
+| server.port            |                              |
+| custom.server.basePath |                              |
+| json.schema            | <schema>                     |
 When I get the JSon request with custom parameters
 Then I can validate the response against the json schema
 
@@ -32,13 +33,14 @@ Meta:
 @UsingJsonSchemaStory020
 Given table file location table for request: data/tables/NestedRequestExample.table
 Given test data for API:
-| key                | value                        |
-| server.custom.path | <customPath>                 |
-| server.protocol    | https                        |
-| server.host        | jsonplaceholder.typicode.com |
-| server.port        |                              |
-| json.schema        | <schema>                     |
-| autocapture        |  false                       |
+| key                    | value                        |
+| server.custom.path     | <customPath>                 |
+| server.protocol        | https                        |
+| server.host            | jsonplaceholder.typicode.com |
+| server.port            |                              |
+| json.schema            | <schema>                     |
+| autocapture            |  false                       |
+| custom.server.basePath |                              |
 When I create JSON request
 Given test data for headers:
 | key         | value            |
