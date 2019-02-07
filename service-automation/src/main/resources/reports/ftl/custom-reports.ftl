@@ -40,8 +40,10 @@
 		
 		<span class="detail">Scenarios Passed:</span> <span class="${scenarioSuccessClass}">${scenarioPassCount} / ${scenarioCount} (${scenarioSuccessPercentage}%)</span><br/>
 		<br/>
-		<span class="detail">Environment:</span> ${server!NOT_FOUND}<br/>
+		<span class="detail">Server host:</span> ${server!NOT_FOUND}<br/>
 		<br/>
+		<span class="detail">Server version:</span> ${version!NOT_FOUND}<br/>
+		<br/>		
 		<span class="detail">Generated on:</span> ${date?string("dd/MM/yyyy HH:mm:ss")}<br/>
 	</div>
 	<div class="clear"></div>

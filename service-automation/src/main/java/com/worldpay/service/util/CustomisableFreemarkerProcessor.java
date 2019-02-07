@@ -4,25 +4,31 @@ import java.io.Writer;
 import java.util.Map;
 
 import org.jbehave.core.reporters.FreemarkerProcessor;
+import com.worldpay.service.environment.Environment;
 
 public class CustomisableFreemarkerProcessor extends FreemarkerProcessor {
 
-    public CustomisableFreemarkerProcessor(){
+    Environment ENV;
+
+    public CustomisableFreemarkerProcessor() {
         super();
     }
 
-    public void process(String resource, Map<String, Object> dataModel, Writer writer){
+    @Override
+    public void process(String resource, Map<String, Object> dataModel, Writer writer) {
         super.process(resource, updateDataModel(dataModel), writer);
     }
 
     private Map<String, Object> updateDataModel(Map<String, Object> dataModel) {
-//        String server = PropertiesUtil.getAppBaseUri().substring(8);
-        String server = "localhost";
+        String server = ENV.get().getServerHost();
+        String version = ENV.get().getServerVersion();
         
-        if(server != null){
+        if (server != null) {
             dataModel.put("server", server);
+            dataModel.put("version", version);
         }
-        return null;
+        
+        return dataModel;
     }
 
 }
