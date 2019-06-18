@@ -1,6 +1,5 @@
 package PageClass;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -54,10 +53,15 @@ public class LoginPage{
     public void logIn(MainPage m){
         m.getMyAccount().click();
 
-        LOG.trace("Enter email adress");
-        emailField.sendKeys("akos1995@yahoo.com");
-        LOG.trace("Press contnue");
-        continueButton.click();
+        try{
+            LOG.trace("Enter email adress");
+            emailField.sendKeys("akos1995@yahoo.com");
+
+            LOG.trace("Press contnue");
+            continueButton.click();
+        }catch (Exception e){
+            System.out.println("no emailField");
+        }
 
         wait.until(ExpectedConditions.visibilityOf(passwordField));
 

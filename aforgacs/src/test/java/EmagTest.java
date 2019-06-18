@@ -1,12 +1,8 @@
 
 import PageClass.*;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.Before;
-import org.junit.After;
+import org.junit.*;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -17,12 +13,14 @@ import org.slf4j.LoggerFactory;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EmagTest {
+public class EmagTest extends Selenium {
 
     static final Logger LOG = LoggerFactory.getLogger(EmagTest.class);
 
-    private WebDriver driver;
+//    private WebDriver driver;
     private WebDriverWait wait;
+
+    private static LogUtil logger;
 
     private LoginPage login;
     private MainPage mainPage;
@@ -31,31 +29,28 @@ public class EmagTest {
 
     private List<Product> productList;
 
+    @BeforeClass
+    public static void here(){
+        System.out.println("emag beforreClass");
+    }
 
     @Before
     public void setUp() {
-        LOG.trace("ChromeDriver initialized");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--incognito");
-        driver = new ChromeDriver(options);
 
         LOG.trace("Wait initialized");
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(getDriver(), 15);
 
         LOG.trace("productList initialized");
         productList = new LinkedList<Product>();
 
         LOG.trace("PageObjects initialized");
-        mainPage = new MainPage(driver, wait);
-        login = new LoginPage(driver, wait);
-        searchPage = new SearchPage(driver, wait);
-        cartPage = new CartPage(driver, wait);
-
-        LOG.info("Maximize window");
-        driver.manage().window().maximize();
+        mainPage = new MainPage(getDriver(), wait);
+        login = new LoginPage(getDriver(), wait);
+        searchPage = new SearchPage(getDriver(), wait);
+        cartPage = new CartPage(getDriver(), wait);
 
         LOG.info("Opening emag.ro");
-        driver.get("https://www.emag.ro"); //go to URL
+        getDriver().get("https://www.emag.ro/homepage?ref=emag_CMP-10858_revolutia-preturilor-iunie-2019"); //go to URL
 
         LOG.info("Log in to account");
         login.logIn(mainPage); //this logs you in
@@ -69,7 +64,9 @@ public class EmagTest {
 
     @After
     public void tearDown(){
-        driver.get("https://www.emag.ro");
+        logger = new LogUtil();
+        logger.takeScreenshot();
+        getDriver().get("https://www.emag.ro/homepage?ref=emag_CMP-10858_revolutia-preturilor-iunie-2019");
 
         mainPage.goToCart();
 
@@ -78,9 +75,9 @@ public class EmagTest {
 
         LOG.info("Logging out");
         login.logOut();
-
-        LOG.info("Driver quit");
-        driver.quit();
+//
+//        LOG.info("Driver quit");
+//        driver.quit();
     }
 
     @Test
