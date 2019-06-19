@@ -12,34 +12,39 @@ public class Product {
 
     private static final Logger logger = LoggerFactory.getLogger(Product.class);
 
-    WebDriver driver;
-    WebDriverWait wait1;
+    private WebDriver driver;
+    private WebDriverWait wait1;
 
     @FindBy(xpath = "//*[@id='page-skin']/div[2]/div/div[2]/div[2]/div/div/div[2]/form/div[3]/button[1]")
-    public
+    private
     WebElement addToCart;
 
     @FindBy(css = ".gtm_rp112818 > .em")
-    public
+    private
     WebElement closePurchaseWindow;
 
     @FindBy (xpath = "//h1[@class='page-title']")
+    private
     WebElement productName;
 
     @FindBy (xpath = "//p[@class='product-new-price']")
+    private
     WebElement productPrice;
 
     @FindBy (xpath = "//p[@class='product-new-price']/sup")
+    private
     WebElement productPriceDecimals;
 
     @FindBy (xpath = "//p[@class='product-old-price']")
+    private
     WebElement productOldPrice;
 
     @FindBy (xpath = "//p[@class='product-old-price']/s/sup")
+    private
     WebElement productOldPriceDecimals;
 
     @FindBy (xpath = "/html/body/div[1]/div/div/button")
-    public
+    private
     WebElement closeVoucherFrame;
 
 
@@ -48,6 +53,18 @@ public class Product {
         this.driver = driver;
         //This initElements method will create all WebElements
         PageFactory.initElements(driver, this);
+    }
+
+    public WebElement getCloseVoucherFrame(){
+        return closeVoucherFrame;
+    }
+
+    public WebElement getAddToCart(){
+        return addToCart;
+    }
+
+    public WebElement getClosePurchaseWindow(){
+        return closePurchaseWindow;
     }
 
     private static String changePrice(String str){
@@ -98,25 +115,25 @@ public class Product {
         return productName.getText();
     }
 
-    public String getPrice(){
+    private String getPrice(){
         String path = productPrice.getText();
         //path = path.substring(0, path.length() - 6);
         path=changePrice(path);
         return path;
     }
 
-    public String getPriceDecimals(){
+    private String getPriceDecimals(){
         return productPriceDecimals.getText();
     }
 
-    public String getOldPrice(){
+    private String getOldPrice(){
         String path = productOldPrice.getText();
         path = path.substring(0, path.length() - 6);
         path=changePrice(path);
         return path;
     }
 
-    public String getOldPriceDecimals(){
+    private String getOldPriceDecimals(){
         return productOldPriceDecimals.getText();
     }
 

@@ -1,7 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c1fb1075-c5a9-4e86-a815-8f4ff7ee95bc" name="Default Changelist" comment="" />
+    <list default="true" id="67a5fd39-ef5d-4810-b94f-3059101e411f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_1_3_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_2_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_maven_shared_maven_shared_utils_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_2_0_0_alpha0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/selenium-project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classPages/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classPages/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classPages/Favorites.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classPages/Favorites.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classPages/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classPages/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classPages/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classPages/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classPages/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classPages/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classPages/ProductInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classPages/ProductInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/classPages/Selenium.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/classPages/Selenium.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/emag_test/buy_fifa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emag_test/buy_fifa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classPages/Cart.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classPages/Favorites.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classPages/Home.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classPages/LogUtilities.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classPages/Login.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classPages/Product.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classPages/ProductInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/classPages/Selenium.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/selenium-project-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/selenium-project.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/emag_test/buy_fifa.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/logback-test.xml" beforeDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -11,60 +55,30 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/emag_test/buy_fifa.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-85">
-              <caret line="69" selection-start-line="69" selection-end-line="69" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="85">
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/selenium-project.iml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/resources/logback-test.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/classPages/LogUtilities.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="13" column="70" lean-forward="true" selection-start-line="13" selection-start-column="70" selection-end-line="13" selection-end-column="70" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/classPages/Selenium.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="18" column="45" lean-forward="true" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="221">
+              <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -72,192 +86,54 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/classPages/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="35" column="42" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/classPages/Home.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/classPages/Favorites.java">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
-              <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/classPages/Product.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="58" column="43" selection-start-line="58" selection-start-column="43" selection-end-line="58" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>page</find>
-      <find>Home</find>
-      <find>home</find>
-      <find>productPage</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>login</replace>
-      <replace>loginPage</replace>
-      <replace>ProductPage</replace>
-      <replace>product</replace>
-      <replace>cartPage</replace>
-    </replaceStrings>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/test.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/example.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/login.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/Search.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/ProductCart.java" />
-        <option value="$PROJECT_DIR$/.classpath" />
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/ProductInfo.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/Selenium.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/Product.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/Cart.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/Login.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/Home.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/Favorites.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/LogUtilities.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/logback.xml" />
-        <option value="$PROJECT_DIR$/log4j.properties" />
-        <option value="$PROJECT_DIR$/src/test/resources/logback.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
-        <option value="$PROJECT_DIR$/src/test/java/emag_test/buy_fifa.java" />
-        <option value="$PROJECT_DIR$/src/main/java/classPages/Home.java" />
-        <option value="$PROJECT_DIR$/src/main/java/classPages/Selenium.java" />
-      </list>
-    </option>
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="85" />
-    <option name="y" value="25" />
-    <option name="width" value="1750" />
-    <option name="height" value="980" />
+    <option name="x" value="240" />
+    <option name="y" value="127" />
+    <option name="width" value="1440" />
+    <option name="height" value="774" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="selenium-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="selenium-project" type="462c0819:PsiDirectoryNode" />
+              <item name="Alexandra" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alexandra" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="selenium-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="selenium-project" type="462c0819:PsiDirectoryNode" />
+              <item name="Alexandra" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Alexandra" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="selenium-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="selenium-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="selenium-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="selenium-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="selenium-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="selenium-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="selenium-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="selenium-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="selenium-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="selenium-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="emag_test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="selenium-project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="selenium-project" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/cld_automation_community/Alexandra/selenium_project" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\adobrean\eclipse-workspace\selenium-project\src\main\java\classPages" />
-      <recent name="C:\Users\adobrean\eclipse-workspace\selenium-project\src\main" />
-      <recent name="C:\Users\adobrean\eclipse-workspace\selenium-project\src\test\java" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -271,200 +147,23 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.buy_fifa.Test1">
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea -Dwebdriver.gecko.driver=C:\webdrivers\geckodriver.exe" />
-      <option name="PARAMETERS" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="buy_fifa" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="selenium-project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="emag_test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="emag_test" />
-      <option name="MAIN_CLASS_NAME" value="emag_test.buy_fifa" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea -Dwebdriver.gecko.driver=C:\webdrivers\geckodriver.exe" />
-      <option name="PARAMETERS" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="buy_fifa.Test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="selenium-project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="emag_test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="emag_test" />
-      <option name="MAIN_CLASS_NAME" value="emag_test.buy_fifa" />
-      <option name="METHOD_NAME" value="Test1" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea -Dwebdriver.gecko.driver=C:\webdrivers\geckodriver.exe" />
-      <option name="PARAMETERS" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="buy_fifa.oneProductDiscountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="selenium-project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="emag_test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="emag_test" />
-      <option name="MAIN_CLASS_NAME" value="emag_test.buy_fifa" />
-      <option name="METHOD_NAME" value="oneProductDiscountTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea -Dwebdriver.gecko.driver=C:\webdrivers\geckodriver.exe" />
-      <option name="PARAMETERS" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="buy_fifa.productWithoutDiscountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="selenium-project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="emag_test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="emag_test" />
-      <option name="MAIN_CLASS_NAME" value="emag_test.buy_fifa" />
-      <option name="METHOD_NAME" value="productWithoutDiscountTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea -Dwebdriver.gecko.driver=C:\webdrivers\geckodriver.exe" />
-      <option name="PARAMETERS" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="buy_fifa.twoProductsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="selenium-project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="emag_test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="emag_test" />
-      <option name="MAIN_CLASS_NAME" value="emag_test.buy_fifa" />
-      <option name="METHOD_NAME" value="twoProductsTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea -Dwebdriver.gecko.driver=C:\webdrivers\geckodriver.exe" />
-      <option name="PARAMETERS" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="buy_fifa.untitled" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="selenium-project" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="emag_test.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="emag_test" />
-      <option name="MAIN_CLASS_NAME" value="emag_test.buy_fifa" />
-      <option name="METHOD_NAME" value="untitled" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea -Dwebdriver.gecko.driver=C:\webdrivers\geckodriver.exe" />
-      <option name="PARAMETERS" value="" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="JUnit.buy_fifa" />
-      <item itemvalue="JUnit.buy_fifa.productWithoutDiscountTest" />
-      <item itemvalue="JUnit.buy_fifa.twoProductsTest" />
-      <item itemvalue="JUnit.buy_fifa.oneProductDiscountTest" />
-      <item itemvalue="JUnit.buy_fifa.Test1" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.buy_fifa.Test1" />
-        <item itemvalue="JUnit.buy_fifa.oneProductDiscountTest" />
-        <item itemvalue="JUnit.buy_fifa.twoProductsTest" />
-        <item itemvalue="JUnit.buy_fifa.productWithoutDiscountTest" />
-        <item itemvalue="JUnit.buy_fifa" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c1fb1075-c5a9-4e86-a815-8f4ff7ee95bc" name="Default Changelist" comment="" />
-      <created>1559564594891</created>
+      <changelist id="67a5fd39-ef5d-4810-b94f-3059101e411f" name="Default Changelist" comment="" />
+      <created>1560951102977</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1559564594891</updated>
+      <updated>1560951102977</updated>
     </task>
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="buy_fifa_twoProductsTest - 2019.06.18 at 15h 40m 53s.xml">
-      <configuration name="buy_fifa.twoProductsTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="buy_fifa_twoProductsTest - 2019.06.18 at 15h 42m 15s.xml">
-      <configuration name="buy_fifa.twoProductsTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="buy_fifa_twoProductsTest - 2019.06.18 at 15h 45m 18s.xml">
-      <configuration name="buy_fifa.twoProductsTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="buy_fifa_twoProductsTest - 2019.06.18 at 15h 52m 49s.xml">
-      <configuration name="buy_fifa.twoProductsTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="buy_fifa_twoProductsTest - 2019.06.18 at 16h 04m 56s.xml">
-      <configuration name="buy_fifa.twoProductsTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="buy_fifa_twoProductsTest - 2019.06.18 at 16h 07m 21s.xml">
-      <configuration name="buy_fifa.twoProductsTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="buy_fifa_oneProductDiscountTest - 2019.06.18 at 17h 08m 54s.xml">
-      <configuration name="buy_fifa.oneProductDiscountTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="buy_fifa_Test1 - 2019.06.18 at 17h 51m 50s.xml">
-      <configuration name="buy_fifa.Test1" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="buy_fifa_Test1 - 2019.06.18 at 17h 56m 44s.xml">
-      <configuration name="buy_fifa.Test1" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="buy_fifa_Test1 - 2019.06.18 at 18h 17m 38s.xml">
-      <configuration name="buy_fifa.Test1" configurationId="JUnit" />
-    </history-entry>
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14161074" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25302014" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -472,19 +171,19 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.36260623" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.31303117" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.3286119" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3286119" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4986577" weight="0.3286119" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50067115" side_tool="true" visible="true" weight="0.3286119" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="9" sideWeight="0.49932885" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4986577" weight="0.3286119" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24966443" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Maven" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
@@ -492,305 +191,28 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
     </layout>
   </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>driver.findElement(By.cssSelector(&quot;.card-item:nth-child(1) form &gt; .btn&quot;)).click();</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>driver.findElement(By.cssSelector(&quot;.card-item:nth-child(1) form &gt; .btn&quot;));</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>driver.findElement(By.cssSelector(&quot;.card-item:nth-child(1) form &gt; .btn&quot;))</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/selenium-project.iml" />
-    <entry file="file://$USER_HOME$/Downloads/ffff.java" />
-    <entry file="file://$USER_HOME$/Downloads/FifaTest188.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/classPages/Login.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="36" column="62" selection-start-line="36" selection-start-column="62" selection-end-line="36" selection-end-column="62" />
+        <state relative-caret-position="34">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emag_test/test.java" />
-    <entry file="file://$USER_HOME$/Downloads/yyy.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/emag_test/buy_fifa.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/jdk-12.0.1_windows-x64_bin/jdk-12.0.1/lib/src.zip!/java.base/java/lang/reflect/Constructor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="499" column="24" selection-start-line="499" selection-start-column="24" selection-end-line="499" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-remote-driver/3.141.59/selenium-remote-driver-3.141.59-sources.jar!/org/openqa/selenium/remote/http/W3CHttpResponseCodec.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emag_test/example.java" />
-    <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-api/3.141.59/selenium-api-3.141.59-sources.jar!/org/openqa/selenium/WebElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-463">
-          <caret line="151" column="19" lean-forward="true" selection-start-line="151" selection-start-column="19" selection-end-line="151" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-support/3.141.59/selenium-support-3.141.59-sources.jar!/org/openqa/selenium/support/pagefactory/DefaultElementLocator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/runners/ParentRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="332" selection-start-line="332" selection-end-line="332" />
-          <folding>
-            <element signature="e#2922#2923#0" expanded="true" />
-            <element signature="e#2966#2967#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/runners/BlockJUnit4ClassRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/jdk-12.0.1_windows-x64_bin/jdk-12.0.1/lib/src.zip!/java.base/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="1880" column="18" selection-start-line="1880" selection-start-column="18" selection-end-line="1880" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/jdk-12.0.1_windows-x64_bin/jdk-12.0.1/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-support/3.141.59/selenium-support-3.141.59-sources.jar!/org/openqa/selenium/support/ui/ExpectedConditions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="664" column="46" selection-start-line="664" selection-start-column="46" selection-end-line="664" selection-end-column="46" />
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/selenium-project.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/maven/shared/maven-shared-utils/0.1/maven-shared-utils-0.1.jar!/org/apache/maven/shared/utils/io/FileUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1751">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/joda-time/joda-time/2.10.2/joda-time-2.10.2.jar!/org/joda/time/DateTime.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/commons-io/commons-io/2.6/commons-io-2.6.jar!/org/apache/commons/io/FileUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/internal/runners/statements/InvokeMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/internal/runners/statements/RunBefores.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/internal/runners/statements/RunAfters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12-sources.jar!/org/junit/runners/model/FrameworkMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
-          <folding>
-            <element signature="e#1657#1658#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/classPages/Cart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="81" column="27" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/classPages/ProductInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-          <folding>
-            <element signature="e#206#207#0" expanded="true" />
-            <element signature="e#240#241#0" expanded="true" />
-            <element signature="e#490#491#0" expanded="true" />
-            <element signature="e#530#531#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.project">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.classpath">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logback.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/log4j.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/classPages/Product.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="58" column="43" selection-start-line="58" selection-start-column="43" selection-end-line="58" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/logback-test.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="11" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="66" column="26" selection-start-line="66" selection-start-column="26" selection-end-line="66" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/classPages/LogUtilities.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="13" column="70" lean-forward="true" selection-start-line="13" selection-start-column="70" selection-end-line="13" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/classPages/Selenium.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="18" column="45" lean-forward="true" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/classPages/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="35" column="42" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/classPages/Home.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/classPages/Favorites.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emag_test/buy_fifa.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -811,7 +233,6 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>No facets are configured</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -834,6 +255,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
+          <last-edited>12</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -856,9 +278,20 @@
           </splitter-proportions>
         </settings>
       </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>12</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Maven: com.google.code.findbugs:jsr305:1.3.9</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

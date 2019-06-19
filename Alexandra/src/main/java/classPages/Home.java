@@ -15,28 +15,33 @@ import java.util.List;
 
 public class Home {
 
-    WebDriver driver;
+    private WebDriver driver;
 
     private static final Logger logger = LoggerFactory.getLogger(Home.class);
-    WebDriverWait wait1;
+    private WebDriverWait wait1;
 
-    @FindBy(xpath="//*[@id='main-container']/section[5]/div/div/div[1]/div/div[1]")
-    public WebElement firstPhone;
+    @FindBy(xpath="//*[@id='main-container']/section[5]/div/div/div[1]/div/div[3]")
+    private
+    WebElement firstPhone;
 
     @FindBy(xpath="//*[@class='card-item js-card-item ph-card']")
-    public List<WebElement> firstListOfProducts;
+    List<WebElement> firstListOfProducts;
 
-    @FindBy(xpath = "//*[@id='main-container']/section[5]/div/div/div[1]/div/div[1]/a/div[5]/span")
-    public WebElement firstPhoneDetails;
+    @FindBy(xpath = "//*[@id='main-container']/section[5]/div/div/div[1]/div/div[3]/a/div[5]/span")
+    private
+    WebElement firstPhoneDetails;
 
     @FindBy(xpath ="//*[@id='main-container']/section[5]/div/div/div[1]/div/div[2]/a/div[5]/span")
-    public WebElement secondPhoneDetails;
+    private
+    WebElement secondPhoneDetails;
 
     @FindBy(xpath = "//*[@id='my_cart']")
-    public WebElement cartInfo;
+    private
+    WebElement cartInfo;
 
     @FindBy(xpath ="//*[@id='masthead']//*[@class='navbar-branding']")
-    public WebElement homePageButton;
+    private
+    WebElement homePageButton;
 
 
     public Home(WebDriver driver) {
@@ -47,12 +52,20 @@ public class Home {
 
     public void goToHomePage() throws InterruptedException {
         logger.info("Navigate to home page");
-        wait1= new WebDriverWait(driver, 10);
+        wait1= new WebDriverWait(driver, 15);
         wait1.until(ExpectedConditions.elementToBeClickable(homePageButton));
         wait1.until(ExpectedConditions.visibilityOf(homePageButton));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", homePageButton);
         homePageButton.click();
         wait1.until(ExpectedConditions.visibilityOf(secondPhoneDetails));
+    }
+
+    public WebElement getCartInfo(){
+        return cartInfo;
+    }
+
+    public WebElement getFirstPhone(){
+        return firstPhoneDetails;
     }
 
     public void firstProductClick(){
@@ -90,7 +103,7 @@ public class Home {
     }
 
 
-    public String getPrice(String productName) {
+    private String getPrice(String productName) {
         WebElement elem = driver.findElement(By.xpath(".//div[@class='product-title' and contains(text(),'"+productName+"')]/ancestor::*[@class='card-item js-card-item ph-card']"));
         String path = elem.findElement(By.xpath(".//p[@class='product-new-price']")).getText();
         path = path.substring(0, path.length() - 6);
@@ -98,13 +111,13 @@ public class Home {
         return path;
     }
 
-    public String getPriceDecimals(String productName) {
+    private String getPriceDecimals(String productName) {
         WebElement elem = driver.findElement(By.xpath(".//div[@class='product-title' and contains(text(),'"+productName+"')]/ancestor::*[@class='card-item js-card-item ph-card']"));
         String path = elem.findElement(By.xpath(".//p[@class='product-new-price']/sup")).getText();
         return path;
     }
 
-    public String getOldPrice(String productName) {
+    private String getOldPrice(String productName) {
         WebElement elem = driver.findElement(By.xpath(".//div[@class='product-title' and contains(text(),'"+productName+"')]/ancestor::*[@class='card-item js-card-item ph-card']"));
         String path = elem.findElement(By.xpath(".//p[@class='product-old-price']/s")).getText();
         path = path.substring(0, path.length() - 6);

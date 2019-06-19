@@ -5,28 +5,32 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
 
-    WebDriver driver;
+    private WebDriver driver;
+    private static final Logger logger = LoggerFactory.getLogger(Home.class);
 
-    @FindBy(xpath = "$x('//*[@class='line-item-title main-product-title')]/ancestor::div[@class='line-item main-product']')")
-    WebElement productName1;
 
     @FindBy(xpath = "//*[@class='cart-widget cart-line']")
-    public
+    private
     List<WebElement> productList;
 
     @FindBy(xpath = "//span[@class='money-int']")
+    private
     WebElement intSum;
 
     @FindBy(xpath = "//sup[@class='money-decimal']")
+    private
     WebElement decimalSum;
 
     @FindBy(xpath = "//a[@class='emg-right remove-product btn-remove-product gtm_rp080219']")
+    public
     WebElement deleteButton;
 
 
@@ -56,38 +60,50 @@ public class Cart {
         return strin;
     }
 
-    public String getBill(){
+    private String getBill(){
         String sum=intSum.getText();
         sum=changePrice(sum);
         return sum;
     }
 
-    public String getBillDecimal(){
+    private String getBillDecimal(){
         return decimalSum.getText();
     }
 
-    public String getProductPrice(String productName){
-        WebElement elem = driver.findElement(By.xpath(".//a[@class='line-item-title main-product-title' and contains(text(),'"+productName+"')]/ancestor::*[@class='cart-widget cart-line']"));
+    private String getProductPrice(String productName){
+        WebElement elem = driver.findElement(By.xpath("//a[@class='line-item-title main-product-title' and contains(text(),'"+productName+"')]/ancestor::*[@class='cart-widget cart-line']"));
         String pret = elem.findElement(By.xpath(".//div[@class='price-main']/span[1]")).getText();
         pret=changePrice(pret);
         return pret;
     }
 
-    public String getProductPriceDecimals(String productName){
-        WebElement elem = driver.findElement(By.xpath(".//a[@class='line-item-title main-product-title' and contains(text(),'"+productName+"')]/ancestor::*[@class='cart-widget cart-line']"));
+    private String getProductPriceDecimals(String productName){
+        WebElement elem = driver.findElement(By.xpath("//a[@class='line-item-title main-product-title' and contains(text(),'"+productName+"')]/ancestor::*[@class='cart-widget cart-line']"));
         return elem.findElement(By.xpath(".//div[@class='price-main']/sup")).getText();
     }
 
-    public String getProductOldPrice(String productName){
-        WebElement elem = driver.findElement(By.xpath(".//a[@class='line-item-title main-product-title' and contains(text(),'"+productName+"')]/ancestor::*[@class='cart-widget cart-line']"));
-        String pret = elem.findElement(By.xpath(".//div[@class='price-original']/span[1]")).getText();
-        pret = changePrice(pret);
-        return pret;
+    private String getProductOldPrice(String productName){
+        try{
+            WebElement elem = driver.findElement(By.xpath("//a[@class='line-item-title main-product-title' and contains(text(),'"+productName+"')]/ancestor::*[@class='cart-widget cart-line']"));
+            String pret = elem.findElement(By.xpath(".//div[@class='price-original']/span[1]")).getText();
+            pret = changePrice(pret);
+            return pret;}
+            catch(Exception e)
+        {
+            logger.error("Old price doesn t exist");
+        }
+        return "";
     }
 
-    public String getProductOldPriceDecimals(String productName){
-        WebElement elem = driver.findElement(By.xpath(".//a[@class='line-item-title main-product-title' and contains(text(),'"+productName+"')]/ancestor::*[@class='cart-widget cart-line']"));
-        return elem.findElement(By.xpath(".//div[@class='price-original']/sup")).getText();
+    private String getProductOldPriceDecimals(String productName){
+        try {
+            WebElement elem = driver.findElement(By.xpath("//a[@class='line-item-title main-product-title' and contains(text(),'" + productName + "')]/ancestor::*[@class='cart-widget cart-line']"));
+            return elem.findElement(By.xpath(".//div[@class='price-original']/sup")).getText();
+        }
+        catch (Exception e){
+            logger.error("Old price decimals doesn t exist");
+        }
+        return "";
     }
 
     public String getFinalNewPriceString(String productName){
@@ -119,7 +135,7 @@ public class Cart {
         return sum;
     }
 
-    public ProductInfo getProduct(int id){
+    private ProductInfo getProduct(int id){
         ProductInfo prod = new ProductInfo();
         prod.setTitle(getProductName(id));
         prod.setPrice(getFinalNewPriceString(getProductName(id)));
@@ -134,6 +150,10 @@ public class Cart {
             products.add(getProduct(i));
         }
         return products;
+    }
+
+    public void deleteProducts(){
+        driver.findElement(By.xpath("//a[@class='emg-right remove-product btn-remove-product gtm_rp080219']")).click();
     }
 
 }

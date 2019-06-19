@@ -37,11 +37,11 @@ public class Selenium {
         driver.quit();
     }
 
-    public WebDriver getDriver(){
+    protected WebDriver getDriver(){
         return driver;
     }
 
-    public static File takeScreenshot(){
+    static File takeScreenshot(){
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
     }
 

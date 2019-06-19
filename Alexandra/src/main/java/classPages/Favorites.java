@@ -13,21 +13,25 @@ import java.util.List;
 
 public class Favorites {
 
-    static Logger logger = LoggerFactory.getLogger(Login.class);
+    private static Logger logger = LoggerFactory.getLogger(Login.class);
 
 
-    WebDriver driver;
+    private WebDriver driver;
 
     @FindBy (xpath = "//*[@id='my_wishlist']/span[2]")
+    private
     WebElement favs;
 
     @FindBy (xpath = "//a[@class='row-wishlist-name']")
+    private
     WebElement favsButton;
 
     @FindBy(xpath = "//table[@class='wishlist-box']")
+    private
     WebElement favContainer;
 
     @FindBy(xpath = "//a[@class='emg-fluid-user-section emg-fluid-cart-btn emg-fluid-last']")
+    private
     WebElement cartInfo;
 
 
@@ -77,7 +81,7 @@ public class Favorites {
             favContainer.findElement(By.xpath(".//button[@class='pho-btn btn btn-primary btn-emag gtm_c6829q']")).click();
         }
         catch(Exception e){
-            System.out.printf("Index out of bounds error");
+            System.out.println("Index out of bounds error");
         }
     }
 

@@ -1,48 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="77a7227d-a778-4978-ad35-101afb5d5cc9" name="Default Changelist" comment="" />
+    <list default="true" id="77a7227d-a778-4978-ad35-101afb5d5cc9" name="Default Changelist" comment="updated project">
+      <change afterPath="$PROJECT_DIR$/Alexandra/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Alexandra/src/main/main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Alexandra/src/test/test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__com_google_code_findbugs_jsr305_2_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__com_google_guava_guava_25_0_jre.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_11_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__com_squareup_okio_okio_1_14_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__commons_io_commons_io_2_6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__joda_time_joda_time_2_10_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_8_15.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_apache_commons_commons_exec_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_apache_maven_shared_maven_shared_utils_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_checkerframework_checker_compat_qual_2_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_14.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_api_3_141_59.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_chrome_driver_3_141_59.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_edge_driver_3_141_59.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_firefox_driver_3_141_59.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_ie_driver_3_141_59.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_java_3_141_59.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_opera_driver_3_141_59.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_remote_driver_3_141_59.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_safari_driver_3_141_59.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_support_3_141_59.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_slf4j_slf4j_api_2_0_0_alpha0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/selenium-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/selenium-project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/Favorites.java" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/Favorites.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/ProductInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/ProductInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/Selenium.java" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/src/main/java/classPages/Selenium.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/src/test/java/emag_test/buy_fifa.java" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/src/test/java/emag_test/buy_fifa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/target/classes/classPages/Cart.class" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/target/classes/classPages/Cart.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/target/classes/classPages/Favorites.class" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/target/classes/classPages/Favorites.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/target/classes/classPages/Home.class" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/target/classes/classPages/Home.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/target/classes/classPages/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/target/classes/classPages/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/target/classes/classPages/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/target/classes/classPages/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/target/classes/classPages/ProductInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/target/classes/classPages/ProductInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/target/classes/classPages/Selenium.class" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/target/classes/classPages/Selenium.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandra/target/test-classes/emag_test/buy_fifa.class" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandra/target/test-classes/emag_test/buy_fifa.class" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-786964819">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="java" value="1" />
-          <entry key="xml" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="JAVA" value="1" />
-          <entry key="XML" value="1" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/service-automation/src/main/java/com/worldpay/service/base/BaseJBehaveStory.java">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/service-automation/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="45" column="51" lean-forward="true" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
+            <state relative-caret-position="-391">
+              <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Alexandra/src/main/java/classPages/Cart.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Alexandra/src/main/java/classPages/Product.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -51,6 +108,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="altfel" />
+      </map>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -153,7 +215,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -161,13 +222,26 @@
               <item name="cld_automation_community" type="b2602c69:ProjectViewProjectNode" />
               <item name="cld_automation_community" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="cld_automation_community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cld_automation_community" type="462c0819:PsiDirectoryNode" />
+              <item name="Alexandra" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="cld_automation_community" type="b2602c69:ProjectViewProjectNode" />
+              <item name="cld_automation_community" type="462c0819:PsiDirectoryNode" />
+              <item name="Alexandra" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/service-automation/pom.xml" />
@@ -187,7 +261,7 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="Applet" factoryName="Applet">
+    <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -200,12 +274,14 @@
       </method>
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <properties />
       <listeners />
@@ -213,11 +289,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file id="idea.log" enabled="true" />
+      <predefined_log_file enabled="true" id="idea.log" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -241,20 +317,17 @@
     <option name="totallyTimeSpent" value="324000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="-1" width="1920" height="1081" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="Capture Tool" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2536913" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="SonarLint" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" sideWeight="0.49932885" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -262,32 +335,53 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="LuaJ" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3286119" />
+      <window_info anchor="bottom" id="SonarLint" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="11" sideWeight="0.50067115" side_tool="true" visible="true" weight="0.3286119" />
+      <window_info anchor="right" id="Maven" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="LuaJ" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
+      <window_info anchor="right" id="Maven Projects" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="updated project" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated project" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/service-automation/src/main/java/com/worldpay/service/base/BaseJBehaveStory.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/Alexandra/src/main/java/classPages/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/service-automation/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="45" column="51" lean-forward="true" selection-start-line="45" selection-start-column="51" selection-end-line="45" selection-end-column="51" />
+        <state relative-caret-position="-391">
+          <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Alexandra/src/main/java/classPages/Cart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
         </state>
       </provider>
     </entry>

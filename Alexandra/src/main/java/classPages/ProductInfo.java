@@ -2,9 +2,9 @@ package classPages;
 
 public class ProductInfo {
 
-    String title;
-    String price;
-    String oldPrice;
+    private String title=null;
+    private String price=null;
+    private String oldPrice=null;
 
 
     public String getTitle() {
