@@ -17,9 +17,8 @@ public class CartPage {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    private Boolean empty;
 
-    @FindBy(xpath = "//div[@class=\"line-item main-product\"]")
+    @FindBy(xpath = "//div[@class='cart-widget cart-line']")
     private List<WebElement> product;
 
     public CartPage(WebDriver wd, WebDriverWait wdw){
@@ -29,34 +28,38 @@ public class CartPage {
     }
 
     public void clearCart(){
-        WebElement productToCancel;
-        empty = false;
-
-        while(!empty){
+        int n = product.size();
+        WebElement we;
+        for(int i = 0; i < n; i++){
             try {
-                productToCancel = driver.findElement(By.xpath("//a[contains(text(), \"Sterge\") or contains(text(), \"Delete\")]"));
-                wait.until(ExpectedConditions.elementToBeClickable(productToCancel));
-
                 LOG.trace("Cancel product");
-                productToCancel.click();
+                we = driver.findElement(By.xpath(".//a[contains(text(), \"Sterge\") or contains(text(), \"Delete\")]"));
+                we.click();
+                wait.until(ExpectedConditions.invisibilityOf(we));
             }catch (Exception e){
-//                LOG.debug("Cart clear exception: " + e);
                 LOG.info("No more product in the cart");
-                empty = true;
             }
         }
     }
 
-    public Float getPrice(int n){
+    public Float getPrice(String s){
         String first;
         String second;
 
-        first = product.get(n).findElement(By.xpath(".//span[@class=\"money-int\"]")).getText();
+        first = getProduct(s).findElement(By.xpath(".//span[@class=\"money-int\"]")).getText();
         first = first.replace(".", "");
 
-        second = product.get(n).findElement(By.xpath(".//sup[@class=\"money-decimal\"]")).getText();
+        second = getProduct(s).findElement(By.xpath(".//sup[@class=\"money-decimal\"]")).getText();
 
         return Float.parseFloat(first + "." + second);
+    }
 
+    private WebElement getProduct(String s){
+        for(WebElement we : product){
+            if(we.getText().contains(s)){
+                return we;
+            }
+        }
+        return null;
     }
 }

@@ -60,7 +60,7 @@ public class LoginPage{
             LOG.trace("Press contnue");
             continueButton.click();
         }catch (Exception e){
-            System.out.println("no emailField");
+            LOG.info("No email field");
         }
 
         wait.until(ExpectedConditions.visibilityOf(passwordField));

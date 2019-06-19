@@ -128,7 +128,7 @@ public class SearchPage {
         return null;
     }
 
-    public String parsePrice(String s){
+    private String parsePrice(String s){
         String []parser;
         parser = s.split("\\s");
         String part = parser[0].substring(parser[0].length()-2);

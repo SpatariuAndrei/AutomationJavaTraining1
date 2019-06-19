@@ -3,70 +3,55 @@ import PageClass.*;
 
 import org.junit.*;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+
 
 public class EmagTest extends Selenium {
 
     static final Logger LOG = LoggerFactory.getLogger(EmagTest.class);
-
-//    private WebDriver driver;
-    private WebDriverWait wait;
-
-    private static LogUtil logger;
 
     private LoginPage login;
     private MainPage mainPage;
     private SearchPage searchPage;
     private CartPage cartPage;
 
-    private List<Product> productList;
+    private Boolean failed;
 
-    @BeforeClass
-    public static void here(){
-        System.out.println("emag beforreClass");
-    }
+    private static final String URL = "https://www.emag.ro/homepage?ref=emag_CMP-10858_revolutia-preturilor-iunie-2019";
+
+    private List<Product> productList;
 
     @Before
     public void setUp() {
-
-        LOG.trace("Wait initialized");
-        wait = new WebDriverWait(getDriver(), 15);
+        failed = true;
 
         LOG.trace("productList initialized");
         productList = new LinkedList<Product>();
 
         LOG.trace("PageObjects initialized");
-        mainPage = new MainPage(getDriver(), wait);
-        login = new LoginPage(getDriver(), wait);
-        searchPage = new SearchPage(getDriver(), wait);
-        cartPage = new CartPage(getDriver(), wait);
+        mainPage = new MainPage(getDriver(), getWait());
+        login = new LoginPage(getDriver(), getWait());
+        searchPage = new SearchPage(getDriver(), getWait());
+        cartPage = new CartPage(getDriver(), getWait());
 
         LOG.info("Opening emag.ro");
-        getDriver().get("https://www.emag.ro/homepage?ref=emag_CMP-10858_revolutia-preturilor-iunie-2019"); //go to URL
+        getDriver().get(URL); //go to URL
 
         LOG.info("Log in to account");
         login.logIn(mainPage); //this logs you in
-
-//        LOG.info("Clearing the cart");
-//        mainPage.goToCart();
-//        cartPage.clearCart();
-//
-//        driver.get("https://www.emag.ro");
     }
 
     @After
     public void tearDown(){
-        logger = new LogUtil();
-        logger.takeScreenshot();
-        getDriver().get("https://www.emag.ro/homepage?ref=emag_CMP-10858_revolutia-preturilor-iunie-2019");
+        if(failed) {
+//            logger.takeScreenshot();
+            logger.takeFullScreenshot(getDriver());
+        }
+
+        getDriver().get(URL);
 
         mainPage.goToCart();
 
@@ -75,9 +60,6 @@ public class EmagTest extends Selenium {
 
         LOG.info("Logging out");
         login.logOut();
-//
-//        LOG.info("Driver quit");
-//        driver.quit();
     }
 
     @Test
@@ -95,13 +77,12 @@ public class EmagTest extends Selenium {
 
         mainPage.goToCart();
 
-        LOG.info(productList.get(0).toString());
-        LOG.info(productList.get(1).toString());
+        for(Product p : productList){
+            LOG.info(p.toString());
+            Assert.assertEquals(Float.parseFloat(p.getProductNewPrice()), cartPage.getPrice(p.getProductName()), 0.001);
+        }
 
-        Assert.assertEquals(Float.parseFloat(productList.get(0).getProductNewPrice()), cartPage.getPrice(0), 0.001);
-
-        Assert.assertEquals(Float.parseFloat(productList.get(1).getProductNewPrice()), cartPage.getPrice(1), 0.001);
-
+        failed = false;
     }
 
     @Test
@@ -113,20 +94,18 @@ public class EmagTest extends Selenium {
 
         productList.add(searchPage.addToCartOffer());
 
-        mainPage.search("pc");
+        mainPage.search("memorie");
 
         productList.add(searchPage.addToCartOffer());
 
         mainPage.goToCart();
 
-        LOG.info(productList.get(0).toString());
-        LOG.info(productList.get(1).toString());
-        System.out.println(cartPage.getPrice(0));
-        System.out.println(cartPage.getPrice(1));
+        for(Product p : productList){
+            LOG.info(p.toString());
+            Assert.assertEquals(Float.parseFloat(p.getProductNewPrice()), cartPage.getPrice(p.getProductName()), 0.001);
+        }
 
-        Assert.assertEquals(Float.parseFloat(productList.get(0).getProductNewPrice()), cartPage.getPrice(0), 0.001);
-
-        Assert.assertEquals(Float.parseFloat(productList.get(1).getProductNewPrice()), cartPage.getPrice(1), 0.001);
+        failed = false;
     }
 
     @Test
@@ -138,17 +117,17 @@ public class EmagTest extends Selenium {
 
         productList.add(searchPage.addToCartOffer());
 
-        mainPage.search("masina de spalat");
+        mainPage.search("casti");
 
         productList.add(searchPage.addToCartNoOffer());
 
         mainPage.goToCart();
 
-        LOG.info(productList.get(0).toString());
-        LOG.info(productList.get(1).toString());
+        for(Product p : productList){
+            LOG.info(p.toString());
+            Assert.assertEquals(Float.parseFloat(p.getProductNewPrice()), cartPage.getPrice(p.getProductName()), 0.001);
+        }
 
-        Assert.assertEquals(Float.parseFloat(productList.get(0).getProductNewPrice()), cartPage.getPrice(0), 0.001);
-
-        Assert.assertEquals(Float.parseFloat(productList.get(1).getProductNewPrice()), cartPage.getPrice(1), 0.001);
+        failed = false;
     }
 }
