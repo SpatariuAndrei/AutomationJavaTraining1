@@ -51,9 +51,9 @@ public class CartPage {
             ok=false;
         }
         if(ok){
-            p.setOldPrice(e.findElement(By.xpath(".//*[@class='price-original']")));
+            p.setCartOldPrice(e.findElement(By.xpath(".//*[@class='price-original']")));
         }
-        p.setNewPrice(e.findElement(By.xpath(".//div[@class='price-main']")));
+        p.setCartNewPrice(e.findElement(By.xpath(".//div[@class='price-main']")));
         return p;
     }
 

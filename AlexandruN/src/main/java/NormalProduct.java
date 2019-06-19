@@ -80,19 +80,6 @@ public class NormalProduct {
         return priceS;
     }
 
-    public Float getNewPrice(String s){
-        String finalPrice="";
-        String[] tokens=s.split(",");
-        String[] tokensInt=tokens[0].split("\\.");
-        for(String st:tokensInt){
-            finalPrice=finalPrice+st;
-        }
-        finalPrice=finalPrice+"."+tokens[1];
-        Float a=Float.parseFloat(finalPrice);
-        return a;
-
-
-    }
 
 
 }

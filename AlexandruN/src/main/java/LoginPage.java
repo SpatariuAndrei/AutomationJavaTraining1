@@ -1,14 +1,19 @@
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LoginPage {
     /**
      *All elements are identified by @FindBy annotation
      */
+    public static Logger logger= LoggerFactory.getLogger(LoginPage.class);
+
     private WebDriver driver;
     @FindBy(name="username")
     private WebElement username;
@@ -53,6 +58,7 @@ public class LoginPage {
         driver.get("https://www.emag.ro/user/login?not-keep=true");
         driver.manage().window().maximize();
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+        logger.info("Enter email");
         username.sendKeys("aly98_nesan@yahoo.com");
         nextButon.click();
         password.sendKeys("Stapanul29");

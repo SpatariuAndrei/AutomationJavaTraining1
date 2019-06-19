@@ -20,9 +20,37 @@ public class SearchPage {
         PageFactory.initElements(driver,this);
     }
 
-    public List<WebElement> getItmes(){
-        List<WebElement> listaProduse =productsContainer.findElements(By.xpath(".//div[@class='card-item js-product-data']"));
-        return listaProduse;
+    public WebElement getReducedProduct(){
+        List<WebElement> list = productsContainer.findElements(By.xpath(".//div[@class='card-item js-product-data']"));
+        WebElement produsRedus = null;
+        for(WebElement element: list){
+            try{
+                produsRedus=element.findElement(By.xpath(".//p[@class='product-old-price']"));
+                if(element.findElement(By.xpath(".//p[@class='product-stock-status text-availability-in_stock']")).getText().equals("în stoc")){
+                    return element;
+                }
+
+            }catch(Exception e){
+
+            }
+        }
+        return produsRedus;
+    }
+
+    public WebElement getNormalProduct() {
+        List<WebElement> list = productsContainer.findElements(By.xpath(".//div[@class='card-item js-product-data']"));
+        WebElement produsNormal = null;
+        for(WebElement element: list){
+            try{
+                produsNormal=element.findElement(By.xpath(".//p[@class='product-old-price']"));
+
+            }catch(Exception e){
+                produsNormal=element.findElement(By.xpath((".//p[@class='product-new-price']")));
+                return produsNormal;
+            }
+
+        }
+        return produsNormal;
     }
 
 }

@@ -14,9 +14,9 @@ public class Product {
     }
     public void setOldPrice(WebElement e) {
 
-            String bigPrice = e.findElement(By.xpath(".//span[@class='money-int']")).getText();
-            String smallPrice = e.findElement(By.xpath(".//sup[@class='money-decimal']")).getText();
-            this.oldPrice = ""+bigPrice+","+smallPrice;
+        String bigPrice=e.findElement(By.xpath(".//p[@class='product-old-price']/s")).getText().substring(0,5);
+        String smallPrice = e.findElement(By.xpath(".//p/s/sup")).getText();
+        this.oldPrice = ""+bigPrice+","+smallPrice;
     }
 
     public String getNewPrice() {
@@ -24,8 +24,8 @@ public class Product {
     }
 
     public void setNewPrice(WebElement e) {
-        String bigPrice=e.findElement(By.xpath(".//span[@class='money-int']")).getText();
-        String smallPrice=e.findElement(By.xpath(".//sup[@class='money-decimal']")).getText();
+        String bigPrice=e.findElement(By.xpath(".//p[@class='product-new-price']")).getText().substring(0,5);
+        String smallPrice=e.findElement(By.xpath(".//p[@class='product-new-price']/sup")).getText();
 
         this.newPrice =""+bigPrice+","+smallPrice;
     }
@@ -42,14 +42,21 @@ public class Product {
     private String newPrice;
     private  String title;
 
-    public Product getProdusRedus(List<WebElement> list){
-       Product produsRedus;
-        for(WebElement element: list){
-            if(element.findElement(By.xpath(".//div[@class='product-old-price']")).isEnabled()){
 
-            }
+    public void setCartOldPrice(WebElement e) {
 
-        }
+        String bigPrice = e.findElement(By.xpath(".//span[@class='money-int']")).getText();
+        String smallPrice = e.findElement(By.xpath(".//sup[@class='money-decimal']")).getText();
+        this.oldPrice = ""+bigPrice+","+smallPrice;
+    }
+
+
+
+    public void setCartNewPrice(WebElement e) {
+        String bigPrice=e.findElement(By.xpath(".//span[@class='money-int']")).getText();
+        String smallPrice=e.findElement(By.xpath(".//sup[@class='money-decimal']")).getText();
+
+        this.newPrice =""+bigPrice+","+smallPrice;
     }
 
 
