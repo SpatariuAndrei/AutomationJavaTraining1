@@ -47,7 +47,9 @@ public class EmagTest extends Selenium {
     @After
     public void tearDown(){
         if(failed) {
-//            logger.takeScreenshot();
+            LOG.info("Taking screenshot");
+            logger = new LogUtil();
+            logger.takeScreenshot();
             logger.takeFullScreenshot(getDriver());
         }
 

@@ -22,7 +22,7 @@ public class LogUtil {
     public void takeScreenshot(){
         try{
             final File img = Selenium.takeScreenshot();
-            FileUtils.copyFile(img, new File("./screenshots/img"+ (++i) +".jpg"));
+            FileUtils.copyFile(img, new File("./screenshots/img"+ (++i) +".png"));
         }catch (Exception e){
             LOG.error("Could not capture screenshot");
             e.printStackTrace();

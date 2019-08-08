@@ -29,7 +29,7 @@ public class LoginPage{
     @FindBy(linkText="Log out")
     private WebElement signOutButton;
 
-    @FindBy(xpath="//*[@id=\"emg-user-menu\"]/span[2]")
+    @FindBy(xpath="//*[@id=\"emg-user-menu\"]")
     private WebElement accountMenu;
 
     public LoginPage(WebDriver wd, WebDriverWait wdw){
