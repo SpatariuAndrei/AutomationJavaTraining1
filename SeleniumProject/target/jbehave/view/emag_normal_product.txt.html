@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>emag_normal_product</title>
+<style type="text/css" media="all">
+@import url( "./style/jbehave-core.css" );
+</style>
+</head>
+<body>
+ 
+<script type="syntaxhighlighter" class="brush: txt"><![CDATA[
+
+(emag_normal_product.story)
+Scenario: check normal product price in cart
+Given start page on eMAG
+And I search for iphone (PENDING)
+And I found the first normal product (NOT PERFORMED)
+And I store the details in a product.Product object (PENDING)
+And I add it to the cart (PENDING)
+And I go to view the cart (NOT PERFORMED)
+And I store the product from the cart in another product.Product object (PENDING)
+When I compare the prices of product.Product objects (PENDING)
+Then the two prices must be equals (PENDING)
+@Given("I search for iphone")
+@Pending
+public void givenISearchForIphone() {
+  // PENDING
+}
+
+@Given("I store the details in a product.Product object")
+@Pending
+public void givenIStoreTheDetailsInAProductProductObject() {
+  // PENDING
+}
+
+@Given("I add it to the cart")
+@Pending
+public void givenIAddItToTheCart() {
+  // PENDING
+}
+
+@Given("I store the product from the cart in another product.Product object")
+@Pending
+public void givenIStoreTheProductFromTheCartInAnotherProductProductObject() {
+  // PENDING
+}
+
+@When("I compare the prices of product.Product objects")
+@Pending
+public void whenICompareThePricesOfProductProductObjects() {
+  // PENDING
+}
+
+@Then("the two prices must be equals")
+@Pending
+public void thenTheTwoPricesMustBeEquals() {
+  // PENDING
+}
+
+
+
+
+]]></script>
+</body>
+<!--  SyntaxHighlighter resources:  should be included at end of body -->
+<link rel="stylesheet" type="text/css" href="./style/sh-3.0.83/shCore.css"/>
+<link rel="stylesheet" type="text/css" href="./style/sh-3.0.83/shThemeRDark.css"/>
+<script language="javascript" src="./js/sh-3.0.83/shCore.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushBash.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushCss.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushDiff.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushGroovy.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushJava.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushJScript.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushPlain.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushPython.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushRuby.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushScala.js"></script>
+<script language="javascript" src="./js/sh-3.0.83/shBrushXml.js"></script>
+<script language="javascript" src="./js/shBrushBdd.js"></script>
+<script type="text/javascript">
+    SyntaxHighlighter.defaults['gutter'] = false;
+    SyntaxHighlighter.defaults['toolbar'] = false;    
+    SyntaxHighlighter.all();
+</script>
+</html>

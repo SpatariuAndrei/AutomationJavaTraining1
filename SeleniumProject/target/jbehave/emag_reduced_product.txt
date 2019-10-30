@@ -1,0 +1,56 @@
+
+(emag_reduced_product.story)
+Scenario: check reduced product price in cart
+Given start page on eMAG
+And I search for aer conditionat (PENDING)
+And I found the first reduced product (PENDING)
+And I store the details in a product.Product object (PENDING)
+And I add it to the cart (PENDING)
+And I go to view the cart (NOT PERFORMED)
+And I store the product from the cart in another product.Product object (PENDING)
+When I compare the prices of product.Product objects (PENDING)
+Then the two prices must be equals (PENDING)
+@Given("I search for aer conditionat")
+@Pending
+public void givenISearchForAerConditionat() {
+  // PENDING
+}
+
+@Given("I found the first reduced product")
+@Pending
+public void givenIFoundTheFirstReducedProduct() {
+  // PENDING
+}
+
+@Given("I store the details in a product.Product object")
+@Pending
+public void givenIStoreTheDetailsInAProductProductObject() {
+  // PENDING
+}
+
+@Given("I add it to the cart")
+@Pending
+public void givenIAddItToTheCart() {
+  // PENDING
+}
+
+@Given("I store the product from the cart in another product.Product object")
+@Pending
+public void givenIStoreTheProductFromTheCartInAnotherProductProductObject() {
+  // PENDING
+}
+
+@When("I compare the prices of product.Product objects")
+@Pending
+public void whenICompareThePricesOfProductProductObjects() {
+  // PENDING
+}
+
+@Then("the two prices must be equals")
+@Pending
+public void thenTheTwoPricesMustBeEquals() {
+  // PENDING
+}
+
+
+
