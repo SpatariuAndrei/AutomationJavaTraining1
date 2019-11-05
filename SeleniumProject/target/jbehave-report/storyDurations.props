@@ -1,8 +1,0 @@
-#org.jbehave.core.embedder.StoryManager
-#Tue Jul 09 17:47:25 EEST 2019
-stories/emag_normal_product.story=9000
-stories/add_two_elements.story=13000
-threads=1
-total=32000
-threadAverage=32000
-stories/emag_reduced_product.story=10000

@@ -1,7 +1,0 @@
-
-(emag_normal_product.story)
-steps.CommonSteps.setup() (FAILED)
-(org.jbehave.core.failures.BeforeOrAfterFailed: Method setup (annotated with @BeforeStory in class steps.CommonSteps) failed: org.openqa.selenium.WebDriverException: java.net.ConnectException: Failed to connect to localhost/127.0.0.1:19734
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'devcosminc', ip: '127.0.0.1', os.name: 'Linux', os.arch: 'amd64', os.version: '4.15.0-51-generic', java.version: '1.8.0_212'
-Driver info: driver.version: RemoteWebDriver)
