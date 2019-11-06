@@ -22,6 +22,8 @@ public class KeyPressesPage {
         inputField.sendKeys(text);
     }
 
+
+
     public String getResult() {
         return resultText.getText();
     }
