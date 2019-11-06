@@ -34,4 +34,9 @@ public class HomePage {
         helper.clickLink("Hovers");
         return new HoversPage(driver);
     }
+
+    public KeyPressesPage clickKeyPresses() {
+        helper.clickLink("Key Presses");
+        return new KeyPressesPage(driver);
+    }
 }
