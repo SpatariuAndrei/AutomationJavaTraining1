@@ -2,6 +2,7 @@ package forgotpassword;
 
 import base.BaseTests;
 import org.testng.annotations.Test;
+import pages.ForgotPasswordPage;
 import pages.SentEmailPage;
 
 import static org.testng.Assert.assertTrue;
@@ -11,7 +12,7 @@ public class ForgotPasswordTests extends BaseTests {
     @Test
     public void testRecoverPassword() {
 
-        var forgotPasswordPage = homePage.clickForgotPassword();
+        ForgotPasswordPage forgotPasswordPage = homePage.clickForgotPassword();
         forgotPasswordPage.setEmailField("tau@example.com");
         SentEmailPage sentEmailPage = forgotPasswordPage.clickRetrievePasswordButton();
         assertTrue(sentEmailPage.getAlertText()
