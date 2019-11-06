@@ -4,23 +4,29 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 public class HoversPage {
 
     private WebDriver driver;
-    private By figureBox = By.className("figure");
     private By boxCaption = By.className("figcaption");
+    @FindBy(className = "figure")
+    private List<WebElement> figure;
 
-    public HoversPage(WebDriver driver) {
+    HoversPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public FigureCaption hoverOverFigure(int index) {
-        WebElement figure = driver.findElements(figureBox).get(index-1);
+        WebElement fig = figure.get(index - 1);
         Actions actions = new Actions(driver);
-        actions.moveToElement(figure).perform();
+        actions.moveToElement(fig).perform();
 
-        return new FigureCaption(figure.findElement(boxCaption));
+        return new FigureCaption(fig.findElement(boxCaption));
     }
 
     public class FigureCaption {
@@ -34,7 +40,7 @@ public class HoversPage {
         }
 
         public boolean isCaptionDisplayed() {
-           return caption.isDisplayed();
+            return caption.isDisplayed();
         }
 
         public String getTitle() {
