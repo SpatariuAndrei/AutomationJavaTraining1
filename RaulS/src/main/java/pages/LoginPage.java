@@ -2,29 +2,37 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
     private WebDriver driver;
-    private By usernameField = By.id("username");
-    private By passwordField = By.id("password");
-    private By loginButton = By.cssSelector("#login button");
+
+    @FindBy(id = "username")
+    private WebElement usernameField;
+    @FindBy(id = "password")
+    private WebElement passwordField;
+    @FindBy(css = "#login button")
+    private WebElement loginButton;
 
 
-    public LoginPage(WebDriver driver) {
+    LoginPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void setUsername(String username) {
-        driver.findElement(usernameField).sendKeys(username);
+        usernameField.sendKeys(username);
     }
 
     public void setPassword(String password) {
-        driver.findElement(passwordField).sendKeys(password);
+        passwordField.sendKeys(password);
     }
 
     public SecureAreaPage clickLoginButton() {
-        driver.findElement(loginButton).click();
+        loginButton.click();
         return new SecureAreaPage(driver);
     }
 }

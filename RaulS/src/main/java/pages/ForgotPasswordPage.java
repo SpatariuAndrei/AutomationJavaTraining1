@@ -2,23 +2,30 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class ForgotPasswordPage {
 
     private WebDriver driver;
-    private By emailField = By.id("email");
-    private By retrievePasswordButton = By.id("form_submit");
 
-    public ForgotPasswordPage(WebDriver driver) {
+    @FindBy(id = "email")
+    private  WebElement emailField;
+    @FindBy(id = "form_submit")
+    private  WebElement retrievePasswordButton;
+
+    ForgotPasswordPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver,this);
     }
 
     public void setEmailField(String email) {
-        driver.findElement(emailField).sendKeys(email);
+        emailField.sendKeys(email);
     }
 
     public SentEmailPage clickRetrievePasswordButton() {
-        driver.findElement(retrievePasswordButton).click();
+        retrievePasswordButton.click();
         return new SentEmailPage(driver);
     }
 }

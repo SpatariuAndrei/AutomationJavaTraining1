@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
@@ -11,10 +13,13 @@ import java.util.stream.Collectors;
 public class DropDownPage {
 
     private WebDriver driver;
-    private By dropdown = By.id("dropdown");
 
-    public DropDownPage(WebDriver driver) {
+    @FindBy(id="dropdown")
+     private WebElement dropdown;
+
+     DropDownPage(WebDriver driver) {
         this.driver = driver;
+         PageFactory.initElements(driver,this);
     }
 
     public void selectFromDropDown(String option) {
@@ -27,6 +32,6 @@ public class DropDownPage {
     }
 
     private Select findDropDownElement() {
-        return new Select(driver.findElement(dropdown));
+        return new Select(dropdown);
     }
 }
