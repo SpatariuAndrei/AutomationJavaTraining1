@@ -4,11 +4,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 public class HoversPage {
 
     private WebDriver driver;
-    private By figureBox = By.className("figure");
+    @FindBy(className = "figure")
+    private List<WebElement> figureBox;
+    @FindBy(className = "figcaption")
+    private WebElement boxCaption;
 
     protected HoversPage(WebDriver driver) {
         this.driver = driver;
@@ -17,9 +23,20 @@ public class HoversPage {
     /**
      * @param index starts at 1
      */
-    public void hoverOverFigure(int index) {
-        WebElement figure = driver.findElements(figureBox).get(index - 1);
+    public FigureCaption hoverOverFigure(int index) {
+        WebElement figure = figureBox.get(index - 1);
         Actions actions = new Actions(driver);
-        actions.moveToElement(figure).perform();
+        actions.moveToElement((WebElement) figureBox).perform();
+
+        return new FigureCaption(boxCaption);
+    }
+
+    public class FigureCaption {
+
+        private WebElement caption;
+
+        public FigureCaption(WebElement caption) {
+            this.caption = caption;
+        }
     }
 }
