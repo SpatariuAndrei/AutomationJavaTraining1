@@ -7,6 +7,7 @@ import org.jbehave.core.annotations.BeforeStory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import utilities.DataFromPropertyFile;
 
 import java.util.HashMap;
@@ -29,6 +30,17 @@ public class Selenium {
     }
 
     private WebDriver initFirefoxDriver() {
+        String operatingSystem = System.getProperty("os.name");
+
+        if (operatingSystem.contains("Windows")){
+                String geckoDriverPath = System.getProperty("user.dir") + "\\build\\geckodriver.exe";
+                System.setProperty("webdriver.gecko.driver", geckoDriverPath);
+        }
+        else if (operatingSystem.contains("unix")){
+            // IMPLEMENT FOR OTHER OS 
+            throw new NotImplementedException();
+        }
+
         WebDriver driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.getWindowHandle();
