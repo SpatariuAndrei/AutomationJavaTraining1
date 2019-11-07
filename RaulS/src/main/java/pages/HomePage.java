@@ -39,4 +39,14 @@ public class HomePage {
         helper.clickLink("Key Presses");
         return new KeyPressesPage(driver);
     }
+
+    public HorizontalSliderPage clickHorizontalSlider(){
+        helper.clickLink("Horizontal Slider");
+        return new HorizontalSliderPage(driver);
+    }
+
+    public AlertsPage clickJavaScriptAlerts(){
+        helper.clickLink("JavaScript Alerts");
+        return new AlertsPage(driver);
+    }
 }
