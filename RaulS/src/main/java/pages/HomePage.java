@@ -49,4 +49,19 @@ public class HomePage {
         helper.clickLink("JavaScript Alerts");
         return new AlertsPage(driver);
     }
+
+    public FileUploadPage clickFileUpload(){
+        helper.clickLink("File Upload");
+        return  new FileUploadPage(driver);
+    }
+
+    public ContextMenuPage clickContextMenu(){
+        helper.clickLink("Context Menu");
+        return new ContextMenuPage(driver);
+    }
+
+    public EntryAdPage clickEntryAd(){
+        helper.clickLink("Entry Ad");
+        return new EntryAdPage(driver);
+    }
 }
