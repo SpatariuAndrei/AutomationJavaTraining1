@@ -6,8 +6,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
+import java.util.NoSuchElementException;
 
 public class DynamicLoadingExample2Page {
 
@@ -26,10 +28,10 @@ public class DynamicLoadingExample2Page {
 
     public void clickStartButton2() {
         startButton.click();
-        FluentWait wait = new FluentWait(driver)
+        Wait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(5))
                 .pollingEvery(Duration.ofSeconds(1))
-                .ignoring(ExpectedConditions.class);
+                .ignoring(NoSuchElementException.class);
         wait.until(ExpectedConditions.invisibilityOf(loadingIndicator2));
     }
 

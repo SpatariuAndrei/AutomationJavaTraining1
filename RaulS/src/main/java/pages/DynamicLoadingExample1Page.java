@@ -31,4 +31,8 @@ public class DynamicLoadingExample1Page {
     public String getLoadedMessage() {
         return textMessage.getText();
     }
+
+    public boolean isStartButtonDisplayed() {
+        return startButton.isDisplayed();
+    }
 }

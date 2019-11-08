@@ -78,4 +78,9 @@ public class HomePage {
         helper.clickLink("Dynamic Loading");
         return new DynamicLoadingPage(driver);
     }
+
+    public MultipleWindowsPage clickMultipleWindows() {
+        helper.clickLink("Multiple Windows");
+        return new MultipleWindowsPage(driver);
+    }
 }
