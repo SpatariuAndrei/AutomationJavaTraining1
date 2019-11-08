@@ -36,9 +36,9 @@ public class Selenium {
                 String geckoDriverPath = System.getProperty("user.dir") + "\\build\\geckodriver.exe";
                 System.setProperty("webdriver.gecko.driver", geckoDriverPath);
         }
-        else if (operatingSystem.contains("unix")){
-            // IMPLEMENT FOR OTHER OS 
-            throw new NotImplementedException();
+        else if ((operatingSystem.contains("nix") || operatingSystem.contains("nux"))){
+            String geckoDriverPath = System.getProperty("user.dir") + "\\build\\geckodriver";
+            System.setProperty("webdriver.gecko.driver", geckoDriverPath);
         }
 
         WebDriver driver = new FirefoxDriver();
