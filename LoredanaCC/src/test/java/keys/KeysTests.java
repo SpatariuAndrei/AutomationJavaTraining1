@@ -18,6 +18,7 @@ public class KeysTests extends BaseTests {
 
     @Test
     public void testPi() {
+        homePage.navigateToHomePage();
         var keyPage = homePage.clickKeyPresses();
         keyPage.enterPi();
     }
