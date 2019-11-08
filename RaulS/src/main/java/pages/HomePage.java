@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.WebElementHelper;
 
@@ -40,28 +39,43 @@ public class HomePage {
         return new KeyPressesPage(driver);
     }
 
-    public HorizontalSliderPage clickHorizontalSlider(){
+    public HorizontalSliderPage clickHorizontalSlider() {
         helper.clickLink("Horizontal Slider");
         return new HorizontalSliderPage(driver);
     }
 
-    public AlertsPage clickJavaScriptAlerts(){
+    public AlertsPage clickJavaScriptAlerts() {
         helper.clickLink("JavaScript Alerts");
         return new AlertsPage(driver);
     }
 
-    public FileUploadPage clickFileUpload(){
+    public FileUploadPage clickFileUpload() {
         helper.clickLink("File Upload");
-        return  new FileUploadPage(driver);
+        return new FileUploadPage(driver);
     }
 
-    public ContextMenuPage clickContextMenu(){
+    public ContextMenuPage clickContextMenu() {
         helper.clickLink("Context Menu");
         return new ContextMenuPage(driver);
     }
 
-    public EntryAdPage clickEntryAd(){
+    public EntryAdPage clickEntryAd() {
         helper.clickLink("Entry Ad");
         return new EntryAdPage(driver);
+    }
+
+    public WysiwygEditorPage clickWysiwygEditor() {
+        helper.clickLink("WYSIWYG Editor");
+        return new WysiwygEditorPage(driver);
+    }
+
+    public FramesPage clickFrames() {
+        helper.clickLink("Frames");
+        return new FramesPage(driver);
+    }
+
+    public DynamicLoadingPage clickDynamicLoading() {
+        helper.clickLink("Dynamic Loading");
+        return new DynamicLoadingPage(driver);
     }
 }

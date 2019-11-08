@@ -7,6 +7,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import pages.HomePage;
 
+import java.util.concurrent.TimeUnit;
+
 public class BaseTests {
 
     private WebDriver driver;
@@ -17,12 +19,12 @@ public class BaseTests {
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
         driver = new ChromeDriver();
         navigateToHomePage();
-        homePage = new HomePage(driver);
     }
 
     @BeforeMethod
     public void navigateToHomePage() {
         driver.navigate().to("http://the-internet.herokuapp.com/");
+        homePage = new HomePage(driver);
     }
 
     @AfterClass
