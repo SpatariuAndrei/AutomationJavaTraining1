@@ -1,7 +1,6 @@
 package base;
 
 import com.google.common.io.Files;
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,16 +18,18 @@ import utils.WindowManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 
 
 public class BaseTests {
 
-    private EventFiringWebDriver driver;
+    protected EventFiringWebDriver driver;
     protected HomePage homePage;
 
     @BeforeClass
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:/Work/cld_automation_community/RaulS/src/main/resources/chromedriver.exe");
+        String filePath = System.getProperty("user.dir") + "/src/main/resources/chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver", filePath);
         driver = new EventFiringWebDriver(new ChromeDriver(getChromeOptions()));
         driver.register(new EventReporter());
         navigateToHomePage();
@@ -47,11 +48,16 @@ public class BaseTests {
 
     @AfterMethod
     public void recordFailureScreenshot(ITestResult result) {
+        String screenshotsPath = System.getProperty("user.dir") + "/src/test/screenshots/";
+
+        Calendar calendar = Calendar.getInstance();
+        long timeMilli2 = calendar.getTimeInMillis();
+
         if (ITestResult.FAILURE == result.getStatus()) {
             TakesScreenshot camera = (TakesScreenshot) driver;
             File screenshot = camera.getScreenshotAs(OutputType.FILE);
             try {
-                Files.move(screenshot, new File("C:/Work/cld_automation_community/RaulS/src/main/resources/" + result.getName() + ".png"));
+                Files.move(screenshot, new File(screenshotsPath + result.getName() + "_"+timeMilli2+ ".png"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -69,7 +75,7 @@ public class BaseTests {
         return chromeOptions;
     }
 
-    public CookieManager getCookieManager(){
+    public CookieManager getCookieManager() {
         return new CookieManager(driver);
     }
 

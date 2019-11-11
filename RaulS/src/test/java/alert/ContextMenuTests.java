@@ -12,8 +12,8 @@ public class ContextMenuTests extends BaseTests {
     public void testPopUpText() {
         ContextMenuPage contextMenuPage = homePage.clickContextMenu();
         contextMenuPage.rightClickInBox();
-        String message = contextMenuPage.getPopUpText();
+        String actualMessage = contextMenuPage.getPopUpText();
         contextMenuPage.acceptPopUp();
-        assertEquals(message, "You selected a context menu", "Pop up text is wrong");
+        assertEquals(actualMessage, "You selected a context menu", "Pop up text is wrong");
     }
 }

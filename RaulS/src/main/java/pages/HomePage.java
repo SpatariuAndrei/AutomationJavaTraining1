@@ -83,4 +83,14 @@ public class HomePage {
         helper.clickLink("Multiple Windows");
         return new MultipleWindowsPage(driver);
     }
+
+    public LargeAndDeepDomPage clickLargeAndDeepDom(){
+        helper.clickLink("Large & Deep DOM");
+        return new LargeAndDeepDomPage(driver);
+    }
+
+    public InfiniteScrollPage clickInfiniteScroll(){
+        helper.clickLink("Infinite Scroll");
+        return new InfiniteScrollPage(driver);
+    }
 }

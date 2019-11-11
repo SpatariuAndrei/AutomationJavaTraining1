@@ -20,5 +20,6 @@ public class KeysTests extends BaseTests {
     public void testPi() {
         KeyPressesPage keyPage = homePage.clickKeyPresses();
         keyPage.enterPi();
+        assertEquals(keyPage.getPi(),"p=3.14" ,"Actual text was not correct!");
     }
 }

@@ -11,7 +11,8 @@ public class FileUploadTests extends BaseTests {
     @Test
     public void testFileUpload() {
         FileUploadPage uploadPage = homePage.clickFileUpload();
-        uploadPage.uploadFile("C:/Work/cld_automation_community/RaulS/src/main/resources/chromedriver.exe");
+        String filePath = System.getProperty("user.dir") + "/src/main/resources/chromedriver.exe";
+        uploadPage.uploadFile(filePath);
         assertEquals(uploadPage.getUploadedFiles(), "chromedriver.exe", "Uploading file failed!");
 
     }

@@ -2,7 +2,6 @@ package frames;
 
 import base.BaseTests;
 import org.testng.annotations.Test;
-import pages.FramesPage;
 import pages.NestedFramesPage;
 
 import static org.testng.Assert.assertEquals;

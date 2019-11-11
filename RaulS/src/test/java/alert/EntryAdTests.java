@@ -11,10 +11,10 @@ public class EntryAdTests extends BaseTests {
     @Test
     public void testEntryAd() {
         EntryAdPage entryAdPage = homePage.clickEntryAd();
-        String message = entryAdPage.getModalMassage();
+        String actualMessage = entryAdPage.getModalMassage();
+        String expectedMessage  = "It's commonly used to encourage a user to take an action (e.g., give their e-mail " +
+                "address to sign up for something or disable their ad blocker).";
         entryAdPage.closeModal();
-        assertEquals(message,
-                "It's commonly used to encourage a user to take an action (e.g., give their e-mail address to sign up for something or disable their ad blocker).",
-                "Modal message is not the same");
+        assertEquals(actualMessage, expectedMessage, "Modal message is not the same");
     }
 }
