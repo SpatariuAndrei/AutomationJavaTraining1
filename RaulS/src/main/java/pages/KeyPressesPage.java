@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,7 +23,13 @@ public class KeyPressesPage {
         inputField.sendKeys(text);
     }
 
+    public void enterPi() {
+        enterText(Keys.chord(Keys.ALT, "p") + "=3.14");
+    }
 
+    public String getPi(){
+        return inputField.getAttribute("value");
+    }
 
     public String getResult() {
         return resultText.getText();

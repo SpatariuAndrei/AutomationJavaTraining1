@@ -5,19 +5,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SecureAreaPage {
+public class MultipleWindowsPage {
 
     private WebDriver driver;
+    @FindBy(xpath = "//a[contains(text(),'Click Here')]")
+    private WebElement clickHereLink;
 
-    @FindBy(id = "flash")
-    private WebElement statusAlert;
-
-     SecureAreaPage(WebDriver driver) {
+    MultipleWindowsPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public String getAlertText() {
-        return statusAlert.getText();
+    public void clickHere() {
+        clickHereLink.click();
     }
 }

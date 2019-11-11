@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.WebElementHelper;
 
@@ -38,5 +37,60 @@ public class HomePage {
     public KeyPressesPage clickKeyPresses() {
         helper.clickLink("Key Presses");
         return new KeyPressesPage(driver);
+    }
+
+    public HorizontalSliderPage clickHorizontalSlider() {
+        helper.clickLink("Horizontal Slider");
+        return new HorizontalSliderPage(driver);
+    }
+
+    public AlertsPage clickJavaScriptAlerts() {
+        helper.clickLink("JavaScript Alerts");
+        return new AlertsPage(driver);
+    }
+
+    public FileUploadPage clickFileUpload() {
+        helper.clickLink("File Upload");
+        return new FileUploadPage(driver);
+    }
+
+    public ContextMenuPage clickContextMenu() {
+        helper.clickLink("Context Menu");
+        return new ContextMenuPage(driver);
+    }
+
+    public EntryAdPage clickEntryAd() {
+        helper.clickLink("Entry Ad");
+        return new EntryAdPage(driver);
+    }
+
+    public WysiwygEditorPage clickWysiwygEditor() {
+        helper.clickLink("WYSIWYG Editor");
+        return new WysiwygEditorPage(driver);
+    }
+
+    public FramesPage clickFrames() {
+        helper.clickLink("Frames");
+        return new FramesPage(driver);
+    }
+
+    public DynamicLoadingPage clickDynamicLoading() {
+        helper.clickLink("Dynamic Loading");
+        return new DynamicLoadingPage(driver);
+    }
+
+    public MultipleWindowsPage clickMultipleWindows() {
+        helper.clickLink("Multiple Windows");
+        return new MultipleWindowsPage(driver);
+    }
+
+    public LargeAndDeepDomPage clickLargeAndDeepDom(){
+        helper.clickLink("Large & Deep DOM");
+        return new LargeAndDeepDomPage(driver);
+    }
+
+    public InfiniteScrollPage clickInfiniteScroll(){
+        helper.clickLink("Infinite Scroll");
+        return new InfiniteScrollPage(driver);
     }
 }

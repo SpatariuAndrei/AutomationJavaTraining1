@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class WebElementHelper {
 
-   private WebDriver driver;
+    private WebDriver driver;
 
     public WebElementHelper(WebDriver driver) {
         this.driver = driver;

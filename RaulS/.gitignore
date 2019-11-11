@@ -2,3 +2,4 @@
 .iml
 /target/
 /*.iml
+/src/test/screenshots/*.png
