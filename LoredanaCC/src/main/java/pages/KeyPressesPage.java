@@ -28,6 +28,10 @@ public class KeyPressesPage {
         enterText(Keys.chord(Keys.ALT, "p") + "=3.14");
     }
 
+    public String getText() {
+        return inputField.getAttribute("value");
+    }
+
     public String getResult() {
         return resultText.getText();
     }

@@ -2,3 +2,5 @@
 /*.iml
 .target/
 /workspace.xml
+/target/
+/src/test/screenshots/*.png

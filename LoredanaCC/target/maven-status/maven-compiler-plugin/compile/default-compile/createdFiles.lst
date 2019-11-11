@@ -1,8 +1,0 @@
-pages\DropdownPage.class
-pages\LoginPage.class
-pages\HomePage.class
-pages\HoversPage$FigureCaption.class
-pages\KeyPressesPage.class
-pages\SecureAreaPage.class
-pages\HoversPage.class
-utils\WebElementHelper.class
