@@ -9,6 +9,7 @@ public class AlertTests extends BaseTests {
 
     @Test
     public void testAcceptAlert() {
+        homePage.navigateToHomePage();
         AlertsPage alertsPage = homePage.clickJavaScriptAlert();
         alertsPage.triggerAlert();
         alertsPage.alert_clickToAccept();

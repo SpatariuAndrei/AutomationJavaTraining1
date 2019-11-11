@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import utils.CookieManager;
 import utils.WebElementHelper;
 
 public class HomePage {
@@ -91,5 +92,9 @@ public class HomePage {
     public MultipleWindowsPage clickMultipleWindowsPage() {
         helper.clickLink("Multiple Windows");
         return new MultipleWindowsPage(driver);
+    }
+
+    public CookieManager getCookieManager() {
+        return new CookieManager(driver);
     }
 }
