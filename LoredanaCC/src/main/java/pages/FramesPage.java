@@ -9,7 +9,7 @@ public class FramesPage {
 
     WebDriver driver;
     @FindBy(linkText = "Nested Frames")
-    WebElement nestedFrames;
+    private WebElement nestedFrames;
 
     FramesPage(WebDriver driver) {
         PageFactory.initElements(driver, this);

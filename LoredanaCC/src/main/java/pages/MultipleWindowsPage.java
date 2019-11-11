@@ -9,7 +9,7 @@ public class MultipleWindowsPage {
 
     private WebDriver driver;
     @FindBy(xpath = "//a[contains(text(),'Click Here')]")
-    WebElement clickHereLink;
+    private WebElement clickHereLink;
 
     MultipleWindowsPage(WebDriver driver) {
         this.driver = driver;

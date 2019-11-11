@@ -14,11 +14,11 @@ public class DynamicLoadingExample1Page {
 
     private WebDriver driver;
     @FindBy(css = "#start button")
-    WebElement startButton;
+    private  WebElement startButton;
     @FindBy(id = "loading")
-    WebElement loadingIndicator;
+    private WebElement loadingIndicator;
     @FindBy(id = "finish")
-    WebElement loadedText;
+    private WebElement loadedText;
 
     DynamicLoadingExample1Page(WebDriver driver) {
         PageFactory.initElements(driver, this);

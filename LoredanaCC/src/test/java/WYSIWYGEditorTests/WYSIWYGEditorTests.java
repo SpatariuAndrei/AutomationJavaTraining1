@@ -4,7 +4,7 @@ import base.BaseTests;
 import org.testng.annotations.Test;
 import pages.WYSIWYGEditorPage;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 public class WYSIWYGEditorTests extends BaseTests {
 
@@ -19,6 +19,6 @@ public class WYSIWYGEditorTests extends BaseTests {
         wysiwygEditorPage.setTextArea(text1);
         wysiwygEditorPage.decreaseIndention();
         wysiwygEditorPage.setTextArea(text2);
-        assertEquals(wysiwygEditorPage.getTextFromArea(), text1 + text2);
+        assertEquals(wysiwygEditorPage.getTextFromArea(), text1 + text2, "Incorrect text");
     }
 }

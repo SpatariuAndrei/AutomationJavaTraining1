@@ -3,6 +3,8 @@ package javascript;
 import base.BaseTests;
 import org.testng.annotations.Test;
 import pages.DropdownPage;
+import pages.InfiniteScrollPage;
+import pages.LargeAndDeepDomPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,13 +16,20 @@ public class JavaScriptTests extends BaseTests {
     @Test
     public void testScrollToTable() {
         homePage.navigateToHomePage();
-        homePage.clickLargeAndDeepDom().scrollTable();
+        LargeAndDeepDomPage largeAndDeepDomPage = homePage.clickLargeAndDeepDom();
+        largeAndDeepDomPage.scrollTable();
+        String actualValue = largeAndDeepDomPage.getFirstElementFromTable();
+        assertEquals(actualValue, "1", "First element from table is incorrect");
     }
 
     @Test
     public void testScrollToFifthParagraph() {
         homePage.navigateToHomePage();
-        homePage.clickInfiniteScroll().scrollToParagraph(5);
+        int index = 2;
+        InfiniteScrollPage infiniteScrollPage = homePage.clickInfiniteScroll();
+        infiniteScrollPage.scrollToParagraph(index);
+        boolean actualValue = infiniteScrollPage.checkIfParagraphContainsWord(index, "a");
+        assertEquals(actualValue, true, "word doesn't exist");
     }
 
     @Test

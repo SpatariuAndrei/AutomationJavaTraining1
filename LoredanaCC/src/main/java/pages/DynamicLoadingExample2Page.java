@@ -12,11 +12,11 @@ public class DynamicLoadingExample2Page {
 
     private WebDriver driver;
     @FindBy(id = "indicator")
-    WebElement loadingIndicator;
+    private WebElement loadingIndicator;
     @FindBy(css = "#start button")
-    WebElement startButton;
+    private WebElement startButton;
     @FindBy(id = "finish")
-    WebElement result;
+    private WebElement result;
 
     DynamicLoadingExample2Page(WebDriver driver) {
         this.driver = driver;

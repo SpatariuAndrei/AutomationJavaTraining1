@@ -21,5 +21,6 @@ public class KeysTests extends BaseTests {
         homePage.navigateToHomePage();
         var keyPage = homePage.clickKeyPresses();
         keyPage.enterPi();
+        assertEquals(keyPage.getText(),"p=3.14","Incorrect message");
     }
 }

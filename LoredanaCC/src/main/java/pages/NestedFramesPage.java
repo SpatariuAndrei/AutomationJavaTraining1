@@ -9,13 +9,13 @@ public class NestedFramesPage {
 
     WebDriver driver;
     @FindBy(xpath = "//body[contains(text(),'LEFT')]")
-    WebElement leftFrame;
+    private WebElement leftFrame;
     @FindBy(xpath = "//div[@id='content']")
-    WebElement middleFrame;
+    private  WebElement middleFrame;
     @FindBy(xpath = "//body[contains(text(),'RIGHT')]")
-    WebElement rightFrame;
+    private WebElement rightFrame;
     @FindBy(xpath = "//body[contains(text(),'BOTTOM')]")
-    WebElement bottomFrame;
+    private WebElement bottomFrame;
 
     NestedFramesPage(WebDriver driver) {
         this.driver = driver;

@@ -6,6 +6,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -23,7 +24,8 @@ public class BaseTests {
 
     @BeforeClass
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:/Work/cld_automation_community/LoredanaCC/src/main/resources/chromedriver.exe");
+        String filePath = System.getProperty("user.dir") + "/src/main/resources/chromedriver.exe";
+        System.setProperty("webdriver.chrome.driver", filePath);
         driver = new EventFiringWebDriver(new ChromeDriver(getChromeOptions()));
         driver.register(new EventReporter());
         driver.get("https://the-internet.herokuapp.com/");
@@ -40,14 +42,17 @@ public class BaseTests {
     }
 
     @AfterMethod
-    public void takeScreenshot() {
-        TakesScreenshot camera = (TakesScreenshot) driver;
-        File screenshot = camera.getScreenshotAs(OutputType.FILE);
-        System.out.println("Screenshot taken: " + screenshot.getAbsolutePath());
-        try {
-            Files.move(screenshot, new File("C:/Work/cld_automation_community/LoredanaCC/src/main/resources/screenshots/test.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void recordFailure(ITestResult result) {
+        if(ITestResult.FAILURE == result.getStatus()) {
+            TakesScreenshot camera = driver;
+            File screenshot = camera.getScreenshotAs(OutputType.FILE);
+            String filePath = System.getProperty("user.dir") + "/src/test/screenshots/";
+
+            try {
+                Files.move(screenshot, new File(filePath + result.getName()+"_" + System.currentTimeMillis()+ ".png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

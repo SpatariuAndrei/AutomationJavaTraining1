@@ -12,7 +12,7 @@ public class AlertTests extends BaseTests {
         homePage.navigateToHomePage();
         AlertsPage alertsPage = homePage.clickJavaScriptAlert();
         alertsPage.triggerAlert();
-        alertsPage.alert_clickToAccept();
+        alertsPage.alertClickToAccept();
         assertEquals(alertsPage.getResult(), "You successfuly clicked an alert", "Results test incorrect");
     }
 
@@ -21,8 +21,8 @@ public class AlertTests extends BaseTests {
         homePage.navigateToHomePage();
         AlertsPage alertsPage= homePage.clickJavaScriptAlert();
         alertsPage.triggerConfirm();
-        String text = alertsPage.alert_getText();
-        alertsPage.alert_clickToDismiss();
+        String text = alertsPage.alertGetText();
+        alertsPage.alertClickToDismiss();
         assertEquals(text, "I am a JS Confirm", "Alert text incorrect");
     }
 
@@ -32,8 +32,8 @@ public class AlertTests extends BaseTests {
         AlertsPage alertsPage = homePage.clickJavaScriptAlert();
         alertsPage.triggerPrompt();
         String text = "TAU rocks";
-        alertsPage.alert_setInput(text);
-        alertsPage.alert_clickToAccept();
+        alertsPage.alertSetInput(text);
+        alertsPage.alertClickToAccept();
         assertEquals(alertsPage.getResult(), "You entered: "+ text, "Results test incorrect");
     }
 }

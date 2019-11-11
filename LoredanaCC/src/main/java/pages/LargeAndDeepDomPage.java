@@ -12,6 +12,9 @@ public class LargeAndDeepDomPage {
 
     @FindBy(id = "large-table")
     private WebElement table;
+    @FindBy(xpath = "//span[@class='column-1']")
+    private WebElement firstElement;
+
 
     LargeAndDeepDomPage(WebDriver driver) {
         this.driver = driver;
@@ -23,5 +26,7 @@ public class LargeAndDeepDomPage {
         ((JavascriptExecutor) driver).executeScript(script, table);
     }
 
-
+    public String getFirstElementFromTable() {
+        return firstElement.getText();
+    }
 }

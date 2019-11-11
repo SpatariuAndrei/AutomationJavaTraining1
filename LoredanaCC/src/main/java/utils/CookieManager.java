@@ -2,7 +2,6 @@ package utils;
 
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 
 public class CookieManager {
 
@@ -10,7 +9,6 @@ public class CookieManager {
 
     public CookieManager(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
     }
 
     public void setCookie() {
