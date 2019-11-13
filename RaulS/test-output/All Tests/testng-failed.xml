@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="-1" name="Failed suite [All Tests]" guice-stage="DEVELOPMENT">
+  <test name="messenger(failed)">
+    <classes>
+      <class name="google.GoogleSearchTests">
+        <methods>
+          <include name="setUp"/>
+          <include name="tearDown"/>
+          <include name="testSearchingOnGoogle"/>
+        </methods>
+      </class> <!-- google.GoogleSearchTests -->
+    </classes>
+  </test> <!-- messenger(failed) -->
+</suite> <!-- Failed suite [All Tests] -->
