@@ -28,8 +28,7 @@ public class BaseTests {
         System.setProperty("webdriver.chrome.driver", filePath);
         driver = new EventFiringWebDriver(new ChromeDriver(getChromeOptions()));
         driver.register(new EventReporter());
-       // driver.get("https://the-internet.herokuapp.com/");
-        driver.get(" http://output.jsbin.com/osebed/2");
+        driver.get("https://the-internet.herokuapp.com/");
         homePage = new HomePage(driver);
     }
 
