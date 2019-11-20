@@ -31,6 +31,6 @@ public class OpenDemoLinkSteps extends Steps {
 
     @Then("$title is displayed")
     public void titleIsDisplayed(String title) {
-        Assert.assertEquals(title, driver.getTitle(), "Incorrect title");
+        Assert.assertEquals("Incorrect page title",driver.getTitle(), title);
     }
 }

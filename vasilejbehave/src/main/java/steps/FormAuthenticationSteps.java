@@ -18,7 +18,7 @@ public class FormAuthenticationSteps extends Steps {
 
     @Given("I open form authentication page")
     public void openingFormAuthenticationPage() {
-        formAuthenticationPage = OpenDemoLinkSteps.homePage.goToFormAuthenticationPage();
+        formAuthenticationPage =homePage.goToFormAuthenticationPage();
     }
 
     @When("I enter username $username and password $password")
