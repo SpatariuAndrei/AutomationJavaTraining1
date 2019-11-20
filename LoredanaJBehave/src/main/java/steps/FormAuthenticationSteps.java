@@ -7,6 +7,8 @@ import pages.FormAuthenticationPage;
 import pages.HomePage;
 import pages.SecureAreaPage;
 
+import java.io.IOException;
+
 import static org.testng.Assert.assertTrue;
 
 public class FormAuthenticationSteps extends Steps {
@@ -17,12 +19,12 @@ public class FormAuthenticationSteps extends Steps {
     private SecureAreaPage secureAreaPage;
 
     @Given("I open form authentication page")
-    public void openingFormAuthenticationPage() {
+    public void openingFormAuthenticationPage() throws IOException {
         formAuthenticationPage = OpenDemoLinkSteps.homePage.goToFormAuthenticationPage();
     }
 
     @When("I enter username $username and password $password")
-    public void enteringUsernameAndPassword(String username, String password) {
+    public void enteringUsernameAndPassword(String username, String password) throws IOException {
         formAuthenticationPage.login(username, password);
         secureAreaPage = formAuthenticationPage.goToSecureAreaPage();
     }

@@ -6,23 +6,27 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.*;
+
+import java.io.IOException;
 
 import static org.testng.AssertJUnit.assertTrue;
 
 public class HomePage extends LoadableComponent<HomePage> {
 
     //*********Page Variables*********
-    private String baseURL = "https://the-internet.herokuapp.com/";
     private WebDriver driver;
     private WebDriverWait wait;
-    private BasePage basePage;
+    private Helper helper;
+    private DataFromPropertyFile dataFromPropertyFile = new DataFromPropertyFile();
 
     //*********Constructor*********
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
         this.wait = new WebDriverWait(driver, 10);
-        basePage = new BasePage(driver);
+        helper = new Helper(driver);
+        dataFromPropertyFile = new DataFromPropertyFile();
     }
 
     //*********Web Elements*********
@@ -32,17 +36,17 @@ public class HomePage extends LoadableComponent<HomePage> {
     //*********Override LoadableComponent Methods*********
     @Override
     protected void load() {
-        this.driver.get(baseURL);
+        this.driver.get(dataFromPropertyFile.getBaseURL());
     }
 
     @Override
     protected void isLoaded() throws Error {
-        assertTrue("HomePage is not loaded!", driver.getCurrentUrl().contains(baseURL));
+        assertTrue("HomePage is not loaded!", driver.getCurrentUrl().contains(dataFromPropertyFile.getBaseURL()));
     }
 
     //*********Page Methods*********
-    public FormAuthenticationPage goToFormAuthenticationPage() {
-        basePage.click(authForm);
+    public FormAuthenticationPage goToFormAuthenticationPage() throws IOException {
+        helper.click(authForm);
         return new FormAuthenticationPage(this.driver, this);
     }
 }
