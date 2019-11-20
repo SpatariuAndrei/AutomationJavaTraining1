@@ -7,7 +7,6 @@ import org.jbehave.core.annotations.BeforeStory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import utilities.DataFromPropertyFile;
 
 import java.util.HashMap;
@@ -38,7 +37,7 @@ public class Selenium {
         }
         else if (operatingSystem.contains("unix")){
             // IMPLEMENT FOR OTHER OS 
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         WebDriver driver = new FirefoxDriver();
