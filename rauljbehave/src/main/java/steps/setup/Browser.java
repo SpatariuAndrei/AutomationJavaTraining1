@@ -10,7 +10,6 @@ public class Browser {
     private WebDriver driver;
     private DataFromPropertyFile propertyFile;
 
-
     public WebDriver driverInitialization() {
         propertyFile = new DataFromPropertyFile();
         System.setProperty("webdriver.chrome.driver", propertyFile.getChromeDriverLocationWin());

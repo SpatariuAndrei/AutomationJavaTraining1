@@ -1,7 +1,6 @@
 package steps.setup;
 
 import org.jbehave.core.annotations.AfterScenario;
-import org.jbehave.core.annotations.AfterStories;
 import org.jbehave.core.annotations.AfterStory;
 import org.jbehave.core.annotations.BeforeStory;
 import org.openqa.selenium.By;
@@ -21,7 +20,7 @@ public class StoryBase extends BaseSteps {
     }
 
     @BeforeStory
-    public void setup(){
+    public void setup() {
         sharedData.driver = new Browser().driverInitialization();
     }
 
@@ -32,17 +31,17 @@ public class StoryBase extends BaseSteps {
 
     @AfterScenario
     public void afterScenario() {
-        FavoritesPage favoritesPage = PageFactory.initElements(sharedData.driver,FavoritesPage.class);
-        if(!(sharedData.driver.getCurrentUrl().equals(propertyFile.getEmagFavoritesPage()))){
+        FavoritesPage favoritesPage = PageFactory.initElements(sharedData.driver, FavoritesPage.class);
+        if (!(sharedData.driver.getCurrentUrl().equals(propertyFile.getEmagFavoritesPage()))) {
             sharedData.driver.navigate().to(propertyFile.getEmagFavoritesPage());
         }
 
-        try{
+        try {
             favoritesPage.getContainer();
-            for(WebElement item  : favoritesPage.getItems()){
+            for (WebElement item : favoritesPage.getItems()) {
                 item.findElement(By.cssSelector("button.remove-from-favorites")).click();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
         favoritesPage.logOut();
