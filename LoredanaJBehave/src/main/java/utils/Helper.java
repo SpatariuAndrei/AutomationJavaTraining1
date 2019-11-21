@@ -3,6 +3,7 @@ package utils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 public class Helper {
 
@@ -20,6 +21,7 @@ public class Helper {
         String filePath = System.getProperty("user.dir") + path;
         System.setProperty("webdriver.chrome.driver", filePath);
         driver = new ChromeDriver();
+        driver.manage().window().maximize();
         return driver;
     }
 
@@ -33,5 +35,10 @@ public class Helper {
 
     public String getText(WebElement webElement) {
         return webElement.getText();
+    }
+
+    public void moveOverElement(WebElement webElement) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(webElement);
     }
 }
