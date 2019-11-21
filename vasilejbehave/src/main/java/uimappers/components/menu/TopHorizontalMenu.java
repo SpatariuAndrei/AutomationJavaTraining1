@@ -4,20 +4,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import uimappers.pages.LoginPage;
 import uimappers.pages.WishListPage;
+import uimappers.utils.WebDriverUtilities;
 import utilities.SharedData;
 
-import static driverprovider.WaitDriverProvider.waitProvider;
+
+import static uimappers.constants.TimeoutConstants.DEFAULT_TIMEOUT;
 
 public class TopHorizontalMenu {
     private SharedData share;
+    private WebDriverUtilities driverUtilities;
 
     @FindBy(xpath = "//nav[@id='masthead']")
     private WebElement horizontalMenuContainer;
 
-    @FindBy(xpath = "//div[@class='navbar-toolbox']//div[contains(@class, 'btn-group')]//a[@href='/user/login']")
+    @FindBy(xpath = "//a[@id='my_account']")
     private WebElement loginButton;
 
     @FindBy(xpath = "//a[@id='my_account']//i[@class='caret']")
@@ -34,11 +36,12 @@ public class TopHorizontalMenu {
 
     public TopHorizontalMenu(SharedData share) {
         this.share = share;
+        driverUtilities = new WebDriverUtilities();
         PageFactory.initElements(share.driver, this);
     }
 
     public LoginPage clickOnLoginButton() {
-        waitProvider().until(ExpectedConditions.visibilityOf(horizontalMenuContainer));
+        driverUtilities.waitForElementToBeVisible(horizontalMenuContainer, DEFAULT_TIMEOUT);
         loginButton.click();
 
         return new LoginPage(share);
@@ -59,7 +62,7 @@ public class TopHorizontalMenu {
     }
 
     public WishListPage clickOnFavorite() {
-        waitProvider().until(ExpectedConditions.visibilityOf(horizontalMenuContainer));
+        driverUtilities.waitForElementToBeVisible(horizontalMenuContainer, DEFAULT_TIMEOUT);
         userFavoritePageElement.click();
 
         return new WishListPage(share);

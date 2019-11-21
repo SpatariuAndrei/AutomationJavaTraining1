@@ -1,22 +1,22 @@
 package uimappers.components.forms;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import uimappers.pages.UserHomePage;
+import uimappers.utils.WebDriverUtilities;
 import utilities.SharedData;
 
 import java.util.Set;
 
-import static driverprovider.WaitDriverProvider.waitProvider;
+import static uimappers.constants.TimeoutConstants.*;
 
 public class SocialMediaLoginForm {
 
     private Set windowHandles;
+    private WebDriverUtilities driverUtilities;
 
     private static final String GOOGLE_EMAIL_FIELD_XPATH = "//input[@id='identifierId']";
     private static final String GOOGLE_NEXT_BUTTON_XPATH = "//div[@role='button']//span[text()='Înainte']";
@@ -28,6 +28,7 @@ public class SocialMediaLoginForm {
 
     public SocialMediaLoginForm(SharedData share) {
         this.share=share;
+        driverUtilities = new WebDriverUtilities();
         PageFactory.initElements(share.driver, this);
     }
 
@@ -38,53 +39,41 @@ public class SocialMediaLoginForm {
         // Switch focus to the second opened window (which doesn't have a title)
         share.driver.switchTo().window((String) windowHandles.toArray()[1]);
 
-        waitProvider().until(ExpectedConditions.elementToBeClickable(By.xpath(GOOGLE_EMAIL_FIELD_XPATH)));
-
+        driverUtilities.waitForElementToBeClickable(By.xpath(GOOGLE_EMAIL_FIELD_XPATH), DEFAULT_TIMEOUT);
         WebElement googleAddress = share.driver.findElement(By.xpath(GOOGLE_EMAIL_FIELD_XPATH));
         googleAddress.click();
         googleAddress.clear();
         googleAddress.sendKeys(googleEmail);
 
         // wait for value to be displayed in input field
-        waitProvider().until(ExpectedConditions.attributeContains(googleAddress, "value", googleEmail));
+        driverUtilities.waitForElementAttributeToContain(googleAddress, "value", googleEmail, VALUE_TIMEOUT);
     }
 
     public void pressNextGoogleButtonForPassword() {
-        waitProvider().until(ExpectedConditions.elementToBeClickable(By.xpath(GOOGLE_NEXT_BUTTON_XPATH)));
+        driverUtilities.waitForElementToBeClickable(By.xpath(GOOGLE_NEXT_BUTTON_XPATH), DEFAULT_TIMEOUT);
         WebElement googleNextButton = share.driver.findElement(By.xpath(GOOGLE_NEXT_BUTTON_XPATH));
         googleNextButton.click();
     }
 
     public void googlePassword(String googlePassword) {
-        waitProvider().until(ExpectedConditions.elementToBeClickable(By.cssSelector(GOOGLE_PASSWORD_FIELD)));
-
         WebElement googlePasswordField = share.driver.findElement(By.cssSelector(GOOGLE_PASSWORD_FIELD));
         googlePasswordField.click();
         googlePasswordField.clear();
         googlePasswordField.sendKeys(googlePassword);
 
         // wait for value to be displayed in input field
-        waitProvider().until(ExpectedConditions.attributeContains(googlePasswordField, "value", googlePassword));
+        driverUtilities.waitForElementAttributeToContain(googlePasswordField, "value", googlePassword, VALUE_TIMEOUT);
     }
 
     public UserHomePage pressNextGoogleLogin() {
-        waitProvider().until(ExpectedConditions.elementToBeClickable(By.xpath(GOOGLE_NEXT_BUTTON_XPATH)));
+        driverUtilities.waitForElementToBeClickable(By.xpath(GOOGLE_NEXT_BUTTON_XPATH), DEFAULT_TIMEOUT);
         WebElement googleNextButton = share.driver.findElement(By.xpath(GOOGLE_NEXT_BUTTON_XPATH));
         googleNextButton.click();
 
         // switch back to the original window
         share.driver.switchTo().window((String) windowHandles.toArray()[0]);
+        driverUtilities.waitUntilPageIsLoaded(PAGE_LOADING_TIMEOUT);
 
-        waitProvider().until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-
-//        // above "ready state seems to not work"
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-
-        return new UserHomePage();
+        return new UserHomePage(share);
     }
 }

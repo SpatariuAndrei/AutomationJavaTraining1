@@ -6,19 +6,17 @@ import uimappers.components.forms.SocialMediaLoginForm;
 import uimappers.utils.WebDriverUtilities;
 import utilities.SharedData;
 
-import static driverprovider.WaitDriverProvider.waitProvider;
-
 public class LoginPage {
 
-    private SharedData sharedData;
+    private SharedData share;
     private BaseForm loginForm;
     private SocialMediaLoginForm socialMediaLoginForm;
     private WebDriverUtilities driverUtilities;
 
-    public LoginPage(SharedData sharedData) {
-        this.sharedData = sharedData;
-        loginForm = new BaseForm(sharedData);
-        socialMediaLoginForm = new SocialMediaLoginForm(sharedData);
+    public LoginPage(SharedData share) {
+        this.share = share;
+        loginForm = new BaseForm(share);
+        socialMediaLoginForm = new SocialMediaLoginForm(share);
         driverUtilities = new WebDriverUtilities();
     }
 
@@ -28,7 +26,7 @@ public class LoginPage {
 
     public UserHomePage clickContinueValidPassword(String buttonName) {
         loginForm.clickButton(buttonName);
-        return new UserHomePage();
+        return new UserHomePage(share);
     }
 
     public void clickContinueInvalidPassword(String buttonName) {

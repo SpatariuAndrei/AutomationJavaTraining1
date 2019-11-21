@@ -5,15 +5,19 @@ import org.jbehave.core.annotations.*;
 import org.jbehave.core.steps.Steps;
 import properties.PropertiesConfig;
 import uimappers.pages.EmagHomePage;
+import uimappers.utils.WebDriverUtilities;
 import utilities.SharedData;
 
 import static properties.PropertiesKeys.HOME_ADDRESS;
+import static uimappers.constants.TimeoutConstants.PAGE_LOADING_TIMEOUT;
 
 public class BaseSteps extends Steps {
-    private SharedData share;
+    private SharedData sharedData;
+    private WebDriverUtilities driverUtilities;
 
-    public BaseSteps(SharedData share) {
-        this.share = share;
+    public BaseSteps(SharedData sharedData) {
+        driverUtilities = new WebDriverUtilities();
+        this.sharedData = sharedData;
     }
 
     /**
@@ -47,7 +51,8 @@ public class BaseSteps extends Steps {
      */
     @Given("I open eMAG home page")
     public void openEmagPage(){
-        share.driver.get(PropertiesConfig.getProperty(HOME_ADDRESS));
-        share.homePage=new EmagHomePage(share);
+        sharedData.driver.get(PropertiesConfig.getProperty(HOME_ADDRESS));
+        driverUtilities.waitUntilPageIsLoaded(PAGE_LOADING_TIMEOUT);
+        sharedData.homePage = new EmagHomePage(sharedData);
     }
 }

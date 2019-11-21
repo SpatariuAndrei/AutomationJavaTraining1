@@ -1,17 +1,17 @@
 package uimappers.components.forms;
 
-import driverprovider.WaitDriverProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import uimappers.utils.WebDriverUtilities;
 import utilities.SharedData;
 
-import static driverprovider.WaitDriverProvider.waitProvider;
+import static uimappers.constants.TimeoutConstants.DEFAULT_TIMEOUT;
 
 public class BaseForm {
+    private WebDriverUtilities driverUtilities;
+
     private static final String FORM_INPUT_FIELD_XPATH = "//div[@class ='gui-form-row']//input[@id = '%s']";
     private static final String FORM_BUTTON_XPATH = "//button[contains(text(),'%s')]";
     private static final String FORM_ERROR_MESSAGE_PATH = "//div[contains(@class, 'custom_error_message')]//div[contains(@class, 'gui-form-control')]//span[text() ='%s']";
@@ -21,28 +21,26 @@ public class BaseForm {
     @FindBy(xpath ="//form[contains(@class, '-gui-form')]")
     private WebElement formContainer;
 
-    private SharedData share;
-
     public BaseForm(SharedData share) {
-        this.share = share;
+        driverUtilities = new WebDriverUtilities();
         PageFactory.initElements(share.driver, this);
     }
 
     public void setFieldValue(String fieldName, String fieldValue) {
         // construct the xpath
         String inputFieldXpath = String.format(FORM_INPUT_FIELD_XPATH, fieldName);
-        waitProvider().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(inputFieldXpath)));
+        driverUtilities.waitForElementToBeClickable(By.xpath(inputFieldXpath), DEFAULT_TIMEOUT);
 
         WebElement formInputField = formContainer.findElement(By.xpath(inputFieldXpath));
         // set value
         formInputField.clear();
         formInputField.sendKeys(fieldValue);
-        waitProvider().until(ExpectedConditions.attributeToBe(formInputField, "value", fieldValue));
+        driverUtilities.waitForElementAttributeToContain(formInputField, "value", fieldValue, DEFAULT_TIMEOUT);
     }
 
     public String getFieldValue( String fieldName) {
         // wait for form to be visible
-        waitProvider().until(ExpectedConditions.elementToBeClickable(formContainer));
+        driverUtilities.waitForElementToBeClickable(formContainer, DEFAULT_TIMEOUT);
 
         String inputFieldXpath = String.format(FORM_INPUT_FIELD_XPATH, fieldName);
         WebElement formInputField = formContainer.findElement(By.xpath(inputFieldXpath));
@@ -53,14 +51,14 @@ public class BaseForm {
     public void clickButton(String buttonName) {
         String buttonXpath = String.format(FORM_BUTTON_XPATH, buttonName);
         WebElement formButton = formContainer.findElement(By.xpath(buttonXpath));
-        waitProvider().until(ExpectedConditions.elementToBeClickable(formButton));
+        driverUtilities.waitForElementToBeClickable(formButton, DEFAULT_TIMEOUT);
 
         formButton.click();
     }
 
     public boolean isWideErrorMessageDisplayed(String errorMessage) {
         String errorMessageXpath = String.format(FORM_ERROR_MESSAGE_PATH, errorMessage);
-        waitProvider().until(ExpectedConditions.visibilityOfElementLocated(By.xpath(errorMessageXpath)));
+        driverUtilities.waitForElementToBeVisible(By.xpath(errorMessageXpath), DEFAULT_TIMEOUT);
 
         WebElement formInputField = formContainer.findElement(By.xpath(errorMessageXpath));
         return formInputField.isDisplayed();
@@ -84,7 +82,7 @@ public class BaseForm {
     public void clickOnFormLink(String linkTitle) {
         String linkXpath = String.format(FORM_LINK_XPATH, linkTitle);
 
-        waitProvider().until(ExpectedConditions.elementToBeClickable(formContainer));
+        driverUtilities.waitForElementToBeClickable(formContainer, DEFAULT_TIMEOUT);
         WebElement link = formContainer.findElement(By.xpath(linkXpath));
         link.click();
     }

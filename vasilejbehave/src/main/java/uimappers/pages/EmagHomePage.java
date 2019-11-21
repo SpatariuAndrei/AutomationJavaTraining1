@@ -10,24 +10,24 @@ import static properties.PropertiesKeys.HOME_ADDRESS;
 import static properties.PropertiesKeys.PERSONAL_DATA;
 
 public class EmagHomePage {
-    private SharedData share;
+    private SharedData sharedData;
 
     private TopHorizontalMenu topHorizontalMenu;
     private LoginPage loginPage;
     private WishListPage wishListPage;
     private UserMenu userMenu;
 
-    public EmagHomePage(SharedData share){
-        this.share = share;
+    public EmagHomePage(SharedData sharedData){
+        this.sharedData = sharedData;
 
-        topHorizontalMenu = new TopHorizontalMenu(share);
-        userMenu = new UserMenu(share);
-        wishListPage = new WishListPage(share);
+        topHorizontalMenu = new TopHorizontalMenu(sharedData);
+        userMenu = new UserMenu(sharedData);
+        wishListPage = new WishListPage(sharedData);
     }
 
     public LoginPage navigateToLoginPage() {
-        loginPage = topHorizontalMenu.clickOnLoginButton();
-        return loginPage;
+        sharedData.loginPage = topHorizontalMenu.clickOnLoginButton();
+        return sharedData.loginPage;
     }
 
     public UserMenu openUserAccountMenu() {
@@ -41,13 +41,13 @@ public class EmagHomePage {
 
     public void logout(UserMenuOptions userMenuOption) {
         userMenu.clickOnOption(userMenuOption.getUserMenuOptionValue());
-        String currentUrl = share.driver.getCurrentUrl();
+        String currentUrl = sharedData.driver.getCurrentUrl();
 
         // need to try again due to emag pop-up
         if (!currentUrl.equals(PropertiesConfig.getProperty(HOME_ADDRESS))) {
             String baseUrl = PropertiesConfig.getProperty(HOME_ADDRESS);
             String personalDataUrl = PropertiesConfig.getProperty(PERSONAL_DATA);
-            share.driver.get(baseUrl + personalDataUrl);
+            sharedData.driver.get(baseUrl + personalDataUrl);
             openMenuForLogout();
             userMenu.clickOnOption(userMenuOption.getUserMenuOptionValue());
         }
