@@ -1,6 +1,5 @@
 package bdd;
 
-import driverprovider.DriverInstance;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
 import org.jbehave.core.embedder.Embedder;
@@ -11,15 +10,12 @@ import org.jbehave.core.junit.JUnitStories;
 import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.CandidateSteps;
-import properties.PropertiesConfig;
-import utilities.SharedData;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
-import static properties.PropertiesKeys.HOME_ADDRESS;
 
 public abstract class StoryMapper extends JUnitStories {
     private static final String META_FILTER_SYSTEM_PROPERTY = "meta.filter";

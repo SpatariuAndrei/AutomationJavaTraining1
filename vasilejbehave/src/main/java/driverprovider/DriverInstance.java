@@ -36,11 +36,9 @@ public class DriverInstance {
             System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\drivers\\chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--start-maximized");
-            options.addArguments("--disable-extensions");
-            options.addArguments("disable-infobars");
+           // options.addArguments("--disable-extensions"); -- cannot be used in Endava network due to Forcepoint Endpoint for windows extension
+            options.addArguments("--disable-infobars");
             options.addArguments("--disable-notifications");
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
 
             driver = new ChromeDriver(options);
         }

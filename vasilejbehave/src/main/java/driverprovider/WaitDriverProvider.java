@@ -8,7 +8,8 @@ public class WaitDriverProvider {
     private WaitDriverProvider() {
     }
 
-    public static WebDriverWait setExplicitDriverProvider() {
+    //TODO add timeout as parameter
+    public static WebDriverWait waitProvider() {
         return new WebDriverWait(getDriver(), 20);
     }
 }
