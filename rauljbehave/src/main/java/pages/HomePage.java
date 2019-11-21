@@ -11,18 +11,21 @@ import static junit.framework.TestCase.assertTrue;
 public class HomePage extends LoadableComponent {
 
     private WebDriver driver;
-    @FindBy(id = "searchboxTrigger")
-    private WebElement searchBox;
+    @FindBy(id = "emg-input-autosuggest")
+    private WebElement searchBar;
+    @FindBy(id = "emg-category-menu-icon")
+    private WebElement searchButton;
 
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+
     }
 
     public void searchProduct(String product) {
-        searchBox.sendKeys(product);
-        searchBox.click();
+        searchBar.sendKeys(product);
+        searchButton.click();
     }
 
     @Override
@@ -32,6 +35,6 @@ public class HomePage extends LoadableComponent {
 
     @Override
     protected void isLoaded() throws Error {
-        assertTrue(searchBox.isDisplayed());
+        assertTrue(searchBar.isDisplayed());
     }
 }

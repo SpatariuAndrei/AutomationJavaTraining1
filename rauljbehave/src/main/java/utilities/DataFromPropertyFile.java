@@ -10,6 +10,8 @@ public class DataFromPropertyFile {
     private final String emagLoginPage = envProperties.getProperty("emag.login.page");
     private final String emagCartPage = envProperties.getProperty("emag.cart.page");
 
+    private final String emagFavoritesPage = envProperties.getProperty("emag.favorites.page");
+
     private final String userEmail = envProperties.getProperty("emag.user.email");
     private final String userPassword = envProperties.getProperty("emag.user.password");
 
@@ -43,5 +45,9 @@ public class DataFromPropertyFile {
 
     public String getUserPassword() {
         return userPassword;
+    }
+
+    public String getEmagFavoritesPage() {
+        return emagFavoritesPage;
     }
 }

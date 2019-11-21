@@ -22,6 +22,7 @@ public class LoginPage extends LoadableComponent {
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
+        propertyFile = new DataFromPropertyFile();
         PageFactory.initElements(driver, this);
     }
 

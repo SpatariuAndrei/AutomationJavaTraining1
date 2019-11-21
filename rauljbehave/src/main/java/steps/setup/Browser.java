@@ -10,17 +10,15 @@ public class Browser {
     private WebDriver driver;
     private DataFromPropertyFile propertyFile;
 
-    public Browser(WebDriver driver) {
-        this.driver = driver;
-        propertyFile = new DataFromPropertyFile();
-    }
 
     public WebDriver driverInitialization() {
+        propertyFile = new DataFromPropertyFile();
         System.setProperty("webdriver.chrome.driver", propertyFile.getChromeDriverLocationWin());
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-extensions");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
+
         return driver;
     }
 }
