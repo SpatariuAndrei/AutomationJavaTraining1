@@ -41,7 +41,7 @@ public class HomePage extends LoadableComponent {
         //TODO: not accessible
         driver.switchTo().alert();
         Select dropdown = new Select(driver.findElement(By.xpath("/html/body/div[5]/div/div[2]")));
-        
+
         dropdown.selectByVisibleText("Intra in cont");
 //        enterAccount.click();
 
