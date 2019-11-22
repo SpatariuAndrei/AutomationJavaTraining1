@@ -8,23 +8,16 @@ import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
-import steps.AddToFavoriteProductsSteps;
-import steps.EmagLoginSteps;
-import steps.FormAuthenticationSteps;
-import steps.OpenDemoLinkSteps;
+import steps.CompareProductsSteps;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class AddToFavoriteProducts  extends JUnitStories {
-
-    public AddToFavoriteProducts() {
-        super();
-    }
+public class CompareProducts extends JUnitStories {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        return new InstanceStepsFactory(configuration(), new AddToFavoriteProductsSteps());
+        return new InstanceStepsFactory(configuration(), new CompareProductsSteps());
     }
 
     @Override
@@ -34,6 +27,6 @@ public class AddToFavoriteProducts  extends JUnitStories {
 
     @Override
     protected List<String> storyPaths() {
-        return Arrays.asList("stories/AddToFavoriteProducts.story");
+        return Arrays.asList("stories/CompareProducts.story");
     }
 }

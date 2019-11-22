@@ -8,21 +8,16 @@ import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
-import steps.FormAuthenticationSteps;
-import steps.OpenDemoLinkSteps;
+import steps.*;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class FormAuthentication extends JUnitStories {
-
-    public FormAuthentication() {
-        super();
-    }
+public class AddToFavoriteProducts extends JUnitStories {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        return new InstanceStepsFactory(configuration(), new OpenDemoLinkSteps(), new FormAuthenticationSteps());
+        return new InstanceStepsFactory(configuration(), new CompareProductsSteps());
     }
 
     @Override
@@ -32,7 +27,6 @@ public class FormAuthentication extends JUnitStories {
 
     @Override
     protected List<String> storyPaths() {
-        return Arrays.asList("stories/OpenDemoLink.story", "stories/FormAuthentication.story");
+        return Arrays.asList("stories/CompareProducts.story");
     }
 }
-
