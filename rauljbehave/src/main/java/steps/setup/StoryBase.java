@@ -24,7 +24,7 @@ public class StoryBase extends BaseSteps {
         sharedData.driver = new Browser().driverInitialization();
     }
 
-    @AfterStory
+    //@AfterStory
     public void teardown() {
         sharedData.driver.quit();
     }

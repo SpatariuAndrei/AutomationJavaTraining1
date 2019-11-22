@@ -33,6 +33,18 @@ public class LoginPage extends LoadableComponent {
         nextButton.click();
     }
 
+    public void enterUserEmail() {
+        emailTextField.sendKeys(propertyFile.getUserEmail());
+    }
+
+    public void enterUserPassword() {
+        passwordTextField.sendKeys(propertyFile.getUserPassword());
+    }
+
+    public void clickNext() {
+        nextButton.click();
+    }
+
     @Override
     protected void load() {
         driver.get(propertyFile.getEmagLoginPage());

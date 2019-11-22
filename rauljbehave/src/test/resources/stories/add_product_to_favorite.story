@@ -1,4 +1,4 @@
-Scenario: add product in favorite
+Scenario: Add product in favorite
 
 Given start page on emag
 And I log in
