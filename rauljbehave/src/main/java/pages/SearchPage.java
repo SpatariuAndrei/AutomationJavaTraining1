@@ -13,11 +13,14 @@ public class SearchPage extends LoadableComponent {
 
     public static final String PRODUCT = ".//div[@class='card-item js-product-data']";
     public static final String IN_STOCK = ".//p[@class='product-stock-status text-availability-in_stock']";
+    public static final String DISCOUNT_BADGE = "//div[contains(text(),'%')]";
     private WebDriver driver;
     @FindBy(css = "button.btn-block")
     private WebElement favoriteButton;
     @FindBy(xpath = ".//div[@id='card_grid']")
     private WebElement productsContainer;
+    @FindBy(css = "button.btn-primary")
+    private WebElement buyButton;
 
     public SearchPage(WebDriver driver) {
         this.driver = driver;
@@ -34,6 +37,21 @@ public class SearchPage extends LoadableComponent {
                 }
             } catch (Exception e) {
                 System.out.println("Not in stock");
+            }
+        }
+    }
+
+    public void addToCartProductWithDiscountBadge(){
+        List<WebElement> list = productsContainer.findElements(By.xpath(PRODUCT));
+        for(WebElement webElement : list){
+            try{
+                //TODO
+                if (webElement.findElement(By.xpath(DISCOUNT_BADGE)).getText()!=null) {
+                    buyButton.click();
+                    break;
+                }
+            }catch (Exception e){
+                System.out.println("Not found product with discount badge");
             }
         }
     }

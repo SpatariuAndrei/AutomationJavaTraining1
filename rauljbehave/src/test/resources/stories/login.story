@@ -8,7 +8,8 @@ So that I can access my account
 Scenario: Login with valid eMag credentials
 Given I open eMag home page
 And I navigate to login page
-Then I set email field
+And I set email field
 And I press Continua
-Then I set Introdu parola contului tau eMag filed
-And I press Continua to enter in home page
+And I set Introdu parola contului tau eMag filed
+When I press Continua to enter in home page
+Then I verify that user name Sicoie Raul is displayed

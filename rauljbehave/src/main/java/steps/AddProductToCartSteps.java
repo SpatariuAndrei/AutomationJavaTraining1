@@ -3,24 +3,21 @@ package steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import org.openqa.selenium.support.PageFactory;
-import pages.FavoritesPage;
+import pages.CartPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.SearchPage;
 import steps.setup.BaseSteps;
 import utilities.SharedData;
 
-import static junit.framework.TestCase.assertTrue;
-
-public class EmagAddProductToFavoritesSteps extends BaseSteps {
+public class AddProductToCartSteps extends BaseSteps {
 
     private HomePage homePage;
     private LoginPage loginPage;
     private SearchPage searchPage;
-    private FavoritesPage favoritesPage;
+    private CartPage cartPage;
 
-    public EmagAddProductToFavoritesSteps(SharedData sharedData) {
+    public AddProductToCartSteps(SharedData sharedData) {
         super(sharedData);
     }
 
@@ -29,7 +26,7 @@ public class EmagAddProductToFavoritesSteps extends BaseSteps {
         homePage = new HomePage(sharedData.driver);
         loginPage = new LoginPage(sharedData.driver);
         searchPage = new SearchPage(sharedData.driver);
-        favoritesPage = new FavoritesPage(sharedData.driver);
+        cartPage = new CartPage(sharedData.driver);
     }
 
     @Given("I log in")
@@ -38,14 +35,28 @@ public class EmagAddProductToFavoritesSteps extends BaseSteps {
         loginPage.login();
     }
 
-    @When("I found $device")
-    public void whenIFoundDevice(String device) {
-        homePage.searchProduct(device);
+    @Given("I search for $product")
+    public void givenISearchForBrad(String product) {
+        homePage.searchProduct(product);
     }
 
-    @Then("I add it to favorites")
-    public void thenIAddItToFavorites() {
-        searchPage.addToFavorite();
+    @When("I found first brad with discount badge")
+    public void whenIFoundFirstBradWithDiscountBadge() {
+        searchPage.addToCartProductWithDiscountBadge();
     }
 
+    @Then("I add it to my cart")
+    public void thenIAddItToMyCart() {
+
+    }
+
+    @When("I navigate to my cart")
+    public void whenINavigateToMyCart() {
+
+    }
+
+    @Then("my cart should not be empty")
+    public void thenMyCartShouldNotBeEmpty() {
+
+    }
 }

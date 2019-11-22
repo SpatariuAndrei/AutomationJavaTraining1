@@ -7,7 +7,7 @@ import utilities.DataFromPropertyFile;
 
 public class Browser {
 
-    private WebDriver driver;
+    private static WebDriver driver;
     private DataFromPropertyFile propertyFile;
 
     public WebDriver driverInitialization() {
@@ -18,6 +18,10 @@ public class Browser {
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
 
+        return driver;
+    }
+
+    public static WebDriver getDriver() {
         return driver;
     }
 }

@@ -5,7 +5,7 @@ import org.jbehave.core.io.StoryFinder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
 import steps.LoginSteps;
-import steps.setup.StoryBase;
+import steps.setup.closure.StoryBase;
 
 import java.util.List;
 

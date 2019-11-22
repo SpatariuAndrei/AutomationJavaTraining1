@@ -1,14 +1,15 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.DataFromPropertyFile;
+
+import static org.junit.Assert.assertEquals;
 
 public class HomePage extends LoadableComponent {
 
@@ -19,9 +20,9 @@ public class HomePage extends LoadableComponent {
     @FindBy(id = "emg-category-menu-icon")
     private WebElement searchButton;
     @FindBy(xpath = "//a[@id='my_account']")
-    private WebElement myAccountButton;
-    @FindBy(xpath = "btn btn-primary btn-emag btn-sm")
     private WebElement enterAccount;
+    @FindBy(xpath = "//nav[@id='masthead']")
+    private WebElement horizontalMenuContainer;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -35,17 +36,12 @@ public class HomePage extends LoadableComponent {
         searchButton.click();
     }
 
-    public void navigateToLoginPage(){
-        Actions actions = new Actions(driver);
-        actions.moveToElement(myAccountButton).perform();
-        //TODO: not accessible
-        driver.switchTo().alert();
-        Select dropdown = new Select(driver.findElement(By.xpath("/html/body/div[5]/div/div[2]")));
+    public LoginPage navigateToLoginPage() {
 
-        dropdown.selectByVisibleText("Intra in cont");
-//        enterAccount.click();
-
-
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(enterAccount));
+        enterAccount.click();
+        return new LoginPage(driver);
     }
 
     @Override
@@ -55,6 +51,6 @@ public class HomePage extends LoadableComponent {
 
     @Override
     protected void isLoaded() throws Error {
-      // assertTrue(searchBar.isDisplayed());
+        assertEquals(propertyFile.getEmagPage(), driver.getCurrentUrl());
     }
 }

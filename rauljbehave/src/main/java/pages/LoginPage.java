@@ -4,7 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.utils.WebDriverUtilities;
+import steps.setup.WaitDriverProvider;
 import utilities.DataFromPropertyFile;
 
 import static org.junit.Assert.assertEquals;
@@ -12,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 public class LoginPage extends LoadableComponent {
 
     private WebDriver driver;
+    private WebDriverUtilities driverUtilities;
     private DataFromPropertyFile propertyFile;
     @FindBy(id = "email")
     private WebElement emailTextField;
@@ -24,6 +29,7 @@ public class LoginPage extends LoadableComponent {
         this.driver = driver;
         propertyFile = new DataFromPropertyFile();
         PageFactory.initElements(driver, this);
+        driverUtilities = new WebDriverUtilities();
     }
 
     public void login() {
@@ -34,11 +40,20 @@ public class LoginPage extends LoadableComponent {
     }
 
     public void enterUserEmail() {
+        driverUtilities.waitForElementToBeClickable(emailTextField, 10);
+        emailTextField.clear();
+        emailTextField.click();
         emailTextField.sendKeys(propertyFile.getUserEmail());
+        driverUtilities.meetExpectation(emailTextField, propertyFile.getUserEmail());
+
     }
 
     public void enterUserPassword() {
+        driverUtilities.waitForElementToBeClickable(passwordTextField, 10);
+        passwordTextField.clear();
+        passwordTextField.click();
         passwordTextField.sendKeys(propertyFile.getUserPassword());
+        driverUtilities.meetExpectation(passwordTextField, propertyFile.getUserPassword());
     }
 
     public void clickNext() {
