@@ -1,5 +1,6 @@
 package steps;
 
+import driverprovider.DriverInstance;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -22,7 +23,7 @@ public class EmagLoginSteps {
 
     @Given("I open a browser")
     public void openingABrowser() throws IOException {
-        driver = helper.instantiateChromeDriver();
+        driver = DriverInstance.getDriver();
         homePage = new EmagHomePage(driver);
     }
 
@@ -63,22 +64,16 @@ public class EmagLoginSteps {
 
     @Then("After continue, I should see home page")
     public void continueAndReturnHomePage()  {
-       loginPage.clickOnContinue2();
+        loginPage.clickOnContinue2();
     }
 
     @When("I go to my profile on favorite products")
     public void goToProfilePicture() throws InterruptedException {
-       //homePage.moveOverProfilePicture();
-       // System.out.print(driver.getTitle());
-        //homePage.moveOverProfilePicture();
-        //homePage.clickOnMyAccount();
         homePage.clickOnProfile();
-
-        //homePage.clickOnFavoriteProducts();
     }
 
     @Then("I should see $name as username")
     public void verifyStatus(String name) {
-      // assertEquals(homePage.getStatus(), name, "Not logged in");
+        // assertEquals(homePage.getStatus(), name, "Not logged in");
     }
 }

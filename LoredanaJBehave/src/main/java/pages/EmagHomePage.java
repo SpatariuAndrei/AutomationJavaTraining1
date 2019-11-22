@@ -1,10 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -45,12 +41,17 @@ public class EmagHomePage extends LoadableComponent<EmagHomePage> {
     WebElement name;
     @FindBy(xpath = "//input[@id='emg-input-autosuggest']")
     WebElement searchBar;
-//    @FindBy(xpath = "//div[@class='page-skin-inner']//div[1]//div[2]//div[1]//div[1]//div[1]//a[1]//div[1]//img[1]")
-//    WebElement firstProduct;
     @FindBy(xpath = "//div[6]//div[2]//div[1]//div[1]//div[2]//button[2]//i[1]")
     WebElement addToFavoriteButtons;
-    @FindBy(xpath = " //div[@class='ns-wrap-top-right']")
+    @FindBy(xpath = "//div[@class='ns-wrap-top-right']")
     WebElement notificationFrame;
+    @FindBy(xpath = "//div[@class='clearfix pad-btm-md']//div[3]//div[1]//div[1]//div[3]//div[3]//form[1]//button[1]")
+    WebElement addToCartButton;
+    @FindBy(css = "body.has-minimized-navbar:nth-child(2) div.main-container-outer:nth-child(8) div.main-container-inner:nth-child(4) div.main-container section.page-section:nth-child(1) div.page-skin-outer.skin-active div.container div.page-skin-inner div.clearfix.pad-btm-md div.page-container div.js-products-container.card-collection.list-view-updated.show-me-a-grid:nth-child(5) div.card-item.js-product-data:nth-child(1) div.card div.card-section-wrapper.js-section-wrapper div.card-section-btm div.card-body:nth-child(2) > p.product-new-price")
+    WebElement firstPrice;
+    @FindBy(css = "body.has-minimized-navbar:nth-child(2) div.main-container-outer:nth-child(8) div.main-container-inner:nth-child(4) div.main-container section.page-section:nth-child(1) div.page-skin-outer.skin-active div.container div.page-skin-inner div.clearfix.pad-btm-md div.page-container div.js-products-container.card-collection.list-view-updated.show-me-a-grid:nth-child(5) div.card-item.js-product-data:nth-child(2) div.card div.card-section-wrapper.js-section-wrapper div.card-section-btm div.card-body:nth-child(2) > p.product-new-price")
+    WebElement secondPrice;
+
     //*********Override LoadableComponent Methods*********
     @Override
     protected void load() {
@@ -74,28 +75,21 @@ public class EmagHomePage extends LoadableComponent<EmagHomePage> {
 
     public void clickOnProfile() throws InterruptedException {
        Thread.sleep(3000);
-       // new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(myAccount)).click();
         WebDriverWait wait = new WebDriverWait(driver, 120);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "//span[contains(text(),'Contul meu')]"))).click();
-     //   myAccount.click();
     }
 
     public void moveOverProfilePicture() {
         //new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Contul meu')]"))).click();
         helper.moveOverElement(profilePic);
-        //a[contains(text(),'Favorite')]
     }
 
     public String getStatus() {
-       // return driver.findElement(By.xpath("strong[contains(text(),'Salut, " + name + "')]")).getText();
-        //return driver.findElement(By.xpath("//strong[contains(text(),'Salut, Coroama Loredana')]")).getText();
         return helper.getText(name);
     }
 
     public String getMessage(String name) {
          return driver.findElement(By.xpath("strong[contains(text(),'Salut, " + name + "')]")).getText();
-        //return driver.findElement(By.xpath("//strong[contains(text(),'Salut, Coroama Loredana')]")).getText();
-       // return helper.getText(name);
     }
 
     public void clickOnFavoriteProducts() {
@@ -108,13 +102,35 @@ public class EmagHomePage extends LoadableComponent<EmagHomePage> {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='searchboxTrigger']"))).sendKeys(product, Keys.ENTER);
     }
 
-    public void addToFavorite() {
-        addToFavoriteButtons.click();
+    public void addToFavorite() throws InterruptedException {
+        WebDriverWait wait3 = new WebDriverWait(driver, 10);
+        wait3.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='clearfix pad-btm-md']//div[3]//div[1]//div[1]//div[1]//div[2]//button[2]//i[1]"))).click();
     }
 
     public String getNotificationText() {
-        //return driver.switchTo().frame(notificationFrame).getTitle();
         WebDriverWait wait = new WebDriverWait(driver, 120);
         return wait.until(ExpectedConditions.visibilityOf(notificationFrame)).getText();
     }
+
+    public void addToCart() {
+        WebDriverWait wait2 = new WebDriverWait(driver, 10);
+        wait2.until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();
+    }
+
+    public CartPage clickOnCartDetails() {
+        WebDriverWait wait2 = new WebDriverWait(driver, 10);
+        wait2.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='btn btn-primary btn-sm btn-block']"))).click();
+        return new CartPage(driver);
+    }
+
+    public String getFirstPrice() {
+        WebDriverWait wait = new WebDriverWait(driver, 120);
+        return wait.until(ExpectedConditions.visibilityOf(firstPrice)).getText();
+    }
+    public String getSecondPrice() {
+        WebDriverWait wait = new WebDriverWait(driver, 120);
+        return wait.until(ExpectedConditions.visibilityOf(secondPrice)).getText();
+    }
+
+
 }

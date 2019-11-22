@@ -1,11 +1,12 @@
-package trash.driverprovider;
+package driverprovider;
 
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static trash.driverprovider.DriverInstance.getDriver;
+import static driverprovider.DriverInstance.getDriver;
 
 
 public class WaitDriverProvider {
+
     private WaitDriverProvider() {
     }
 

@@ -1,4 +1,4 @@
-package mappers;
+package tests;
 
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;

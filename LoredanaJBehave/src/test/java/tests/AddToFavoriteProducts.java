@@ -1,4 +1,4 @@
-package mappers;
+package tests;
 
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
@@ -17,7 +17,7 @@ public class AddToFavoriteProducts extends JUnitStories {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        return new InstanceStepsFactory(configuration(), new CompareProductsSteps());
+        return new InstanceStepsFactory(configuration(), new AddToFavoriteProductsSteps());
     }
 
     @Override
@@ -27,6 +27,6 @@ public class AddToFavoriteProducts extends JUnitStories {
 
     @Override
     protected List<String> storyPaths() {
-        return Arrays.asList("stories/CompareProducts.story");
+        return Arrays.asList("stories/AddToFavoriteProducts.story");
     }
 }

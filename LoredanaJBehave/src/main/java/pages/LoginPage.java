@@ -60,17 +60,8 @@ public class LoginPage extends LoadableComponent<LoginPage> {
     }
 
     public void clickOnContinue2() {
-
-        //continueButton.click();
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@class='gui-btn auth-btn-primary auth-submit']"))).click();
-//        JavascriptExecutor js = (JavascriptExecutor) driver;
-//        js.executeScript("window.history.go(-2)");
-        //EmagHomePage nextPage = driver.getPageFromURL(driver.getCurrentUrl());
-       // PageFactory.initElements(driver, new EmagHomePage(driver));
-        //driver.get(dataFromPropertyFile.getEmagHomePageURL());
-       // Thread.sleep(3000);
-        //return new EmagHomePage(driver);
     }
 
     public void enterPassword(String pass) {
