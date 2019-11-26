@@ -1,26 +1,18 @@
 package steps;
 
 import org.jbehave.core.annotations.*;
-import org.jbehave.core.model.Meta;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
-import pages.FavoritesPage;
 import pages.LoginPage;
 import pages.UserHomePage;
 import steps.setup.BaseSteps;
-import steps.setup.Browser;
 import utilities.DataFromPropertyFile;
 import utilities.SharedData;
 
-import java.util.List;
-
-import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
 
 public class EmagAddProductToFavoritesSteps extends BaseSteps {
 
     private DataFromPropertyFile propertyFile;
+
     public EmagAddProductToFavoritesSteps(SharedData sharedData) {
         super(sharedData);
         propertyFile = new DataFromPropertyFile();
@@ -58,6 +50,6 @@ public class EmagAddProductToFavoritesSteps extends BaseSteps {
 
     @Then("I check that <product> is present")
     public void thenICheckThatProductIsPresent(@Named("product") String product) {
-       assertEquals(true,sharedData.favoritesPage.getElements(product));
+        assertTrue(sharedData.favoritesPage.getElements(product));
     }
 }
