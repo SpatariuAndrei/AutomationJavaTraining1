@@ -15,5 +15,5 @@ public class SharedData {
      */
     public EmagHomePage homePage;
     public LoginPage loginPage;
-    public CartPage userHomePage;
+    public CartPage cartPage;
 }

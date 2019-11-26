@@ -1,32 +1,23 @@
 package tests;
 
-import org.jbehave.core.configuration.Configuration;
-import org.jbehave.core.configuration.MostUsefulConfiguration;
-import org.jbehave.core.io.LoadFromClasspath;
-import org.jbehave.core.junit.JUnitStories;
-import org.jbehave.core.reporters.Format;
-import org.jbehave.core.reporters.StoryReporterBuilder;
-import org.jbehave.core.steps.InjectableStepsFactory;
-import org.jbehave.core.steps.InstanceStepsFactory;
-import steps.CompareProductsSteps;
+import bdd.BaseStory;
 
-import java.util.Arrays;
+import org.jbehave.core.io.StoryFinder;
+import steps.BaseSteps;
+import steps.CompareProductsSteps;
+import steps.EmagLoginSteps;
+
 import java.util.List;
 
-public class CompareProducts extends JUnitStories {
+import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 
-    @Override
-    public InjectableStepsFactory stepsFactory() {
-        return new InstanceStepsFactory(configuration(), new CompareProductsSteps());
-    }
-
-    @Override
-    public Configuration configuration() {
-        return new MostUsefulConfiguration().useStoryLoader(new LoadFromClasspath(getClass().getClassLoader())).useStoryReporterBuilder(new StoryReporterBuilder().withFormats(Format.CONSOLE, Format.STATS, Format.HTML));
+public class CompareProducts extends BaseStory {
+    public CompareProducts() {
+        addSteps(new BaseSteps(sharedData), new CompareProductsSteps(sharedData));
     }
 
     @Override
     protected List<String> storyPaths() {
-        return Arrays.asList("stories/CompareProducts.story");
+        return new StoryFinder().findPaths(codeLocationFromClass(this.getClass()), "**/stories/CompareProducts.story", "");
     }
 }

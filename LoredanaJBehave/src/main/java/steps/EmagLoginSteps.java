@@ -1,79 +1,61 @@
 package steps;
 
-import driverprovider.DriverInstance;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import org.openqa.selenium.WebDriver;
-import pages.EmagHomePage;
-import pages.LoginPage;
+import org.jbehave.core.steps.Steps;
+import utils.DataFromPropertyFile;
 import utils.Helper;
-
-import java.io.IOException;
+import utils.SharedData;
 
 import static org.testng.Assert.assertEquals;
 
-public class EmagLoginSteps {
+public class EmagLoginSteps extends Steps {
 
-    public static WebDriver driver;
-    public static EmagHomePage homePage;
-    public LoginPage loginPage;
-    private Helper helper = new Helper(driver);
-    private final String path = "/src/main/resources/chromedriver.exe";
 
-    @Given("I open a browser")
-    public void openingABrowser() throws IOException {
-        driver = DriverInstance.getDriver();
-        homePage = new EmagHomePage(driver);
+    private SharedData sharedData;
+    private Helper helper;
+    public EmagLoginSteps(SharedData sharedData) {
+        this.sharedData = sharedData;
+        helper = new Helper(sharedData);
     }
 
-    @When("I enter $url and hit the enter key")
-    public void enteringAnUrl(String url) {
-        driver.get(url);
+
+    @Given("I navigate to login page")
+    public void givenINavigateToLoginPage() {
+        sharedData.loginPage = sharedData.homePage.navigateToLoginPage();
     }
 
-    @Then("$title is displayed")
-    public void titleIsDisplayed(String title) {
-        assertEquals(title, driver.getTitle(), "Incorrect title");
+    @When("I set $email address field")
+    public void thenISetEmailAddressField(String email) {
+        String emailAddress = DataFromPropertyFile.getEmail();
+        sharedData.loginPage.enterEmail(emailAddress);
     }
 
-    @When("When I go to My account")
-    public void goToMyAccount() {
-        homePage.moveOverMyAccount();
+    @When("I press $nextButton button")
+    public void thenIPressContinuaButton(String nextButton) {
+        sharedData.loginPage.clickOnContinue();
     }
 
-    @When("I click on Intra in cont")
-    public void clickOnAccount() {
-        loginPage = homePage.clickOnMyAccount();
+    @When("I set $password field")
+    public void thenISetPasswordField(String password) {
+        String passwordValue = DataFromPropertyFile.getPassword();
+        sharedData.loginPage.enterPassword(passwordValue);
     }
 
-    @Then("I should be redirected to Login form page where I enter my email $email")
-    public void viewLoginPage(String email) {
-        loginPage.enterEmail(email);
+    @When("I press $continua button after valid password")
+    public void thenIPressContinuaButtonAfterValidPassword(String continua) {
+        sharedData.homePage = sharedData.loginPage.clickOnContinue2();
     }
 
-    @When("I click on continue")
-    public void clickOnContinue() {
-        loginPage.clickOnContinue();
+    @When("I open user menu")
+    public void openUserMenu() throws InterruptedException {
+        sharedData.homePage.moveOverProfilePicture();
+        sharedData.homePage.clickOnProfile();
     }
 
-    @When("I enter my password")
-    public void enterPassord() {
-        loginPage.enterPassword("televizor40A)");
-    }
-
-    @Then("After continue, I should see home page")
-    public void continueAndReturnHomePage()  {
-        loginPage.clickOnContinue2();
-    }
-
-    @When("I go to my profile on favorite products")
-    public void goToProfilePicture() throws InterruptedException {
-        homePage.clickOnProfile();
-    }
-
-    @Then("I should see $name as username")
-    public void verifyStatus(String name) {
-        // assertEquals(homePage.getStatus(), name, "Not logged in");
+    @Then("I verify that user name $name is displayed")
+    public void verifyName(String name) {
+        assertEquals(sharedData.homePage.getStatus(), name, "Not logged in");
     }
 }

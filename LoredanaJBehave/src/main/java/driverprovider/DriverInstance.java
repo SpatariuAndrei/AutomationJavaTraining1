@@ -4,12 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import utils.DataFromPropertyFile;
 
 public class DriverInstance {
 
     private static WebDriver driver;
-    // BROWSER_TYPE_CHROME or BROWSER_TYPE_FIREFOX
-    private static final String BROWSER = "chrome";
+    private static final String BROWSER = DataFromPropertyFile.getBrowser();
+    private static final String SO = DataFromPropertyFile.getSo();
 
     private DriverInstance() {
     }
@@ -31,7 +32,11 @@ public class DriverInstance {
 
     private static  void initChromeDriver(){
         if (driver == null) {
-            System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+            if (SO.equals("linux")) {
+                System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+            } else {
+                System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+            }
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--start-maximized");
             // options.addArguments("--disable-extensions"); -- cannot be used in Endava network due to Forcepoint Endpoint for windows extension
@@ -44,7 +49,12 @@ public class DriverInstance {
 
     private static void initFirefoxDriver(){
         if (driver == null) {
-            System.setProperty("webdriver.gecko.driver", "src\\main\\resources\\geckodriver.exe");
+            if (SO.equals("linux")) {
+                System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
+            } else {
+                System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+            }
+
             driver = new FirefoxDriver();
             driver.manage().window().maximize();
         }
