@@ -4,18 +4,19 @@ import driverprovider.DriverInstance;
 import org.jbehave.core.annotations.*;
 import org.jbehave.core.steps.Steps;
 import properties.PropertiesConfig;
+import uimappers.constants.UserMenuOptions;
 import uimappers.pages.EmagHomePage;
 import uimappers.utils.WebDriverUtilities;
 import utilities.SharedData;
 
-import static properties.PropertiesKeys.HOME_ADDRESS;
+import static properties.PropertiesKeys.HOME_URL;
 import static uimappers.constants.TimeoutConstants.PAGE_LOADING_TIMEOUT;
 
-public class BaseSteps extends Steps {
+public class BrowserBasicSteps extends Steps {
     private SharedData sharedData;
     private WebDriverUtilities driverUtilities;
 
-    public BaseSteps(SharedData sharedData) {
+    public BrowserBasicSteps(SharedData sharedData) {
         driverUtilities = new WebDriverUtilities();
         this.sharedData = sharedData;
     }
@@ -26,12 +27,12 @@ public class BaseSteps extends Steps {
     @BeforeStory
     public void setup() {
         //replace with logging
-        System.out.println("THIS IS MY BEFORE STORIES ");
+        System.out.println("THIS IS MY BEFORE STORY ");
+        driverUtilities = new WebDriverUtilities();
     }
 
     @AfterStory
     public void teardown() {
-        System.out.println("BANZAAAAIIIIIII ");
         DriverInstance.quitDriver();
     }
 
@@ -42,16 +43,18 @@ public class BaseSteps extends Steps {
     }
 
     @AfterScenario
-    public void afterScenario(){
-        System.out.println("THIS IS MY AFTER SCENARIO ");
+    public void afterScenario() {
+        System.out.println("LOGOUT AFTER SCENARIO");
+        sharedData.homePage.logout(UserMenuOptions.LOG_OUT);
     }
+
 
     /**
      * Base steps
      */
     @Given("I open eMAG home page")
     public void openEmagPage(){
-        sharedData.driver.get(PropertiesConfig.getProperty(HOME_ADDRESS));
+        sharedData.driver.get(PropertiesConfig.getProperty(HOME_URL));
         driverUtilities.waitUntilPageIsLoaded(PAGE_LOADING_TIMEOUT);
         sharedData.homePage = new EmagHomePage(sharedData);
     }

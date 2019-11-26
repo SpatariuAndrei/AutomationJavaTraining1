@@ -15,6 +15,9 @@
         <selenium.java.version>3.141.59</selenium.java.version>
         <jbehave.core.version>4.5.1</jbehave.core.version>
         <jbehave.junit.runner.version>2.3.0</jbehave.junit.runner.version>
+
+        <!-- dependency versions -->
+        <maven.bild.plugin.version>3.8.1</maven.bild.plugin.version>
     </properties>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.testng/testng -->
@@ -45,6 +48,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.bild.plugin.version}</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>

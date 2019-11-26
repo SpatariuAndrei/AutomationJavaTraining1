@@ -5,7 +5,7 @@ import bdd.BaseStory;
 import org.jbehave.core.io.StoryFinder;
 import steps.functional.login.LoginSteps;
 import steps.functional.useraccount.UserAccountSteps;
-import steps.setup.BaseSteps;
+import steps.setup.BrowserBasicSteps;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 
 public class Login extends BaseStory {
     public Login() {
-        addSteps(new BaseSteps(sharedData), new LoginSteps(sharedData), new UserAccountSteps(sharedData));
+        addSteps(new BrowserBasicSteps(sharedData), new LoginSteps(sharedData), new UserAccountSteps(sharedData));
     }
 
     @Override

@@ -11,6 +11,7 @@ import utilities.SharedData;
 
 import java.util.Set;
 
+import static driverprovider.DriverInstance.getDriver;
 import static uimappers.constants.TimeoutConstants.*;
 
 public class SocialMediaLoginForm {
@@ -26,10 +27,10 @@ public class SocialMediaLoginForm {
     @FindBy(xpath = "//div[@id='view_container']")
     private WebElement googleLoginForm;
 
-    public SocialMediaLoginForm(SharedData share) {
-        this.share=share;
+    public SocialMediaLoginForm() {
+
         driverUtilities = new WebDriverUtilities();
-        PageFactory.initElements(share.driver, this);
+        PageFactory.initElements(getDriver(), this);
     }
 
     public void googleEmailAccount(String googleEmail) {
@@ -74,6 +75,6 @@ public class SocialMediaLoginForm {
         share.driver.switchTo().window((String) windowHandles.toArray()[0]);
         driverUtilities.waitUntilPageIsLoaded(PAGE_LOADING_TIMEOUT);
 
-        return new UserHomePage(share);
+        return new UserHomePage();
     }
 }

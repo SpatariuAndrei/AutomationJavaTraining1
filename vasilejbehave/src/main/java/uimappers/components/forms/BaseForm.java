@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import uimappers.utils.WebDriverUtilities;
 import utilities.SharedData;
 
+import static driverprovider.DriverInstance.getDriver;
 import static uimappers.constants.TimeoutConstants.DEFAULT_TIMEOUT;
 
 public class BaseForm {
@@ -21,9 +22,9 @@ public class BaseForm {
     @FindBy(xpath ="//form[contains(@class, '-gui-form')]")
     private WebElement formContainer;
 
-    public BaseForm(SharedData share) {
+    public BaseForm() {
         driverUtilities = new WebDriverUtilities();
-        PageFactory.initElements(share.driver, this);
+        PageFactory.initElements(getDriver(), this);
     }
 
     public void setFieldValue(String fieldName, String fieldValue) {
@@ -66,14 +67,20 @@ public class BaseForm {
 
     public void setCheckboxStatus(String checkboxStatus, String checboxId) {
         String checkboxXpath = String.format(INPUT_TYPE_CHECKBOX_XPATH, checboxId);
-        if (formContainer.findElement(By.xpath(checkboxXpath)).isDisplayed()) {
+
+        if (getDriver().findElement(By.xpath(checkboxXpath)).isEnabled()) {
             WebElement checkBox = formContainer.findElement(By.xpath(checkboxXpath));
 
             boolean isCheckboxSelected = checkBox.isSelected();
             if (isCheckboxSelected && checkboxStatus.equals(CheckboxStatus.UNCHECK.getCheckboxStatus())) {
-                checkBox.click();
+               try{
+                   checkBox.click();
+               }
+               catch (org.openqa.selenium.ElementNotInteractableException e){
+                    driverUtilities.clickWithJavascript(checkBox);
+               }
             }
-             if (!isCheckboxSelected && checkboxStatus.equals(CheckboxStatus.CHECK.getCheckboxStatus())){
+             else if (!isCheckboxSelected && checkboxStatus.equals(CheckboxStatus.CHECK.getCheckboxStatus())){
                 checkBox.click();
             }
         }

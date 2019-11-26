@@ -1,5 +1,6 @@
 package uimappers.components.menu;
 
+import driverprovider.DriverInstance;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -9,23 +10,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import uimappers.utils.WebDriverUtilities;
 import utilities.SharedData;
 
+import static driverprovider.DriverInstance.*;
 import static driverprovider.WaitDriverProvider.waitProvider;
 import static uimappers.constants.TimeoutConstants.DEFAULT_TIMEOUT;
+import static uimappers.constants.TimeoutConstants.VALUE_TIMEOUT;
 
 public class UserMenu {
     private static final String USER_GREET_MESSAGE_XPATH = "//div[contains(@class, 'navbar-drop')]//p//strong[contains(text(), '%s')]";
-    private static final String USER_MENU_OPTION_XPATH = "//div[@class = 'ph-dropdown-inner']//a[text()= '%s']";
+    private static final String USER_MENU_OPTION_XPATH = "//a[text()= '%s']";
 
-    private SharedData share;
     private WebDriverUtilities driverUtilities;
 
-    @FindBy(xpath ="//div[contains(@class, 'navbar-drop')]")
+    @FindBy(xpath = "//div[contains(@class, 'ph-dropdown-inner')]")
     private WebElement userMenuContainer;
 
-    public UserMenu(SharedData share) {
-        this.share = share;
+    public UserMenu() {
         driverUtilities = new WebDriverUtilities();
-        PageFactory.initElements(share.driver, this);
+        PageFactory.initElements(getDriver(), this);
     }
 
     public String getUserGreetMessage(String username) {
@@ -39,18 +40,14 @@ public class UserMenu {
     }
 
     public void clickOnOption(String userMenuOption) {
-        driverUtilities.waitForElementToBeVisible(userMenuContainer, DEFAULT_TIMEOUT);
-
         String userMenuOptionXpath = String.format(USER_MENU_OPTION_XPATH, userMenuOption);
-        WebElement userMenuOptionElement = userMenuContainer.findElement(By.xpath(userMenuOptionXpath));
+        driverUtilities.waitForElementToBeVisible(By.xpath(userMenuOptionXpath), VALUE_TIMEOUT);
+        WebElement userMenuOptionElement = getDriver().findElement(By.xpath(userMenuOptionXpath));
 
-        Actions action = new Actions(share.driver);
+        Actions action = new Actions(getDriver());
         action.moveToElement(userMenuOptionElement).perform();
 
         driverUtilities.waitForElementToBeClickable(userMenuOptionElement, DEFAULT_TIMEOUT);
         userMenuOptionElement.click();
-
-        driverUtilities.waitForElementToDisappear(userMenuOptionElement, DEFAULT_TIMEOUT);
-        //add logger: LOGGER.info(String.format("User was logged out"));
     }
 }

@@ -8,15 +8,13 @@ import utilities.SharedData;
 
 public class LoginPage {
 
-    private SharedData share;
     private BaseForm loginForm;
     private SocialMediaLoginForm socialMediaLoginForm;
     private WebDriverUtilities driverUtilities;
 
-    public LoginPage(SharedData share) {
-        this.share = share;
-        loginForm = new BaseForm(share);
-        socialMediaLoginForm = new SocialMediaLoginForm(share);
+    public LoginPage() {
+        loginForm = new BaseForm();
+        socialMediaLoginForm = new SocialMediaLoginForm();
         driverUtilities = new WebDriverUtilities();
     }
 
@@ -26,7 +24,7 @@ public class LoginPage {
 
     public UserHomePage clickContinueValidPassword(String buttonName) {
         loginForm.clickButton(buttonName);
-        return new UserHomePage(share);
+        return new UserHomePage();
     }
 
     public void clickContinueInvalidPassword(String buttonName) {

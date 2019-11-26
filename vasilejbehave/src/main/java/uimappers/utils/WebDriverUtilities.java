@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utilities.SharedData;
 
+import static driverprovider.DriverInstance.getDriver;
 import static driverprovider.WaitDriverProvider.waitProvider;
 
 public class WebDriverUtilities {
@@ -39,5 +40,10 @@ public class WebDriverUtilities {
     public void waitUntilPageIsLoaded(int timeout){
         waitProvider(timeout) .until(
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+    }
+
+    public void clickWithJavascript(WebElement element){
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].click();", element);
     }
 }
