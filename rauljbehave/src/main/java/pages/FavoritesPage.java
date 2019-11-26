@@ -45,6 +45,20 @@ public class FavoritesPage extends LoadableComponent {
         return listOfItems;
     }
 
+    public boolean getElements(String productName) {
+        List<WebElement> elementList = getItems();
+        for (WebElement element : elementList) {
+            try {
+                if (element.findElement(By.xpath("//span[contains(text(),'" + productName + "')]")).isDisplayed()) {
+                    return true;
+                }
+            } catch (Exception e) {
+                System.out.println("Product not find!");
+            }
+        }
+        return false;
+    }
+
     public void logOut() {
         Actions actions = new Actions(driver);
         actions.moveToElement(myAccountButton).perform();

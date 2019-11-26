@@ -15,9 +15,9 @@ public class HomePage extends LoadableComponent {
 
     private WebDriver driver;
     private DataFromPropertyFile propertyFile;
-    @FindBy(id = "emg-input-autosuggest")
+    @FindBy(id = "searchboxTrigger")
     private WebElement searchBar;
-    @FindBy(id = "emg-category-menu-icon")
+    @FindBy(xpath = "//button[@class='btn btn-default searchbox-submit-button']")
     private WebElement searchButton;
     @FindBy(xpath = "//a[@id='my_account']")
     private WebElement enterAccount;
@@ -31,9 +31,10 @@ public class HomePage extends LoadableComponent {
 
     }
 
-    public void searchProduct(String product) {
+    public SearchPage searchProduct(String product) {
         searchBar.sendKeys(product);
         searchButton.click();
+        return new SearchPage(driver);
     }
 
     public LoginPage navigateToLoginPage() {

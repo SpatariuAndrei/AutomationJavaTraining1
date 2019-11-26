@@ -6,7 +6,6 @@ import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
 import steps.EmagAddProductToFavoritesSteps;
 import steps.setup.closure.FavoritePageEndingStory;
-import steps.setup.closure.StoryBase;
 
 import java.util.List;
 
@@ -16,7 +15,10 @@ public class AddToFavoritesTest extends StoryMapper {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        return new InstanceStepsFactory(configuration(), new EmagAddProductToFavoritesSteps(share), new FavoritePageEndingStory(share));
+        return new InstanceStepsFactory(configuration(),
+                new FavoritePageEndingStory(share),
+                new EmagAddProductToFavoritesSteps(share),
+                new FavoritePageEndingStory(share));
     }
 
     @Override

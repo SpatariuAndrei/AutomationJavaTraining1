@@ -1,6 +1,13 @@
 Scenario: Add product in favorite
 
-Given start page on emag
-And I log in
-When I found Nokia3310
-Then I add it to favorites
+Given I open eMag user home page
+When I search the <product>
+And I add it to favorites
+And I navigate to favorites product page
+Then I check that <product> is present
+
+Examples:
+|product       |
+|Nokia 3310    |
+|Samsung Galaxy|
+|iPhone        |

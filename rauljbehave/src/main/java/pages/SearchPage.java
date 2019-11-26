@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import pages.utils.WebDriverUtilities;
 
 import java.util.List;
 
@@ -14,28 +15,34 @@ public class SearchPage extends LoadableComponent {
 
     public static final String PRODUCT = ".//div[@class='card-item js-product-data']";
     public static final String IN_STOCK = ".//p[@class='product-stock-status text-availability-in_stock']";
-    public static final String DISCOUNT_BADGE = "#card_grid > div:nth-child(4) > div.product-badge-box.js-product-badge-box > div";
+    public static final String DISCOUNT_BADGE = "div.product-badge-box.js-product-badge-box";
     private WebDriver driver;
     @FindBy(css = "button.btn-block")
-    private WebElement favoriteButton;
+    private WebElement favoriteButtonForProduct;
     @FindBy(xpath = ".//div[@id='card_grid']")
     private WebElement productsContainer;
     @FindBy(css = "button.btn-emag:nth-child(1)")
     private WebElement buyButton;
+    @FindBy(xpath = "//a[@id='my_wishlist']")
+    private WebElement favoriteButtonForPage;
     private JavascriptExecutor js;
+    private WebDriverUtilities  driverUtilities;
 
     public SearchPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         js = (JavascriptExecutor) driver;
+        driverUtilities = new WebDriverUtilities();
     }
 
     public void addToFavorite() {
+        driverUtilities.waitForElementToBeVisible(productsContainer, 10);
         List<WebElement> list = productsContainer.findElements(By.xpath(PRODUCT));
         for (WebElement webElement : list) {
             try {
                 if (webElement.findElement(By.xpath(IN_STOCK)).getText().equals("în stoc")) {
-                    favoriteButton.click();
+                    driverUtilities.waitForElementToBeClickable(productsContainer, 10);
+                    favoriteButtonForProduct.click();
                     break;
                 }
             } catch (Exception e) {
@@ -45,7 +52,7 @@ public class SearchPage extends LoadableComponent {
     }
 
     public WebElement getProductWithDiscountBadge() {
-        js.executeScript("window.scrollTo(0,400)");
+        js.executeScript("window.scrollTo(0,900)");
         List<WebElement> list = productsContainer.findElements(By.xpath(PRODUCT));
         WebElement prodWithDiscount = null;
         for (WebElement webElement : list) {
@@ -61,6 +68,15 @@ public class SearchPage extends LoadableComponent {
             }
         }
         return prodWithDiscount;
+    }
+
+    public ProductPage foundProductWithDiscountBadge() {
+        return new ProductPage(driver);
+    }
+
+    public FavoritesPage goToProductFavoritesPage() {
+        favoriteButtonForPage.click();
+        return new FavoritesPage(driver);
     }
 
     @Override

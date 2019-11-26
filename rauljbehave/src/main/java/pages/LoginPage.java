@@ -4,11 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.utils.WebDriverUtilities;
-import steps.setup.WaitDriverProvider;
 import utilities.DataFromPropertyFile;
 
 import static org.junit.Assert.assertEquals;
@@ -58,6 +55,11 @@ public class LoginPage extends LoadableComponent {
 
     public void clickNext() {
         nextButton.click();
+    }
+
+    public UserHomePage clickNextValidPassword() {
+        nextButton.click();
+        return new UserHomePage(driver);
     }
 
     @Override

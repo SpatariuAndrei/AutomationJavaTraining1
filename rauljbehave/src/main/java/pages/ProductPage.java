@@ -37,7 +37,7 @@ public class ProductPage extends LoadableComponent {
         close.click();
     }
 
-    public void viewCart() {
+    public CartPage viewCart() {
         try {
             sleep(1000);
         } catch (InterruptedException e) {
@@ -45,6 +45,7 @@ public class ProductPage extends LoadableComponent {
         }
         js.executeScript("window.scrollTo(0,1)");
         myCart.click();
+        return new CartPage(driver);
     }
 
     @Override
