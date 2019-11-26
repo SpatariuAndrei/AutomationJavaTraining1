@@ -3,7 +3,7 @@ package steps.functional.useraccount;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.steps.Steps;
-import org.junit.Assert;
+import org.testng.Assert;
 import utilities.SharedData;
 
 public class UserAccountSteps extends Steps {
