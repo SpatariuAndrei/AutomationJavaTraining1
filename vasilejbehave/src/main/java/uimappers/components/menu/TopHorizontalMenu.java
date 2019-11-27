@@ -7,14 +7,13 @@ import org.openqa.selenium.support.PageFactory;
 import uimappers.pages.LoginPage;
 import uimappers.pages.WishListPage;
 import uimappers.utils.WebDriverUtilities;
-import utilities.SharedData;
 
 
 import static driverprovider.DriverInstance.getDriver;
 import static uimappers.constants.TimeoutConstants.DEFAULT_TIMEOUT;
 
 public class TopHorizontalMenu {
-    private SharedData sharedData;
+
     private WebDriverUtilities driverUtilities;
 
     @FindBy(xpath = "//nav[@id='masthead']")
@@ -52,7 +51,8 @@ public class TopHorizontalMenu {
     }
 
     public UserMenu openUserMenu() {
-        Actions action = new Actions(sharedData.driver);
+        driverUtilities.waitForElementToBeClickable(userMenuIcon, DEFAULT_TIMEOUT);
+        Actions action = new Actions(getDriver());
         action.moveToElement(userMenuIcon).build().perform();
 
         return new UserMenu();

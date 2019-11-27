@@ -9,8 +9,7 @@ import properties.PropertiesConfig;
 import uimappers.components.forms.CheckboxStatus;
 import utilities.SharedData;
 
-import static properties.PropertiesKeys.EMAG_EMAIL_ADDRESS;
-import static properties.PropertiesKeys.EMAG_PASSWORD;
+import static properties.PropertiesKeys.*;
 
 public class LoginSteps extends Steps {
     private SharedData sharedData;
@@ -61,7 +60,7 @@ public class LoginSteps extends Steps {
         sharedData.loginPage.clickContinueInvalidPassword(continua);
     }
 
-    @Then("I verify that $errorMessahe error message appears")
+    @Then("I verify that $errorMessage error message appears")
     public void thenIVerifyThatAiIntrodusGresitParolaSauAdresaDeEmailTeRogCompleteazaDinNouErrorMessageAppears(String errorMessage) {
      Assert.assertTrue(sharedData.loginPage.verifyIfErrorMessageAppears(errorMessage));
     }
@@ -69,5 +68,28 @@ public class LoginSteps extends Steps {
     @When("I click on $socialMediaPlatform login option")
     public void whenIClickOnGoogleLoginOption(String socialMedia) {
         sharedData.loginPage.clickOnSocialPlatformLink(socialMedia);
+    }
+
+    @When("I set google email as email address")
+    public void whenISetGoogleEmailAsEmailAddress() {
+        String googleEmailValue = PropertiesConfig.getProperty(GOOGLE_EMAIL);
+        sharedData.loginPage.setGoogleEmailAccount(googleEmailValue);
+
+    }
+
+    @When("I press Next button on google login for password")
+    public void whenIPressNextButtonOnGoogleLoginForPassword() {
+        sharedData.loginPage.pressNextButtonGooglePassword();
+    }
+
+    @When("I set google password account as password")
+    public void whenISetGooglePasswordAccountAsPassword() {
+        String googlePasswordValue = PropertiesConfig.getProperty(GOOGLE_PASSWORD);
+        sharedData.loginPage.setGooglePassword(googlePasswordValue);
+    }
+
+    @When("I press Next button on google login form with window focus change")
+    public void whenIPressNextButtonOnGoogleLoginFormWithWindowFocusChange() {
+        sharedData.userHomePage = sharedData.loginPage.pressNextButtonGoogleLogin();
     }
 }

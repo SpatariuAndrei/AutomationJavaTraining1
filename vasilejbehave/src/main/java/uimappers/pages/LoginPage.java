@@ -4,7 +4,6 @@ import uimappers.components.forms.BaseForm;
 import uimappers.components.forms.CheckboxStatus;
 import uimappers.components.forms.SocialMediaLoginForm;
 import uimappers.utils.WebDriverUtilities;
-import utilities.SharedData;
 
 public class LoginPage {
 

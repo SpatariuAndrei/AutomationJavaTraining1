@@ -1,8 +1,6 @@
 package uimappers.pages;
 
-import uimappers.components.menu.TopHorizontalMenu;
 import uimappers.components.menu.UserMenu;
-import utilities.SharedData;
 
 public class UserHomePage {
     private UserMenu userMenu;

@@ -1,17 +1,13 @@
 package uimappers.components.menu;
 
-import driverprovider.DriverInstance;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import uimappers.utils.WebDriverUtilities;
-import utilities.SharedData;
 
 import static driverprovider.DriverInstance.*;
-import static driverprovider.WaitDriverProvider.waitProvider;
 import static uimappers.constants.TimeoutConstants.DEFAULT_TIMEOUT;
 import static uimappers.constants.TimeoutConstants.VALUE_TIMEOUT;
 

@@ -26,12 +26,13 @@ When I UNCHECK box keep_email option
 And I press Continua button after invalid password
 Then I verify that Ai introdus gresit parola sau adresa de email. Te rog completeaza din nou. error message appears
 
-!-- Scenario: Login with social media account - google account
-!-- Given I navigate to login page
-!-- When I click on Google login option
-!-- And I set "<YOUR_GOOGLE_EMAIL>" as google email
-!-- And I press Next button on google login for password
-!-- And I set "<YOUR_GOOGLE_PASSWORD>" as google password
-!-- And I press Next button on google login form with window focus change
-!-- And I open user menu
-!-- Then I verify that user name "Vetisan Vasile" is displayed
+Scenario: Login with social media account - google account
+Given I open eMAG home page
+And I navigate to login page
+When I click on Google login option
+And I set google email as email address
+And I press Next button on google login for password
+And I set google password account as password
+And I press Next button on google login form with window focus change
+And I open user menu
+Then I verify that user name Vetisan Vasile is displayed

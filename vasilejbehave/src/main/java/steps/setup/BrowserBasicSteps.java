@@ -28,7 +28,6 @@ public class BrowserBasicSteps extends Steps {
     public void setup() {
         //replace with logging
         System.out.println("THIS IS MY BEFORE STORY ");
-        driverUtilities = new WebDriverUtilities();
     }
 
     @AfterStory
@@ -53,9 +52,9 @@ public class BrowserBasicSteps extends Steps {
      * Base steps
      */
     @Given("I open eMAG home page")
-    public void openEmagPage(){
+    public void openEmagPage() {
         sharedData.driver.get(PropertiesConfig.getProperty(HOME_URL));
         driverUtilities.waitUntilPageIsLoaded(PAGE_LOADING_TIMEOUT);
-        sharedData.homePage = new EmagHomePage(sharedData);
+        sharedData.homePage = new EmagHomePage();
     }
 }

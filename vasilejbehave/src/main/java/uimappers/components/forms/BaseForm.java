@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import uimappers.utils.WebDriverUtilities;
-import utilities.SharedData;
 
 import static driverprovider.DriverInstance.getDriver;
 import static uimappers.constants.TimeoutConstants.DEFAULT_TIMEOUT;
