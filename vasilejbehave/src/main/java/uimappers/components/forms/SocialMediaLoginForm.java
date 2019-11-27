@@ -45,7 +45,7 @@ public class SocialMediaLoginForm {
         googleAddress.sendKeys(googleEmail);
 
         // wait for value to be displayed in input field
-        driverUtilities.waitForElementAttributeToContain(googleAddress, "value", googleEmail, VALUE_TIMEOUT);
+        driverUtilities.waitForElementAttributeToContain(googleAddress, "value", googleEmail, MIN_TIMEOUT);
     }
 
     public void pressNextGoogleButtonForPassword() {
@@ -62,7 +62,7 @@ public class SocialMediaLoginForm {
         googlePasswordField.sendKeys(googlePassword);
 
         // wait for value to be displayed in input field
-        driverUtilities.waitForElementAttributeToContain(googlePasswordField, "value", googlePassword, VALUE_TIMEOUT);
+        driverUtilities.waitForElementAttributeToContain(googlePasswordField, "value", googlePassword, MIN_TIMEOUT);
     }
 
     public UserHomePage pressNextGoogleLogin() {

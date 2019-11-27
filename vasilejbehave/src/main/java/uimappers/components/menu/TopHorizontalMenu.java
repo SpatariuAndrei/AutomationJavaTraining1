@@ -12,6 +12,7 @@ import uimappers.utils.WebDriverUtilities;
 
 import static driverprovider.DriverInstance.getDriver;
 import static uimappers.constants.TimeoutConstants.DEFAULT_TIMEOUT;
+import static uimappers.constants.TimeoutConstants.MIN_TIMEOUT;
 
 public class TopHorizontalMenu {
 
@@ -52,7 +53,7 @@ public class TopHorizontalMenu {
     }
 
     public UserMenu openUserMenu() {
-        driverUtilities.waitForElementToBeClickable(userMenuIcon, DEFAULT_TIMEOUT);
+        driverUtilities.waitForElementToBeClickable(userMenuIcon, MIN_TIMEOUT);
         Actions action = new Actions(getDriver());
         action.moveToElement(userMenuIcon).build().perform();
 

@@ -9,7 +9,7 @@ import uimappers.utils.WebDriverUtilities;
 
 import static driverprovider.DriverInstance.*;
 import static uimappers.constants.TimeoutConstants.DEFAULT_TIMEOUT;
-import static uimappers.constants.TimeoutConstants.VALUE_TIMEOUT;
+import static uimappers.constants.TimeoutConstants.MIN_TIMEOUT;
 
 public class UserMenu {
     private static final String USER_GREET_MESSAGE_XPATH = "//div[contains(@class, 'navbar-drop')]//p//strong[contains(text(), '%s')]";
@@ -37,13 +37,13 @@ public class UserMenu {
 
     public void clickOnOption(String userMenuOption) {
         String userMenuOptionXpath = String.format(USER_MENU_OPTION_XPATH, userMenuOption);
-        driverUtilities.waitForElementToBeVisible(By.xpath(userMenuOptionXpath), VALUE_TIMEOUT);
+        driverUtilities.waitForElementToBeVisible(By.xpath(userMenuOptionXpath), MIN_TIMEOUT);
         WebElement userMenuOptionElement = getDriver().findElement(By.xpath(userMenuOptionXpath));
 
         Actions action = new Actions(getDriver());
         action.moveToElement(userMenuOptionElement).perform();
 
-        driverUtilities.waitForElementToBeClickable(userMenuOptionElement, DEFAULT_TIMEOUT);
+        driverUtilities.waitForElementToBeClickable(userMenuOptionElement, MIN_TIMEOUT);
         userMenuOptionElement.click();
     }
 }

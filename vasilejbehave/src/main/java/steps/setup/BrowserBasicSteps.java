@@ -19,6 +19,7 @@ public class BrowserBasicSteps extends Steps {
     public BrowserBasicSteps(SharedData sharedData) {
         driverUtilities = new WebDriverUtilities();
         this.sharedData = sharedData;
+        sharedData.driver = DriverInstance.getDriver();
     }
 
     /**
