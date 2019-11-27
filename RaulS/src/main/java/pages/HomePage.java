@@ -93,4 +93,5 @@ public class HomePage {
         helper.clickLink("Infinite Scroll");
         return new InfiniteScrollPage(driver);
     }
+
 }
