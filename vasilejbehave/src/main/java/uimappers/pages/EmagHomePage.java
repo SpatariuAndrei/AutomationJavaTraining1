@@ -28,6 +28,11 @@ public class EmagHomePage {
         return topHorizontalMenu.clickOnLoginButton();
     }
 
+    public SearchResultsPage searchProduct(String product) {
+        topHorizontalMenu.search(product);
+        return new SearchResultsPage();
+    }
+
     public void openUserAccountMenu() {
         topHorizontalMenu.openUserMenu();
     }
@@ -49,5 +54,4 @@ public class EmagHomePage {
             }
         }
     }
-
 }

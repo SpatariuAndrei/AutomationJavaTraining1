@@ -7,7 +7,7 @@ import org.jbehave.core.io.StoryFinder;
 import org.jbehave.core.junit.JUnitStories;
 import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.StoryReporterBuilder;
-import utilities.SharedData;
+import bdd.utilities.SharedData;
 
 import java.util.List;
 

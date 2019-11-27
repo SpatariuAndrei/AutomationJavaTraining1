@@ -4,7 +4,7 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.steps.Steps;
 import org.junit.Assert;
-import utilities.SharedData;
+import bdd.utilities.SharedData;
 
 public class UserAccountSteps extends Steps {
     private SharedData sharedData;

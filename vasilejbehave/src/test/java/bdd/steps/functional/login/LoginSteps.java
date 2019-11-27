@@ -7,7 +7,7 @@ import org.jbehave.core.steps.Steps;
 import org.junit.Assert;
 import properties.PropertiesConfig;
 import uimappers.components.forms.CheckboxStatus;
-import utilities.SharedData;
+import bdd.utilities.SharedData;
 
 import static properties.PropertiesKeys.*;
 

@@ -7,7 +7,7 @@ import properties.PropertiesConfig;
 import uimappers.constants.UserMenuOptions;
 import uimappers.pages.EmagHomePage;
 import uimappers.utils.WebDriverUtilities;
-import utilities.SharedData;
+import bdd.utilities.SharedData;
 
 import static properties.PropertiesKeys.HOME_URL;
 import static uimappers.constants.TimeoutConstants.PAGE_LOADING_TIMEOUT;

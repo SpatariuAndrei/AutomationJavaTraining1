@@ -2,6 +2,7 @@ package tests;
 
 
 import bdd.StoryMapper;
+import bdd.steps.functional.useraccount.UserAccountSteps;
 import org.jbehave.core.io.StoryFinder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
@@ -16,7 +17,7 @@ public class Login extends StoryMapper {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        return new InstanceStepsFactory(configuration(), new BrowserBasicSteps(sharedData), new LoginSteps(sharedData));
+        return new InstanceStepsFactory(configuration(), new BrowserBasicSteps(sharedData), new LoginSteps(sharedData), new UserAccountSteps(sharedData));
     }
 
     @Override

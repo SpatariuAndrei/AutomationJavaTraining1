@@ -39,6 +39,9 @@ public class TopHorizontalMenu {
     @FindBy(xpath = "//input[@id = 'searchboxTrigger']")
     private WebElement searchBar;
 
+    @FindBy(xpath = "//div[@class='input-group-btn']//button[contains(@class,'searchbox-submit-button')]")
+    private WebElement searchButton;
+
     public TopHorizontalMenu() {
 
         driverUtilities = new WebDriverUtilities();
@@ -67,8 +70,13 @@ public class TopHorizontalMenu {
         return new WishListPage();
     }
 
-    public SearchResultsPage searchProducts(String product){
-        //todo continue search
-        return new SearchResultsPage();
+    public void search(String product){
+        driverUtilities.waitForElementToBeClickable(searchBar, MIN_TIMEOUT);
+        searchBar.click();
+        searchBar.clear();
+        searchBar.sendKeys(product);
+        driverUtilities.waitForElementAttributeToContain(searchBar, "value", product, MIN_TIMEOUT);
+
+        searchButton.click();
     }
 }

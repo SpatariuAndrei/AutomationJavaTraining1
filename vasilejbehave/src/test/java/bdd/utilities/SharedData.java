@@ -1,10 +1,8 @@
-package utilities;
+package bdd.utilities;
 
 import driverprovider.DriverInstance;
 import org.openqa.selenium.WebDriver;
-import uimappers.pages.EmagHomePage;
-import uimappers.pages.LoginPage;
-import uimappers.pages.UserHomePage;
+import uimappers.pages.*;
 
 public class SharedData {
     public WebDriver driver;
@@ -16,4 +14,6 @@ public class SharedData {
     public EmagHomePage homePage;
     public LoginPage loginPage;
     public UserHomePage userHomePage;
+    public SearchResultsPage resultsPage;
+    public WishListPage wishListPage;
 }
