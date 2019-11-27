@@ -5,6 +5,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import uimappers.pages.LoginPage;
+import uimappers.pages.SearchResultsPage;
 import uimappers.pages.WishListPage;
 import uimappers.utils.WebDriverUtilities;
 
@@ -63,5 +64,10 @@ public class TopHorizontalMenu {
         userFavoritePageElement.click();
 
         return new WishListPage();
+    }
+
+    public SearchResultsPage searchProducts(String product){
+        //todo continue search
+        return new SearchResultsPage();
     }
 }
