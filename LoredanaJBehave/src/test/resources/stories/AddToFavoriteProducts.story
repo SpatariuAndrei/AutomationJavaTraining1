@@ -1,8 +1,6 @@
-
 Scenario: the scope of this scenario is to add a product in favorite list
 
-Given I open eMAG home page
-When I search for iphone
+Given I search for book
 When I add the product to favorite
 Then I should see product in favorite products
 When I add a product to cart

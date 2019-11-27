@@ -1,11 +1,9 @@
 package tests;
 
 import bdd.BaseStory;
-
 import org.jbehave.core.io.StoryFinder;
 import steps.AddToFavoriteProductsSteps;
 import steps.BaseSteps;
-import steps.EmagLoginSteps;
 
 import java.util.List;
 
@@ -13,7 +11,7 @@ import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 
 public class AddToFavoriteProducts extends BaseStory {
     public AddToFavoriteProducts() {
-        addSteps(new BaseSteps(sharedData), new EmagLoginSteps(sharedData), new AddToFavoriteProductsSteps(sharedData));
+        addSteps(new BaseSteps(sharedData), new AddToFavoriteProductsSteps(sharedData));
     }
 
     @Override

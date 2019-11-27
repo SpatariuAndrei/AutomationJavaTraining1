@@ -1,7 +1,6 @@
 package tests;
 
 import bdd.BaseStory;
-
 import org.jbehave.core.io.StoryFinder;
 import steps.BaseSteps;
 import steps.SearchManyProductsSteps;

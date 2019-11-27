@@ -2,9 +2,13 @@ package steps;
 
 
 import driverprovider.DriverInstance;
-import org.jbehave.core.annotations.*;
+import org.jbehave.core.annotations.AfterScenario;
+import org.jbehave.core.annotations.AfterStory;
+import org.jbehave.core.annotations.BeforeScenario;
+import org.jbehave.core.annotations.BeforeStory;
 import org.jbehave.core.steps.Steps;
 import pages.EmagHomePage;
+import pages.FavoritesPage;
 import utils.DataFromPropertyFile;
 import utils.SharedData;
 import utils.WebDriverUtilities;
@@ -27,6 +31,7 @@ public class BaseSteps extends Steps {
         System.out.println("THIS IS MY BEFORE STORIES ");
         sharedData.driver.get(DataFromPropertyFile.getBaseURL());
         driverUtilities.waitUntilPageIsLoaded(60);
+        sharedData.driver.manage().window().maximize();
         sharedData.homePage = new EmagHomePage(sharedData);
         sharedData.loginPage = sharedData.homePage.navigateToLoginPage();
         String emailAddress = DataFromPropertyFile.getEmail();
@@ -38,7 +43,10 @@ public class BaseSteps extends Steps {
     }
 
     @AfterStory
-    public void teardown() {
+    public void teardown() throws InterruptedException {
+        sharedData.driver.navigate().to(DataFromPropertyFile.getFavoritesPage());
+        sharedData.favoritesPage = new FavoritesPage(sharedData);
+        sharedData.favoritesPage.deleteAllFavoriteProducts();
         DriverInstance.quitDriver();
     }
 
@@ -50,17 +58,8 @@ public class BaseSteps extends Steps {
     }
 
     @AfterScenario
-    public void afterScenario(){
+    public void afterScenario() {
         System.out.println("THIS IS MY AFTER SCENARIO ");
     }
 
-    /**
-     * Base steps
-     */
-    @Given("I open eMAG home page")
-    public void openEmagPage() {
-//        sharedData.driver.get(DataFromPropertyFile.getBaseURL());
-//        driverUtilities.waitUntilPageIsLoaded(60);
-//        sharedData.homePage = new EmagHomePage(sharedData);
-    }
 }

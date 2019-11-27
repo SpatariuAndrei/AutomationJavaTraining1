@@ -3,9 +3,12 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utils.*;
+import utils.Constants;
+import utils.Helper;
+import utils.SharedData;
+import utils.WebDriverUtilities;
 
-public class LoginPage  {
+public class LoginPage {
 
     //*********Page Variables*********
     private SharedData sharedData;
@@ -29,7 +32,7 @@ public class LoginPage  {
 
     //*********Methods*********
     public void enterEmail(String username) {
-        helper.setText(email,username);
+        helper.setText(email, username);
     }
 
     public void clickOnContinue() {
@@ -37,13 +40,13 @@ public class LoginPage  {
     }
 
     public EmagHomePage clickOnContinue2() {
-        webDriverUtilities.waitForElementToBeVisible(continueButton,Constants.TIMEOUT);
+        webDriverUtilities.waitForElementToBeVisible(continueButton, Constants.TIMEOUT);
         continueButton.click();
         return new EmagHomePage(sharedData);
     }
 
     public void enterPassword(String pass) {
         webDriverUtilities.waitForElementToBeClickable(password, Constants.TIMEOUT);
-        helper.setText(password,pass);
-      }
+        helper.setText(password, pass);
+    }
 }

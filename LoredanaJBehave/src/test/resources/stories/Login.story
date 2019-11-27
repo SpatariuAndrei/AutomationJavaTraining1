@@ -1,7 +1,6 @@
+Scenario: Login with valid eMAG credentials
 
-Secnario: Login with valid eMAG credentials
-Given I open eMAG home page
-And I navigate to login page
+Given I navigate to login page
 When I set email address field
 When I press Continua button
 When I set password field

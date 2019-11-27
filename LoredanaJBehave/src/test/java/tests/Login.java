@@ -1,9 +1,7 @@
 package tests;
 
 import bdd.BaseStory;
-
 import org.jbehave.core.io.StoryFinder;
-import steps.BaseSteps;
 import steps.EmagLoginSteps;
 
 import java.util.List;
@@ -12,7 +10,7 @@ import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 
 public class Login extends BaseStory {
     public Login() {
-        addSteps(new BaseSteps(sharedData), new EmagLoginSteps(sharedData));
+        addSteps(new EmagLoginSteps(sharedData));
     }
 
     @Override

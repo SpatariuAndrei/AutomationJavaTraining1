@@ -1,12 +1,12 @@
 package steps;
 
+import org.jbehave.core.annotations.AfterStory;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.steps.Steps;
-import utils.DataFromPropertyFile;
-import utils.Helper;
-import utils.SharedData;
+import pages.EmagHomePage;
+import utils.*;
 
 import static org.testng.Assert.assertEquals;
 
@@ -14,15 +14,20 @@ public class EmagLoginSteps extends Steps {
 
 
     private SharedData sharedData;
-    private Helper helper;
+    private WebDriverUtilities webDriverUtilities;
+
     public EmagLoginSteps(SharedData sharedData) {
         this.sharedData = sharedData;
-        helper = new Helper(sharedData);
+        webDriverUtilities = new WebDriverUtilities();
     }
 
 
     @Given("I navigate to login page")
     public void givenINavigateToLoginPage() {
+        sharedData.driver.get(DataFromPropertyFile.getBaseURL());
+        webDriverUtilities.waitUntilPageIsLoaded(Constants.TIMEOUT);
+        sharedData.homePage = new EmagHomePage(sharedData);
+        sharedData.driver.manage().window().maximize();
         sharedData.loginPage = sharedData.homePage.navigateToLoginPage();
     }
 
@@ -49,7 +54,7 @@ public class EmagLoginSteps extends Steps {
     }
 
     @When("I open user menu")
-    public void openUserMenu() throws InterruptedException {
+    public void openUserMenu() {
         sharedData.homePage.moveOverProfilePicture();
         sharedData.homePage.clickOnProfile();
     }
@@ -57,5 +62,10 @@ public class EmagLoginSteps extends Steps {
     @Then("I verify that user name $name is displayed")
     public void verifyName(String name) {
         assertEquals(sharedData.homePage.getStatus(), name, "Not logged in");
+    }
+
+    @AfterStory
+    public void quit() {
+        sharedData.driver.quit();
     }
 }

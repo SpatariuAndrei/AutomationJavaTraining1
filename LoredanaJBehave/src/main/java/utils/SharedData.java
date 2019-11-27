@@ -2,9 +2,8 @@ package utils;
 
 import driverprovider.DriverInstance;
 import org.openqa.selenium.WebDriver;
-import pages.CartPage;
-import pages.EmagHomePage;
-import pages.LoginPage;
+import pages.*;
+import pages.components.ProductResultsPage;
 
 public class SharedData {
     public WebDriver driver;
@@ -16,4 +15,8 @@ public class SharedData {
     public EmagHomePage homePage;
     public LoginPage loginPage;
     public CartPage cartPage;
+    public FavoritesPage favoritesPage;
+    public ProductResultsPage productResultsPage;
+    public OrderSummaryPage orderSummaryPage;
+    public OrderDetailsPage orderDetailsPage;
 }

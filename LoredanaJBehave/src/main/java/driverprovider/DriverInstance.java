@@ -30,7 +30,7 @@ public class DriverInstance {
         return driver;
     }
 
-    private static  void initChromeDriver(){
+    private static void initChromeDriver() {
         if (driver == null) {
             if (SO.equals("linux")) {
                 System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
@@ -47,14 +47,13 @@ public class DriverInstance {
         }
     }
 
-    private static void initFirefoxDriver(){
+    private static void initFirefoxDriver() {
         if (driver == null) {
             if (SO.equals("linux")) {
                 System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver");
             } else {
                 System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
             }
-
             driver = new FirefoxDriver();
             driver.manage().window().maximize();
         }

@@ -1,5 +1,6 @@
 package steps;
 
+import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -16,19 +17,18 @@ public class SearchManyProductsSteps extends Steps {
         this.sharedData = sharedData;
     }
 
-    @When("I search for $product")
-    public void whenISearchForProduct(@Named("product") String product) throws InterruptedException {
-        sharedData.homePage.searchProduct(product);
-        sharedData.homePage.clearSearchBar();
+    @Given("I search for $product")
+    public void whenISearchForProduct(@Named("product") String product) {
+        sharedData.productResultsPage = sharedData.homePage.searchProduct(product);
     }
 
-    @When("I add $product to favorites")
-    public void whenIAddProductToFavorites(@Named("product") String product) throws InterruptedException {
-        sharedData.homePage.addToFavorite();
+    @When("I add the product to favorites")
+    public void whenIAddProductToFavorites() {
+        sharedData.productResultsPage.addToFavorite();
     }
 
-    @Then("I check $product appears in favorites")
-    public void thenICheckProductAppearsInFavorites(@Named("product") String product) {
-        assertEquals(sharedData.homePage.getNotificationText(),"Produsul a fost adaugat la Favorite","product can not be added to favorite products list");
+    @Then("I verify the message")
+    public void thenICheckProductAppearsInFavorites() {
+        assertEquals(sharedData.homePage.getNotificationText(), "Produsul a fost adaugat la Favorite", "product can not be added to favorite products list");
     }
 }

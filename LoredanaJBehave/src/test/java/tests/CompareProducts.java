@@ -1,11 +1,9 @@
 package tests;
 
 import bdd.BaseStory;
-
 import org.jbehave.core.io.StoryFinder;
 import steps.BaseSteps;
 import steps.CompareProductsSteps;
-import steps.EmagLoginSteps;
 
 import java.util.List;
 

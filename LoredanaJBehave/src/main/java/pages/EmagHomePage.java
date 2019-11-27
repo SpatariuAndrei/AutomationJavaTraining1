@@ -1,9 +1,11 @@
 package pages;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import pages.components.ProductResultsPage;
 import utils.*;
 
 import static org.testng.AssertJUnit.assertTrue;
@@ -26,18 +28,9 @@ public class EmagHomePage extends LoadableComponent<EmagHomePage> {
     private WebElement name;
     @FindBy(xpath = "//input[@id='searchboxTrigger']")
     private WebElement searchBar;
-    @FindBy(xpath = "//div[@class='page-skin-inner']//div[1]//div[1]//div[1]//div[1]//div[2]//button[2]//i[1]")
-    private WebElement addToFavoriteButton;
     @FindBy(xpath = "//div[@class='ns-wrap-top-right']")
-    private  WebElement notificationFrame;
-    @FindBy(xpath = "//div[@class='page-skin-inner']//div[1]//div[1]//div[1]//div[3]//div[3]//form[1]//button[1]")
-    private WebElement addToCartButton;
-    @FindBy(css = "body.has-minimized-navbar:nth-child(2) div.main-container-outer:nth-child(8) div.main-container-inner:nth-child(4) div.main-container section.page-section:nth-child(1) div.page-skin-outer.skin-active div.container div.page-skin-inner div.clearfix.pad-btm-md div.page-container div.js-products-container.card-collection.list-view-updated.show-me-a-grid:nth-child(5) div.card-item.js-product-data:nth-child(1) div.card div.card-section-wrapper.js-section-wrapper div.card-section-btm div.card-body:nth-child(2) > p.product-new-price")
-    private WebElement firstPrice;
-    @FindBy(css = "body.has-minimized-navbar:nth-child(2) div.main-container-outer:nth-child(8) div.main-container-inner:nth-child(4) div.main-container section.page-section:nth-child(1) div.page-skin-outer.skin-active div.container div.page-skin-inner div.clearfix.pad-btm-md div.page-container div.js-products-container.card-collection.list-view-updated.show-me-a-grid:nth-child(5) div.card-item.js-product-data:nth-child(2) div.card div.card-section-wrapper.js-section-wrapper div.card-section-btm div.card-body:nth-child(2) > p.product-new-price")
-    private WebElement secondPrice;
-    @FindBy(xpath = "//a[@class='btn btn-primary btn-sm btn-block']")
-    private  WebElement detailsButton;
+    private WebElement notificationFrame;
+
 
     //*********Constructor*********
     public EmagHomePage(SharedData sharedData) {
@@ -70,8 +63,7 @@ public class EmagHomePage extends LoadableComponent<EmagHomePage> {
         return new LoginPage(sharedData);
     }
 
-    public void clickOnProfile() throws InterruptedException {
-       Thread.sleep(Constants.SLEEP);
+    public void clickOnProfile() {
         webDriverUtilities.waitForElementToBeVisible(myAccount, Constants.TIMEOUT);
         myAccount.click();
     }
@@ -84,43 +76,15 @@ public class EmagHomePage extends LoadableComponent<EmagHomePage> {
         return helper.getText(name);
     }
 
-    public void searchProduct(String product) throws InterruptedException {
-        Thread.sleep(Constants.SLEEP);
+    public ProductResultsPage searchProduct(String product) {
         webDriverUtilities.waitForElementToBeClickable(searchBar, Constants.TIMEOUT);
+        searchBar.clear();
         searchBar.sendKeys(product, Keys.ENTER);
+        return new ProductResultsPage(sharedData);
     }
-
-    public void addToFavorite() throws InterruptedException {
-        webDriverUtilities.waitForElementToBeClickable(addToFavoriteButton,Constants.TIMEOUT);
-        addToFavoriteButton.click();  }
 
     public String getNotificationText() {
         webDriverUtilities.waitForElementToBeVisible(notificationFrame, Constants.TIMEOUT);
-       return  helper.getText(notificationFrame);
-    }
-
-    public void addToCart() throws InterruptedException {
-        Thread.sleep(Constants.SLEEP);
-        webDriverUtilities.waitForElementToBeClickable(addToCartButton, Constants.TIMEOUT);
-        addToCartButton.click();
-    }
-
-    public CartPage clickOnCartDetails() {
-        webDriverUtilities.waitForElementToBeClickable(detailsButton,Constants.TIMEOUT);
-        detailsButton.click();
-        return new CartPage(sharedData);
-    }
-
-    public String getFirstPrice() {
-        webDriverUtilities.waitForElementToBeVisible(firstPrice, Constants.TIMEOUT);
-        return helper.getText(firstPrice);
-    }
-    public String getSecondPrice() {
-        webDriverUtilities.waitForElementToBeVisible(secondPrice, Constants.TIMEOUT);
-        return helper.getText(secondPrice);
-    }
-
-    public void clearSearchBar() {
-        searchBar.clear();
+        return helper.getText(notificationFrame);
     }
 }
