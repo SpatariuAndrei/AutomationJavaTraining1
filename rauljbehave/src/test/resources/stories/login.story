@@ -10,6 +10,6 @@ Given I open eMag home page
 And I navigate to login page
 And I set email field
 And I press Continua
-And I set Introdu parola contului tau eMag filed
+And I set Introdu parola contului tau eMag field
 When I press Continua to enter in home page
 Then I verify that user name Sicoie Raul is displayed

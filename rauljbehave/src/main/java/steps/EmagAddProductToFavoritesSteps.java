@@ -1,33 +1,29 @@
 package steps;
 
 import org.jbehave.core.annotations.*;
+import org.jbehave.core.steps.Steps;
 import pages.LoginPage;
-import pages.UserHomePage;
-import steps.setup.BaseSteps;
-import utilities.DataFromPropertyFile;
 import utilities.SharedData;
 
 import static junit.framework.TestCase.assertTrue;
 
-public class EmagAddProductToFavoritesSteps extends BaseSteps {
+public class EmagAddProductToFavoritesSteps extends Steps {
 
-    private DataFromPropertyFile propertyFile;
+    private SharedData sharedData;
 
     public EmagAddProductToFavoritesSteps(SharedData sharedData) {
-        super(sharedData);
-        propertyFile = new DataFromPropertyFile();
+        this.sharedData = sharedData;
     }
 
     @BeforeStory
     public void beforeSearchingAndAddingProductsToFavorites() {
         sharedData.loginPage = new LoginPage(sharedData.driver);
         sharedData.loginPage.get();
-        sharedData.loginPage.login();
+        sharedData.userHomePage = sharedData.loginPage.login();
     }
 
     @Given("I open eMag user home page")
     public void givenIOpenEmagUserHomePage() {
-        sharedData.userHomePage = new UserHomePage(sharedData.driver);
         sharedData.userHomePage.get();
     }
 

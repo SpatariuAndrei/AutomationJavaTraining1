@@ -5,19 +5,18 @@ import org.jbehave.core.annotations.Given;
 import org.openqa.selenium.support.PageFactory;
 import pages.HomePage;
 import pages.UserHomePage;
-import utilities.DataFromPropertyFile;
 import utilities.SharedData;
 
-public class LoginEndingStory extends StoryBase{
+public class LoginBrowserBasicSteps extends StoryBase {
 
-    private DataFromPropertyFile propertyFile;
+    private SharedData sharedData;
 
-    public LoginEndingStory(SharedData sharedData) {
+    public LoginBrowserBasicSteps(SharedData sharedData) {
         super(sharedData);
-        propertyFile = new DataFromPropertyFile();
+        this.sharedData = sharedData;
     }
 
-        @Given("I open eMag home page")
+    @Given("I open eMag home page")
     public void givenIOpenEmagHomePage() {
         sharedData.homePage = new HomePage(sharedData.driver);
         sharedData.homePage.get();

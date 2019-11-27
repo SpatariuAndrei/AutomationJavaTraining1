@@ -6,30 +6,36 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.constants.TimeConstants;
 import pages.utils.WebDriverUtilities;
 import utilities.DataFromPropertyFile;
 
 import static org.junit.Assert.assertEquals;
 
 public class UserHomePage extends LoadableComponent {
+
+    @FindBy(xpath = "//a[@id='my_account']")
+    private WebElement account;
+
+    @FindBy(linkText = "Log out")
+    private WebElement logOutButton;
+
+    @FindBy(xpath = "//div[contains(@class, 'navbar-toolbox')]")
+    private WebElement userMenuContainer;
+
+    @FindBy(xpath = "//*[@id=\"emg-input-autosuggest\"]")
+    private WebElement searchBar;
+
+    @FindBy(css = "#emg-category-menu-icon")
+    private WebElement searchButton;
+
     private static final String USER_GREET_MESSAGE_XPATH = "//strong[contains(text(), 'Sicoie Raul')]";
 
     private WebDriver driver;
-    @FindBy(xpath = "//a[@id='my_account']")
-    private WebElement account;
-    @FindBy(linkText = "Log out")
-    private WebElement logOutButton;
-    @FindBy(xpath = "//div[contains(@class, 'navbar-toolbox')]")
-    private WebElement userMenuContainer;
-    @FindBy(xpath = "//*[@id=\"emg-input-autosuggest\"]")
-    private WebElement searchBar;
-    @FindBy(css = "#emg-category-menu-icon")
-    private WebElement searchButton;
     private WebDriverUtilities driverUtilities;
     private DataFromPropertyFile propertyFile;
+    private TimeConstants constants;
 
     public UserHomePage(WebDriver driver) {
         this.driver = driver;
@@ -39,9 +45,7 @@ public class UserHomePage extends LoadableComponent {
     }
 
     public String getUser() {
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(userMenuContainer));
-
+        driverUtilities.waitForElementToBeVisible(userMenuContainer, constants.LONG_TIMEOUT);
         Actions action = new Actions(driver);
         action.moveToElement(account).build().perform();
         WebElement element = driver.findElement(By.xpath(USER_GREET_MESSAGE_XPATH));
@@ -55,9 +59,9 @@ public class UserHomePage extends LoadableComponent {
     }
 
     public SearchPage searchProduct(String product) {
-        driverUtilities.waitForElementToBeVisible(searchBar, 10);
+        driverUtilities.waitForElementToBeVisible(searchBar, constants.LONG_TIMEOUT);
         searchBar.sendKeys(product);
-        driverUtilities.waitForElementToBeClickable(searchButton, 10);
+        driverUtilities.waitForElementToBeClickable(searchButton, constants.LONG_TIMEOUT);
         searchButton.click();
         return new SearchPage(driver);
     }

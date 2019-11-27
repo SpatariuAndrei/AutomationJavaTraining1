@@ -3,15 +3,17 @@ package steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import steps.setup.BaseSteps;
+import org.jbehave.core.steps.Steps;
 import utilities.SharedData;
 
 import static junit.framework.TestCase.assertTrue;
 
-public class LoginSteps extends BaseSteps {
+public class LoginSteps extends Steps {
+
+    private SharedData sharedData;
 
     public LoginSteps(SharedData sharedData) {
-        super(sharedData);
+        this.sharedData = sharedData;
     }
 
     @Given("I navigate to login page")
@@ -29,8 +31,8 @@ public class LoginSteps extends BaseSteps {
         sharedData.loginPage.clickNext();
     }
 
-    @Given("I set Introdu parola contului tau eMag filed")
-    public void thenISetIntroduParolaContuluiTauEmagFiled() {
+    @Given("I set Introdu parola contului tau eMag field")
+    public void thenISetPasswordField() {
         sharedData.loginPage.enterUserPassword();
     }
 

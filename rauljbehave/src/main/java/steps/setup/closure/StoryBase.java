@@ -1,23 +1,20 @@
 package steps.setup.closure;
 
-import org.jbehave.core.annotations.AfterScenario;
+
 import org.jbehave.core.annotations.AfterStory;
 import org.jbehave.core.annotations.BeforeStory;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
-import pages.FavoritesPage;
-import steps.setup.BaseSteps;
+import org.jbehave.core.steps.Steps;
 import steps.setup.Browser;
 import utilities.DataFromPropertyFile;
 import utilities.SharedData;
 
-public class StoryBase extends BaseSteps {
+public class StoryBase extends Steps {
 
     private DataFromPropertyFile propertyFile;
+    private SharedData sharedData;
 
     public StoryBase(SharedData sharedData) {
-        super(sharedData);
+        this.sharedData = sharedData;
         propertyFile = new DataFromPropertyFile();
     }
 

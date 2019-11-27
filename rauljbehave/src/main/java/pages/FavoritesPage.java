@@ -15,24 +15,39 @@ import static org.junit.Assert.assertEquals;
 
 public class FavoritesPage extends LoadableComponent {
 
-    public static final String PRODUCT = ".//div[@class='product-card-account pad-sep-sm  ']";
-    private WebDriver driver;
-    private DataFromPropertyFile propertyFile;
+
     @FindBy(xpath = "//div[@class='page-container']")
     private WebElement productContainer;
+
     @FindBy(id = "list-of-favorites")
     private WebElement container;
+
+    @FindBy(xpath = "//a[@id='my_account']")
+    private WebElement myAccountButton;
+
+    @FindBy(linkText = "Log out")
+    private WebElement logOutButton;
+
+    public static final String PRODUCT = ".//div[@class='product-card-account pad-sep-sm  ']";
+
+    private WebDriver driver;
+    private DataFromPropertyFile propertyFile;
+    private List<WebElement> favoriteProductList;
+
+
+    @Override
+    protected void load() {
+        driver.get(propertyFile.getEmagFavoritesPage());
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        assertEquals(propertyFile.getEmagFavoritesPage(), driver.getCurrentUrl());
+    }
 
     public WebElement getContainer() {
         return container;
     }
-
-    @FindBy(xpath = "//a[@id='my_account']")
-    private WebElement myAccountButton;
-    @FindBy(linkText = "Log out")
-    private WebElement logOutButton;
-
-    private List<WebElement> favoriteProductList;
 
     public FavoritesPage(WebDriver driver) {
         this.driver = driver;
@@ -65,13 +80,4 @@ public class FavoritesPage extends LoadableComponent {
         logOutButton.click();
     }
 
-    @Override
-    protected void load() {
-        driver.get(propertyFile.getEmagFavoritesPage());
-    }
-
-    @Override
-    protected void isLoaded() throws Error {
-        assertEquals(propertyFile.getEmagFavoritesPage(), driver.getCurrentUrl());
-    }
 }

@@ -1,23 +1,21 @@
 package steps.setup.closure;
 
-import org.jbehave.core.annotations.*;
+import org.jbehave.core.annotations.AfterStory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import pages.FavoritesPage;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.UserHomePage;
-import steps.setup.Browser;
 import utilities.DataFromPropertyFile;
 import utilities.SharedData;
 
-public class FavoritePageEndingStory extends StoryBase {
+public class FavoriteBrowserBasicSteps extends StoryBase {
 
     private DataFromPropertyFile propertyFile;
+    private SharedData sharedData;
 
-    public FavoritePageEndingStory(SharedData sharedData) {
+    public FavoriteBrowserBasicSteps(SharedData sharedData) {
         super(sharedData);
+        this.sharedData = sharedData;
         propertyFile = new DataFromPropertyFile();
     }
 
@@ -34,7 +32,7 @@ public class FavoritePageEndingStory extends StoryBase {
                 item.findElement(By.cssSelector("button.remove-from-favorites")).click();
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         favoritesPage.logOut();
     }
