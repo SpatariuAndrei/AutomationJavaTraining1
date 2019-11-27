@@ -1,4 +1,4 @@
-package steps.functional.useraccount;
+package bdd.steps.functional.useraccount;
 
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;

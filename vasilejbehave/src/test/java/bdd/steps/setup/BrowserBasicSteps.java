@@ -1,4 +1,4 @@
-package steps.setup;
+package bdd.steps.setup;
 
 import driverprovider.DriverInstance;
 import org.jbehave.core.annotations.*;

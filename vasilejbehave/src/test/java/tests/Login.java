@@ -5,8 +5,8 @@ import bdd.StoryMapper;
 import org.jbehave.core.io.StoryFinder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
-import steps.functional.login.LoginSteps;
-import steps.setup.BrowserBasicSteps;
+import bdd.steps.functional.login.LoginSteps;
+import bdd.steps.setup.BrowserBasicSteps;
 
 import java.util.List;
 

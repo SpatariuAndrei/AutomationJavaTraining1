@@ -1,4 +1,4 @@
-package steps.functional.login;
+package bdd.steps.functional.login;
 
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
