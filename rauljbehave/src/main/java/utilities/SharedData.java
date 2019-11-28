@@ -20,4 +20,8 @@ public class SharedData {
     public ProductPage productPage;
 
     public SearchPage searchPage;
+
+    public DetailsOrderPage detailsOrderPage;
+
+    public SummaryOrderPage summaryOrderPage;
 }

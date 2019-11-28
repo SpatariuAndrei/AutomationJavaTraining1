@@ -2,11 +2,8 @@ package steps.setup.closure;
 
 import org.jbehave.core.annotations.AfterScenario;
 import org.jbehave.core.annotations.Given;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.PageFactory;
-import pages.CartPage;
 import pages.HomePage;
+import steps.setup.common.CleanUpCart;
 import utilities.DataFromPropertyFile;
 import utilities.SharedData;
 
@@ -14,6 +11,7 @@ public class AddProductToCartBrowserBasicSteps extends StoryBase {
 
     private DataFromPropertyFile propertyFile;
     private SharedData sharedData;
+    private CleanUpCart cleanUpCart;
 
     public AddProductToCartBrowserBasicSteps(SharedData sharedData) {
         super(sharedData);
@@ -38,19 +36,6 @@ public class AddProductToCartBrowserBasicSteps extends StoryBase {
 
     @AfterScenario
     public void afterScenario() {
-        CartPage cartPage = PageFactory.initElements(sharedData.driver, CartPage.class);
-        if (!(sharedData.driver.getCurrentUrl().equals(propertyFile.getEmagCartPage()))) {
-            sharedData.driver.navigate().to(propertyFile.getEmagCartPage());
-        }
-
-        try {
-            cartPage.getContainer();
-            for (WebElement item : cartPage.getItems()) {
-                item.findElement(By.xpath("//a[@class='emg-right remove-product btn-remove-product gtm_rp080219']")).click();
-            }
-        } catch (Exception e) {
-
-        }
-        cartPage.logOut();
+        cleanUpCart.clean(sharedData, propertyFile);
     }
 }

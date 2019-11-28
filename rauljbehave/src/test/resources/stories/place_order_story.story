@@ -12,7 +12,7 @@ And I search for Mouse
 When I found first product
 And I add it to my cart
 When I navigate to my cart
-Then check $product was added to cart
+Then check Mouse was added to cart
 Given I press Continua
 And I set the order details
 When I pres Pasul Urmator

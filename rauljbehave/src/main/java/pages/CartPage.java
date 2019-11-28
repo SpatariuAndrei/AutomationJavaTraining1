@@ -21,6 +21,9 @@ public class CartPage {
     @FindBy(xpath = "//div[@class='cart-widget cart-line']")
     private WebElement container;
 
+    @FindBy(xpath = "//div[@class='emg-col3']//a[1]")
+    private WebElement continueButton;
+
     public static final String PRODUCT = "//div[@class='line-item main-product']";
 
     private WebDriver driver;
@@ -56,6 +59,11 @@ public class CartPage {
             }
         }
         return productsNameFromCart;
+    }
+
+    public DetailsOrderPage goToOrderDetailsPage(){
+        continueButton.click();
+        return new DetailsOrderPage(driver);
     }
 
 }
