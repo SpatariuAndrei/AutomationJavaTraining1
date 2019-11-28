@@ -19,6 +19,9 @@ public class ProductPage {
     @FindBy(id = "my_cart")
     private WebElement myCart;
 
+    @FindBy(xpath = "//*[@id='masthead']")
+    private WebElement navigationBar;
+
     private WebDriver driver;
     private JavascriptExecutor js;
     private WebDriverUtilities driverUtilities;
@@ -41,6 +44,7 @@ public class ProductPage {
 
     public CartPage viewCart() {
         js.executeScript("window.scrollTo(0,0)");
+        driverUtilities.waitForElementToBeVisible(navigationBar,constants.LONG_TIMEOUT);
         driverUtilities.waitForElementToBeVisible(myCart, constants.LONG_TIMEOUT);
         driverUtilities.waitForElementToBeClickable(myCart, constants.LONG_TIMEOUT);
         myCart.click();

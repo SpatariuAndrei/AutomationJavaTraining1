@@ -81,6 +81,23 @@ public class SearchPage {
         return new ProductPage(driver);
     }
 
+    public ProductPage foundFirstProduct() {
+        driverUtilities.waitForElementToBeVisible(productsContainer, constants.LONG_TIMEOUT);
+        List<WebElement> list = productsContainer.findElements(By.xpath(PRODUCT));
+        for (WebElement webElement : list) {
+            try {
+                if (webElement.findElement(By.xpath(IN_STOCK)).getText().equals("în stoc")) {
+                    driverUtilities.waitForElementToBeClickable(favoriteButtonForProduct, constants.LONG_TIMEOUT);
+                    webElement.click();
+                    break;
+                }
+            } catch (Exception e) {
+                System.out.println("Not in stock");
+            }
+        }
+        return new ProductPage(driver);
+    }
+
     public FavoritesPage goToProductFavoritesPage() {
         favoriteButtonForPage.click();
         return new FavoritesPage(driver);
