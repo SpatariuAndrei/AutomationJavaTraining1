@@ -7,6 +7,7 @@ import static driverprovider.DriverInstance.getDriver;
 
 public class WishListPage {
 
+    // todo create cointainer component
     private static String PRODUCT_NAME_XPATH = "//div[contains(@class,'product-card-account')]//h2//span[text()='%s']";
 
 

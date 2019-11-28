@@ -27,16 +27,16 @@ public class StoryBasicsSteps extends Steps {
         sharedData.driver = DriverInstance.getDriver();
         sharedData.driver.get(PropertiesConfig.getProperty(HOME_URL));
         sharedData.homePage = new EmagHomePage();
-        //todo uncomment before commit
-//        sharedData.loginPage = sharedData.homePage.navigateToLoginPage();
-//        //set email
-//        String emailAddress = PropertiesConfig.getProperty(EMAG_EMAIL_ADDRESS);
-//        sharedData.loginPage.setLoginInputField("email", emailAddress);
-//        sharedData.loginPage.clickContinueValidPassword("Continua");
-//        //set password
-//        String passwordValue = PropertiesConfig.getProperty(EMAG_PASSWORD);
-//        sharedData.loginPage.setLoginInputField("password", passwordValue);
-//        sharedData.userHomePage = sharedData.loginPage.clickContinueValidPassword("Continua");
+
+        sharedData.loginPage = sharedData.homePage.navigateToLoginPage();
+        //set email
+        String emailAddress = PropertiesConfig.getProperty(EMAG_EMAIL_ADDRESS);
+        sharedData.loginPage.setLoginInputField("email", emailAddress);
+        sharedData.loginPage.clickContinueValidPassword("Continua");
+        //set password
+        String passwordValue = PropertiesConfig.getProperty(EMAG_PASSWORD);
+        sharedData.loginPage.setLoginInputField("password", passwordValue);
+        sharedData.userHomePage = sharedData.loginPage.clickContinueValidPassword("Continua");
     }
 
     @BeforeScenario
