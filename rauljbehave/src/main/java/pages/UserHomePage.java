@@ -44,6 +44,16 @@ public class UserHomePage extends LoadableComponent {
         propertyFile = new DataFromPropertyFile();
     }
 
+    @Override
+    protected void load() {
+        driver.get(propertyFile.getEmagUserHomePage());
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        assertEquals(propertyFile.getEmagUserHomePage(), driver.getCurrentUrl());
+    }
+
     public String getUser() {
         driverUtilities.waitForElementToBeVisible(userMenuContainer, constants.LONG_TIMEOUT);
         Actions action = new Actions(driver);
@@ -68,16 +78,5 @@ public class UserHomePage extends LoadableComponent {
 
     public UserHomePage goToUserHomePage() {
         return new UserHomePage(driver);
-    }
-
-
-    @Override
-    protected void load() {
-        driver.get(propertyFile.getEmagUserHomePage());
-    }
-
-    @Override
-    protected void isLoaded() throws Error {
-        assertEquals(propertyFile.getEmagUserHomePage(), driver.getCurrentUrl());
     }
 }
