@@ -1,50 +1,38 @@
 package steps;
 
-import driverprovider.DriverInstance;
-import org.jbehave.core.annotations.AfterStory;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import org.openqa.selenium.WebDriver;
-import pages.EmagHomePage;
-import pages.LoginPage;
+import org.jbehave.core.steps.Steps;
 import utils.Helper;
-
-import java.io.IOException;
+import utils.SharedData;
 
 import static org.testng.Assert.assertTrue;
 
-public class CompareProductsSteps {
+public class CompareProductsSteps extends Steps {
 
-    public static WebDriver driver;
-    public static EmagHomePage homePage;
-    public LoginPage loginPage;
-    private Helper helper = new Helper(driver);
+    private Helper helper;
     private Double firstPrice, secondPrice;
+    private SharedData sharedData;
+
+    public CompareProductsSteps(SharedData sharedData) {
+        this.sharedData = sharedData;
+        helper = new Helper(sharedData);
+    }
 
     @Given("I search for $product")
-    public void searchForProduct(String product) throws InterruptedException {
-        driver = DriverInstance.getDriver();
-        homePage = new EmagHomePage(driver);
-        driver.get("https://www.emag.ro/homepage?ref=emag_CMP-58472_top-products-by-reviews-noiembrie-2019");
-        homePage.searchProduct(product);
+    public void searchForProduct(String product) {
+        sharedData.productResultsPage = sharedData.homePage.searchProduct(product);
     }
 
     @When("I get the prices for two items")
-    public void comparePrices()  {
-        firstPrice =  Double.parseDouble(homePage.getFirstPrice().substring(0,homePage.getFirstPrice().length()-4));
-        secondPrice = Double.parseDouble(homePage.getSecondPrice().substring(0,homePage.getSecondPrice().length()-4));
-        System.out.println(firstPrice+ " here  "+ secondPrice + "");
+    public void comparePrices() {
+        firstPrice = Double.parseDouble(sharedData.productResultsPage.getFirstPrice().substring(0, sharedData.productResultsPage.getFirstPrice().length() - 4));
+        secondPrice = Double.parseDouble(sharedData.productResultsPage.getSecondPrice().substring(0, sharedData.productResultsPage.getSecondPrice().length() - 4));
     }
 
     @Then("Price of first item should be greater")
-    public void verifyPrices()  {
-        System.out.println((firstPrice<secondPrice) + " rezzzz");
-        assertTrue(firstPrice>secondPrice);
-    }
-
-    @AfterStory
-    public void afterStory() {
-        driver.quit();
+    public void verifyPrices() {
+        assertTrue(firstPrice < secondPrice);
     }
 }

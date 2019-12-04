@@ -1,86 +1,74 @@
 package pages;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.DataFromPropertyFile;
-import utils.Helper;
+import pages.components.ProductResultsPage;
+import utils.*;
 
 import static org.testng.AssertJUnit.assertTrue;
 
 public class EmagHomePage extends LoadableComponent<EmagHomePage> {
 
     //*********Page Variables*********
-    private WebDriver driver;
-    private WebDriverWait wait;
+    private SharedData sharedData;
     private Helper helper;
-    private DataFromPropertyFile dataFromPropertyFile = new DataFromPropertyFile();
-
-    //*********Constructor*********
-    public EmagHomePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        this.wait = new WebDriverWait(driver, 10);
-        helper = new Helper(driver);
-        dataFromPropertyFile = new DataFromPropertyFile();
-    }
-
+    private DataFromPropertyFile dataFromPropertyFile;
+    private WebDriverUtilities webDriverUtilities;
     //*********Web Elements*********
     @FindBy(xpath = "//span[contains(text(),'Contul meu')]")
-    WebElement myAccount;
+    private WebElement myAccount;
     @FindBy(xpath = "//a[@class='btn btn-primary btn-emag btn-sm']")
-    WebElement enterInMyAccount;
+    private WebElement enterInMyAccount;
     @FindBy(xpath = "div[@class='user-avatar user-avatar-ub']//div[@class='picture']")
-    WebElement profilePic;
-    @FindBy(xpath = "ul[@class='user-account-menu mrg-sep-sm']//a[contains(text(),'Favorite')]")
-    WebElement favorite;
+    private WebElement profilePic;
     @FindBy(xpath = "//p[@class='name']")
-    WebElement name;
-    @FindBy(xpath = "//input[@id='emg-input-autosuggest']")
-    WebElement searchBar;
-    @FindBy(xpath = "//div[6]//div[2]//div[1]//div[1]//div[2]//button[2]//i[1]")
-    WebElement addToFavoriteButtons;
+    private WebElement name;
+    @FindBy(xpath = "//input[@id='searchboxTrigger']")
+    private WebElement searchBar;
     @FindBy(xpath = "//div[@class='ns-wrap-top-right']")
-    WebElement notificationFrame;
-    @FindBy(xpath = "//div[@class='clearfix pad-btm-md']//div[3]//div[1]//div[1]//div[3]//div[3]//form[1]//button[1]")
-    WebElement addToCartButton;
-    @FindBy(css = "body.has-minimized-navbar:nth-child(2) div.main-container-outer:nth-child(8) div.main-container-inner:nth-child(4) div.main-container section.page-section:nth-child(1) div.page-skin-outer.skin-active div.container div.page-skin-inner div.clearfix.pad-btm-md div.page-container div.js-products-container.card-collection.list-view-updated.show-me-a-grid:nth-child(5) div.card-item.js-product-data:nth-child(1) div.card div.card-section-wrapper.js-section-wrapper div.card-section-btm div.card-body:nth-child(2) > p.product-new-price")
-    WebElement firstPrice;
-    @FindBy(css = "body.has-minimized-navbar:nth-child(2) div.main-container-outer:nth-child(8) div.main-container-inner:nth-child(4) div.main-container section.page-section:nth-child(1) div.page-skin-outer.skin-active div.container div.page-skin-inner div.clearfix.pad-btm-md div.page-container div.js-products-container.card-collection.list-view-updated.show-me-a-grid:nth-child(5) div.card-item.js-product-data:nth-child(2) div.card div.card-section-wrapper.js-section-wrapper div.card-section-btm div.card-body:nth-child(2) > p.product-new-price")
-    WebElement secondPrice;
+    private WebElement notificationFrame;
+
+
+    //*********Constructor*********
+    public EmagHomePage(SharedData sharedData) {
+        this.sharedData = sharedData;
+        PageFactory.initElements(sharedData.driver, this);
+        helper = new Helper(sharedData);
+        dataFromPropertyFile = new DataFromPropertyFile();
+        webDriverUtilities = new WebDriverUtilities();
+    }
 
     //*********Override LoadableComponent Methods*********
     @Override
     protected void load() {
-        this.driver.get(dataFromPropertyFile.getBaseURL());
+        this.sharedData.driver.get(dataFromPropertyFile.getBaseURL());
     }
 
     @Override
     protected void isLoaded() throws Error {
-        assertTrue("EmagHomePage is not loaded!", driver.getCurrentUrl().contains(dataFromPropertyFile.getBaseURL()));
+        assertTrue("EmagHomePage is not loaded!", sharedData.driver.getCurrentUrl().contains(dataFromPropertyFile.getBaseURL()));
     }
 
     //*********Methods*********
-    public void moveOverMyAccount() {
-       helper.moveOverElement(myAccount);
+    public LoginPage navigateToLoginPage() {
+        sharedData.loginPage = clickOnMyAccount();
+        return sharedData.loginPage;
     }
 
     public LoginPage clickOnMyAccount() {
         enterInMyAccount.click();
-        return new LoginPage(driver);
+        return new LoginPage(sharedData);
     }
 
-    public void clickOnProfile() throws InterruptedException {
-       Thread.sleep(3000);
-        WebDriverWait wait = new WebDriverWait(driver, 120);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath( "//span[contains(text(),'Contul meu')]"))).click();
+    public void clickOnProfile() {
+        webDriverUtilities.waitForElementToBeVisible(myAccount, Constants.TIMEOUT);
+        myAccount.click();
     }
 
     public void moveOverProfilePicture() {
-        //new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Contul meu')]"))).click();
         helper.moveOverElement(profilePic);
     }
 
@@ -88,49 +76,15 @@ public class EmagHomePage extends LoadableComponent<EmagHomePage> {
         return helper.getText(name);
     }
 
-    public String getMessage(String name) {
-         return driver.findElement(By.xpath("strong[contains(text(),'Salut, " + name + "')]")).getText();
-    }
-
-    public void clickOnFavoriteProducts() {
-        favorite.click();
-    }
-
-    public void searchProduct(String product) throws InterruptedException {
-        Thread.sleep(3000);
-        WebDriverWait wait = new WebDriverWait(driver, 120);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='searchboxTrigger']"))).sendKeys(product, Keys.ENTER);
-    }
-
-    public void addToFavorite() throws InterruptedException {
-        WebDriverWait wait3 = new WebDriverWait(driver, 10);
-        wait3.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='clearfix pad-btm-md']//div[3]//div[1]//div[1]//div[1]//div[2]//button[2]//i[1]"))).click();
+    public ProductResultsPage searchProduct(String product) {
+        webDriverUtilities.waitForElementToBeClickable(searchBar, Constants.TIMEOUT);
+        searchBar.clear();
+        searchBar.sendKeys(product, Keys.ENTER);
+        return new ProductResultsPage(sharedData);
     }
 
     public String getNotificationText() {
-        WebDriverWait wait = new WebDriverWait(driver, 120);
-        return wait.until(ExpectedConditions.visibilityOf(notificationFrame)).getText();
+        webDriverUtilities.waitForElementToBeVisible(notificationFrame, Constants.TIMEOUT);
+        return helper.getText(notificationFrame);
     }
-
-    public void addToCart() {
-        WebDriverWait wait2 = new WebDriverWait(driver, 10);
-        wait2.until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();
-    }
-
-    public CartPage clickOnCartDetails() {
-        WebDriverWait wait2 = new WebDriverWait(driver, 10);
-        wait2.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='btn btn-primary btn-sm btn-block']"))).click();
-        return new CartPage(driver);
-    }
-
-    public String getFirstPrice() {
-        WebDriverWait wait = new WebDriverWait(driver, 120);
-        return wait.until(ExpectedConditions.visibilityOf(firstPrice)).getText();
-    }
-    public String getSecondPrice() {
-        WebDriverWait wait = new WebDriverWait(driver, 120);
-        return wait.until(ExpectedConditions.visibilityOf(secondPrice)).getText();
-    }
-
-
 }
