@@ -1,24 +1,28 @@
 package uimappers.pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import uimappers.components.containers.WishlistContainer;
 
 import static driverprovider.DriverInstance.getDriver;
 
 public class WishListPage {
-
-    // todo create cointainer component
-    private static String PRODUCT_NAME_XPATH = "//div[contains(@class,'product-card-account')]//h2//span[text()='%s']";
+    
+    private WishlistContainer wishlistContainer;
 
 
     public WishListPage() {
-
+        wishlistContainer = new WishlistContainer();
     }
 
-    public boolean checkIfProductIsPresent(String productName) {
-        String productXpath = String.format(PRODUCT_NAME_XPATH, productName);
-        WebElement element = getDriver().findElement(By.xpath(productXpath));
-
-        return element.isDisplayed();
+    public boolean verifyIfProductIsPresent(String product) {
+        return  wishlistContainer.checkIfProductIsPresent(product);
     }
+
+    public void removeAllProductsFromWishList(){
+        wishlistContainer.removeProductsFromWhishList();
+    }
+
+    public int productsInWishList(){
+       return wishlistContainer.wishlistSize();
+    }
+
 }

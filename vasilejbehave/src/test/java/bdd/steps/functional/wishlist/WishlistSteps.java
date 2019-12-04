@@ -1,6 +1,7 @@
 package bdd.steps.functional.wishlist;
 
 import bdd.utilities.SharedData;
+import org.jbehave.core.annotations.AfterScenario;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.steps.Steps;
@@ -16,6 +17,6 @@ public class WishlistSteps extends Steps {
 
     @Then("I verify that $product was added to my wishlist")
     public void thenIVerifyThatProductWasAddedToMyWishlist(@Named("product") String product) {
-        Assert.assertTrue(sharedData.wishListPage.checkIfProductIsPresent(product));
+        Assert.assertTrue(sharedData.wishListPage.verifyIfProductIsPresent(product));
     }
 }

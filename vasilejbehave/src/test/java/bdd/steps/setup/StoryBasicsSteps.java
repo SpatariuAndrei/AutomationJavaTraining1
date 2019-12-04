@@ -44,8 +44,10 @@ public class StoryBasicsSteps extends Steps {
 
     }
 
-    @AfterScenario()
-    public void tearDownScenario(){}
+  @AfterScenario
+    public void tearDown2() throws Exception {
+        sharedData.wishListPage.removeAllProductsFromWishList();
+    }
 
     @AfterStory
     public void tearDown(){
