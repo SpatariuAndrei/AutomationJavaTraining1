@@ -3,24 +3,19 @@ package steps;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import steps.setup.BaseSteps;
+import org.jbehave.core.steps.Steps;
 import utilities.SharedData;
+
+import java.util.List;
 
 import static junit.framework.TestCase.assertTrue;
 
-public class AddProductToCartSteps extends BaseSteps {
+public class AddProductToCartSteps extends Steps {
+
+    private SharedData sharedData;
 
     public AddProductToCartSteps(SharedData sharedData) {
-        super(sharedData);
-    }
-
-    @Given("I log in")
-    public void givenILogIn() {
-        sharedData.loginPage = sharedData.homePage.navigateToLoginPage();
-        sharedData.loginPage.enterUserEmail();
-        sharedData.loginPage.clickNext();
-        sharedData.loginPage.enterUserPassword();
-        sharedData.loginPage.clickNextValidPassword();
+        this.sharedData = sharedData;
     }
 
     @Given("I search for $product")
@@ -30,7 +25,6 @@ public class AddProductToCartSteps extends BaseSteps {
 
     @When("I found first brad with discount badge")
     public void whenIFoundFirstBradWithDiscountBadge() {
-        sharedData.searchPage.getProductWithDiscountBadge().click();
         sharedData.productPage = sharedData.searchPage.foundProductWithDiscountBadge();
     }
 
@@ -44,9 +38,12 @@ public class AddProductToCartSteps extends BaseSteps {
         sharedData.cartPage = sharedData.productPage.viewCart();
     }
 
-    @Then("my cart should not be empty")
-    public void thenMyCartShouldNotBeEmpty() {
-        int numberOfProductsFromCart = sharedData.cartPage.getItems().size();
-        assertTrue(numberOfProductsFromCart != 0);
+    @Then("check $product was added to cart")
+    public void thenMyCartShouldNotBeEmpty(String product) {
+        List<String> elements = sharedData.cartPage.getElementsFromCart();
+        for (String elem : elements) {
+            String actualValue = elem.toString();
+            assertTrue(actualValue.contains(product));
+        }
     }
 }

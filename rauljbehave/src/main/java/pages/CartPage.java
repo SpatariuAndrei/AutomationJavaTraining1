@@ -6,21 +6,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.LoadableComponent;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CartPage extends LoadableComponent {
+public class CartPage {
 
-    private WebDriver driver;
-    public static final String PRODUCT = "//div[@class='line-item main-product']";
     @FindBy(xpath = "//a[@id='emg-user-menu']")
     private WebElement myAccountButton;
+
     @FindBy(linkText = "Log out")
     private WebElement logOutButton;
+
     @FindBy(xpath = "//div[@class='cart-widget cart-line']")
     private WebElement container;
 
+    @FindBy(xpath = "//div[@class='emg-col3']//a[1]")
+    private WebElement continueButton;
+
+    public static final String PRODUCT = "//div[@class='line-item main-product']";
+
+    private WebDriver driver;
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
@@ -42,15 +48,22 @@ public class CartPage extends LoadableComponent {
         return listOfItems;
     }
 
-    @Override
-    protected void load() {
-
+    public List<String> getElementsFromCart() {
+        List<String> productsNameFromCart = new ArrayList<>();
+        List<WebElement> elementList = getItems();
+        for (WebElement element : elementList) {
+            try {
+                productsNameFromCart.add(element.getText());
+            } catch (Exception e) {
+                System.out.println("Product not find in cart !");
+            }
+        }
+        return productsNameFromCart;
     }
 
-    @Override
-    protected void isLoaded() throws Error {
-
+    public DetailsOrderPage goToOrderDetailsPage(){
+        continueButton.click();
+        return new DetailsOrderPage(driver);
     }
-
 
 }

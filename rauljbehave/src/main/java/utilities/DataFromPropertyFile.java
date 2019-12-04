@@ -15,6 +15,8 @@ public class DataFromPropertyFile {
     private final String userEmail = envProperties.getProperty("emag.user.email");
     private final String userPassword = envProperties.getProperty("emag.user.password");
 
+    private final String userPersonalDataPath = envProperties.getProperty("emag.user.personaldata.location");
+
     public static String getEnvPropertiesFilename() {
         return ENV_PROPERTIES_FILENAME;
     }
@@ -53,5 +55,9 @@ public class DataFromPropertyFile {
 
     public String getEmagUserHomePage() {
         return emagUserHomePage;
+    }
+
+    public String getUserPersonalDataPath() {
+        return userPersonalDataPath;
     }
 }
