@@ -18,7 +18,7 @@ public class BaseSteps extends Steps {
     private WebDriverUtilities driverUtilities;
 
     public BaseSteps(SharedData sharedData) {
-        driverUtilities = new WebDriverUtilities();
+        driverUtilities = new WebDriverUtilities(sharedData);
         this.sharedData = sharedData;
     }
 

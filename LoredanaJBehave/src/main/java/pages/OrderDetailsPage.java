@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -9,6 +10,7 @@ public class OrderDetailsPage {
 
     private SharedData sharedData;
     private WebDriverUtilities webDriverUtilities;
+    private JavascriptExecutor js;
 
     @FindBy(xpath = "//div[@class='emg-col3']//a[1]")
     private WebElement continueButton;
@@ -22,7 +24,8 @@ public class OrderDetailsPage {
     public OrderDetailsPage(SharedData sharedData) {
         this.sharedData = sharedData;
         PageFactory.initElements(sharedData.driver, this);
-        webDriverUtilities = new WebDriverUtilities();
+        webDriverUtilities = new WebDriverUtilities(sharedData);
+        js = (JavascriptExecutor) sharedData.driver;
     }
 
     public void selectLivrarePrinCurier() {
@@ -31,6 +34,7 @@ public class OrderDetailsPage {
     }
 
     public void selectRambursLaCurier() {
+        js.executeScript("window.scrollTo(0,900)");
         webDriverUtilities.waitForElementToBeClickable(rambursLaCurier, Constants.TIMEOUT);
         rambursLaCurier.click();
     }

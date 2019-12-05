@@ -3,7 +3,7 @@ package utils;
 import driverprovider.DriverInstance;
 import org.openqa.selenium.WebDriver;
 import pages.*;
-import pages.components.ProductResultsPage;
+import pages.ProductResultsPage;
 
 public class SharedData {
     public WebDriver driver;

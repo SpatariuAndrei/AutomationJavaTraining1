@@ -18,7 +18,7 @@ public class EmagLoginSteps extends Steps {
 
     public EmagLoginSteps(SharedData sharedData) {
         this.sharedData = sharedData;
-        webDriverUtilities = new WebDriverUtilities();
+        webDriverUtilities = new WebDriverUtilities(sharedData);
     }
 
 

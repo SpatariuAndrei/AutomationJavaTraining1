@@ -4,20 +4,17 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.steps.Steps;
-import utils.Helper;
 import utils.SharedData;
 
 import static org.testng.Assert.assertTrue;
 
 public class CompareProductsSteps extends Steps {
 
-    private Helper helper;
     private Double firstPrice, secondPrice;
     private SharedData sharedData;
 
     public CompareProductsSteps(SharedData sharedData) {
         this.sharedData = sharedData;
-        helper = new Helper(sharedData);
     }
 
     @Given("I search for $product")
@@ -33,6 +30,6 @@ public class CompareProductsSteps extends Steps {
 
     @Then("Price of first item should be greater")
     public void verifyPrices() {
-        assertTrue(firstPrice < secondPrice);
+        assertTrue(firstPrice > secondPrice);
     }
 }

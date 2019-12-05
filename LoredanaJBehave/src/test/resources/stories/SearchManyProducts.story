@@ -6,6 +6,6 @@ Then I verify the message
 
 Examples:
 |product|
-|book|
-|Samsung|
-|bosch|
+|phone|
+|macbook air|
+|fard|

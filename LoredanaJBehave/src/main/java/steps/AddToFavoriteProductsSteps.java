@@ -4,7 +4,6 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.jbehave.core.steps.Steps;
-import utils.Helper;
 import utils.SharedData;
 
 import static org.testng.Assert.assertEquals;
@@ -12,13 +11,10 @@ import static org.testng.Assert.assertTrue;
 
 public class AddToFavoriteProductsSteps extends Steps {
 
-    private Helper helper;
-
     private SharedData sharedData;
 
     public AddToFavoriteProductsSteps(SharedData sharedData) {
         this.sharedData = sharedData;
-        helper = new Helper(sharedData);
     }
 
     @Given("I search for $name")
@@ -52,8 +48,7 @@ public class AddToFavoriteProductsSteps extends Steps {
     }
 
     @Then("I should receive a message")
-    public void verifyMessage(String message) {
-        sharedData.productResultsPage.addToFavorite();
+    public void verifyMessage() {
         assertTrue(sharedData.cartPage.isMessageDisplayed());
     }
 }

@@ -4,7 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.Constants;
-import utils.Helper;
 import utils.SharedData;
 import utils.WebDriverUtilities;
 
@@ -12,7 +11,6 @@ public class LoginPage {
 
     //*********Page Variables*********
     private SharedData sharedData;
-    private Helper helper;
     private WebDriverUtilities webDriverUtilities;
     //*********Web Elements*********
     @FindBy(xpath = "//button[@class='gui-btn auth-btn-primary auth-submit']")
@@ -26,13 +24,12 @@ public class LoginPage {
     public LoginPage(SharedData sharedData) {
         this.sharedData = sharedData;
         PageFactory.initElements(sharedData.driver, this);
-        helper = new Helper(sharedData);
-        webDriverUtilities = new WebDriverUtilities();
+        webDriverUtilities = new WebDriverUtilities(sharedData);
     }
 
     //*********Methods*********
     public void enterEmail(String username) {
-        helper.setText(email, username);
+        webDriverUtilities.setText(email, username);
     }
 
     public void clickOnContinue() {
@@ -47,6 +44,6 @@ public class LoginPage {
 
     public void enterPassword(String pass) {
         webDriverUtilities.waitForElementToBeClickable(password, Constants.TIMEOUT);
-        helper.setText(password, pass);
+        webDriverUtilities.setText(password, pass);
     }
 }

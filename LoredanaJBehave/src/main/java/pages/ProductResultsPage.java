@@ -1,11 +1,10 @@
-package pages.components;
+package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pages.CartPage;
 import utils.Constants;
-import utils.Helper;
 import utils.SharedData;
 import utils.WebDriverUtilities;
 
@@ -14,15 +13,15 @@ public class ProductResultsPage {
     //*********Page Variables*********
     private SharedData sharedData;
     private WebDriverUtilities webDriverUtilities;
-    private Helper helper;
+    private JavascriptExecutor js;
     //*********Web Elements*********
-    @FindBy(xpath = "//div[@class='page-skin-inner']//div[1]//div[1]//div[1]//div[1]//div[2]//button[2]//i[1]")
+    @FindBy(xpath = " (//*[contains(@class,'em em-fav gtm_xik37z')])[1]")
     private WebElement addToFavoriteButton;
-    @FindBy(xpath = "//div[@class='page-skin-inner']//div[1]//div[1]//div[1]//div[3]//div[3]//form[1]//button[1]")
+    @FindBy(xpath = "(//*[contains(@class,'yeahIWantThisProduct')])[1]")
     private WebElement addToCartButton;
-    @FindBy(xpath = "//div[@class='clearfix pad-btm-md']//div[3]//div[1]//div[1]//div[3]//div[2]//p[2]")
+    @FindBy(xpath = "(//*[contains(@class,'product-new-price')])[1]")
     private WebElement firstPrice;
-    @FindBy(xpath = "//div[@class='page-container']//div[2]//div[1]//div[1]//div[3]//div[2]//p[2]")
+    @FindBy(xpath = "(//*[contains(@class,'product-new-price')])[2]")
     private WebElement secondPrice;
     @FindBy(xpath = "//a[@class='btn btn-primary btn-sm btn-block']")
     private WebElement detailsButton;
@@ -31,16 +30,19 @@ public class ProductResultsPage {
     public ProductResultsPage(SharedData sharedData) {
         this.sharedData = sharedData;
         PageFactory.initElements(sharedData.driver, this);
-        webDriverUtilities = new WebDriverUtilities();
-        helper = new Helper(sharedData);
+        webDriverUtilities = new WebDriverUtilities(sharedData);
+        js = (JavascriptExecutor) sharedData.driver;
     }
 
     public void addToFavorite() {
+        js.executeScript("window.scrollTo(0,150)");
+        webDriverUtilities.waitForElementToBeVisible(addToFavoriteButton, Constants.TIMEOUT);
         webDriverUtilities.waitForElementToBeClickable(addToFavoriteButton, Constants.TIMEOUT);
         addToFavoriteButton.click();
     }
 
     public void addToCart() {
+        js.executeScript("window.scrollTo(0,150)");
         webDriverUtilities.waitForElementToBeClickable(addToCartButton, Constants.TIMEOUT);
         addToCartButton.click();
     }
@@ -53,11 +55,11 @@ public class ProductResultsPage {
 
     public String getFirstPrice() {
         webDriverUtilities.waitForElementToBeVisible(firstPrice, Constants.TIMEOUT);
-        return helper.getText(firstPrice);
+        return webDriverUtilities.getText(firstPrice);
     }
 
     public String getSecondPrice() {
         webDriverUtilities.waitForElementToBeVisible(secondPrice, Constants.TIMEOUT);
-        return helper.getText(secondPrice);
+        return webDriverUtilities.getText(secondPrice);
     }
 }

@@ -15,7 +15,8 @@ public class CartPage {
     //*********Web Elements*********
     @FindBy(xpath = "//a[@class='emg-right remove-product btn-remove-product gtm_rp080219']")
     private WebElement deleteProductButton;
-    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]")
+    //@FindBy(xpath = "//div[@class='title']")
+    @FindBy(css = "div.title")
     private WebElement status;
     @FindBy(xpath = "//div[@class='emg-col3']//a[1]")
     private WebElement continuaButton;
@@ -26,16 +27,18 @@ public class CartPage {
     public CartPage(SharedData sharedData) {
         this.sharedData = sharedData;
         PageFactory.initElements(sharedData.driver, this);
-        webDriverUtilities = new WebDriverUtilities();
+        webDriverUtilities = new WebDriverUtilities(sharedData);
     }
 
     //*********Methods*********
     public void deleteProductFromCart() {
         webDriverUtilities.waitForElementToBeClickable(deleteProductButton, Constants.TIMEOUT);
+        deleteProductButton.click();
     }
 
     public boolean isMessageDisplayed() {
         webDriverUtilities.waitForElementToBeVisible(status, Constants.TIMEOUT);
+        webDriverUtilities.waitForElementToBeClickable(status, Constants.TIMEOUT);
         return status.isDisplayed();
     }
 

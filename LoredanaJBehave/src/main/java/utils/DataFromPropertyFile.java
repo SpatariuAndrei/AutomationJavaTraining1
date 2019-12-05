@@ -10,6 +10,7 @@ public class DataFromPropertyFile {
     private static final String email = envProperties.getProperty("email");
     private static final String password = envProperties.getProperty("password");
     private static final String favoritesPage = envProperties.getProperty("favoritesPage");
+    private static final String signUpPage = envProperties.getProperty("signUpPage");
 
     //*********Methods*********
     public static String getBaseURL() {
@@ -34,5 +35,9 @@ public class DataFromPropertyFile {
 
     public static String getFavoritesPage() {
         return favoritesPage;
+    }
+
+    public static String getSignUpPage() {
+        return signUpPage;
     }
 }

@@ -16,7 +16,7 @@ public class OrderSummaryPage {
     public OrderSummaryPage(SharedData sharedData) {
         this.sharedData = sharedData;
         PageFactory.initElements(sharedData.driver, this);
-        webDriverUtilities = new WebDriverUtilities();
+        webDriverUtilities = new WebDriverUtilities(sharedData);
     }
 
     public boolean verifyMessage() {
