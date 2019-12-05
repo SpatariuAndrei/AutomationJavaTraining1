@@ -2,6 +2,8 @@ package steps;
 
 import org.jbehave.core.annotations.*;
 import org.jbehave.core.steps.Steps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utils.*;
 
 import java.io.IOException;
@@ -15,6 +17,7 @@ public class UserDetailsSteps extends Steps {
     private WebDriverUtilities webDriverUtilities;
     private LinkedHashMap<String,String> map;
     private String selectedOption;
+    private static final Logger logger = LoggerFactory.getLogger(UserDetailsSteps.class);
 
     public UserDetailsSteps(SharedData sharedData) {
         this.sharedData = sharedData;
@@ -54,5 +57,6 @@ public class UserDetailsSteps extends Steps {
         assertTrue(sharedData.homePage.isNickNameFieldCompleted(), "nickname not completed");
         assertTrue(sharedData.homePage.isFixFieldCompleted(), "fix phone not completed");
         assertTrue(sharedData.homePage.isDropdownOptionSelected(selectedOption), "Bad dropdown option");
+        logger.info("Example log from {}", UserDetailsSteps.class.getSimpleName() + "; All data was verified after populating the fields");
     }
 }
