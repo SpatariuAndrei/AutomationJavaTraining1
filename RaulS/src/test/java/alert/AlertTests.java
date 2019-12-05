@@ -33,6 +33,6 @@ public class AlertTests extends BaseTests {
         alertsPage.triggerPrompt();
         alertsPage.alertSetPromptInput(TEXT);
         alertsPage.alertClickToAccept();
-        assertEquals(alertsPage.getAlertResult(), "You entered:9 " + TEXT, "Result incorrect");
+        assertEquals(alertsPage.getAlertResult(), "You entered: " + TEXT, "Result incorrect");
     }
 }
