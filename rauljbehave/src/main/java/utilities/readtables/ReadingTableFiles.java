@@ -1,5 +1,7 @@
 package utilities.readtables;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utilities.DataFromPropertyFile;
 
 import java.io.BufferedReader;
@@ -11,6 +13,8 @@ import java.util.HashMap;
 public class ReadingTableFiles {
 
     private HashMap<String, String> dataMap;
+
+    private static final Logger logger = LoggerFactory.getLogger(ReadingTableFiles.class);
 
     //read from text file and place into a map
     public HashMap<String, String> readDataTables(DataFromPropertyFile propertyFile) {
@@ -27,14 +31,14 @@ public class ReadingTableFiles {
                     String value = parts[1];
                     dataMap.put(key, value);
                 } else {
-                    System.out.println("ignoring line:" + line);
+                    logger.info("ignoring line:" + line);
                 }
             }
             reader.close();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error("File not found: " + e.getMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         return dataMap;
     }

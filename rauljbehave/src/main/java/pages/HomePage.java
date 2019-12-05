@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 public class HomePage extends LoadableComponent {
 
-    @FindBy(id = "searchboxTrigger")
+    @FindBy(id = "searchboxTriggerQQQQQQQ")
     private WebElement searchBar;
 
     @FindBy(xpath = "//button[@class='btn btn-default searchbox-submit-button']")
