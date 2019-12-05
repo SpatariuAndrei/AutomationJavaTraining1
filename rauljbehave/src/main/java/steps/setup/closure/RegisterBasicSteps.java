@@ -17,6 +17,6 @@ public class RegisterBasicSteps extends AddProductToCartBrowserBasicSteps {
 
     @AfterScenario
     public void afterScenario() {
-
+        sharedData.personalDataPage.logOut();
     }
 }

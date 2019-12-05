@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
-import pages.constants.TimeConstants;
+import utilities.constants.TimeConstants;
 import pages.utils.WebDriverUtilities;
 import utilities.DataFromPropertyFile;
 
@@ -22,7 +22,6 @@ public class LoginPage extends LoadableComponent {
     @FindBy(id = "password")
     private WebElement passwordTextField;
 
-    private TimeConstants constants;
     private WebDriver driver;
     private WebDriverUtilities driverUtilities;
     private DataFromPropertyFile propertyFile;
@@ -53,19 +52,19 @@ public class LoginPage extends LoadableComponent {
     }
 
     public void enterUserEmail() {
-        driverUtilities.waitForElementToBeClickable(emailTextField, constants.LONG_TIMEOUT);
+        driverUtilities.waitForElementToBeClickable(emailTextField, TimeConstants.LONG_TIMEOUT);
         emailTextField.clear();
         emailTextField.click();
         emailTextField.sendKeys(propertyFile.getUserEmail());
-        driverUtilities.waitForElementAttributeToContainValue(emailTextField, "value", propertyFile.getUserEmail(), constants.SHORT_TIMEOUT);
+        driverUtilities.waitForElementAttributeToContainValue(emailTextField, "value", propertyFile.getUserEmail(), TimeConstants.SHORT_TIMEOUT);
     }
 
     public void enterUserPassword() {
-        driverUtilities.waitForElementToBeClickable(passwordTextField, constants.LONG_TIMEOUT);
+        driverUtilities.waitForElementToBeClickable(passwordTextField, TimeConstants.LONG_TIMEOUT);
         passwordTextField.clear();
         passwordTextField.click();
         passwordTextField.sendKeys(propertyFile.getUserPassword());
-        driverUtilities.waitForElementAttributeToContainValue(passwordTextField, "value", propertyFile.getUserPassword(), constants.SHORT_TIMEOUT);
+        driverUtilities.waitForElementAttributeToContainValue(passwordTextField, "value", propertyFile.getUserPassword(), TimeConstants.SHORT_TIMEOUT);
     }
 
     public void clickNext() {

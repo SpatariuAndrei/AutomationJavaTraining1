@@ -20,14 +20,13 @@ public class FavoriteBrowserBasicSteps extends StoryBase {
     }
 
     @AfterStory
-    public void afterScenario() {
+    public void afterStory() {
         FavoritesPage favoritesPage = PageFactory.initElements(sharedData.driver, FavoritesPage.class);
         if (!(sharedData.driver.getCurrentUrl().equals(propertyFile.getEmagFavoritesPage()))) {
             sharedData.driver.navigate().to(propertyFile.getEmagFavoritesPage());
         }
 
         try {
-            favoritesPage.getContainer();
             for (WebElement item : favoritesPage.getItems()) {
                 item.findElement(By.cssSelector("button.remove-from-favorites")).click();
             }

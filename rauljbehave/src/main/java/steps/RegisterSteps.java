@@ -1,9 +1,11 @@
 package steps;
 
-import org.jbehave.core.annotations.*;
+import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.When;
 import org.jbehave.core.steps.Steps;
-import pages.UserHomePage;
 import utilities.SharedData;
+
+import java.io.IOException;
 
 public class RegisterSteps extends Steps {
 
@@ -25,11 +27,15 @@ public class RegisterSteps extends Steps {
 
     @When("I populate my account with data")
     public void whenIPopulateAccount() {
-
+        try {
+            sharedData.personalDataPage.populateEmagPage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Then("I check that data was populated correctly")
     public void thenICheckData() {
-
+        sharedData.personalDataPage.checkIfDataIsCorrect();
     }
 }

@@ -5,8 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pages.constants.TimeConstants;
+import utilities.constants.TimeConstants;
 import pages.utils.WebDriverUtilities;
+import utilities.scroll.Scroll;
 
 public class SummaryOrderPage {
 
@@ -21,7 +22,6 @@ public class SummaryOrderPage {
 
     private WebDriver driver;
     private WebDriverUtilities driverUtilities;
-    private TimeConstants constants;
     private JavascriptExecutor js;
 
     public SummaryOrderPage(WebDriver driver) {
@@ -32,13 +32,13 @@ public class SummaryOrderPage {
     }
 
     public String getTotalCostToPay() {
-        driverUtilities.waitForElementToBeVisible(summaryContainer, constants.SHORT_TIMEOUT);
+        driverUtilities.waitForElementToBeVisible(summaryContainer, TimeConstants.SHORT_TIMEOUT);
         return orderTotalPrice.getText();
     }
 
     public CartPage goToCartPage() {
-        js.executeScript("window.scrollTo(0,0)");
-        driverUtilities.waitForElementToBeClickable(cartButton, constants.SHORT_TIMEOUT);
+        Scroll.scrollToElement(cartButton,driver);
+        driverUtilities.waitForElementToBeClickable(cartButton, TimeConstants.SHORT_TIMEOUT);
         cartButton.click();
         return new CartPage(driver);
     }

@@ -7,6 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import utilities.DataFromPropertyFile;
 
 import java.util.List;
@@ -14,10 +16,6 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class FavoritesPage extends LoadableComponent {
-
-
-    @FindBy(xpath = "//div[@class='page-container']")
-    private WebElement productContainer;
 
     @FindBy(id = "list-of-favorites")
     private WebElement container;
@@ -28,12 +26,12 @@ public class FavoritesPage extends LoadableComponent {
     @FindBy(linkText = "Log out")
     private WebElement logOutButton;
 
-    public static final String PRODUCT = ".//div[@class='product-card-account pad-sep-sm  ']";
+    private static final String PRODUCT = ".//div[@class='product-card-account pad-sep-sm  ']";
 
     private WebDriver driver;
     private DataFromPropertyFile propertyFile;
-    private List<WebElement> favoriteProductList;
 
+    private static final Logger logger = LoggerFactory.getLogger(FavoritesPage.class);
 
     @Override
     protected void load() {
@@ -43,10 +41,6 @@ public class FavoritesPage extends LoadableComponent {
     @Override
     protected void isLoaded() throws Error {
         assertEquals(propertyFile.getEmagFavoritesPage(), driver.getCurrentUrl());
-    }
-
-    public WebElement getContainer() {
-        return container;
     }
 
     public FavoritesPage(WebDriver driver) {
@@ -68,7 +62,7 @@ public class FavoritesPage extends LoadableComponent {
                     return true;
                 }
             } catch (Exception e) {
-                System.out.println("Product not find!");
+                logger.info("Product not find!");
             }
         }
         return false;

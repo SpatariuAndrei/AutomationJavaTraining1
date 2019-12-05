@@ -7,7 +7,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
-import pages.constants.TimeConstants;
+import utilities.constants.TimeConstants;
 import pages.utils.WebDriverUtilities;
 import utilities.DataFromPropertyFile;
 
@@ -35,7 +35,6 @@ public class UserHomePage extends LoadableComponent {
     private WebDriver driver;
     private WebDriverUtilities driverUtilities;
     private DataFromPropertyFile propertyFile;
-    private TimeConstants constants;
 
     public UserHomePage(WebDriver driver) {
         this.driver = driver;
@@ -55,7 +54,7 @@ public class UserHomePage extends LoadableComponent {
     }
 
     public String getUser() {
-        driverUtilities.waitForElementToBeVisible(userMenuContainer, constants.LONG_TIMEOUT);
+        driverUtilities.waitForElementToBeVisible(userMenuContainer, TimeConstants.LONG_TIMEOUT);
         Actions action = new Actions(driver);
         action.moveToElement(account).build().perform();
         WebElement element = driver.findElement(By.xpath(USER_GREET_MESSAGE_XPATH));
@@ -69,9 +68,9 @@ public class UserHomePage extends LoadableComponent {
     }
 
     public SearchPage searchProduct(String product) {
-        driverUtilities.waitForElementToBeVisible(searchBar, constants.LONG_TIMEOUT);
+        driverUtilities.waitForElementToBeVisible(searchBar, TimeConstants.LONG_TIMEOUT);
         searchBar.sendKeys(product);
-        driverUtilities.waitForElementToBeClickable(searchButton, constants.LONG_TIMEOUT);
+        driverUtilities.waitForElementToBeClickable(searchButton, TimeConstants.LONG_TIMEOUT);
         searchButton.click();
         return new SearchPage(driver);
     }

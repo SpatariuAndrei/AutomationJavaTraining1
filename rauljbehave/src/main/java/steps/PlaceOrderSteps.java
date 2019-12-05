@@ -6,7 +6,7 @@ import org.jbehave.core.annotations.When;
 import org.jbehave.core.steps.Steps;
 import utilities.SharedData;
 
-import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertNotNull;
 
 public class PlaceOrderSteps extends Steps {
 
@@ -29,7 +29,6 @@ public class PlaceOrderSteps extends Steps {
     @Given("I set the order details")
     public void givenISetTheOrderDetails() {
         sharedData.detailsOrderPage.setDeliveryDetails();
-        sharedData.detailsOrderPage.setBillingDetails();
         sharedData.detailsOrderPage.payWayDetails();
     }
 
@@ -41,6 +40,6 @@ public class PlaceOrderSteps extends Steps {
     @Then("I verify that message Total Comanda has an amount of money")
     public void verifyAmountOfMoney() {
         String currentValue = sharedData.summaryOrderPage.getTotalCostToPay();
-        assertTrue(currentValue != null);
+        assertNotNull(currentValue);
     }
 }

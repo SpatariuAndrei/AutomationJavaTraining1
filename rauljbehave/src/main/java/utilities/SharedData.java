@@ -26,4 +26,5 @@ public class SharedData {
     public SummaryOrderPage summaryOrderPage;
 
     public PersonalDataPage personalDataPage;
+
 }

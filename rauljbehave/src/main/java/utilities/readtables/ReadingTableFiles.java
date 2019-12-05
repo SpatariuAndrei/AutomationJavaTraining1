@@ -1,4 +1,4 @@
-package pages.readtables;
+package utilities.readtables;
 
 import utilities.DataFromPropertyFile;
 

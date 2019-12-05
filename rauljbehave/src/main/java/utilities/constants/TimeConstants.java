@@ -1,4 +1,4 @@
-package pages.constants;
+package utilities.constants;
 
 public class TimeConstants {
 

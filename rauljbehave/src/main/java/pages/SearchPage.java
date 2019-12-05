@@ -6,8 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pages.constants.TimeConstants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.utils.WebDriverUtilities;
+import utilities.constants.TimeConstants;
+import utilities.scroll.Scroll;
 
 import java.util.List;
 
@@ -19,9 +22,6 @@ public class SearchPage {
     @FindBy(xpath = ".//div[@id='card_grid']")
     private WebElement productsContainer;
 
-    @FindBy(css = "button.btn-emag:nth-child(1)")
-    private WebElement buyButton;
-
     @FindBy(xpath = "//a[@id='my_wishlist']")
     private WebElement favoriteButtonForPage;
 
@@ -31,8 +31,9 @@ public class SearchPage {
 
     private JavascriptExecutor js;
     private WebDriverUtilities driverUtilities;
-    private TimeConstants constants;
     private WebDriver driver;
+
+    private static final Logger logger = LoggerFactory.getLogger(SearchPage.class);
 
     public SearchPage(WebDriver driver) {
         this.driver = driver;
@@ -42,23 +43,23 @@ public class SearchPage {
     }
 
     public void addToFavorite() {
-        driverUtilities.waitForElementToBeVisible(productsContainer, constants.LONG_TIMEOUT);
+        driverUtilities.waitForElementToBeVisible(productsContainer, TimeConstants.LONG_TIMEOUT);
         List<WebElement> list = productsContainer.findElements(By.xpath(PRODUCT));
         for (WebElement webElement : list) {
             try {
                 if (webElement.findElement(By.xpath(IN_STOCK)).getText().equals("în stoc")) {
-                    driverUtilities.waitForElementToBeClickable(favoriteButtonForProduct, constants.LONG_TIMEOUT);
+                    driverUtilities.waitForElementToBeClickable(favoriteButtonForProduct, TimeConstants.LONG_TIMEOUT);
                     favoriteButtonForProduct.click();
                     break;
                 }
             } catch (Exception e) {
-                System.out.println("Not in stock");
+                logger.info("Product wanted to add to favorites is not in stock!");
             }
         }
     }
 
     public WebElement getProductWithDiscountBadge() {
-        js.executeScript("window.scrollTo(0,100)");
+        Scroll.scrollTillElementFound(productsContainer, driver);
         List<WebElement> list = productsContainer.findElements(By.xpath(PRODUCT));
         WebElement prodWithDiscount = null;
         for (WebElement webElement : list) {
@@ -70,7 +71,7 @@ public class SearchPage {
                     }
                 }
             } catch (Exception e) {
-                System.out.println("Product with discount badge not found");
+                logger.info("Product with discount badge not found!");
             }
         }
         return prodWithDiscount;
@@ -82,17 +83,17 @@ public class SearchPage {
     }
 
     public ProductPage foundFirstProduct() {
-        driverUtilities.waitForElementToBeVisible(productsContainer, constants.LONG_TIMEOUT);
+        driverUtilities.waitForElementToBeVisible(productsContainer, TimeConstants.LONG_TIMEOUT);
         List<WebElement> list = productsContainer.findElements(By.xpath(PRODUCT));
         for (WebElement webElement : list) {
             try {
                 if (webElement.findElement(By.xpath(IN_STOCK)).getText().equals("în stoc")) {
-                    driverUtilities.waitForElementToBeClickable(favoriteButtonForProduct, constants.LONG_TIMEOUT);
+                    driverUtilities.waitForElementToBeClickable(favoriteButtonForProduct, TimeConstants.LONG_TIMEOUT);
                     webElement.click();
                     break;
                 }
             } catch (Exception e) {
-                System.out.println("Not in stock");
+                logger.info("Product not in stock!");
             }
         }
         return new ProductPage(driver);

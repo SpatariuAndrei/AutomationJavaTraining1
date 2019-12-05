@@ -5,8 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pages.constants.TimeConstants;
 import pages.utils.WebDriverUtilities;
+import utilities.constants.TimeConstants;
+import utilities.scroll.Scroll;
 
 public class ProductPage {
 
@@ -25,7 +26,6 @@ public class ProductPage {
     private WebDriver driver;
     private JavascriptExecutor js;
     private WebDriverUtilities driverUtilities;
-    private TimeConstants constants;
 
     public ProductPage(WebDriver driver) {
         this.driver = driver;
@@ -35,18 +35,18 @@ public class ProductPage {
     }
 
     public void addToCart() {
-        js.executeScript("window.scrollTo(0,150)");
-        driverUtilities.waitForElementToBeClickable(addToCart, constants.LONG_TIMEOUT);
+        Scroll.scrollToElement(addToCart, driver);
+        driverUtilities.waitForElementToBeClickable(addToCart, TimeConstants.LONG_TIMEOUT);
         addToCart.click();
-        driverUtilities.waitForElementToBeClickable(close, constants.LONG_TIMEOUT);
+        driverUtilities.waitForElementToBeClickable(close, TimeConstants.LONG_TIMEOUT);
         close.click();
     }
 
     public CartPage viewCart() {
-        js.executeScript("window.scrollTo(0,0)");
-        driverUtilities.waitForElementToBeVisible(navigationBar,constants.LONG_TIMEOUT);
-        driverUtilities.waitForElementToBeVisible(myCart, constants.LONG_TIMEOUT);
-        driverUtilities.waitForElementToBeClickable(myCart, constants.LONG_TIMEOUT);
+        Scroll.scrollToElement(navigationBar, driver);
+        driverUtilities.waitForElementToBeVisible(navigationBar, TimeConstants.LONG_TIMEOUT);
+        driverUtilities.waitForElementToBeVisible(myCart, TimeConstants.LONG_TIMEOUT);
+        driverUtilities.waitForElementToBeClickable(myCart, TimeConstants.LONG_TIMEOUT);
         myCart.click();
         return new CartPage(driver);
     }
