@@ -1,15 +1,21 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 public class InfiniteScrollPage {
     private WebDriver driver;
-    By textBlocks = By.className("jscroll-added");
+    @FindBy(className = "jscroll-added")
+    private List<WebElement> textBlocks;
 
     public InfiniteScrollPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     /**
@@ -26,6 +32,6 @@ public class InfiniteScrollPage {
     }
 
     private int getNumberOfParagraphsPresent() {
-        return driver.findElements(textBlocks).size();
+        return textBlocks.size();
     }
 }

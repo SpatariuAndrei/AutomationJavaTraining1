@@ -1,4 +1,4 @@
-package horizontalSlider;
+package slider;
 
 import base.BaseTests;
 import org.testng.annotations.Test;

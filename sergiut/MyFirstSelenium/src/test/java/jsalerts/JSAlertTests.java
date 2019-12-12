@@ -1,4 +1,4 @@
-package jsAlerts;
+package jsalerts;
 
 import base.BaseTests;
 import org.testng.annotations.Test;

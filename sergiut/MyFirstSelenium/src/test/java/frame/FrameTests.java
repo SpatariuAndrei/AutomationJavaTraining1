@@ -1,4 +1,4 @@
-package Frame;
+package frame;
 
 import base.BaseTests;
 import org.testng.annotations.Test;
@@ -15,7 +15,7 @@ public class FrameTests extends BaseTests {
         String text1 = "Salve ";
         String text2 = "there!";
         editorPage.setTextArea(text1);
-        editorPage.DecreaseIdentetion();
+        editorPage.DecreaseIndentation();
         editorPage.setTextArea(text2);
         assertEquals(editorPage.getTextFromEditor(), text1 + text2, "Text from editor is incorrect");
     }

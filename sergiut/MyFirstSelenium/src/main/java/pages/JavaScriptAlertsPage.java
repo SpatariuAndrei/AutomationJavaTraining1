@@ -1,29 +1,36 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class JavaScriptAlertsPage {
     private WebDriver driver;
-    private By triggerAlertButton = By.xpath(".//button[text()='Click for JS Alert']");
-    private By triggerConfirmButton = By.xpath(".//button[text()='Click for JS Confirm']");
-    private By triggerPromptButton = By.xpath(".//button[text()='Click for JS Prompt']");
-    private By result = By.id("result");
+    @FindBy(xpath = ".//button[text()='Click for JS Alert']")
+    private WebElement triggerAlertButton;
+    @FindBy(xpath = ".//button[text()='Click for JS Confirm']")
+    private WebElement triggerConfirmButton;
+    @FindBy(xpath = ".//button[text()='Click for JS Prompt']")
+    private WebElement triggerPromptButton;
+    @FindBy(id = "result")
+    private WebElement result;
 
     public JavaScriptAlertsPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void triggerAlert() {
-        driver.findElement(triggerAlertButton).click();
+        triggerAlertButton.click();
     }
 
     public void triggerConfirm() {
-        driver.findElement(triggerConfirmButton).click();
+        triggerConfirmButton.click();
     }
 
     public void triggerPrompt() {
-        driver.findElement(triggerPromptButton).click();
+        triggerPromptButton.click();
     }
 
     public void alert_clickToAccept() {
@@ -43,6 +50,6 @@ public class JavaScriptAlertsPage {
     }
 
     public String getResult() {
-        return driver.findElement(result).getText();
+        return result.getText();
     }
 }

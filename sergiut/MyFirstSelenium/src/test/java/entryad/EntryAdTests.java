@@ -1,4 +1,4 @@
-package entryAdTests;
+package entryad;
 
 import base.BaseTests;
 import org.testng.annotations.Test;

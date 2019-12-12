@@ -41,7 +41,7 @@ public class EditorPage {
         return text;
     }
 
-    public void DecreaseIdentetion() {
+    public void DecreaseIndentation() {
         decreaseIndentButton.click();
     }
 

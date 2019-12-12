@@ -1,8 +1,10 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
@@ -10,16 +12,20 @@ import java.time.Duration;
 
 public class DynamicLoadingExample1Page {
     private WebDriver driver;
-    private By startButton = By.cssSelector("#start button");
-    private By loadingIndicator = By.id("loading");
-    private By loadedText = By.id("finish");
+    @FindBy(css = "#start button")
+    private WebElement startButton;
+    @FindBy(id = "loading")
+    private WebElement loadingIndicator;
+    @FindBy(id = "finish")
+    private WebElement loadedText;
 
     public DynamicLoadingExample1Page(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void clickStart() {
-        driver.findElement(startButton).click();
+        startButton.click();
 //        Or you can use this lines instead of FluentWait
 //        WebDriverWait wait= new WebDriverWait(driver,5);
 //        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(loadingIndicator)));
@@ -27,10 +33,10 @@ public class DynamicLoadingExample1Page {
                 .withTimeout(Duration.ofSeconds(5))
                 .pollingEvery(Duration.ofSeconds(1))
                 .ignoring(NoSuchElementException.class);
-        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(loadingIndicator)));
+        wait.until(ExpectedConditions.invisibilityOf(loadingIndicator));
     }
 
     public String getLoadedText() {
-        return driver.findElement(loadedText).getText();
+        return loadedText.getText();
     }
 }

@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,8 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 
 public class FileUploadPage {
     private WebDriver driver;
-    private By inputField = By.id("file-upload");
-    private By uploadButton = By.id("file-submit");
+    @FindBy(id = "file-upload")
+    private WebElement inputField;
+    @FindBy(id = "file-submit")
+    private WebElement uploadButton;
     @FindBy(id = "uploaded-files")
     private WebElement uploadedFiles;
 
@@ -19,7 +20,7 @@ public class FileUploadPage {
     }
 
     public void clickUploadButton() {
-        driver.findElement(uploadButton).click();
+        uploadButton.click();
     }
 
     /**
@@ -27,7 +28,7 @@ public class FileUploadPage {
      * @param absolutePathOfFile The complete path of the file to upload
      */
     public void uploadFile(String absolutePathOfFile) {
-        driver.findElement(inputField).sendKeys(absolutePathOfFile);
+        inputField.sendKeys(absolutePathOfFile);
         clickUploadButton();
     }
 

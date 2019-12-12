@@ -11,7 +11,7 @@ import static org.testng.Assert.*;
 public class LoginTests extends BaseTests {
 
     @Test
-    public void testSuccesfulLogin() {
+    public void testSuccessfulLogin() {
         LoginPage loginPage = homePage.clickformAuthentication();
         loginPage.setUsername("tomsmith");
         loginPage.setPassword("SuperSecretPassword!");

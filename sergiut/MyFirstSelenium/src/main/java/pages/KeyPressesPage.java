@@ -1,22 +1,27 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
-import static org.openqa.selenium.Keys.*;
+import static org.openqa.selenium.Keys.ALT;
+import static org.openqa.selenium.Keys.chord;
 
 public class KeyPressesPage {
     private WebDriver driver;
-    private By inputField = By.id("target");
-    private By resultText = By.id("result");
+    @FindBy(id = "target")
+    private WebElement inputField;
+    @FindBy(id = "result")
+    private WebElement resultText;
 
     public KeyPressesPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public void enterText(String text) {
-        driver.findElement(inputField).sendKeys(text);
+        inputField.sendKeys(text);
     }
 
     public void enterPi() {
@@ -24,6 +29,6 @@ public class KeyPressesPage {
     }
 
     public String getResult() {
-        return driver.findElement(resultText).getText();
+        return resultText.getText();
     }
 }

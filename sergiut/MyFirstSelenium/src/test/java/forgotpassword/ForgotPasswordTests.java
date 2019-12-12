@@ -1,4 +1,4 @@
-package forgot_password;
+package forgotpassword;
 
 import base.BaseTests;
 import org.testng.annotations.Test;
@@ -14,7 +14,7 @@ public class ForgotPasswordTests extends BaseTests {
         ForgotPasswordPage forgotPasswordPage = homePage.clickForgotPassword();
         String email = "Sergiu@example.com";
         forgotPasswordPage.setEmail(email);
-        EmailSentPage emailSentPage = forgotPasswordPage.retrievePasssword();
+        EmailSentPage emailSentPage = forgotPasswordPage.retrievePassword();
         emailSentPage.emailRetrieveConfirmation();
         assertTrue(emailSentPage.emailRetrieveConfirmation().contains("Your e-mail's been sent!"), "Email incorect!");
     }

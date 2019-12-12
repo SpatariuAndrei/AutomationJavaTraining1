@@ -1,4 +1,4 @@
-package Frame;
+package frame;
 
 import base.BaseTests;
 import org.testng.annotations.Test;
@@ -15,7 +15,7 @@ public class NestedFrameTests extends BaseTests {
         NestedPage nestedPage = framesPage.SelectNestedFramePage();
         String left = nestedPage.switchLeftAreaText();
         String bottom = nestedPage.switchBottomAreaText();
-        assertEquals(String.valueOf(left), "LEFT", "Diffrent result!");
-        assertEquals(String.valueOf(bottom), "BOTTOM", "Diffrent result!");
+        assertEquals(String.valueOf(left), "LEFT", "Different result!");
+        assertEquals(String.valueOf(bottom), "BOTTOM", "Different result!");
     }
 }

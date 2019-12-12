@@ -1,5 +1,6 @@
 package utils;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
@@ -66,5 +67,9 @@ public class WindowManager {
         ArrayList<String> tabs2 = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs2.get(i)); //move to tab i
 //        driver.close(); //close current tab
+    }
+
+    public void clickLink(String linkText) {
+        driver.findElement(By.linkText(linkText)).click();
     }
 }

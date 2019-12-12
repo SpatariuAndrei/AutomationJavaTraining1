@@ -1,4 +1,4 @@
-package dynamicLoadedPage;
+package dynamicloadedpage;
 
 import base.BaseTests;
 import org.testng.annotations.Test;

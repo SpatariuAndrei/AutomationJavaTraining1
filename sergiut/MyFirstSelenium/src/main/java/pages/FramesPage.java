@@ -2,20 +2,19 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utils.WindowManager;
 
 public class FramesPage {
     private WebDriver driver;
+    private WindowManager windowManager;
 
     public FramesPage(WebDriver driver) {
         this.driver = driver;
+        windowManager = new WindowManager(driver);
     }
 
     public NestedPage SelectNestedFramePage() {
-        clickLink("Nested Frames");
+        windowManager.clickLink("Nested Frames");
         return new NestedPage(driver);
-    }
-
-    private void clickLink(String linkText) {
-        driver.findElement(By.linkText(linkText)).click();
     }
 }

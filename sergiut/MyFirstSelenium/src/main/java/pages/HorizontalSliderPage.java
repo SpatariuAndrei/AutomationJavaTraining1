@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +10,8 @@ import static org.openqa.selenium.Keys.*;
 
 public class HorizontalSliderPage {
     private WebDriver driver;
-    private By rangeValue = By.id("range");
+    @FindBy(id = "range")
+    private WebElement rangeValue;
     @FindBy(xpath = "//div[@class='sliderContainer']//input")
     private WebElement slider;
 
@@ -38,6 +38,6 @@ public class HorizontalSliderPage {
     }
 
     public String getValue() {
-        return driver.findElement(rangeValue).getText();
+        return rangeValue.getText();
     }
 }

@@ -2,16 +2,21 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class NestedPage {
     private WebDriver driver;
     private final String LeftFrame = "frame-left";
     private final String TopFrame = "frame-top";
     private final String BottomFrame = "frame-bottom";
-    private By body = By.tagName("body");
+    @FindBy(tagName = "body")
+    private WebElement body;
 
     public NestedPage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public String switchLeftAreaText() {
@@ -31,7 +36,7 @@ public class NestedPage {
     }
 
     public String getFrameText() {
-        return driver.findElement(body).getText();
+        return body.getText();
     }
 
     private void switchToMainFrame() {
