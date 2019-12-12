@@ -25,10 +25,8 @@ public class DropdownTests extends BaseTests {
     public void testSelectBothOptions() {
         DropdownPage dropdownPage = homePage.clickDropdown();
         dropdownPage.selectMoreOptions();
-
         List<String> optionsToSelect = List.of("Option 1", "Option 2");
         optionsToSelect.forEach(dropdownPage::selectFromDropdown);
-
         List<String> selectedOptions = dropdownPage.getSelectedOption();
         assertTrue(selectedOptions.containsAll(optionsToSelect), "All options were not selected");
         assertEquals(selectedOptions.size(), optionsToSelect.size(), "Number of selected items");

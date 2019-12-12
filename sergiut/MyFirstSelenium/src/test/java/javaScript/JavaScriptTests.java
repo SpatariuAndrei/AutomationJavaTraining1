@@ -11,7 +11,7 @@ public class JavaScriptTests extends BaseTests {
     }
 
     @Test
-    public void tesrScrollToIndex() {
+    public void testScrollToIndex() {
         homePage.clickInfintieScrollPage().scrollToParagraph(7);
     }
 }
