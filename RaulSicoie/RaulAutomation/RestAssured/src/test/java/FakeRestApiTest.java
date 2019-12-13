@@ -2,6 +2,7 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
 import io.restassured.path.json.JsonPath;
+import module.Hello;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeTest;
@@ -17,11 +18,10 @@ import static org.hamcrest.Matchers.equalTo;
 public class FakeRestApiTest {
 
     static final Logger logger = LoggerFactory.getLogger(Basics.class);
-    private ReadEnvProperties envProperties;
 
     @BeforeTest
     public void setUp() {
-        envProperties = new ReadEnvProperties();
+        ReadEnvProperties envProperties = new ReadEnvProperties();
         RestAssured.baseURI = envProperties.getEnvProperty("host.url");
 
         logger.info("Got the base url: " + RestAssured.baseURI);
@@ -38,14 +38,14 @@ public class FakeRestApiTest {
 
         JsonPath jsonPath = new JsonPath(res.asString());
         List<String> list = jsonPath.getList("Title");
-        for (int i = 0; i < list.size(); i++) {
-            logger.info("Activity title: " + list.get(i));
+        for (String s : list) {
+            logger.info("Activity title: " + s);
         }
 
     }
 
     @Test
-    public void postActivites() {
+    public void postActivities() {
 
         HashMap<String, String> postContent = new HashMap<>();
         postContent.put("ID", "31");
@@ -81,6 +81,11 @@ public class FakeRestApiTest {
                 contentType(ContentType.JSON).body(postContent).
                 when().put("/Activities").
                 then().assertThat().statusCode(200);
+    }
+
+    @Test
+    public void communicateThrowModules() {
+        new Hello();
     }
 
 }

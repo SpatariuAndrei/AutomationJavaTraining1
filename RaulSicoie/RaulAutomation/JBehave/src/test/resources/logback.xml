@@ -7,7 +7,7 @@
         </encoder>
     </appender>
 
-    <logger name="tests" level="TRACE"/>
+    <logger name="main" level="TRACE"/>
     <logger name ="org.openqa.selenium" leve="DEBUG"/>
 
     <root level="DEBUG">

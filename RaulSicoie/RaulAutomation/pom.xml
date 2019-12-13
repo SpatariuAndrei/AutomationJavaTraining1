@@ -8,6 +8,7 @@
     <artifactId>RaulAutomation</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>RestAssured</module>
         <module>JBehave</module>
