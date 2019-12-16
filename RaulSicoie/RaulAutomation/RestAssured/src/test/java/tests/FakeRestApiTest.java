@@ -1,3 +1,5 @@
+package tests;
+
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
@@ -16,7 +18,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class FakeRestApiTest {
 
-    static final Logger logger = LoggerFactory.getLogger(Basics.class);
+    static final Logger logger = LoggerFactory.getLogger(FakeRestApiTest.class);
 
     @BeforeTest
     public void setUp() {

@@ -1,3 +1,5 @@
+package tests;
+
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
@@ -9,9 +11,9 @@ import org.slf4j.LoggerFactory;
 import static com.jayway.restassured.RestAssured.given;
 
 
-public class Basics {
+public class GoogleApiTest {
 
-    static final Logger logger = LoggerFactory.getLogger(Basics.class);
+    static final Logger logger = LoggerFactory.getLogger(GoogleApiTest.class);
 
     /**
      * body are commented because my Google Account does not have an billing account
