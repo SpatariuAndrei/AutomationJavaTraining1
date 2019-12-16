@@ -12,14 +12,7 @@
     <artifactId>RestAssured</artifactId>
 
     <dependencies>
-        <!--  Add dependencies for RestAssured user -->
-
-        <dependency>
-            <groupId>org.profiles</groupId>
-            <artifactId>JBehave</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
+<!--     Add dependencies for RestAssured user -->
 
         <!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
         <dependency>

@@ -2,7 +2,6 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
 import io.restassured.path.json.JsonPath;
-import module.Hello;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeTest;
@@ -82,10 +81,4 @@ public class FakeRestApiTest {
                 when().put("/Activities").
                 then().assertThat().statusCode(200);
     }
-
-    @Test
-    public void communicateThrowModules() {
-        new Hello();
-    }
-
 }

@@ -1,7 +1,9 @@
 package steps.setup.closure;
 
+import communicate.Talk;
 import org.jbehave.core.annotations.AfterScenario;
 import org.jbehave.core.annotations.Given;
+import org.jbehave.core.annotations.Then;
 import org.openqa.selenium.support.PageFactory;
 import pages.HomePage;
 import pages.UserHomePage;
@@ -26,5 +28,11 @@ public class LoginBrowserBasicSteps extends StoryBase {
     public void afterScenario() {
         UserHomePage userHomePage = PageFactory.initElements(sharedData.driver, UserHomePage.class);
         userHomePage.logOut();
+    }
+
+    @Then("I call Hello for $number times from RestAssured module")
+    public void thenICallHelloFromRestassuredModule(int number) {
+        Talk talk = new Talk();
+        talk.printingHello(number);
     }
 }

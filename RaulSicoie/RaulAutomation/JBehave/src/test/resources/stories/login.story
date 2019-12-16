@@ -13,3 +13,4 @@ And I press Continua
 And I set Introdu parola contului tau eMag field
 When I press Continua to enter in home page
 Then I verify that user name Sicoie Raul is displayed
+And I call Hello for 5 times from RestAssured module
