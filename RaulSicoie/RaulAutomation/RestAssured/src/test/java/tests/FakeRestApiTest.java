@@ -23,7 +23,7 @@ public class FakeRestApiTest {
     @BeforeTest
     public void setUp() {
         ReadEnvProperties envProperties = new ReadEnvProperties();
-        RestAssured.baseURI = envProperties.getEnvProperty("host.url");
+        RestAssured.baseURI = envProperties.getEnvProperty("host.url.fakerestapi");
 
         logger.info("Got the base url: " + RestAssured.baseURI);
     }

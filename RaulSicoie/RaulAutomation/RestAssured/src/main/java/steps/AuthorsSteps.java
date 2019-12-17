@@ -11,7 +11,7 @@ public class AuthorsSteps extends Steps {
 
     @Given("I go to url")
     public void givenIGoToUrl() {
-        BaseUrl.setUp();
+        BaseUrl.setUpFakeRestApi();
     }
 
     @Given("I provide the $param")

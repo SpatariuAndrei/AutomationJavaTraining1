@@ -13,7 +13,7 @@ public class UsersSteps extends Steps {
 
     @Given("I store the name of users with id $value in a string")
     public void getUserNames(int value) {
-        BaseUrl.setUp();
+        BaseUrl.setUpFakeRestApi();
         Users.getUsers(value);
     }
 
