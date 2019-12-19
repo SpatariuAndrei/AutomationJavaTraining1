@@ -1,3 +1,5 @@
+package tests;
+
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.response.Response;
@@ -16,12 +18,12 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class FakeRestApiTest {
 
-    static final Logger logger = LoggerFactory.getLogger(Basics.class);
+    static final Logger logger = LoggerFactory.getLogger(FakeRestApiTest.class);
 
     @BeforeTest
     public void setUp() {
         ReadEnvProperties envProperties = new ReadEnvProperties();
-        RestAssured.baseURI = envProperties.getEnvProperty("host.url");
+        RestAssured.baseURI = envProperties.getEnvProperty("host.url.fakerestapi");
 
         logger.info("Got the base url: " + RestAssured.baseURI);
     }
@@ -65,7 +67,7 @@ public class FakeRestApiTest {
                 param("id", "2").
                 when().get("/Activities").
                 then().assertThat().statusCode(200).and().
-                cookie("ARRAffinity", "4b62b3ca330ad84db206d5706027a4b931d5c324f6f2385abed4e705071c736d");
+                cookie("ARRAffinity", "854802364786e0e9dece0f12b922c9d9bf9d2b1bd7a60ce6cf026350306af032");
     }
 
     @Test
