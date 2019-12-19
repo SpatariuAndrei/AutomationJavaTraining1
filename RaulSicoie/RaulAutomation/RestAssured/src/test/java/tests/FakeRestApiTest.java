@@ -67,7 +67,7 @@ public class FakeRestApiTest {
                 param("id", "2").
                 when().get("/Activities").
                 then().assertThat().statusCode(200).and().
-                cookie("ARRAffinity", "4b62b3ca330ad84db206d5706027a4b931d5c324f6f2385abed4e705071c736d");
+                cookie("ARRAffinity", "854802364786e0e9dece0f12b922c9d9bf9d2b1bd7a60ce6cf026350306af032");
     }
 
     @Test

@@ -1,5 +1,5 @@
 
 
-Given I go to base url
+Given I make a request to base url
 When I extract the response
-Then I verify SamiV is an employee
+Then I verify Pradeep S is an employee

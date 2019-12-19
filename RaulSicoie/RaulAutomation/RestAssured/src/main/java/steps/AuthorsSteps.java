@@ -9,7 +9,7 @@ import request.base.BaseUrl;
 
 public class AuthorsSteps extends Steps {
 
-    @Given("I go to url")
+    @Given("I make a request to base url")
     public void givenIGoToUrl() {
         BaseUrl.setUpFakeRestApi();
     }

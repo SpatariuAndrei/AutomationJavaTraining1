@@ -11,7 +11,7 @@ import static org.testng.AssertJUnit.assertTrue;
 
 public class EmployeesNameSteps extends Steps {
 
-    @Given("I go to base url")
+    @Given("I make a request to base url")
     public void getRequest() {
         BaseUrl.setUpDummyRestApi();
     }
