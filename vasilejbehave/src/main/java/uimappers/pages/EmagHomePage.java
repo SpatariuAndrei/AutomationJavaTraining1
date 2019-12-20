@@ -4,56 +4,54 @@ import properties.PropertiesConfig;
 import uimappers.components.menu.TopHorizontalMenu;
 import uimappers.components.menu.UserMenu;
 import uimappers.constants.UserMenuOptions;
-import utilities.SharedData;
+import uimappers.utils.WebDriverUtilities;
 
-import static properties.PropertiesKeys.HOME_ADDRESS;
-import static properties.PropertiesKeys.PERSONAL_DATA;
+import static driverprovider.DriverInstance.getDriver;
+import static properties.PropertiesKeys.*;
+import static uimappers.constants.TimeoutConstants.DEFAULT_TIMEOUT;
 
 public class EmagHomePage {
-    private SharedData sharedData;
 
     private TopHorizontalMenu topHorizontalMenu;
-    private LoginPage loginPage;
-    private WishListPage wishListPage;
     private UserMenu userMenu;
+    private WebDriverUtilities driverUtilities;
 
-    public EmagHomePage(SharedData sharedData){
-        this.sharedData = sharedData;
+    public EmagHomePage() {
 
-        topHorizontalMenu = new TopHorizontalMenu(sharedData);
-        userMenu = new UserMenu(sharedData);
-        wishListPage = new WishListPage(sharedData);
+
+        topHorizontalMenu = new TopHorizontalMenu();
+        userMenu = new UserMenu();
+        driverUtilities = new WebDriverUtilities();
     }
 
     public LoginPage navigateToLoginPage() {
-        sharedData.loginPage = topHorizontalMenu.clickOnLoginButton();
-        return sharedData.loginPage;
+        return topHorizontalMenu.clickOnLoginButton();
     }
 
-    public UserMenu openUserAccountMenu() {
-        return topHorizontalMenu.openUserMenu();
+    public SearchResultsPage searchProduct(String product) {
+        topHorizontalMenu.search(product);
+        return new SearchResultsPage();
     }
 
-    public WishListPage navigateToWishListPage() {
-        wishListPage = topHorizontalMenu.clickOnFavorite();
-        return wishListPage;
+    public void openUserAccountMenu() {
+        topHorizontalMenu.openUserMenu();
     }
 
     public void logout(UserMenuOptions userMenuOption) {
-        userMenu.clickOnOption(userMenuOption.getUserMenuOptionValue());
-        String currentUrl = sharedData.driver.getCurrentUrl();
-
-        // need to try again due to emag pop-up
-        if (!currentUrl.equals(PropertiesConfig.getProperty(HOME_ADDRESS))) {
-            String baseUrl = PropertiesConfig.getProperty(HOME_ADDRESS);
-            String personalDataUrl = PropertiesConfig.getProperty(PERSONAL_DATA);
-            sharedData.driver.get(baseUrl + personalDataUrl);
-            openMenuForLogout();
+        try {
+            topHorizontalMenu.openUserMenu();
             userMenu.clickOnOption(userMenuOption.getUserMenuOptionValue());
-        }
-    }
+        } catch (org.openqa.selenium.json.JsonException | org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException e) {
+            System.out.println("USER IS NOT A GOOD PAGE");
+        } finally {
 
-    private void openMenuForLogout() {
-        topHorizontalMenu.openUserMenuForLogout();
+            // emag issue Log out button has a baseUri property - either remove that property with Javascript executor either this
+            String currentUrl = getDriver().getCurrentUrl();
+            if (!currentUrl.equals("www.emag.ro")) {
+                System.out.println("LOG OUT");
+                getDriver().get(PropertiesConfig.getProperty(LOGOUT_URL));
+                driverUtilities.waitUntilPageIsLoaded(DEFAULT_TIMEOUT);
+            }
+        }
     }
 }

@@ -1,19 +1,23 @@
 package tests;
 
-import bdd.BaseStory;
 
+import bdd.StoryMapper;
+import bdd.steps.functional.useraccount.UserAccountSteps;
 import org.jbehave.core.io.StoryFinder;
-import steps.functional.login.LoginSteps;
-import steps.functional.useraccount.UserAccountSteps;
-import steps.setup.BaseSteps;
+import org.jbehave.core.steps.InjectableStepsFactory;
+import org.jbehave.core.steps.InstanceStepsFactory;
+import bdd.steps.functional.login.LoginSteps;
+import bdd.steps.setup.BrowserBasicSteps;
 
 import java.util.List;
 
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 
-public class Login extends BaseStory {
-    public Login() {
-        addSteps(new BaseSteps(sharedData), new LoginSteps(sharedData), new UserAccountSteps(sharedData));
+public class Login extends StoryMapper {
+
+    @Override
+    public InjectableStepsFactory stepsFactory() {
+        return new InstanceStepsFactory(configuration(), new BrowserBasicSteps(sharedData), new LoginSteps(sharedData), new UserAccountSteps(sharedData));
     }
 
     @Override

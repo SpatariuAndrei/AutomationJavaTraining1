@@ -5,15 +5,17 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import uimappers.pages.LoginPage;
+import uimappers.pages.SearchResultsPage;
 import uimappers.pages.WishListPage;
 import uimappers.utils.WebDriverUtilities;
-import utilities.SharedData;
 
 
+import static driverprovider.DriverInstance.getDriver;
 import static uimappers.constants.TimeoutConstants.DEFAULT_TIMEOUT;
+import static uimappers.constants.TimeoutConstants.MIN_TIMEOUT;
 
 public class TopHorizontalMenu {
-    private SharedData share;
+
     private WebDriverUtilities driverUtilities;
 
     @FindBy(xpath = "//nav[@id='masthead']")
@@ -34,37 +36,47 @@ public class TopHorizontalMenu {
     @FindBy(xpath = "//a[@id ='my_wishlist']")
     private WebElement userFavoritePageElement;
 
-    public TopHorizontalMenu(SharedData share) {
-        this.share = share;
+    @FindBy(xpath = "//input[@id = 'searchboxTrigger']")
+    private WebElement searchBar;
+
+    @FindBy(xpath = "//div[@class='input-group-btn']//button[contains(@class,'searchbox-submit-button')]")
+    private WebElement searchButton;
+
+    public TopHorizontalMenu() {
+
         driverUtilities = new WebDriverUtilities();
-        PageFactory.initElements(share.driver, this);
+        PageFactory.initElements(getDriver(), this);
     }
 
     public LoginPage clickOnLoginButton() {
         driverUtilities.waitForElementToBeVisible(horizontalMenuContainer, DEFAULT_TIMEOUT);
         loginButton.click();
 
-        return new LoginPage(share);
+        return new LoginPage();
     }
 
     public UserMenu openUserMenu() {
-        Actions action = new Actions(share.driver);
-        action.moveToElement(userMenuIcon).perform();
+        driverUtilities.waitForElementToBeClickable(userMenuIcon, MIN_TIMEOUT);
+        Actions action = new Actions(getDriver());
+        action.moveToElement(userMenuIcon).build().perform();
 
-        return new UserMenu(share);
+        return new UserMenu();
     }
 
-    public UserMenu openUserMenuForLogout() {
-        Actions action = new Actions(share.driver);
-        action.moveToElement(logoutMenuIcon).perform();
-
-        return new UserMenu(share);
-    }
-
-    public WishListPage clickOnFavorite() {
+    public WishListPage openFavoritesPage() {
         driverUtilities.waitForElementToBeVisible(horizontalMenuContainer, DEFAULT_TIMEOUT);
         userFavoritePageElement.click();
 
-        return new WishListPage(share);
+        return new WishListPage();
+    }
+
+    public void search(String product){
+        driverUtilities.waitForElementToBeClickable(searchBar, MIN_TIMEOUT);
+        searchBar.click();
+        searchBar.clear();
+        searchBar.sendKeys(product);
+        driverUtilities.waitForElementAttributeToContain(searchBar, "value", product, MIN_TIMEOUT);
+
+        searchButton.click();
     }
 }
