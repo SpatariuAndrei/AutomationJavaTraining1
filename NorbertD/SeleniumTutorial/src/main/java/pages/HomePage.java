@@ -51,6 +51,11 @@ public class HomePage {
         return new ContextMenuPage(driver);
     }
 
+    public NestedFramePage clickFrames(){
+        clickLink("Nested Frames");
+        return new NestedFramePage(driver);
+    }
+
     private void clickLink(String linkText){
         driver.findElement(By.linkText(linkText)).click();
     }
