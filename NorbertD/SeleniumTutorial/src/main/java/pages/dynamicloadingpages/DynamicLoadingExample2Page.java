@@ -1,4 +1,4 @@
-package dynamicloadingpages;
+package pages.dynamicloadingpages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

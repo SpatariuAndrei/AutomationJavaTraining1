@@ -1,7 +1,7 @@
 package pages;
 
-import dynamicloadingpages.DynamicLoadingPage;
-import loginpages.LoginPage;
+import pages.dynamicloadingpages.DynamicLoadingPage;
+import pages.loginpages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -58,7 +58,7 @@ public class HomePage {
         return new NestedFramePage(driver);
     }
 
-    public DynamicLoadingPage click(){
+    public DynamicLoadingPage clickDynamicLoadigPage(){
         clickLink("Dynamic Loading");
         return new DynamicLoadingPage(driver);
     }
@@ -71,6 +71,11 @@ public class HomePage {
     public InfiniteScrollPage clickInfiniteScroll(){
         clickLink("Infinite Scroll");
         return new InfiniteScrollPage(driver);
+    }
+
+    public MultipleWindowsPage clickMultipleWindows(){
+        clickLink("Multiple Windows");
+        return new MultipleWindowsPage(driver);
     }
 
     private void clickLink(String linkText){

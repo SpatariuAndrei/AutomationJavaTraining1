@@ -9,7 +9,7 @@ public class WaitTests extends BaseTests {
 
     @Test
     public void testWaitUntilVisible(){
-        var loadingPage = homePage.click().clickOnExample2Link();
+        var loadingPage = homePage.clickDynamicLoadigPage().clickOnExample2Link();
         loadingPage.clickOnStartButton();
         assertTrue(loadingPage.isTextPresent());
     }
