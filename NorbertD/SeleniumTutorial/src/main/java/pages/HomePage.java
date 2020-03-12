@@ -1,5 +1,7 @@
 package pages;
 
+import dynamicloadingpages.DynamicLoadingPage;
+import loginpages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -59,6 +61,16 @@ public class HomePage {
     public DynamicLoadingPage click(){
         clickLink("Dynamic Loading");
         return new DynamicLoadingPage(driver);
+    }
+
+    public LargeAndDeepDomPage clickLargeAndDeepDom(){
+        clickLink("Large & Deep DOM");
+        return new LargeAndDeepDomPage(driver);
+    }
+
+    public InfiniteScrollPage clickInfiniteScroll(){
+        clickLink("Infinite Scroll");
+        return new InfiniteScrollPage(driver);
     }
 
     private void clickLink(String linkText){
