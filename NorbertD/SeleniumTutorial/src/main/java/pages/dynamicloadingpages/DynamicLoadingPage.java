@@ -20,6 +20,7 @@ public class DynamicLoadingPage {
 
     public DynamicLoadingExample2Page rightClickAndOpenInNewTabExample2Link(){
         String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN);
+
         driver.findElement(link_Example2).sendKeys(selectLinkOpeninNewTab);
         return new DynamicLoadingExample2Page(driver);
     }
