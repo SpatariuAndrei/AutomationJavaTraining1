@@ -95,7 +95,6 @@ public class AirportTest {
         @Nested
         @DisplayName("When we have a VIP passenger")
         class VipPassenger {
-
             @Test
             @DisplayName("Then you can add him but cannot remove him from a business flight")
             public void testAddAndRemove() {
