@@ -23,11 +23,13 @@
 <step outcome="successful">Given there is an economy flight</step>
 <step outcome="successful">When we have a usual passenger</step>
 <step outcome="successful">Then you can add and remove him from an economy flight</step>
+<step outcome="successful">And you cannot add a usual passenger to an economy flight more than once</step>
 </scenario>
 <scenario keyword="Scenario:" title="Economy flight, VIP passenger">
 <step outcome="successful">Given there is an economy flight</step>
 <step outcome="successful">When we have a VIP passenger</step>
 <step outcome="successful">Then you can add him but cannot remove him from an economy flight</step>
+<step outcome="successful">And you cannot add a VIP passenger to an economy flight more than once</step>
 </scenario>
 <scenario keyword="Scenario:" title="Business flight, usual passenger">
 <step outcome="successful">Given there is an business flight</step>
@@ -38,6 +40,18 @@
 <step outcome="successful">Given there is an business flight</step>
 <step outcome="successful">When we have a VIP passenger</step>
 <step outcome="successful">Then you can add him but cannot remove him from a business flight</step>
+<step outcome="successful">And you cannot add a VIP passenger to a business flight more than once</step>
+</scenario>
+<scenario keyword="Scenario:" title="Premium flight, usual passenger">
+<step outcome="successful">Given there is an premium flight</step>
+<step outcome="successful">When we have a usual passenger</step>
+<step outcome="successful">Then you cannot add or remove him from a premium flight</step>
+</scenario>
+<scenario keyword="Scenario:" title="Premium flight, VIP passenger">
+<step outcome="successful">Given there is an premium flight</step>
+<step outcome="successful">When we have a VIP passenger</step>
+<step outcome="successful">Then you can add and remove him from a premium flight</step>
+<step outcome="successful">And you cannot add a VIP passenger to a premium flight more than once</step>
 </scenario>
 </story>
 
