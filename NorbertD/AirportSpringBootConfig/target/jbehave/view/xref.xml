@@ -679,7 +679,7 @@ So that the policies of the company are followed</localizedNarrative>
                   <step>Then you can add and remove him from an economy flight</step>
                   <type>SUCCESSFUL</type>
                   <parametrisedStep>Then you can add and remove him from an economy flight</parametrisedStep>
-                  <durationInMillis>47</durationInMillis>
+                  <durationInMillis>35</durationInMillis>
                 </successful>
                 <successful>
                   <step>And you cannot add a usual passenger to an economy flight more than once</step>
@@ -1783,7 +1783,7 @@ So that the policies of the company are followed</localizedNarrative>
                   <step>Then you can add and remove him from a premium flight</step>
                   <type>SUCCESSFUL</type>
                   <parametrisedStep>Then you can add and remove him from a premium flight</parametrisedStep>
-                  <durationInMillis>16</durationInMillis>
+                  <durationInMillis>0</durationInMillis>
                 </successful>
                 <successful>
                   <step>And you cannot add a VIP passenger to a premium flight more than once</step>
@@ -1884,7 +1884,7 @@ So that the policies of the company are followed</localizedNarrative>
       <beforeSteps/>
       <afterSteps/>
       <timing>
-        <durationInMillis>63</durationInMillis>
+        <durationInMillis>51</durationInMillis>
       </timing>
       <givenStory>false</givenStory>
     </performableStory>
@@ -2019,7 +2019,7 @@ So that the policies of the company are followed</localizedNarrative>
               <step>Then you can add and remove him from an economy flight</step>
               <type>SUCCESSFUL</type>
               <parametrisedStep>Then you can add and remove him from an economy flight</parametrisedStep>
-              <durationInMillis>47</durationInMillis>
+              <durationInMillis>35</durationInMillis>
             </successful>
             <successful>
               <step>And you cannot add a usual passenger to an economy flight more than once</step>
@@ -3123,7 +3123,7 @@ So that the policies of the company are followed</localizedNarrative>
               <step>Then you can add and remove him from a premium flight</step>
               <type>SUCCESSFUL</type>
               <parametrisedStep>Then you can add and remove him from a premium flight</parametrisedStep>
-              <durationInMillis>16</durationInMillis>
+              <durationInMillis>0</durationInMillis>
             </successful>
             <successful>
               <step>And you cannot add a VIP passenger to a premium flight more than once</step>
