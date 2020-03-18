@@ -2,25 +2,77 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b248f9b5-730d-4eb7-bcbc-5698824d8ac7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/BDD.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BDD.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BDD.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/BDD.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BDD.iws" beforeDir="false" afterPath="$PROJECT_DIR$/BDD.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/BDD-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/BDD-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jbehave/AfterStories.stats" beforeDir="false" afterPath="$PROJECT_DIR$/target/jbehave/AfterStories.stats" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jbehave/BeforeStories.stats" beforeDir="false" afterPath="$PROJECT_DIR$/target/jbehave/BeforeStories.stats" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jbehave/stories.passengers_policy_story.stats" beforeDir="false" afterPath="$PROJECT_DIR$/target/jbehave/stories.passengers_policy_story.stats" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jbehave/storyDurations.props" beforeDir="false" afterPath="$PROJECT_DIR$/target/jbehave/storyDurations.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jbehave/view/AfterStories.stats.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/jbehave/view/AfterStories.stats.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jbehave/view/BeforeStories.stats.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/jbehave/view/BeforeStories.stats.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jbehave/view/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/jbehave/view/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jbehave/view/reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/jbehave/view/reports.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jbehave/view/stories.passengers_policy_story.stats.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/jbehave/view/stories.passengers_policy_story.stats.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jbehave/view/xref.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/jbehave/view/xref.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jbehave/view/xref.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/jbehave/view/xref.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/META-INF/SeleniumTutorial.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/AlertsPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/ContextMenuPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/DropdownPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/EmailSentConfirmationPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/FileUploadPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/ForgotPasswordPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/HomePage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/HoversPage$FigureCaption.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/HoversPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/InfiniteScrollPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/KeyPressesPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/LargeAndDeepDomPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/MultipleWindowsPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/NestedFramePage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/dynamicloadingpages/DynamicLoadingExample2Page.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/dynamicloadingpages/DynamicLoadingPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/loginpages/LoginPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/pages/loginpages/SecureAreaPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/classes/utils/WindowManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/test-classes/alerts/AlertTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/test-classes/base/BaseTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/test-classes/context/ContextMenuTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/test-classes/dropdown/DropdownTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/test-classes/fileupload/FileUploadTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/test-classes/forgotpassword/ForgotPasswordTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/test-classes/frames/FrameTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/test-classes/hover/HoverTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/test-classes/javascript/JavaScriptTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/test-classes/keys/KeyTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/test-classes/login/LoginTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/test-classes/navigation/NavigationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/SeleniumGrid/target/test-classes/wait/WaitTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DockerConfig/docker-config.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SeleniumTutorial/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/META-INF/SeleniumTutorial.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/AlertsPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/ContextMenuPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/DropdownPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/EmailSentConfirmationPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/FileUploadPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/ForgotPasswordPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/HomePage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/HoversPage$FigureCaption.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/HoversPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/InfiniteScrollPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/KeyPressesPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/LargeAndDeepDomPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/MultipleWindowsPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/NestedFramePage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/dynamicloadingpages/DynamicLoadingExample2Page.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/dynamicloadingpages/DynamicLoadingPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/loginpages/LoginPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/pages/loginpages/SecureAreaPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/classes/utils/WindowManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/test-classes/alerts/AlertTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/test-classes/base/BaseTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/test-classes/context/ContextMenuTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/test-classes/dropdown/DropdownTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/test-classes/fileupload/FileUploadTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/test-classes/forgotpassword/ForgotPasswordTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/test-classes/frames/FrameTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/test-classes/hover/HoverTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/test-classes/javascript/JavaScriptTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/test-classes/keys/KeyTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/test-classes/login/LoginTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/test-classes/navigation/NavigationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SeleniumTutorial/target/test-classes/wait/WaitTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
