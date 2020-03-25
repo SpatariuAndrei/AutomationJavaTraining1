@@ -803,7 +803,7 @@
                   "step": "Given there is an economy flight",
                   "type": "SUCCESSFUL",
                   "parametrisedStep": "Given there is an economy flight",
-                  "durationInMillis": 0
+                  "durationInMillis": 3
                 },
                 {
                   "step": "When we have a usual passenger",
@@ -815,13 +815,13 @@
                   "step": "Then you can add and remove him from an economy flight",
                   "type": "SUCCESSFUL",
                   "parametrisedStep": "Then you can add and remove him from an economy flight",
-                  "durationInMillis": 35
+                  "durationInMillis": 43
                 },
                 {
                   "step": "And you cannot add a usual passenger to an economy flight more than once",
                   "type": "SUCCESSFUL",
                   "parametrisedStep": "And you cannot add a usual passenger to an economy flight more than once",
-                  "durationInMillis": 0
+                  "durationInMillis": 1
                 }
               ]
             },
@@ -1077,7 +1077,7 @@
                   "step": "Then you can add him but cannot remove him from an economy flight",
                   "type": "SUCCESSFUL",
                   "parametrisedStep": "Then you can add him but cannot remove him from an economy flight",
-                  "durationInMillis": 0
+                  "durationInMillis": 1
                 },
                 {
                   "step": "And you cannot add a VIP passenger to an economy flight more than once",
@@ -1333,7 +1333,7 @@
                   "step": "Then you cannot add or remove him from a business flight",
                   "type": "SUCCESSFUL",
                   "parametrisedStep": "Then you cannot add or remove him from a business flight",
-                  "durationInMillis": 0
+                  "durationInMillis": 1
                 }
               ]
             },
@@ -1594,7 +1594,7 @@
                   "step": "And you cannot add a VIP passenger to a business flight more than once",
                   "type": "SUCCESSFUL",
                   "parametrisedStep": "And you cannot add a VIP passenger to a business flight more than once",
-                  "durationInMillis": 0
+                  "durationInMillis": 1
                 }
               ]
             },
@@ -1832,7 +1832,7 @@
                   "step": "Given there is an premium flight",
                   "type": "SUCCESSFUL",
                   "parametrisedStep": "Given there is an premium flight",
-                  "durationInMillis": 0
+                  "durationInMillis": 1
                 },
                 {
                   "step": "When we have a usual passenger",
@@ -1844,7 +1844,7 @@
                   "step": "Then you cannot add or remove him from a premium flight",
                   "type": "SUCCESSFUL",
                   "parametrisedStep": "Then you cannot add or remove him from a premium flight",
-                  "durationInMillis": 0
+                  "durationInMillis": 1
                 }
               ]
             },
@@ -2099,13 +2099,13 @@
                   "step": "Then you can add and remove him from a premium flight",
                   "type": "SUCCESSFUL",
                   "parametrisedStep": "Then you can add and remove him from a premium flight",
-                  "durationInMillis": 0
+                  "durationInMillis": 1
                 },
                 {
                   "step": "And you cannot add a VIP passenger to a premium flight more than once",
                   "type": "SUCCESSFUL",
                   "parametrisedStep": "And you cannot add a VIP passenger to a premium flight more than once",
-                  "durationInMillis": 0
+                  "durationInMillis": 1
                 }
               ]
             },
@@ -2218,7 +2218,7 @@
       "beforeSteps": {},
       "afterSteps": {},
       "timing": {
-        "durationInMillis": 51
+        "durationInMillis": 58
       },
       "givenStory": false
     }
@@ -2359,7 +2359,7 @@
               "step": "Given there is an economy flight",
               "type": "SUCCESSFUL",
               "parametrisedStep": "Given there is an economy flight",
-              "durationInMillis": 0
+              "durationInMillis": 3
             },
             {
               "step": "When we have a usual passenger",
@@ -2371,13 +2371,13 @@
               "step": "Then you can add and remove him from an economy flight",
               "type": "SUCCESSFUL",
               "parametrisedStep": "Then you can add and remove him from an economy flight",
-              "durationInMillis": 35
+              "durationInMillis": 43
             },
             {
               "step": "And you cannot add a usual passenger to an economy flight more than once",
               "type": "SUCCESSFUL",
               "parametrisedStep": "And you cannot add a usual passenger to an economy flight more than once",
-              "durationInMillis": 0
+              "durationInMillis": 1
             }
           ]
         },
@@ -2633,7 +2633,7 @@
               "step": "Then you can add him but cannot remove him from an economy flight",
               "type": "SUCCESSFUL",
               "parametrisedStep": "Then you can add him but cannot remove him from an economy flight",
-              "durationInMillis": 0
+              "durationInMillis": 1
             },
             {
               "step": "And you cannot add a VIP passenger to an economy flight more than once",
@@ -2889,7 +2889,7 @@
               "step": "Then you cannot add or remove him from a business flight",
               "type": "SUCCESSFUL",
               "parametrisedStep": "Then you cannot add or remove him from a business flight",
-              "durationInMillis": 0
+              "durationInMillis": 1
             }
           ]
         },
@@ -3150,7 +3150,7 @@
               "step": "And you cannot add a VIP passenger to a business flight more than once",
               "type": "SUCCESSFUL",
               "parametrisedStep": "And you cannot add a VIP passenger to a business flight more than once",
-              "durationInMillis": 0
+              "durationInMillis": 1
             }
           ]
         },
@@ -3388,7 +3388,7 @@
               "step": "Given there is an premium flight",
               "type": "SUCCESSFUL",
               "parametrisedStep": "Given there is an premium flight",
-              "durationInMillis": 0
+              "durationInMillis": 1
             },
             {
               "step": "When we have a usual passenger",
@@ -3400,7 +3400,7 @@
               "step": "Then you cannot add or remove him from a premium flight",
               "type": "SUCCESSFUL",
               "parametrisedStep": "Then you cannot add or remove him from a premium flight",
-              "durationInMillis": 0
+              "durationInMillis": 1
             }
           ]
         },
@@ -3655,13 +3655,13 @@
               "step": "Then you can add and remove him from a premium flight",
               "type": "SUCCESSFUL",
               "parametrisedStep": "Then you can add and remove him from a premium flight",
-              "durationInMillis": 0
+              "durationInMillis": 1
             },
             {
               "step": "And you cannot add a VIP passenger to a premium flight more than once",
               "type": "SUCCESSFUL",
               "parametrisedStep": "And you cannot add a VIP passenger to a premium flight more than once",
-              "durationInMillis": 0
+              "durationInMillis": 1
             }
           ]
         },

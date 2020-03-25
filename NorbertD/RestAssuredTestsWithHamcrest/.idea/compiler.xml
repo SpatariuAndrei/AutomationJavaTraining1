@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="SeleniumTutorial" />
         <module name="restAssured" />
+        <module name="RestAssuredTests" />
       </profile>
     </annotationProcessing>
   </component>

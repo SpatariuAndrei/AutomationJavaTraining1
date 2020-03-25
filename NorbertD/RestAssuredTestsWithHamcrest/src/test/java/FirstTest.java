@@ -13,7 +13,8 @@ public class FirstTest {
 
     @Test
     public void TestGetBookByPauloCoelho(){
-        Response response = given().param("q","paulo+coelho").
+        Response response =
+                given().param("q","paulo+coelho").
                 when().get("https://www.googleapis.com/books/v1/volumes").
                 then().statusCode(200).extract().response();
 
@@ -30,7 +31,8 @@ public class FirstTest {
 
     @Test
     public void TestGetHarryPotterBooks(){
-        Response response = given().param("q","potter").
+        Response response =
+                given().param("q","potter").
                 when().get("https://www.googleapis.com/books/v1/volumes").
                 then().statusCode(200).extract().response();
 
@@ -43,7 +45,8 @@ public class FirstTest {
 
     @Test
     public void TestGetDanBrownBooks(){
-        Response response = given().param("q","dan+brown").param("maxResults","25").
+        Response response =
+                given().param("q","dan+brown").param("maxResults","25").
                 when().get("https://www.googleapis.com/books/v1/volumes").
                 then().statusCode(200).extract().response();
 
@@ -57,7 +60,8 @@ public class FirstTest {
 
     @Test
     public void TestGetWithEmptyQueryParams(){
-        Response response = given().param("q","").
+        Response response =
+                given().param("q","").
                 when().get("https://www.googleapis.com/books/v1/volumes").
                 then().statusCode(400).extract().response();
 
@@ -69,7 +73,8 @@ public class FirstTest {
 
     @Test
     public void TestGetWithInvalidQueryParams(){
-        Response response = given().param("q","potter").param("maxResults","50").
+        Response response =
+                given().param("q","potter").param("maxResults","50").
                 when().get("https://www.googleapis.com/books/v1/volumes").
                 then().statusCode(400).extract().response();
 
