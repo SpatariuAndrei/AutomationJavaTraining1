@@ -10,7 +10,7 @@ Given I am on home page emag
 When I search for scaun
 Then there are many products
 
-Scenario: Search for an unexisting product scaun something angel cloud
+Scenario: Search for an nonexisting product scaun something angel cloud
 
 Given I am on home page emag
 When I search for scaun something angel cloud

@@ -40,7 +40,7 @@ public class Driver {
             System.setProperty(key, properties.getProperty(key));
         }
 
-        String s = System.getProperty("test.browser");
+        String s = System.getProperty("selenium.test.browser");
         if (s.equals("firefox")) {
             driver = new FirefoxDriver();
 
@@ -58,12 +58,12 @@ public class Driver {
             }
 
         } else {
-            throw new AssertionError("Unsupported browser: " + System.getProperty("test.browser"));
+            throw new AssertionError("Unsupported browser: " + System.getProperty("selenium.test.browser"));
         }
 
         //Configurations for synchronization
         driver.manage().timeouts().implicitlyWait(
-                Integer.parseInt(System.getProperty("test.timeout")),
+                Integer.parseInt(System.getProperty("selenium.test.timeout")),
                 TimeUnit.SECONDS
         ); //Configurations for synchronization
     }

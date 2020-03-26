@@ -11,13 +11,13 @@ public class Cart  extends Page {
     private String CART_URL = "https://www.emag.ro/cart/products?ref=cart";
 
     @FindBy(css = ".line-item.main-product")
-    List<WebElement> products;
+    private List<WebElement> products;
 
-    @FindBy( linkText = "Sterge")
-    WebElement deleteButton;
+    @FindBy( className = "btn-remove-product")
+    private WebElement deleteButton;
 
     @FindBy ( className = "title")
-    WebElement cosulEsteGolTextMessage;
+    private WebElement theCartIsEmptyTextMessage;
 
     public void go() {
         Driver.driver.get(CART_URL);
@@ -29,6 +29,6 @@ public class Cart  extends Page {
 
     public void deleteFirstItemInCart(){
         deleteButton.click();
-        waitVisibilityOfWebElement(cosulEsteGolTextMessage,5);
+        waitVisibilityOfWebElement(theCartIsEmptyTextMessage,5);
     }
 }

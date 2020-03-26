@@ -52,9 +52,9 @@ public class Page {
         ((JavascriptExecutor) Driver.driver).executeScript(javaScriptCode);
     }
 
-    protected void javaScriptClick(String locator){
+    protected void javaScriptClick(WebElement element){
         JavascriptExecutor executor = (JavascriptExecutor)Driver.driver;
-        executor.executeScript("arguments[0].click();", locator);
+        executor.executeScript("arguments[0].click();", element);
     }
 
     protected void waitVisibilityOfWebElement(WebElement locator, int seconds){
@@ -65,6 +65,10 @@ public class Page {
     protected void waitUntilClickable(WebElement locator, int seconds) {
         WebDriverWait wait = new WebDriverWait(Driver.driver, seconds);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    protected String getCurrentUrl(){
+        return Driver.driver.getCurrentUrl();
     }
 
 }
