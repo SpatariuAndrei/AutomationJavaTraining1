@@ -1,0 +1,9 @@
+
+(stories/SignupStory.story)
+Scenario: trying to sign up with an already existing user
+Given I go to PCGarage home page
+When I go to My account
+When I sign up
+Then I get an error message
+
+
