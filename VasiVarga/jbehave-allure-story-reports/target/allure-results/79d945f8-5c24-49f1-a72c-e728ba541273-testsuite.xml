@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-suite start="1588153011935" stop="1588153041695" version="1.4.23" xmlns:ns2="urn:model.allure.qatools.yandex.ru">
+    <name>com/test/jbehave/stories/sign_up.story</name>
+    <title>sign_up.story</title>
+    <test-cases>
+        <test-case start="1588153011941" stop="1588153039822" status="passed">
+            <name>Trying to sign up with an already existing user {homePage=https://www.pcgarage.ro/}</name>
+            <title>Trying to sign up with an already existing user {homePage=https://www.pcgarage.ro/}</title>
+            <steps>
+                <step start="1588153017826" stop="1588153025214" status="passed">
+                    <name>Given I go to PCGarage ｟https://www.pcgarage.ro/｠</name>
+                    <title>Given I go to PCGarage ｟https://www.pcgarage.ro/｠</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start="1588153025214" stop="1588153030623" status="passed">
+                    <name>When I go to My account</name>
+                    <title>When I go to My account</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start="1588153030623" stop="1588153039744" status="passed">
+                    <name>When I sign up</name>
+                    <title>When I sign up</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start="1588153039744" stop="1588153039821" status="passed">
+                    <name>Then I get an error message</name>
+                    <title>Then I get an error message</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <labels>
+                <label name="host" value="EN610457"/>
+                <label name="thread" value="2392@EN610457.pool-3-thread-1(25)"/>
+            </labels>
+        </test-case>
+    </test-cases>
+    <labels>
+        <label name="framework" value="JBehave"/>
+        <label name="language" value="JAVA"/>
+    </labels>
+</ns2:test-suite>

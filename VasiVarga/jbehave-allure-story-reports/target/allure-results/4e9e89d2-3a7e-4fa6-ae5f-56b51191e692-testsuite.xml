@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-suite start="1588152989987" stop="1588153011178" version="1.4.23" xmlns:ns2="urn:model.allure.qatools.yandex.ru">
+    <name>com/test/jbehave/stories/products_compare.story</name>
+    <title>products_compare.story</title>
+    <test-cases>
+        <test-case start="1588152989993" stop="1588153009075" status="passed">
+            <name>Search for the specific product from the homepage {homePage=https://www.pcgarage.ro/, productName=JBL Flip 5}</name>
+            <title>Search for the specific product from the homepage {homePage=https://www.pcgarage.ro/, productName=JBL Flip 5}</title>
+            <steps>
+                <step start="1588152995681" stop="1588153001097" status="passed">
+                    <name>Given I go to PCGarage ｟https://www.pcgarage.ro/｠</name>
+                    <title>Given I go to PCGarage ｟https://www.pcgarage.ro/｠</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start="1588153001100" stop="1588153009022" status="passed">
+                    <name>When I search for ｟JBL Flip 5｠</name>
+                    <title>When I search for ｟JBL Flip 5｠</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+                <step start="1588153009029" stop="1588153009072" status="passed">
+                    <name>Then I verify if the products are displayed</name>
+                    <title>Then I verify if the products are displayed</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <labels>
+                <label name="host" value="EN610457"/>
+                <label name="thread" value="2392@EN610457.pool-2-thread-1(20)"/>
+            </labels>
+        </test-case>
+    </test-cases>
+    <labels>
+        <label name="framework" value="JBehave"/>
+        <label name="language" value="JAVA"/>
+    </labels>
+</ns2:test-suite>
