@@ -4,51 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ee9776a-f521-43cd-b8cc-3cad24dd04b9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AutomationJavaTraining.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pages/DropdownPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pages/ForgotPasswordPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pages/HomePage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pages/HooverPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pages/HorizontalSliderPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pages/KeyPressesPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pages/LoginPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pages/PasswordConfirmationPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pages/SecureAreaPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/chromedriver.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Hoover/HooverTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Keys/keyPressesTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/base/BaseTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/dropdown/dropdownTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/forgotPassword/forgotPasswordTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/horizontalSlider/horizontalSliderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/login/loginTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/chromedriver.exe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pages/DropdownPage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pages/ForgotPasswordPage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pages/HomePage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pages/HooverPage$FigureCaption.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pages/HooverPage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pages/HorizontalSliderPage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pages/KeyPressesPage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pages/LoginPage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pages/PasswordConfirmationPage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/pages/SecureAreaPage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Hoover/HooverTests.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/Keys/keyPressesTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/base/BaseTests.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/dropdown/dropdownTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/forgotPassword/forgotPasswordTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/horizontalSlider/horizontalSliderTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/login/loginTests.class" afterDir="false" />
+    <list default="true" id="7ee9776a-f521-43cd-b8cc-3cad24dd04b9" name="Default Changelist" comment="Automation">
       <change afterPath="$PROJECT_DIR$/../AutomationTrainingJava/.idea/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../AutomationTrainingJava/.idea/compiler.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../AutomationTrainingJava/.idea/jarRepositories.xml" afterDir="false" />
@@ -70,6 +26,7 @@
       <change afterPath="$PROJECT_DIR$/../TRAININGAutomation Java/TRAININGAutomation Java.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../TRAININGAutomation Java/src/main/java/Homepage.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../TRAININGAutomation Java/src/main/resources/chromedriver.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LoredanaCC/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../LoredanaCC/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LoredanaCC/src/main/resources/chromedriver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../LoredanaCC/src/main/resources/chromedriver.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LoredanaCC/src/test/java/base/BaseTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoredanaCC/src/test/java/base/BaseTests.java" afterDir="false" />
@@ -114,6 +71,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -230,6 +188,14 @@
       <option name="presentableId" value="Default" />
       <updated>1613404035067</updated>
     </task>
+    <task id="LOCAL-00001" summary="Automation">
+      <created>1614517914367</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1614517914367</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -246,5 +212,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Automation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Automation" />
   </component>
 </project>

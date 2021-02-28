@@ -24,7 +24,7 @@ public class BaseTests {
 
     @BeforeClass
     public void setUp() {
-        String filePath = System.getProperty("user.dir") + "/src/main/resources/chromedriver.exe";
+        String filePath = System.getProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
         System.setProperty("webdriver.chrome.driver", filePath);
         driver = new EventFiringWebDriver(new ChromeDriver(getChromeOptions()));
         driver.register(new EventReporter());
